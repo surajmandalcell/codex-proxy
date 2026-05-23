@@ -9,18 +9,14 @@
       "Bash(curl:*)",
       "Bash(npm pack:*)",
       "Bash(git status -uno)",
-      "Bash(git switch:*)",
       "Bash(git rm:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git tag:*)",
-      "Bash(git push:*)",
-      "Bash(gh release create:*)",
-      "Bash(gh repo view:*)",
-      "Bash(git checkout:*)"
+      "Bash(gh repo view:*)"
     ],
     "deny": [
-      "Skill(superpowers:*)"
+      "Bash(git push:*)",
+      "Bash(gh release create:*)"
     ]
   }
 }
