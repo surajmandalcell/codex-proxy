@@ -62,7 +62,7 @@ src/
 ├── routes/                     # Modulized API routing (e.g., api-routes.js)
 ├── utils/                      # Helper scripts 
 ├── model-api.js                # Fetches models/usage stats/quotas
-├── model-mapper.js             # Maps `claude-sonnet-4-5` to `gpt-5.2` etc.
+├── model-mapper.js             # Maps `claude-sonnet-4-5` to `gpt-5.5` etc.
 ├── oauth.js                    # OAuth 2.0 PKCE authentication flow
 ├── kilo-api.js                 # Alternate upstream client
 ├── kilo-format-converter.js    # OpenRouter/Anthropic ↔ OpenAI Chat format
@@ -80,7 +80,7 @@ public/
 
 - **src/format-converter.js**: Handles unnesting Anthropic `tool_use`/`tool_result` array objects from message contents into the discrete top-level `function_call` structure demanded by ChatGPT's Responses API. Prefixing function call IDs with `fc_`.
 - **src/response-streamer.js**: Binds to `response.output_item.added`, `response.completed`, and text delta stream chunks from OpenAI and maps them exactly to `message_start`, `content_block_delta`, and `message_stop` events.
-- **src/account-manager.js**: Reads `~/.codex-claude-proxy/` and proactively background-refreshes OAuth refresh tokens exactly 5 minutes before the 1hr expiry deadline.
+- **src/account-manager.js**: Reads `~/.codex-claude-proxy/` and proactively background-refreshes OAuth refresh tokens exactly 5 minutes before the 1hr expiry deadline. Runtime requests use the active account by default; multi-account rotation requires `CODEX_CLAUDE_PROXY_ENABLE_MULTI_ACCOUNT_ROTATION=true`.
 - **src/model-mapper.js**: Performs translation like `claude-opus-4-5` → `gpt-5.5` and `codex` → `gpt-5.3-codex`. Kilo routing is explicit and disabled by default; `/settings/haiku-model` only selects the Kilo target when Kilo is enabled.
 - **src/oauth.js**: Coordinates PKCE challenge mechanisms via local port 1455. Generates URIs and exchanges OAuth codes headlessly.
 
