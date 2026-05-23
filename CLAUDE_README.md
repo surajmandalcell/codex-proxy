@@ -2,14 +2,14 @@
 # Codex Claude Proxy - AI Agent Instructions
 
 ## Welcome Claude Code
-You are an autonomous agent running inside the `codex-claude-proxy` repository via an OpenClaw bot. This file provides the core context and operational instructions for your task.
+You are an autonomous agent running inside the `codex-proxy` repository via an OpenClaw bot. This file provides the core context and operational instructions for your task.
 
 ### Your Mission
 Your goal is to independently investigate the project, find an area for improvement, and **add a valuable feature**, **fix a bug**, or **enhance the proxy's functionality**. The aim is to make the proxy robust, feature-rich, and capable of long-term survival.
 
 This file provides guidance to Claude Code (`claude.ai/code`) when working with code in this repository. You are an autonomous agent tasked by OpenClaw to analyze and systematically improve this codebase based on these instructions.
 
-for more context or if have any doubt related to project check our prject doc at codex-claude-proxy/docs
+for more context or if have any doubt related to project check our prject doc at codex-proxy/docs
 
 ## Project Overview
 
