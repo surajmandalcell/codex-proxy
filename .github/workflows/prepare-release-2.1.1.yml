@@ -1,10 +1,11 @@
 name: Prepare version 2.1.1
 
 on:
-  pull_request:
-    branches: [master]
+  push:
+    branches:
+      - agent/release-2.1.1
     paths:
-      - .github/workflows/prepare-release-2.1.1.yml
+      - .release-2.1.1/TRIGGER
 
 permissions:
   contents: write
@@ -13,7 +14,6 @@ concurrency:
   group: prepare-version-2.1.1
   cancel-in-progress: false
 
-# This workflow exists only on the release-preparation branch and removes itself.
 jobs:
   prepare:
     runs-on: ubuntu-24.04
@@ -22,7 +22,7 @@ jobs:
       - name: Check out release branch
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.head_ref }}
+          ref: agent/release-2.1.1
           fetch-depth: 0
 
       - name: Use Node.js 22
@@ -97,9 +97,10 @@ jobs:
         run: |
           set -euo pipefail
           rm -f .github/workflows/prepare-release-2.1.1.yml
+          rm -rf .release-2.1.1
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --check
           git commit -m "Prepare version 2.1.1"
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD:agent/release-2.1.1
