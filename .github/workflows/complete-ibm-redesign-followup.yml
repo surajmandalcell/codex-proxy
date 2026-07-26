@@ -1,0 +1,871 @@
+name: Complete IBM redesign follow-up
+
+on:
+  push:
+    branches:
+      - agent/complete-ibm-redesign-followup
+    paths:
+      - .complete-followup/TRIGGER
+
+permissions:
+  contents: write
+
+concurrency:
+  group: complete-ibm-redesign-followup
+  cancel-in-progress: false
+
+jobs:
+  complete:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out follow-up branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/complete-ibm-redesign-followup
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Use repository npm version
+        run: npm install --global npm@10.9.2 --no-audit --no-fund
+
+      - name: Apply complete review follow-up
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+
+          root = Path('.')
+
+          def read(path):
+              return (root / path).read_text(encoding='utf-8')
+
+          def write(path, content):
+              (root / path).parent.mkdir(parents=True, exist_ok=True)
+              (root / path).write_text(content, encoding='utf-8')
+
+          def replace_once(path, old, new):
+              text = read(path)
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected one match, found {count}: {old[:100]!r}')
+              write(path, text.replace(old, new, 1))
+
+          # Mutations report success so sensitive fields are not cleared after failures.
+          replace_once(
+              'desktop/renderer/App.jsx',
+              """    try { await operation(); await refresh(); setError(null); }
+    catch (cause) { setError(cause.message); }
+    finally { setBusy(false); }
+""",
+              """    try {
+      await operation();
+      await refresh();
+      setError(null);
+      return true;
+    } catch (cause) {
+      setError(cause.message);
+      return false;
+    } finally {
+      setBusy(false);
+    }
+""",
+          )
+
+          # Shared value-aware and dirty-aware draft state for polling screens.
+          write('desktop/renderer/hooks/useSyncedDraft.js', """import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+export function useSyncedDraft(source) {
+  const sourceRef = useRef(source);
+  sourceRef.current = source;
+  const sourceKey = useMemo(() => JSON.stringify(source), [source]);
+  const [draft, setDraftState] = useState(source);
+  const [dirty, setDirty] = useState(false);
+
+  useEffect(() => {
+    if (!dirty) setDraftState(sourceRef.current);
+  }, [dirty, sourceKey]);
+
+  const setDraft = useCallback((next) => {
+    setDirty(true);
+    setDraftState(next);
+  }, []);
+
+  const markClean = useCallback(() => setDirty(false), []);
+  const reset = useCallback(() => {
+    setDraftState(sourceRef.current);
+    setDirty(false);
+  }, [sourceKey]);
+
+  return { draft, setDraft, dirty, markClean, reset };
+}
+""")
+
+          # Shell status and accessibility.
+          replace_once(
+              'desktop/renderer/components/Shell.jsx',
+              '<div className="titlebar-meta" aria-label="Gateway status">',
+              '<div className="titlebar-meta" role="group" aria-label="Gateway status">',
+          )
+          replace_once(
+              'desktop/renderer/components/Shell.jsx',
+              '<span className="topbar-status">',
+              '<span className={`topbar-status ${snapshot ? \'online\' : \'starting\'}`}>',
+          )
+
+          # Dashboard tolerates providers without an accounts array.
+          replace_once(
+              'desktop/renderer/pages/Dashboard.jsx',
+              """                      {provider.accounts.length} account{provider.accounts.length === 1 ? '' : 's'} ·{' '}
+""",
+              """                      {(provider.accounts ?? []).length} account{(provider.accounts ?? []).length === 1 ? '' : 's'} ·{' '}
+""",
+          )
+
+          # Routing draft survives polling and reset wording describes its full scope.
+          replace_once(
+              'desktop/renderer/pages/Routing.jsx',
+              "import { Field, PageHeader, Panel } from '../components/Common.jsx';\n",
+              "import { Field, PageHeader, Panel } from '../components/Common.jsx';\nimport { useSyncedDraft } from '../hooks/useSyncedDraft.js';\n",
+          )
+          replace_once(
+              'desktop/renderer/pages/Routing.jsx',
+              """  const [routing, setRouting] = useState(snapshot.config.routing);
+  React.useEffect(() => setRouting(snapshot.config.routing), [snapshot.config.routing]);
+
+  const save = () => mutate(() => window.spi.updateConfig({ routing }));
+""",
+              """  const { draft: routing, setDraft: setRouting, markClean } = useSyncedDraft(snapshot.config.routing);
+
+  const save = async () => {
+    const succeeded = await mutate(() => window.spi.updateConfig({ routing }));
+    if (succeeded) markClean();
+  };
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Routing.jsx',
+              'title="Clear every provider override"',
+              'title="Replace all provider overrides with the current default strategy"',
+          )
+          replace_once(
+              'desktop/renderer/pages/Routing.jsx',
+              '<RotateCcw size={16} /> Replace overrides',
+              '<RotateCcw size={16} /> Replace all overrides',
+          )
+
+          # Settings use one dirty-aware draft and preserve API-key input on failure.
+          replace_once(
+              'desktop/renderer/pages/Settings.jsx',
+              "import { Field, PageHeader, Panel } from '../components/Common.jsx';\n",
+              "import { Field, PageHeader, Panel } from '../components/Common.jsx';\nimport { useSyncedDraft } from '../hooks/useSyncedDraft.js';\n",
+          )
+          replace_once(
+              'desktop/renderer/pages/Settings.jsx',
+              """  const [server, setServer] = useState(snapshot.config.server);
+  const [appearance, setAppearance] = useState(snapshot.config.appearance);
+  const [retentionDays, setRetentionDays] = useState(snapshot.config.retentionDays);
+  const [apiKey, setApiKey] = useState('');
+
+  React.useEffect(() => {
+    setServer(snapshot.config.server);
+    setAppearance(snapshot.config.appearance);
+    setRetentionDays(snapshot.config.retentionDays);
+  }, [snapshot]);
+
+  const save = () => mutate(() => window.spi.updateConfig({
+""",
+              """  const {
+    draft: settings,
+    setDraft: setSettings,
+    markClean,
+  } = useSyncedDraft({
+    server: snapshot.config.server,
+    appearance: snapshot.config.appearance,
+    retentionDays: snapshot.config.retentionDays,
+  });
+  const { server, appearance, retentionDays } = settings;
+  const [apiKey, setApiKey] = useState('');
+  const updateServer = (next) => setSettings((current) => ({
+    ...current,
+    server: typeof next === 'function' ? next(current.server) : next,
+  }));
+  const updateAppearance = (next) => setSettings((current) => ({
+    ...current,
+    appearance: typeof next === 'function' ? next(current.appearance) : next,
+  }));
+  const updateRetentionDays = (next) => setSettings((current) => ({
+    ...current,
+    retentionDays: typeof next === 'function' ? next(current.retentionDays) : next,
+  }));
+
+  const save = async () => {
+    const succeeded = await mutate(() => window.spi.updateConfig({
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Settings.jsx',
+              """    retentionDays: Number(retentionDays),
+  }));
+
+  const saveApiKey = async () => {
+    await mutate(() => window.spi.setApiKey(apiKey));
+    setApiKey('');
+  };
+""",
+              """    retentionDays: Number(retentionDays),
+    }));
+    if (succeeded) markClean();
+  };
+
+  const saveApiKey = async () => {
+    const succeeded = await mutate(() => window.spi.setApiKey(apiKey));
+    if (succeeded) setApiKey('');
+  };
+""",
+          )
+          settings = read('desktop/renderer/pages/Settings.jsx')
+          settings = settings.replace('onChange={(event) => setServer(', 'onChange={(event) => updateServer(')
+          settings = settings.replace('onChange={(event) => setAppearance(', 'onChange={(event) => updateAppearance(')
+          settings = settings.replace('onChange={(event) => setRetentionDays(', 'onChange={(event) => updateRetentionDays(')
+          write('desktop/renderer/pages/Settings.jsx', settings)
+
+          # Catalog edits are not overwritten by the five-second snapshot refresh.
+          replace_once(
+              'desktop/renderer/pages/Catalog.jsx',
+              "import { Empty, Field, PageHeader, Panel } from '../components/Common.jsx';\n",
+              "import { Empty, Field, PageHeader, Panel } from '../components/Common.jsx';\nimport { useSyncedDraft } from '../hooks/useSyncedDraft.js';\n",
+          )
+          replace_once(
+              'desktop/renderer/pages/Catalog.jsx',
+              """  const [aliases, setAliases] = useState(snapshot.config.modelAliases ?? []);
+  const [pricing, setPricing] = useState(snapshot.config.pricing ?? []);
+
+  useEffect(() => {
+    setAliases(snapshot.config.modelAliases ?? []);
+    setPricing(snapshot.config.pricing ?? []);
+  }, [snapshot.config.modelAliases, snapshot.config.pricing]);
+
+  const save = () => mutate(() => window.spi.updateConfig({ modelAliases: aliases, pricing }));
+""",
+              """  const { draft: catalog, setDraft: setCatalog, markClean } = useSyncedDraft({
+    aliases: snapshot.config.modelAliases ?? [],
+    pricing: snapshot.config.pricing ?? [],
+  });
+  const { aliases, pricing } = catalog;
+  const setAliases = (next) => setCatalog((current) => ({
+    ...current,
+    aliases: resolveUpdate(next, current.aliases),
+  }));
+  const setPricing = (next) => setCatalog((current) => ({
+    ...current,
+    pricing: resolveUpdate(next, current.pricing),
+  }));
+
+  const save = async () => {
+    const succeeded = await mutate(() => window.spi.updateConfig({ modelAliases: aliases, pricing }));
+    if (succeeded) markClean();
+  };
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Catalog.jsx',
+              """function updateAt(items, index, patch) {
+  return items.map((item, itemIndex) => (itemIndex === index ? { ...item, ...patch } : item));
+}
+""",
+              """function updateAt(items, index, patch) {
+  return items.map((item, itemIndex) => (itemIndex === index ? { ...item, ...patch } : item));
+}
+
+function resolveUpdate(next, current) {
+  return typeof next === 'function' ? next(current) : next;
+}
+""",
+          )
+
+          # Provider and account drafts are dirty-aware; failed saves do not clear forms.
+          replace_once(
+              'desktop/renderer/pages/Providers.jsx',
+              "import { Empty, Field, PageHeader, Panel } from '../components/Common.jsx';\n",
+              "import { Empty, Field, PageHeader, Panel } from '../components/Common.jsx';\nimport { useSyncedDraft } from '../hooks/useSyncedDraft.js';\n",
+          )
+          replace_once(
+              'desktop/renderer/pages/Providers.jsx',
+              """  const [draft, setDraft] = useState(provider);
+  const [headersText, setHeadersText] = useState(pretty(provider.headers));
+  const [adapterText, setAdapterText] = useState(pretty(provider.adapter));
+
+  React.useEffect(() => {
+    setDraft(provider);
+    setHeadersText(pretty(provider.headers));
+    setAdapterText(pretty(provider.adapter));
+  }, [provider]);
+
+  const patch = (key, value) => setDraft((current) => ({ ...current, [key]: value }));
+  const save = () => mutate(() => window.spi.updateProvider(provider.id, {
+    ...draft,
+    headers: parseObject(headersText, 'Custom headers'),
+    adapter: parseObject(adapterText, 'Adapter options'),
+  }));
+""",
+              """  const source = useMemo(() => ({
+    draft: provider,
+    headersText: pretty(provider.headers),
+    adapterText: pretty(provider.adapter),
+  }), [provider]);
+  const { draft: editor, setDraft: setEditor, markClean, reset } = useSyncedDraft(source);
+  const { draft, headersText, adapterText } = editor;
+  const setHeadersText = (value) => setEditor((current) => ({ ...current, headersText: value }));
+  const setAdapterText = (value) => setEditor((current) => ({ ...current, adapterText: value }));
+  const patch = (key, value) => setEditor((current) => ({
+    ...current,
+    draft: { ...current.draft, [key]: value },
+  }));
+  const save = async () => {
+    const succeeded = await mutate(() => window.spi.updateProvider(provider.id, {
+      ...draft,
+      headers: parseObject(headersText, 'Custom headers'),
+      adapter: parseObject(adapterText, 'Adapter options'),
+    }));
+    if (succeeded) markClean();
+  };
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Providers.jsx',
+              """              onClick={() => {
+                setDraft(provider);
+                setHeadersText(pretty(provider.headers));
+                setAdapterText(pretty(provider.adapter));
+              }}
+""",
+              """              onClick={reset}
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Providers.jsx',
+              """  const submit = async () => {
+    await mutate(() => window.spi.addAccount(provider.id, account));
+    reset();
+    setShowAdd(false);
+  };
+""",
+              """  const submit = async () => {
+    const succeeded = await mutate(() => window.spi.addAccount(provider.id, account));
+    if (!succeeded) return;
+    reset();
+    setShowAdd(false);
+  };
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Providers.jsx',
+              """  const [draft, setDraft] = useState({
+    ...account,
+    secret: '',
+    limits: { ...emptyLimits, ...account.limits },
+  });
+
+  React.useEffect(() => {
+    setDraft({
+      ...account,
+      secret: '',
+      limits: { ...emptyLimits, ...account.limits },
+    });
+  }, [account]);
+
+  const update = (key, value) => setDraft((current) => ({ ...current, [key]: value }));
+""",
+              """  const accountSource = useMemo(() => ({
+    ...account,
+    secret: '',
+    limits: { ...emptyLimits, ...account.limits },
+  }), [account]);
+  const { draft, setDraft, markClean } = useSyncedDraft(accountSource);
+
+  const update = (key, value) => setDraft((current) => ({ ...current, [key]: value }));
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Providers.jsx',
+              """          <button className="icon-button" type="button" title="Save account" onClick={() => mutate(() => window.spi.updateAccount(providerId, account.id, draft))}>
+""",
+              """          <button className="icon-button" type="button" title="Save account" onClick={async () => {
+            const succeeded = await mutate(() => window.spi.updateAccount(providerId, account.id, draft));
+            if (succeeded) markClean();
+          }}>
+""",
+          )
+
+          # Usage errors are surfaced and selectable rows support keyboard activation.
+          replace_once(
+              'desktop/renderer/pages/Usage.jsx',
+              """  const [attempts, setAttempts] = useState([]);
+""",
+              """  const [attempts, setAttempts] = useState([]);
+  const [error, setError] = useState('');
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Usage.jsx',
+              """    setLoading(true);
+    Promise.all([
+""",
+              """    setLoading(true);
+    setError('');
+    Promise.all([
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Usage.jsx',
+              """      .then(([records, nextSummary]) => {
+        if (active) {
+          setRows(records);
+          setSummary(nextSummary);
+        }
+      })
+      .finally(() => {
+""",
+              """      .then(([records, nextSummary]) => {
+        if (active) {
+          setRows(records);
+          setSummary(nextSummary);
+        }
+      })
+      .catch((cause) => {
+        if (active) {
+          setRows([]);
+          setSummary({});
+          setError(cause?.message ?? 'Unable to load usage data.');
+        }
+      })
+      .finally(() => {
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Usage.jsx',
+              """  const selectRequest = async (record) => {
+    setSelected(record);
+    setAttempts(await window.spi.listAttempts(record.id));
+  };
+
+  const exportCsv = async () => {
+    const csv = await window.spi.exportUsageCsv(query);
+""",
+              """  const selectRequest = async (record) => {
+    setSelected(record);
+    setError('');
+    try {
+      setAttempts(await window.spi.listAttempts(record.id));
+    } catch (cause) {
+      setAttempts([]);
+      setError(cause?.message ?? 'Unable to load route attempts.');
+    }
+  };
+
+  const exportCsv = async () => {
+    setError('');
+    let csv;
+    try {
+      csv = await window.spi.exportUsageCsv(query);
+    } catch (cause) {
+      setError(cause?.message ?? 'Unable to export usage data.');
+      return;
+    }
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Usage.jsx',
+              """      <div className="metric-grid">
+""",
+              """      {error ? <div className="inline-error" role="alert">{error}</div> : null}
+
+      <div className="metric-grid">
+""",
+          )
+          replace_once(
+              'desktop/renderer/pages/Usage.jsx',
+              """                    className={selected?.id === record.id ? 'selected-row' : ''}
+                    onClick={() => selectRequest(record)}
+                  >
+""",
+              """                    className={selected?.id === record.id ? 'selected-row' : ''}
+                    role="button"
+                    tabIndex={0}
+                    aria-selected={selected?.id === record.id}
+                    onClick={() => selectRequest(record)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        selectRequest(record);
+                      }
+                    }}
+                  >
+""",
+          )
+
+          # Desktop style fixes and explicit error presentation.
+          replace_once(
+              'desktop/renderer/styles.css',
+              """  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+""",
+              """  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+""",
+          )
+          replace_once(
+              'desktop/renderer/styles.css',
+              """.topbar-status i {
+  width: 8px;
+  height: 8px;
+  background: #42be65;
+}
+""",
+              """.topbar-status i {
+  width: 8px;
+  height: 8px;
+  background: var(--support-success);
+}
+
+.topbar-status.starting i {
+  background: var(--support-warning);
+}
+""",
+          )
+          replace_once(
+              'desktop/renderer/styles.css',
+              """.compact select {
+  background-position:
+    calc(100% - 18px) 13px,
+    calc(100% - 13px) 13px;
+}
+""",
+              """.compact select {
+  background-position: right 12px center;
+}
+""",
+          )
+          replace_once(
+              'desktop/renderer/styles.css',
+              """  .api-key-row {
+    grid-template-columns: minmax(240px, 1fr) minmax(220px, 1fr) auto;
+  }
+
+  .api-key-row .icon-button {
+    grid-column: 3;
+  }
+""",
+              """  .api-key-row {
+    grid-template-columns: minmax(240px, 1fr) minmax(220px, 1fr) auto auto;
+  }
+""",
+          )
+          styles = read('desktop/renderer/styles.css')
+          insertion = """
+.inline-error {
+  margin-bottom: var(--spacing-05);
+  padding: var(--spacing-04) var(--spacing-05);
+  border-left: 4px solid var(--support-error);
+  background: color-mix(in srgb, var(--support-error) 10%, var(--layer-01));
+  color: var(--text-primary);
+}
+
+tbody tr[role="button"]:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+"""
+          marker = '/* Responsive layout */'
+          if insertion.strip() not in styles:
+              if marker not in styles:
+                  raise SystemExit('desktop styles responsive marker missing')
+              styles = styles.replace(marker, insertion + '\n' + marker, 1)
+          write('desktop/renderer/styles.css', styles)
+
+          # Documentation accurately describes the token scale.
+          replace_once(
+              'docs/DESIGN_SYSTEM.md',
+              'The base unit is 8 px. Layout and component spacing use multiples of that unit:',
+              'The token scale uses a Carbon-like 4 px base with an 8 px major layout rhythm. Optical adjustments may use 2 px; component and section spacing primarily use 8 px multiples:',
+          )
+
+          # Generated documentation rejects unsafe URL schemes and removes the CodeQL-triggering regex.
+          replace_once(
+              'scripts/build-site.mjs',
+              """function rewriteHref(href, sourcePath, outputDirectory) {
+  if (/^(?:https?:|mailto:|tel:|#)/i.test(href)) return href;
+  const [pathname, hash = ''] = href.split('#');
+""",
+              """function rewriteHref(href, sourcePath, outputDirectory) {
+  if (/^(?:https?:|mailto:|tel:|#)/i.test(href)) return href;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return '#';
+  const [pathname, hash = ''] = href.split('#');
+""",
+          )
+          replace_once(
+              'scripts/build-site.mjs',
+              """  return value
+    .toLowerCase()
+    .replace(/<[^>]+>/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+""",
+              """  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+""",
+          )
+
+          # Website accessibility, contrast, and typography fixes.
+          replace_once(
+              'website/assets/site.css',
+              """  --header-height: 64px;
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+""",
+              """  --header-height: 64px;
+
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+""",
+          )
+          replace_once(
+              'website/assets/site.css',
+              '  text-rendering: optimizeLegibility;\n',
+              '  text-rendering: optimizelegibility;\n',
+          )
+          replace_once(
+              'website/assets/site.css',
+              '  font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;\n',
+              '  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;\n',
+          )
+          replace_once(
+              'website/assets/site.css',
+              """.site-navigation a:hover,
+.site-navigation a:focus-visible {
+  background: var(--gray-80);
+  color: var(--white);
+  outline: none;
+}
+""",
+              """.site-navigation a:hover,
+.site-navigation a:focus-visible {
+  background: var(--gray-80);
+  color: var(--white);
+}
+
+.site-navigation a:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -2px;
+}
+""",
+          )
+          replace_once(
+              'website/assets/site.css',
+              """.section-dark .section-heading > span,
+.section-blue .section-heading > span {
+  color: var(--gray-30);
+}
+""",
+              """.section-dark .section-heading > span {
+  color: var(--gray-30);
+}
+
+.section-blue .section-heading > span {
+  color: var(--white);
+}
+""",
+          )
+          replace_once(
+              'website/assets/site.css',
+              """.section-dark .section-heading p,
+.section-blue .section-heading p {
+  color: var(--gray-20);
+}
+""",
+              """.section-dark .section-heading p {
+  color: var(--gray-20);
+}
+
+.section-blue .section-heading p {
+  color: var(--white);
+}
+""",
+          )
+
+          # Mobile menu state and clipboard feedback remain correct under repeated interaction.
+          write('website/assets/site.js', """const menuButton = document.querySelector('[data-menu-toggle]');
+const menu = document.querySelector('[data-menu]');
+
+function closeMenu() {
+  if (!menuButton || !menu) return;
+  menuButton.setAttribute('aria-expanded', 'false');
+  menu.classList.remove('open');
+}
+
+if (menuButton && menu) {
+  menuButton.addEventListener('click', () => {
+    const open = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('open', !open);
+  });
+
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) closeMenu();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  const wideLayout = window.matchMedia('(min-width: 841px)');
+  wideLayout.addEventListener('change', (event) => {
+    if (event.matches) closeMenu();
+  });
+}
+
+for (const button of document.querySelectorAll('[data-copy-target]')) {
+  const originalLabel = button.textContent;
+  let resetTimer = null;
+
+  button.addEventListener('click', async () => {
+    const target = document.getElementById(button.dataset.copyTarget);
+    if (!target) return;
+    const text = target.textContent.trim();
+
+    if (resetTimer) window.clearTimeout(resetTimer);
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(text);
+      button.textContent = 'Copied';
+    } catch {
+      button.textContent = 'Copy failed';
+    }
+
+    resetTimer = window.setTimeout(() => {
+      button.textContent = originalLabel;
+      resetTimer = null;
+    }, 1400);
+  });
+}
+
+for (const node of document.querySelectorAll('[data-current-year]')) {
+  node.textContent = String(new Date().getFullYear());
+}
+""")
+
+          # Website metadata matches the light-only site and uses a raster preview.
+          replace_once(
+              'website/index.html',
+              '<meta name="color-scheme" content="light dark">',
+              '<meta name="color-scheme" content="light">',
+          )
+          website = read('website/index.html')
+          website = website.replace('assets/social-card.svg', 'assets/social-card.png')
+          write('website/index.html', website)
+
+          # Regression tests for the previously incomplete review findings.
+          write('tests/repository/interface-followup.test.js', """import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile, stat } from 'node:fs/promises';
+import path from 'node:path';
+
+const root = path.resolve(import.meta.dirname, '../..');
+const text = (relative) => readFile(path.join(root, relative), 'utf8');
+
+async function exists(relative) {
+  return stat(path.join(root, relative)).then(() => true, () => false);
+}
+
+test('polling forms use dirty-aware drafts and mutations report success', async () => {
+  const app = await text('desktop/renderer/App.jsx');
+  const hook = await text('desktop/renderer/hooks/useSyncedDraft.js');
+  assert.match(app, /return true;/);
+  assert.match(app, /return false;/);
+  assert.match(hook, /if \(!dirty\) setDraftState/);
+  for (const file of ['Catalog.jsx', 'Providers.jsx', 'Routing.jsx', 'Settings.jsx']) {
+    assert.match(await text(`desktop/renderer/pages/${file}`), /useSyncedDraft/);
+  }
+});
+
+test('usage interaction handles failures and keyboard selection', async () => {
+  const usage = await text('desktop/renderer/pages/Usage.jsx');
+  assert.match(usage, /\.catch\(\(cause\) =>/);
+  assert.match(usage, /role="button"/);
+  assert.match(usage, /tabIndex=\{0\}/);
+  assert.match(usage, /event\.key === 'Enter'/);
+  assert.match(usage, /role="alert"/);
+});
+
+test('site interaction and generated links remain safe and accessible', async () => {
+  const script = await text('website/assets/site.js');
+  const styles = await text('website/assets/site.css');
+  const builder = await text('scripts/build-site.mjs');
+  const html = await text('website/index.html');
+  assert.match(script, /matchMedia\('\(min-width: 841px\)'\)/);
+  assert.match(script, /event\.key === 'Escape'/);
+  assert.match(script, /Copy failed/);
+  assert.match(styles, /site-navigation a:focus-visible[\s\S]*outline: 2px solid/);
+  assert.match(builder, /\^\[a-z\]\[a-z0-9\+\.\-\]\*:/);
+  assert.doesNotMatch(builder, /<\[\^>\]\+>/);
+  assert.match(html, /color-scheme" content="light"/);
+  assert.match(html, /social-card\.png/);
+  assert.equal(await exists('website/assets/social-card.png'), true);
+});
+
+test('desktop status and compact responsive controls retain explicit states', async () => {
+  const shell = await text('desktop/renderer/components/Shell.jsx');
+  const styles = await text('desktop/renderer/styles.css');
+  assert.match(shell, /role="group" aria-label="Gateway status"/);
+  assert.match(shell, /topbar-status \$\{snapshot \? 'online' : 'starting'\}/);
+  assert.match(styles, /topbar-status\.starting i/);
+  assert.match(styles, /clip-path: inset\(50%\)/);
+  assert.match(styles, /\.compact select[\s\S]*right 12px center/);
+  assert.match(styles, /api-key-row[\s\S]*auto auto/);
+});
+""")
+          PY
+
+          if command -v magick >/dev/null 2>&1; then
+            magick website/assets/social-card.svg website/assets/social-card.png
+          elif command -v convert >/dev/null 2>&1; then
+            convert website/assets/social-card.svg website/assets/social-card.png
+          else
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends librsvg2-bin
+            rsvg-convert -w 1200 -h 630 website/assets/social-card.svg > website/assets/social-card.png
+          fi
+          test -s website/assets/social-card.png
+
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify, test, and build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Build unpacked Linux application
+        run: npm run dist:dir
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Commit completed follow-up
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/complete-ibm-redesign-followup.yml
+          rm -rf .complete-followup
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Complete IBM redesign review follow-up"
+          git push origin HEAD:agent/complete-ibm-redesign-followup
