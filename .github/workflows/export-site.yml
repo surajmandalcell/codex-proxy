@@ -1,0 +1,70 @@
+name: Export canonical documentation site
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/export-site.yml
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out canonical master
+        uses: actions/checkout@v6
+        with:
+          ref: master
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install exact dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build and validate site
+        run: npm run build:site
+      - name: Prepare branch-hosted Pages bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          touch dist/site/.nojekyll
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const root = path.resolve('dist/site');
+          const manifestPath = path.join(root, 'manifest.webmanifest');
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          manifest.icons = manifest.icons.filter((icon) => icon.type !== 'image/png');
+          fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+          for (const relative of ['index.html', '404.html', ...fs.readdirSync(path.join(root, 'docs')).filter((name) => name.endsWith('.html')).map((name) => `docs/${name}`)]) {
+            const file = path.join(root, relative);
+            if (!fs.existsSync(file)) continue;
+            const html = fs.readFileSync(file, 'utf8')
+              .replaceAll('assets/social-card.png', 'assets/social-card.svg')
+              .replaceAll('../assets/social-card.png', '../assets/social-card.svg');
+            fs.writeFileSync(file, html);
+          }
+          for (const name of ['assets/icon-512.png', 'assets/social-card.png']) {
+            fs.rmSync(path.join(root, name), { force: true });
+          }
+          NODE
+          test -f dist/site/index.html
+          test -f dist/site/docs/index.html
+          test -f dist/site/manifest.webmanifest
+          test -f dist/site/assets/icon.svg
+          test -f dist/site/assets/social-card.svg
+          if find dist/site -type f -print0 | xargs -0 file --mime-type | grep -vE 'text/|application/(json|manifest\+json|xml)|image/svg\+xml'; then
+            echo 'Unexpected binary file remains in exported site.' >&2
+            exit 1
+          fi
+      - name: Upload canonical site
+        uses: actions/upload-artifact@v7
+        with:
+          name: canonical-documentation-site
+          path: dist/site
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 2
