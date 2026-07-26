@@ -1,0 +1,84 @@
+name: Visual audit IBM redesign v2
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - .github/workflows/visual-audit-redesign-v2.yml
+      - scripts/audit-ui.mjs
+      - desktop/renderer/**
+      - website/**
+      - scripts/build-site.mjs
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out proposed source
+        uses: actions/checkout@v6
+
+      - name: Download guarded production preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_HEAD: e2b9afd876a9520dbfb181ad102e44112cf1e8bc
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_id="$(
+            gh api --method GET "repos/$GITHUB_REPOSITORY/actions/runs?branch=agent%2Fibm-interface-redesign&event=push&per_page=50" \
+              --jq ".workflow_runs[] | select(.name == \"Apply IBM interface redesign\" and .head_sha == \"$SOURCE_HEAD\" and .conclusion == \"success\") | .id" \
+              | head -n 1
+          )"
+          test -n "$run_id"
+          gh run download "$run_id" --repo "$GITHUB_REPOSITORY" --name ibm-interface-redesign-preview --dir "$RUNNER_TEMP/preview"
+          test -f "$RUNNER_TEMP/preview/renderer/index.html"
+          test -f "$RUNNER_TEMP/preview/site/index.html"
+          printf 'source_run=%s\n' "$run_id" > "$RUNNER_TEMP/preview/source-run.txt"
+
+      - name: Serve production interfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          nohup python3 -m http.server 4173 --directory "$RUNNER_TEMP/preview/site" > "$RUNNER_TEMP/site-server.log" 2>&1 &
+          nohup python3 -m http.server 4174 --directory "$RUNNER_TEMP/preview/renderer" > "$RUNNER_TEMP/app-server.log" 2>&1 &
+          for url in http://127.0.0.1:4173/ http://127.0.0.1:4174/; do
+            for attempt in $(seq 1 30); do
+              curl --fail --silent "$url" >/dev/null && break
+              sleep 1
+            done
+            curl --fail --silent "$url" >/dev/null
+          done
+
+      - name: Audit responsive layout and interaction
+        id: browser
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          browser="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          test -x "$browser"
+          mkdir -p "$RUNNER_TEMP/browser-audit"
+          BROWSER="$browser" \
+          APP_URL=http://127.0.0.1:4174/ \
+          SITE_URL=http://127.0.0.1:4173/ \
+          OUTPUT_DIR="$RUNNER_TEMP/browser-audit" \
+            node scripts/audit-ui.mjs 2>&1 | tee "$RUNNER_TEMP/browser-audit/run.log"
+
+      - name: Upload browser audit evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ibm-interface-browser-audit-v2
+          path: ${{ runner.temp }}/browser-audit
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Enforce browser audit result
+        if: steps.browser.outcome != 'success'
+        shell: bash
+        run: exit 1
