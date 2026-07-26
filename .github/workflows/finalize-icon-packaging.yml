@@ -1,0 +1,121 @@
+name: Finalize cross-platform icon packaging
+
+on:
+  push:
+    branches:
+      - agent/finish-hero-icon-motion
+    paths:
+      - .github/workflows/finalize-icon-packaging.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finalize-icon-packaging
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/finish-hero-icon-motion
+          fetch-depth: 0
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install icon renderer and exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends librsvg2-bin
+          npm install --global npm@10.9.2 --no-audit --no-fund
+          npm ci --no-audit --no-fund
+      - name: Render package icon and update contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          rsvg-convert -w 1024 -h 1024 build/icon.svg > build/icon.png
+          test -s build/icon.png
+          file build/icon.png | grep -q '1024 x 1024'
+          node <<'NODE'
+          const fs = require('node:fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          pkg.build.mac.icon = 'build/icon.png';
+          pkg.build.win.icon = 'build/icon.png';
+          pkg.build.linux.icon = 'build/icon.svg';
+          fs.writeFileSync('package.json', `${JSON.stringify(pkg, null, 2)}\n`);
+          NODE
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('tests/repository/interface-completion.test.js')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace("assert.equal(pkg.build.mac.icon, 'build/icon.svg');", "assert.equal(pkg.build.mac.icon, 'build/icon.png');")
+          text = text.replace("assert.equal(pkg.build.win.icon, 'build/icon.svg');", "assert.equal(pkg.build.win.icon, 'build/icon.png');")
+          text = text.replace(
+              "  assert.equal(await exists('build/icon.png'), false);\n",
+              "  const packagingIcon = await readFile(path.join(root, 'build/icon.png'));\n"
+              "  assert.deepEqual([...packagingIcon.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);\n"
+              "  assert.ok(packagingIcon.length > 5000);\n",
+          )
+          if "pkg.build.mac.icon, 'build/icon.png'" not in text or 'packagingIcon.length > 5000' not in text:
+              raise SystemExit('interface completion package-icon contract was not updated')
+          path.write_text(text, encoding='utf-8')
+
+          path = Path('docs/DESIGN_SYSTEM.md')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace(
+              '- `website/assets/icon.svg`, `desktop/renderer/assets/icon.svg`, and `build/icon.svg` must remain identical.\n'
+              '- The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, and Electron packaging on Windows, macOS, and Linux.\n',
+              '- `website/assets/icon.svg`, `desktop/renderer/assets/icon.svg`, and `build/icon.svg` must remain identical.\n'
+              '- The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, Linux packaging, and the generated package raster.\n'
+              '- `build/icon.png` is a deterministic 1024×1024 render of the canonical SVG for the pinned macOS and Windows package converter. It is not an independent design source.\n',
+          )
+          path.write_text(text, encoding='utf-8')
+
+          path = Path('tests/repository/interface-followup.test.js')
+          text = path.read_text(encoding='utf-8')
+          marker = "    'scripts/prepare-followup-patch.py',\n"
+          additions = (
+              "    '.mac-package-error.txt',\n"
+              "    '.mac-build-tail.txt',\n"
+              "    '.github/workflows/capture-mac-package-error.yml',\n"
+              "    '.github/workflows/diagnose-mac-package.yml',\n"
+              "    '.github/workflows/finalize-icon-packaging.yml',\n"
+          )
+          if additions not in text:
+              text = text.replace(marker, marker + additions)
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Remove one-use diagnostic machinery
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .mac-package-error.txt .mac-build-tail.txt
+          rm -f .github/workflows/capture-mac-package-error.yml
+          rm -f .github/workflows/diagnose-mac-package.yml
+          rm -f .github/workflows/finalize-icon-packaging.yml
+      - name: Verify, test, build, and audit
+        run: |
+          npm run build
+          npm audit --omit=dev --audit-level=high
+          npm run dist:dir
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      - name: Commit clean package compatibility fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Finalize cross-platform calendar refresh icon"
+          git push origin HEAD:agent/finish-hero-icon-motion
