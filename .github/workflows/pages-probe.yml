@@ -1,0 +1,42 @@
+name: Pages deployment probe
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pages-probe.yml
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Capture Pages workflow and live endpoint state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir probe
+          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pages.yml/runs?branch=master&per_page=5" > probe/pages-runs.json
+          site="https://surajmandalcell.github.io/subscription-proxy-inator/"
+          for target in root manifest docs; do
+            case "$target" in
+              root) url="$site" ;;
+              manifest) url="${site}manifest.webmanifest" ;;
+              docs) url="${site}docs/" ;;
+            esac
+            curl --silent --show-error --location --max-time 30 \
+              --dump-header "probe/${target}.headers" \
+              --output "probe/${target}.body" \
+              --write-out '%{http_code}\n' "$url" > "probe/${target}.status" || true
+          done
+      - name: Upload Pages probe
+        uses: actions/upload-artifact@v7
+        with:
+          name: pages-deployment-probe
+          path: probe
+          if-no-files-found: error
+          retention-days: 1
