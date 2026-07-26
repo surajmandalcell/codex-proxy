@@ -1,0 +1,443 @@
+exit_status=1
+4355-              },
+4356-              "_id": "tunnel-agent@0.6.0",
+4357-              "extraneous": false,
+4358-              "path": "/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/tunnel-agent",
+4359-              "_dependencies": {
+4360-                "safe-buffer": "^5.0.1"
+4361-              },
+4362-              "peerDependencies": {},
+4363-              "dependencies": {
+4364-                "safe-buffer": {
+--
+9246-            "rollup": "rollup --config",
+9247-            "test": "vitest",
+9248-            "test:coverage": "pnpm run rollup && vitest --coverage",
+9249-            "test:ci": "pnpm run lint && pnpm run test:coverage && pnpm run test:typescript",
+9250-            "test:typescript": "tsd",
+9251-            "types:generate": "pnpm exec tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ."
+9252-          },
+9253-          "_id": "toad-cache@3.7.4",
+9254-          "extraneous": false,
+9255-          "path": "/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/toad-cache",
+9256-          "_dependencies": {},
+9257-          "peerDependencies": {}
+9258-        }
+9259-      }
+9260-    },
+9261-    "lucide-react": {
+9262-      "version": "0.468.0",
+9263-      "resolved": "https://registry.npmjs.org/lucide-react/-/lucide-react-0.468.0.tgz",
+9264-      "overridden": false,
+9265-      "name": "lucide-react",
+9266:      "description": "A Lucide icon library package for React applications",
+9267-      "license": "ISC",
+9268-      "homepage": "https://lucide.dev",
+9269:      "bugs": "https://github.com/lucide-icons/lucide/issues",
+9270-      "repository": {
+9271-        "type": "git",
+9272:        "url": "https://github.com/lucide-icons/lucide.git",
+9273-        "directory": "packages/lucide-react"
+9274-      },
+9275-      "keywords": [
+9276-        "Lucide",
+9277-        "React",
+9278-        "Feather",
+9279-        "Icons",
+9280-        "Icon",
+9281-        "SVG",
+9282-        "Feather Icons",
+9283-        "Fontawesome",
+9284-        "Font Awesome"
+9285-      ],
+9286-      "author": "Eric Fennis",
+9287-      "amdName": "lucide-react",
+9288-      "main": "dist/cjs/lucide-react.js",
+9289-      "main:umd": "dist/umd/lucide-react.js",
+9290-      "module": "dist/esm/lucide-react.js",
+9291-      "unpkg": "dist/umd/lucide-react.min.js",
+9292-      "typings": "dist/lucide-react.d.ts",
+9293-      "sideEffects": false,
+9294-      "files": [
+9295-        "dist",
+9296-        "dynamicIconImports.js",
+9297-        "dynamicIconImports.js.map",
+9298-        "dynamicIconImports.d.ts"
+9299-      ],
+9300-      "devDependencies": {
+9301-        "@testing-library/jest-dom": "^6.1.6",
+9302-        "@testing-library/react": "^14.1.2",
+9303-        "@types/react": "^18.2.37",
+9304-        "@vitejs/plugin-react": "^4.2.1",
+9305-        "jest-serializer-html": "^7.1.0",
+9306-        "react": "18.2.0",
+9307-        "react-dom": "18.2.0",
+9308-        "rollup": "^4.22.4",
+9309-        "rollup-plugin-dts": "^6.1.0",
+9310-        "typescript": "^4.9.5",
+9311-        "vite": "5.1.8",
+9312-        "vitest": "^1.1.1",
+9313:        "@lucide/build-icons": "1.1.0",
+9314-        "@lucide/rollup-plugins": "1.0.0",
+9315-        "@lucide/shared": "1.0.0"
+9316-      },
+9317-      "peerDependencies": {
+9318-        "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc"
+9319-      },
+9320-      "scripts": {
+9321:        "build": "pnpm clean && pnpm copy:license && pnpm build:icons && pnpm typecheck && pnpm build:bundles",
+9322-        "copy:license": "cp ../../LICENSE ./LICENSE",
+9323:        "clean": "rm -rf dist && rm -rf stats && rm -rf ./src/icons/*.ts && rm -f dynamicIconImports.*",
+9324:        "build:icons": "build-icons --output=./src --templateSrc=./scripts/exportTemplate.mjs --renderUniqueKey --withAliases --withDynamicImports --separateAliasesFile --aliasesFileExtension=.ts --iconFileExtension=.ts --exportFileName=index.ts",
+9325-        "build:bundles": "rollup -c ./rollup.config.mjs",
+9326-        "typecheck": "tsc",
+9327-        "typecheck:watch": "tsc -w",
+9328:        "test": "pnpm build:icons && vitest run",
+9329-        "test:watch": "vitest watch",
+9330-        "version": "pnpm version --git-tag-version=false"
+9331-      },
+9332-      "_id": "lucide-react@0.468.0",
+9333-      "extraneous": false,
+9334-      "path": "/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/lucide-react",
+9335-      "_dependencies": {},
+9336-      "dependencies": {
+9337-        "react": {
+9338-          "version": "19.1.0",
+9339-          "name": "react",
+9340-          "description": "React is a JavaScript library for building user interfaces.",
+9341-          "keywords": [
+9342-            "react"
+9343-          ],
+9344-          "homepage": "https://react.dev/",
+9345-          "bugs": "https://github.com/facebook/react/issues",
+9346-          "license": "MIT",
+9347-          "files": [
+9348-            "LICENSE",
+9349-            "README.md",
+9350-            "index.js",
+9351-            "cjs/",
+9352-            "compiler-runtime.js",
+9353-            "jsx-runtime.js",
+9354-            "jsx-runtime.react-server.js",
+9355-            "jsx-dev-runtime.js",
+9356-            "jsx-dev-runtime.react-server.js",
+9357-            "react.react-server.js"
+9358-          ],
+9359-          "main": "index.js",
+9360-          "exports": {
+9361-            ".": {
+9362-              "react-server": "./react.react-server.js",
+9363-              "default": "./index.js"
+9364-            },
+9365-            "./package.json": "./package.json",
+9366-            "./jsx-runtime": {
+9367-              "react-server": "./jsx-runtime.react-server.js",
+9368-              "default": "./jsx-runtime.js"
+9369-            },
+9370-            "./jsx-dev-runtime": {
+9371-              "react-server": "./jsx-dev-runtime.react-server.js",
+9372-              "default": "./jsx-dev-runtime.js"
+9373-            },
+9374-            "./compiler-runtime": {
+9375-              "react-server": "./compiler-runtime.js",
+9376-              "default": "./compiler-runtime.js"
+9377-            }
+9378-          },
+9379-          "repository": {
+9380-            "type": "git",
+9381-            "url": "https://github.com/facebook/react.git",
+9382-            "directory": "packages/react"
+9383-          },
+9384-          "engines": {
+9385-            "node": ">=0.10.0"
+9386-          },
+9387-          "_id": "react@19.1.0",
+9388-          "extraneous": false,
+--
+9707-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/sqlite3/sqlite3.h
+9708-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/sqlite3/sqlite3ext.h
+9709-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/test_extension.c
+9710-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/database.js
+9711-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/index.js
+9712-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/aggregate.js
+9713-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/backup.js
+9714-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/function.js
+9715-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/inspect.js
+9716-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/pragma.js
+9717-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/serialize.js
+9718-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/table.js
+9719-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/transaction.js
+9720-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/wrappers.js
+9721-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/sqlite-error.js
+9722-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/util.js
+9723-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/package.json
+9724-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/src/better_sqlite3.cpp
+9725-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/src/better_sqlite3.hpp
+9726-  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/build/Release/better_sqlite3.node
+9727:  • spawning        command=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 icon --format icns --root /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/build --root /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator --out /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/release/.icon-icns --input build/icon.svg
+9728:  • path doesn't exist  path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/build/build/icon.svg
+9729:  • path resolved   path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/build/icon.svg outputFormat=icns
+9730-  ⨯ open : no such file or directory
+9731:github.com/develar/app-builder/pkg/icons.LoadImage
+9732:	/Users/runner/work/app-builder/app-builder/pkg/icons/image-util.go:27
+9733:github.com/develar/app-builder/pkg/icons.loadImage
+9734:	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:342
+9735:github.com/develar/app-builder/pkg/icons.(*InputFileInfo).GetMaxImage
+9736:	/Users/runner/work/app-builder/app-builder/pkg/icons/icons-api.go:51
+9737:github.com/develar/app-builder/pkg/icons.ConvertToIcns
+9738:	/Users/runner/work/app-builder/app-builder/pkg/icons/icns.go:69
+9739:github.com/develar/app-builder/pkg/icons.convertSingleFile
+9740:	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:294
+9741:github.com/develar/app-builder/pkg/icons.doConvertIcon
+9742:	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:255
+9743:github.com/develar/app-builder/pkg/icons.ConvertIcon
+9744:	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:56
+9745:github.com/develar/app-builder/pkg/icons.ConfigureCommand.func1
+9746:	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:33
+9747-github.com/alecthomas/kingpin.(*actionMixin).applyActions
+9748-	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/actions.go:28
+9749-github.com/alecthomas/kingpin.(*Application).applyActions
+9750-	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:557
+9751-github.com/alecthomas/kingpin.(*Application).execute
+9752-	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:390
+9753-github.com/alecthomas/kingpin.(*Application).Parse
+9754-	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:222
+9755-main.main
+9756-	/Users/runner/work/app-builder/app-builder/main.go:90
+9757-runtime.main
+9758-	/Users/runner/hostedtoolcache/go/1.21.13/arm64/src/runtime/proc.go:267
+9759-runtime.goexit
+9760-	/Users/runner/hostedtoolcache/go/1.21.13/arm64/src/runtime/asm_arm64.s:1197  
+9761-  • exited          command=app-builder_arm64 code=1 pid=2585
+9762:  ⨯ /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+9763-Exit code:
+9764:1  failedTask=build stackTrace=Error: /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+9765-Exit code:
+9766-1
+9767-    at ChildProcess.<anonymous> (/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/builder-util/src/util.ts:259:14)
+9768-    at Object.onceWrapper (node:events:634:26)
+9769-    at ChildProcess.emit (node:events:519:28)
+9770-    at maybeClose (node:internal/child_process:1101:16)
+9771-    at Process.ChildProcess._handle.onexit (node:internal/child_process:304:5)
+
+--- tail ---
+            "./jsx-dev-runtime": {
+              "react-server": "./jsx-dev-runtime.react-server.js",
+              "default": "./jsx-dev-runtime.js"
+            },
+            "./compiler-runtime": {
+              "react-server": "./compiler-runtime.js",
+              "default": "./compiler-runtime.js"
+            }
+          },
+          "repository": {
+            "type": "git",
+            "url": "https://github.com/facebook/react.git",
+            "directory": "packages/react"
+          },
+          "engines": {
+            "node": ">=0.10.0"
+          },
+          "_id": "react@19.1.0",
+          "extraneous": false,
+          "path": "/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/react",
+          "_dependencies": {},
+          "devDependencies": {},
+          "peerDependencies": {}
+        },
+        "scheduler": {
+          "version": "0.26.0",
+          "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.26.0.tgz",
+          "overridden": false,
+          "name": "scheduler",
+          "description": "Cooperative scheduler for the browser environment.",
+          "repository": {
+            "type": "git",
+            "url": "https://github.com/facebook/react.git",
+            "directory": "packages/scheduler"
+          },
+          "license": "MIT",
+          "keywords": [
+            "react"
+          ],
+          "bugs": {
+            "url": "https://github.com/facebook/react/issues"
+          },
+          "homepage": "https://react.dev/",
+          "files": [
+            "LICENSE",
+            "README.md",
+            "index.js",
+            "index.native.js",
+            "unstable_mock.js",
+            "unstable_post_task.js",
+            "cjs/"
+          ],
+          "_id": "scheduler@0.26.0",
+          "extraneous": false,
+          "path": "/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/scheduler",
+          "_dependencies": {},
+          "devDependencies": {},
+          "peerDependencies": {}
+        }
+      }
+    },
+    "react": {
+      "version": "19.1.0",
+      "resolved": "https://registry.npmjs.org/react/-/react-19.1.0.tgz",
+      "overridden": false,
+      "name": "react",
+      "description": "React is a JavaScript library for building user interfaces.",
+      "keywords": [
+        "react"
+      ],
+      "homepage": "https://react.dev/",
+      "bugs": "https://github.com/facebook/react/issues",
+      "license": "MIT",
+      "files": [
+        "LICENSE",
+        "README.md",
+        "index.js",
+        "cjs/",
+        "compiler-runtime.js",
+        "jsx-runtime.js",
+        "jsx-runtime.react-server.js",
+        "jsx-dev-runtime.js",
+        "jsx-dev-runtime.react-server.js",
+        "react.react-server.js"
+      ],
+      "main": "index.js",
+      "exports": {
+        ".": {
+          "react-server": "./react.react-server.js",
+          "default": "./index.js"
+        },
+        "./package.json": "./package.json",
+        "./jsx-runtime": {
+          "react-server": "./jsx-runtime.react-server.js",
+          "default": "./jsx-runtime.js"
+        },
+        "./jsx-dev-runtime": {
+          "react-server": "./jsx-dev-runtime.react-server.js",
+          "default": "./jsx-dev-runtime.js"
+        },
+        "./compiler-runtime": {
+          "react-server": "./compiler-runtime.js",
+          "default": "./compiler-runtime.js"
+        }
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/facebook/react.git",
+        "directory": "packages/react"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "_id": "react@19.1.0",
+      "extraneous": false,
+      "path": "/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/react",
+      "_dependencies": {},
+      "devDependencies": {},
+      "peerDependencies": {}
+    }
+  }
+}
+
+  • injecting implicit _dependencies  name=once version=1.4.0
+  • injecting implicit _dependencies  name=once version=1.4.0
+  • injecting implicit _dependencies  name=pump version=3.0.4
+  • injecting implicit _dependencies  name=readable-stream version=3.6.2
+  • injecting implicit _dependencies  name=end-of-stream version=1.4.5
+  • injecting implicit _dependencies  name=fast-json-stringify version=7.0.1
+  • injecting implicit _dependencies  name=ajv-formats version=3.0.1
+  • converted implicit dependency  dependency=wrappy version=1.0.2 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/wrappy parentModule=once parentVersion=1.4.0
+  • converted implicit dependency  dependency=wrappy version=1.0.2 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/wrappy parentModule=once parentVersion=1.4.0
+  • converted implicit dependency  dependency=end-of-stream version=1.4.5 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/end-of-stream parentModule=pump parentVersion=3.0.4
+  • converted implicit dependency  dependency=once version=1.4.0 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/once parentModule=pump parentVersion=3.0.4
+  • converted implicit dependency  dependency=inherits version=2.0.4 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/inherits parentModule=readable-stream parentVersion=3.6.2
+  • converted implicit dependency  dependency=string_decoder version=1.3.0 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/string_decoder parentModule=readable-stream parentVersion=3.6.2
+  • converted implicit dependency  dependency=util-deprecate version=1.0.2 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/util-deprecate parentModule=readable-stream parentVersion=3.6.2
+  • converted implicit dependency  dependency=once version=1.4.0 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/once parentModule=end-of-stream parentVersion=1.4.5
+  • converted implicit dependency  dependency=@fastify/merge-json-schemas version=0.2.1 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/merge-json-schemas parentModule=fast-json-stringify parentVersion=7.0.1
+  • converted implicit dependency  dependency=ajv-formats version=3.0.1 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/ajv-formats parentModule=fast-json-stringify parentVersion=7.0.1
+  • converted implicit dependency  dependency=ajv version=8.20.0 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-json-stringify/node_modules/ajv parentModule=fast-json-stringify parentVersion=7.0.1
+  • converted implicit dependency  dependency=fast-uri version=4.1.1 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-json-stringify/node_modules/fast-uri parentModule=fast-json-stringify parentVersion=7.0.1
+  • converted implicit dependency  dependency=json-schema-ref-resolver version=3.0.0 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/json-schema-ref-resolver parentModule=fast-json-stringify parentVersion=7.0.1
+  • converted implicit dependency  dependency=rfdc version=1.4.1 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/rfdc parentModule=fast-json-stringify parentVersion=7.0.1
+  • converted implicit dependency  dependency=ajv version=8.20.0 path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/ajv-formats/node_modules/ajv parentModule=ajv-formats parentVersion=3.0.1
+  • collected node modules  nodeModules=[{"name":"@fastify/ajv-compiler","version":"4.0.5","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/ajv-compiler"},{"name":"@fastify/cors","version":"10.0.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/cors"},{"name":"@fastify/error","version":"4.2.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/error"},{"name":"@fastify/fast-json-stringify-compiler","version":"5.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/fast-json-stringify-compiler"},{"name":"@fastify/forwarded","version":"3.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/forwarded"},{"name":"@fastify/merge-json-schemas","version":"0.2.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/merge-json-schemas"},{"name":"@fastify/proxy-addr","version":"5.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fastify/proxy-addr"},{"name":"@fontsource/ibm-plex-mono","version":"5.3.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fontsource/ibm-plex-mono"},{"name":"@fontsource/ibm-plex-sans","version":"5.3.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@fontsource/ibm-plex-sans"},{"name":"@pinojs/redact","version":"0.4.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/@pinojs/redact"},{"name":"abstract-logging","version":"2.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/abstract-logging"},{"name":"ajv","version":"8.20.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-json-stringify/node_modules/ajv"},{"name":"ajv-formats","version":"3.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/ajv-formats"},{"name":"atomic-sleep","version":"1.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/atomic-sleep"},{"name":"avvio","version":"9.3.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/avvio"},{"name":"base64-js","version":"1.5.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/base64-js"},{"name":"better-sqlite3","version":"12.2.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3"},{"name":"bindings","version":"1.5.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/bindings"},{"name":"bl","version":"4.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/bl"},{"name":"buffer","version":"5.7.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/buffer"},{"name":"chownr","version":"1.1.4","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/tar-fs/node_modules/chownr"},{"name":"cookie","version":"1.1.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/cookie"},{"name":"decompress-response","version":"6.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/decompress-response"},{"name":"deep-extend","version":"0.6.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/deep-extend"},{"name":"dequal","version":"2.0.3","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/dequal"},{"name":"detect-libc","version":"2.1.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/detect-libc"},{"name":"end-of-stream","version":"1.4.5","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/end-of-stream"},{"name":"expand-template","version":"2.0.3","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/expand-template"},{"name":"fast-decode-uri-component","version":"1.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-decode-uri-component"},{"name":"fast-deep-equal","version":"3.1.3","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-deep-equal"},{"name":"fast-json-stringify","version":"7.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-json-stringify","dependencies":[{"name":"fast-uri","version":"4.1.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-json-stringify/node_modules/fast-uri"}]},{"name":"fast-querystring","version":"1.1.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-querystring"},{"name":"fast-uri","version":"3.1.4","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-json-stringify/node_modules/ajv/node_modules/fast-uri"},{"name":"fastify","version":"5.10.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fastify"},{"name":"fastify-plugin","version":"5.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fastify-plugin"},{"name":"fastq","version":"1.20.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fastq"},{"name":"file-uri-to-path","version":"1.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/file-uri-to-path"},{"name":"find-my-way","version":"9.7.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/find-my-way"},{"name":"fs-constants","version":"1.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fs-constants"},{"name":"github-from-package","version":"0.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/github-from-package"},{"name":"ieee754","version":"1.2.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/ieee754"},{"name":"inherits","version":"2.0.4","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/inherits"},{"name":"ini","version":"1.3.8","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/ini"},{"name":"ipaddr.js","version":"2.4.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/ipaddr.js"},{"name":"json-schema-ref-resolver","version":"3.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/json-schema-ref-resolver"},{"name":"json-schema-traverse","version":"1.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fast-json-stringify/node_modules/json-schema-traverse"},{"name":"light-my-request","version":"6.6.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/light-my-request","dependencies":[{"name":"process-warning","version":"4.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/light-my-request/node_modules/process-warning"}]},{"name":"lucide-react","version":"0.468.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/lucide-react"},{"name":"mimic-response","version":"3.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/decompress-response/node_modules/mimic-response"},{"name":"minimist","version":"1.2.8","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/minimist"},{"name":"mkdirp-classic","version":"0.5.3","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/mkdirp-classic"},{"name":"mnemonist","version":"0.39.8","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/mnemonist"},{"name":"napi-build-utils","version":"2.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/napi-build-utils"},{"name":"node-abi","version":"3.94.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/node-abi"},{"name":"obliterator","version":"2.0.5","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/obliterator"},{"name":"on-exit-leak-free","version":"2.1.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/on-exit-leak-free"},{"name":"once","version":"1.4.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/once"},{"name":"pino","version":"10.3.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/pino"},{"name":"pino-abstract-transport","version":"3.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/pino-abstract-transport"},{"name":"pino-std-serializers","version":"7.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/pino-std-serializers"},{"name":"prebuild-install","version":"7.1.3","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/prebuild-install"},{"name":"process-warning","version":"5.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/process-warning"},{"name":"pump","version":"3.0.4","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/pump"},{"name":"quick-format-unescaped","version":"4.0.4","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/quick-format-unescaped"},{"name":"rc","version":"1.2.8","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/rc"},{"name":"react","version":"19.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/react"},{"name":"react-dom","version":"19.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/react-dom"},{"name":"readable-stream","version":"3.6.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/readable-stream"},{"name":"real-require","version":"0.2.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/real-require"},{"name":"require-from-string","version":"2.0.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/require-from-string"},{"name":"ret","version":"0.5.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/ret"},{"name":"reusify","version":"1.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/reusify"},{"name":"rfdc","version":"1.4.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/rfdc"},{"name":"safe-buffer","version":"5.2.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/safe-buffer"},{"name":"safe-regex2","version":"5.1.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/safe-regex2"},{"name":"safe-stable-stringify","version":"2.5.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/safe-stable-stringify"},{"name":"scheduler","version":"0.26.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/scheduler"},{"name":"secure-json-parse","version":"4.1.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/secure-json-parse"},{"name":"semver","version":"7.8.5","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/fastify/node_modules/semver"},{"name":"set-cookie-parser","version":"2.7.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/set-cookie-parser"},{"name":"simple-concat","version":"1.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/simple-concat"},{"name":"simple-get","version":"4.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/simple-get"},{"name":"sonic-boom","version":"4.2.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/sonic-boom"},{"name":"split2","version":"4.2.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/split2"},{"name":"string_decoder","version":"1.3.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/string_decoder"},{"name":"strip-json-comments","version":"2.0.1","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/strip-json-comments"},{"name":"tar-fs","version":"2.1.5","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/tar-fs"},{"name":"tar-stream","version":"2.2.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/tar-stream"},{"name":"thread-stream","version":"4.2.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/thread-stream","dependencies":[{"name":"real-require","version":"1.0.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/thread-stream/node_modules/real-require"}]},{"name":"toad-cache","version":"3.7.4","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/toad-cache"},{"name":"tunnel-agent","version":"0.6.0","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/tunnel-agent"},{"name":"util-deprecate","version":"1.0.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/util-deprecate"},{"name":"wrappy","version":"1.0.2","dir":"/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/wrappy"}]
+  • not packed into asar archive  file=node_modules/better-sqlite3/build/Release/better_sqlite3.node reason=contains executable code
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/LICENSE
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/common.gypi
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/copy.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/defines.gypi
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/download.sh
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/patches/1208.patch
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/sqlite3.gyp
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/sqlite3/sqlite3.c
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/sqlite3/sqlite3.h
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/sqlite3/sqlite3ext.h
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/deps/test_extension.c
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/database.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/index.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/aggregate.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/backup.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/function.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/inspect.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/pragma.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/serialize.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/table.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/transaction.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/methods/wrappers.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/sqlite-error.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/lib/util.js
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/package.json
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/src/better_sqlite3.cpp
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/src/better_sqlite3.hpp
+  • unpacking       file=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/better-sqlite3/build/Release/better_sqlite3.node
+  • spawning        command=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 icon --format icns --root /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/build --root /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator --out /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/release/.icon-icns --input build/icon.svg
+  • path doesn't exist  path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/build/build/icon.svg
+  • path resolved   path=/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/build/icon.svg outputFormat=icns
+  ⨯ open : no such file or directory
+github.com/develar/app-builder/pkg/icons.LoadImage
+	/Users/runner/work/app-builder/app-builder/pkg/icons/image-util.go:27
+github.com/develar/app-builder/pkg/icons.loadImage
+	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:342
+github.com/develar/app-builder/pkg/icons.(*InputFileInfo).GetMaxImage
+	/Users/runner/work/app-builder/app-builder/pkg/icons/icons-api.go:51
+github.com/develar/app-builder/pkg/icons.ConvertToIcns
+	/Users/runner/work/app-builder/app-builder/pkg/icons/icns.go:69
+github.com/develar/app-builder/pkg/icons.convertSingleFile
+	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:294
+github.com/develar/app-builder/pkg/icons.doConvertIcon
+	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:255
+github.com/develar/app-builder/pkg/icons.ConvertIcon
+	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:56
+github.com/develar/app-builder/pkg/icons.ConfigureCommand.func1
+	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:33
+github.com/alecthomas/kingpin.(*actionMixin).applyActions
+	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/actions.go:28
+github.com/alecthomas/kingpin.(*Application).applyActions
+	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:557
+github.com/alecthomas/kingpin.(*Application).execute
+	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:390
+github.com/alecthomas/kingpin.(*Application).Parse
+	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:222
+main.main
+	/Users/runner/work/app-builder/app-builder/main.go:90
+runtime.main
+	/Users/runner/hostedtoolcache/go/1.21.13/arm64/src/runtime/proc.go:267
+runtime.goexit
+	/Users/runner/hostedtoolcache/go/1.21.13/arm64/src/runtime/asm_arm64.s:1197  
+  • exited          command=app-builder_arm64 code=1 pid=2585
+  ⨯ /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+Exit code:
+1  failedTask=build stackTrace=Error: /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+Exit code:
+1
+    at ChildProcess.<anonymous> (/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/builder-util/src/util.ts:259:14)
+    at Object.onceWrapper (node:events:634:26)
+    at ChildProcess.emit (node:events:519:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:304:5)
