@@ -1,217 +1,267 @@
-162-2026-07-26T16:07:00.2937925Z [36;1m  test -s "$RUNNER_TEMP/apply-followup.py"[0m
-163-2026-07-26T16:07:00.2938323Z [36;1m  python3 "$RUNNER_TEMP/apply-followup.py"[0m
-164-2026-07-26T16:07:00.2938625Z [36;1mfi[0m
-165-2026-07-26T16:07:00.2938844Z [36;1m[0m
-166-2026-07-26T16:07:00.2939106Z [36;1mif [[ ! -s website/assets/social-card.png ]]; then[0m
-167-2026-07-26T16:07:00.2939496Z [36;1m  if command -v magick >/dev/null 2>&1; then[0m
-168-2026-07-26T16:07:00.2939934Z [36;1m    magick website/assets/social-card.svg website/assets/social-card.png[0m
-169-2026-07-26T16:07:00.2940390Z [36;1m  elif command -v convert >/dev/null 2>&1; then[0m
-170-2026-07-26T16:07:00.2940827Z [36;1m    convert website/assets/social-card.svg website/assets/social-card.png[0m
-171-2026-07-26T16:07:00.2941218Z [36;1m  else[0m
-172-2026-07-26T16:07:00.2941433Z [36;1m    sudo apt-get update[0m
-173-2026-07-26T16:07:00.2941791Z [36;1m    sudo apt-get install -y --no-install-recommends librsvg2-bin[0m
-174-2026-07-26T16:07:00.2942373Z [36;1m    rsvg-convert -w 1200 -h 630 website/assets/social-card.svg > website/assets/social-card.png[0m
-175-2026-07-26T16:07:00.2942843Z [36;1m  fi[0m
-176-2026-07-26T16:07:00.2943031Z [36;1mfi[0m
-177-2026-07-26T16:07:00.2943256Z [36;1mtest -s website/assets/social-card.png[0m
-178-2026-07-26T16:07:00.2989858Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-179-2026-07-26T16:07:00.2990244Z ##[endgroup]
-180-2026-07-26T16:07:00.3283548Z /home/runner/work/_temp/apply-followup.py:733: SyntaxWarning: invalid escape sequence '\('
-181-2026-07-26T16:07:00.3284501Z   write('tests/repository/interface-followup.test.js', """import test from 'node:test';
-182:2026-07-26T16:07:00.3369457Z desktop/renderer/pages/Providers.jsx: expected one match, found 0: '              onClick={() => {\n      setDraft(provider);\n      setHeadersText(pretty(provider.header'
-183-2026-07-26T16:07:00.3423387Z ##[error]Process completed with exit code 1.
-184-2026-07-26T16:07:00.3589477Z Post job cleanup.
-185-2026-07-26T16:07:00.4497410Z [command]/usr/bin/git version
-186-2026-07-26T16:07:00.4529421Z git version 2.54.0
-187-2026-07-26T16:07:00.4578293Z Temporarily overriding HOME='/home/runner/work/_temp/33debe24-8b14-4e2d-894f-c2eb583ec638' before making global git config changes
-188-2026-07-26T16:07:00.4580465Z Adding repository directory to the temporary git global config as a safe directory
-189-2026-07-26T16:07:00.4586891Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-190-2026-07-26T16:07:00.4632221Z Removing SSH command configuration
-191-2026-07-26T16:07:00.4640074Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-192-2026-07-26T16:07:00.4706780Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-193-2026-07-26T16:07:00.4959110Z Removing HTTP extra header
-194-2026-07-26T16:07:00.4965316Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-195-2026-07-26T16:07:00.5011008Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-196-2026-07-26T16:07:00.5281574Z Removing includeIf entries pointing to credentials config files
-197-2026-07-26T16:07:00.5293360Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-198-2026-07-26T16:07:00.5330502Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-199-2026-07-26T16:07:00.5331670Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-200-2026-07-26T16:07:00.5332539Z includeif.gitdir:/github/workspace/.git.path
-201-2026-07-26T16:07:00.5333457Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
-202-2026-07-26T16:07:00.5353283Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-203-2026-07-26T16:07:00.5370863Z /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-204-2026-07-26T16:07:00.5398634Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-205-2026-07-26T16:07:00.5436439Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-206-2026-07-26T16:07:00.5464143Z /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-207-2026-07-26T16:07:00.5476431Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-208-2026-07-26T16:07:00.5523009Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
-209-2026-07-26T16:07:00.5561393Z /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-210-2026-07-26T16:07:00.5563868Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-211-2026-07-26T16:07:00.5602594Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
-212-2026-07-26T16:07:00.5630088Z /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-213-2026-07-26T16:07:00.5640641Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-214-2026-07-26T16:07:00.5681165Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-215-2026-07-26T16:07:00.5915498Z Removing credentials config '/home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config'
-216-2026-07-26T16:07:00.6062418Z Cleaning up orphan processes
+152-2026-07-26T16:12:50.8266621Z ##[group]Run set -euo pipefail
+153-2026-07-26T16:12:50.8267247Z [36;1mset -euo pipefail[0m
+154-2026-07-26T16:12:50.8267801Z [36;1mif [[ ! -f desktop/renderer/hooks/useSyncedDraft.js ]]; then[0m
+155-2026-07-26T16:12:50.8268403Z [36;1m  awk '[0m
+156-2026-07-26T16:12:50.8268759Z [36;1m    /python3 <<'"'"'PY'"'"'/ { capture=1; next }[0m
+157-2026-07-26T16:12:50.8269142Z [36;1m    capture && /^          PY$/ { capture=0; exit }[0m
+158-2026-07-26T16:12:50.8269518Z [36;1m    capture { sub(/^          /, ""); print }[0m
+159-2026-07-26T16:12:50.8270071Z [36;1m  ' .github/workflows/complete-ibm-redesign-followup.yml > "$RUNNER_TEMP/apply-followup.py"[0m
+160-2026-07-26T16:12:50.8270638Z [36;1m  test -s "$RUNNER_TEMP/apply-followup.py"[0m
+161-2026-07-26T16:12:50.8271152Z [36;1m  python3 scripts/prepare-followup-patch.py prepare "$RUNNER_TEMP/apply-followup.py"[0m
+162-2026-07-26T16:12:50.8271655Z [36;1m  python3 "$RUNNER_TEMP/apply-followup.py"[0m
+163-2026-07-26T16:12:50.8272124Z [36;1m  python3 scripts/prepare-followup-patch.py finish[0m
+164-2026-07-26T16:12:50.8272467Z [36;1mfi[0m
+165-2026-07-26T16:12:50.8272675Z [36;1m[0m
+166-2026-07-26T16:12:50.8272941Z [36;1mif [[ ! -s website/assets/social-card.png ]]; then[0m
+167-2026-07-26T16:12:50.8273307Z [36;1m  if command -v magick >/dev/null 2>&1; then[0m
+168-2026-07-26T16:12:50.8273742Z [36;1m    magick website/assets/social-card.svg website/assets/social-card.png[0m
+169-2026-07-26T16:12:50.8274191Z [36;1m  elif command -v convert >/dev/null 2>&1; then[0m
+170-2026-07-26T16:12:50.8274659Z [36;1m    convert website/assets/social-card.svg website/assets/social-card.png[0m
+171-2026-07-26T16:12:50.8275060Z [36;1m  else[0m
+172-2026-07-26T16:12:50.8275319Z [36;1m    sudo apt-get update[0m
+173-2026-07-26T16:12:50.8275687Z [36;1m    sudo apt-get install -y --no-install-recommends librsvg2-bin[0m
+174-2026-07-26T16:12:50.8276500Z [36;1m    rsvg-convert -w 1200 -h 630 website/assets/social-card.svg > website/assets/social-card.png[0m
+175-2026-07-26T16:12:50.8277100Z [36;1m  fi[0m
+176-2026-07-26T16:12:50.8277329Z [36;1mfi[0m
+177-2026-07-26T16:12:50.8277567Z [36;1mtest -s website/assets/social-card.png[0m
+178-2026-07-26T16:12:50.8330079Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+179-2026-07-26T16:12:50.8330474Z ##[endgroup]
+180-2026-07-26T16:12:50.8959328Z /home/runner/work/_temp/apply-followup.py:735: SyntaxWarning: invalid escape sequence '\('
+181-2026-07-26T16:12:50.8960641Z   write('tests/repository/interface-followup.test.js', """import test from 'node:test';
+182:2026-07-26T16:12:50.9057531Z desktop/renderer/pages/Usage.jsx: expected one match, found 0: '      .then(([records, nextSummary]) => {\n        if (active) {\nsetRows(records);\nsetSummary(nextSum'
+183-2026-07-26T16:12:50.9121044Z ##[error]Process completed with exit code 1.
+184-2026-07-26T16:12:50.9296751Z Post job cleanup.
+185-2026-07-26T16:12:51.0445940Z [command]/usr/bin/git version
+186-2026-07-26T16:12:51.0516729Z git version 2.54.0
+187-2026-07-26T16:12:51.0568463Z Temporarily overriding HOME='/home/runner/work/_temp/e0370dd7-9891-4d3e-a9e1-f8118920573e' before making global git config changes
+188-2026-07-26T16:12:51.0572219Z Adding repository directory to the temporary git global config as a safe directory
+189-2026-07-26T16:12:51.0575248Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+190-2026-07-26T16:12:51.0627842Z Removing SSH command configuration
+191-2026-07-26T16:12:51.0637794Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+192-2026-07-26T16:12:51.0706720Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+193-2026-07-26T16:12:51.1028171Z Removing HTTP extra header
+194-2026-07-26T16:12:51.1038042Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+195-2026-07-26T16:12:51.1099109Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+196-2026-07-26T16:12:51.1455899Z Removing includeIf entries pointing to credentials config files
+197-2026-07-26T16:12:51.1464924Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+198-2026-07-26T16:12:51.1529192Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+199-2026-07-26T16:12:51.1531207Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+200-2026-07-26T16:12:51.1532702Z includeif.gitdir:/github/workspace/.git.path
+201-2026-07-26T16:12:51.1533865Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+202-2026-07-26T16:12:51.1537491Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+203-2026-07-26T16:12:51.1580229Z /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+204-2026-07-26T16:12:51.1601497Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+205-2026-07-26T16:12:51.1663361Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+206-2026-07-26T16:12:51.1709167Z /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+207-2026-07-26T16:12:51.1721406Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+208-2026-07-26T16:12:51.1769199Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+209-2026-07-26T16:12:51.1802633Z /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+210-2026-07-26T16:12:51.1812714Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+211-2026-07-26T16:12:51.1857697Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+212-2026-07-26T16:12:51.1892649Z /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+213-2026-07-26T16:12:51.1903012Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+214-2026-07-26T16:12:51.1961046Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+215-2026-07-26T16:12:51.2221687Z Removing credentials config '/home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config'
+216-2026-07-26T16:12:51.2397985Z Cleaning up orphan processes
 
 --- tail ---
-2026-07-26T16:06:52.1200976Z Adding repository directory to the temporary git global config as a safe directory
-2026-07-26T16:06:52.1206082Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-2026-07-26T16:06:52.1267398Z Deleting the contents of '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator'
-2026-07-26T16:06:52.1277181Z ##[group]Determining repository object format
-2026-07-26T16:06:52.4158314Z ##[endgroup]
-2026-07-26T16:06:52.4160724Z ##[group]Initializing the repository
-2026-07-26T16:06:52.4164116Z [command]/usr/bin/git init /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-2026-07-26T16:06:52.4335910Z hint: Using 'master' as the name for the initial branch. This default branch name
-2026-07-26T16:06:52.4340316Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-2026-07-26T16:06:52.4347230Z hint: to use in all of your new repositories, which will suppress this warning,
-2026-07-26T16:06:52.4352435Z hint: call:
-2026-07-26T16:06:52.4354475Z hint:
-2026-07-26T16:06:52.4356786Z hint: 	git config --global init.defaultBranch <name>
-2026-07-26T16:06:52.4359067Z hint:
-2026-07-26T16:06:52.4361467Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2026-07-26T16:06:52.4365419Z hint: 'development'. The just-created branch can be renamed via this command:
-2026-07-26T16:06:52.4368838Z hint:
-2026-07-26T16:06:52.4371098Z hint: 	git branch -m <name>
-2026-07-26T16:06:52.4373537Z hint:
-2026-07-26T16:06:52.4376702Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2026-07-26T16:06:52.4381522Z Initialized empty Git repository in /home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/
-2026-07-26T16:06:52.4392142Z [command]/usr/bin/git remote add origin https://github.com/surajmandalcell/subscription-proxy-inator
-2026-07-26T16:06:52.4445940Z ##[endgroup]
-2026-07-26T16:06:52.4448751Z ##[group]Disabling automatic garbage collection
-2026-07-26T16:06:52.4451806Z [command]/usr/bin/git config --local gc.auto 0
-2026-07-26T16:06:52.4495468Z ##[endgroup]
-2026-07-26T16:06:52.4497840Z ##[group]Setting up auth
-2026-07-26T16:06:52.4499963Z Removing SSH command configuration
-2026-07-26T16:06:52.4515931Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-07-26T16:06:52.4563586Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-07-26T16:06:52.4980982Z Removing HTTP extra header
-2026-07-26T16:06:52.4987644Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-07-26T16:06:52.5031323Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-07-26T16:06:52.5282745Z Removing includeIf entries pointing to credentials config files
-2026-07-26T16:06:52.5287360Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-07-26T16:06:52.5317557Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-07-26T16:06:52.5596010Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2026-07-26T16:06:52.5665860Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:06:52.5708855Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:06:52.5753907Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:06:52.5802727Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:06:52.5844417Z ##[endgroup]
-2026-07-26T16:06:52.5847123Z ##[group]Fetching the repository
-2026-07-26T16:06:52.5853142Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
-2026-07-26T16:06:53.4384719Z From https://github.com/surajmandalcell/subscription-proxy-inator
-2026-07-26T16:06:53.4389721Z  * [new branch]      agent/complete-ibm-redesign-followup -> origin/agent/complete-ibm-redesign-followup
-2026-07-26T16:06:53.4393290Z  * [new branch]      agent/ibm-interface-redesign -> origin/agent/ibm-interface-redesign
-2026-07-26T16:06:53.4397234Z  * [new branch]      automation/final-audit-v2.1.0-20260726 -> origin/automation/final-audit-v2.1.0-20260726
-2026-07-26T16:06:53.4400434Z  * [new branch]      automation/release-v2.1.0-20260726 -> origin/automation/release-v2.1.0-20260726
-2026-07-26T16:06:53.4403569Z  * [new branch]      copilot/fix-code-scanning-alerts -> origin/copilot/fix-code-scanning-alerts
-2026-07-26T16:06:53.4406356Z  * [new branch]      master     -> origin/master
-2026-07-26T16:06:53.4408585Z  * [new branch]      recovery-v2-blobs-20260726 -> origin/recovery-v2-blobs-20260726
-2026-07-26T16:06:53.4410642Z  * [new tag]         v2.0.0     -> v2.0.0
-2026-07-26T16:06:53.4427114Z ##[endgroup]
-2026-07-26T16:06:53.4430469Z ##[group]Determining the checkout info
-2026-07-26T16:06:53.4434661Z [command]/usr/bin/git branch --list --remote origin/agent/complete-ibm-redesign-followup
-2026-07-26T16:06:53.4470785Z   origin/agent/complete-ibm-redesign-followup
-2026-07-26T16:06:53.4478559Z ##[endgroup]
-2026-07-26T16:06:53.4483195Z [command]/usr/bin/git sparse-checkout disable
-2026-07-26T16:06:53.4536247Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-2026-07-26T16:06:53.4573917Z ##[group]Checking out the ref
-2026-07-26T16:06:53.4577938Z [command]/usr/bin/git checkout --progress --force -B agent/complete-ibm-redesign-followup refs/remotes/origin/agent/complete-ibm-redesign-followup
-2026-07-26T16:06:53.4728984Z Switched to a new branch 'agent/complete-ibm-redesign-followup'
-2026-07-26T16:06:53.4732803Z branch 'agent/complete-ibm-redesign-followup' set up to track 'origin/agent/complete-ibm-redesign-followup'.
-2026-07-26T16:06:53.4740853Z ##[endgroup]
-2026-07-26T16:06:53.4794810Z [command]/usr/bin/git log -1 --format=%H
-2026-07-26T16:06:53.4829447Z 94555fa15500493b1cff34499d1f534c21629206
-2026-07-26T16:06:53.5303924Z ##[group]Run actions/setup-node@v6
-2026-07-26T16:06:53.5305379Z with:
-2026-07-26T16:06:53.5306230Z   node-version: 22
-2026-07-26T16:06:53.5307098Z   cache: npm
-2026-07-26T16:06:53.5307939Z   check-latest: false
-2026-07-26T16:06:53.5318251Z   token: ***
-2026-07-26T16:06:53.5319166Z   package-manager-cache: true
-2026-07-26T16:06:53.5320198Z ##[endgroup]
-2026-07-26T16:06:53.6926932Z Found in cache @ /opt/hostedtoolcache/node/22.23.1/x64
-2026-07-26T16:06:53.6929030Z ##[group]Environment details
-2026-07-26T16:06:54.1236016Z node: v22.23.1
-2026-07-26T16:06:54.1236817Z npm: 10.9.8
-2026-07-26T16:06:54.1237320Z yarn: 1.22.22
-2026-07-26T16:06:54.1238352Z ##[endgroup]
-2026-07-26T16:06:54.1255972Z [command]/opt/hostedtoolcache/node/22.23.1/x64/bin/npm config get cache
-2026-07-26T16:06:54.2539775Z /home/runner/.npm
-2026-07-26T16:06:54.5156206Z Cache hit for: node-cache-Linux-x64-npm-d646688cb45c60b2b56f0884e4837ff18c904d5466c86535b7fbbe92e688f443
-2026-07-26T16:06:55.8126434Z Received 0 of 129836147 (0.0%), 0.0 MBs/sec
-2026-07-26T16:06:56.8196598Z Received 100663296 of 129836147 (77.5%), 48.0 MBs/sec
-2026-07-26T16:06:57.0990373Z Received 129836147 of 129836147 (100.0%), 54.1 MBs/sec
-2026-07-26T16:06:57.0991366Z Cache Size: ~124 MB (129836147 B)
-2026-07-26T16:06:57.1107323Z [command]/usr/bin/tar -xf /home/runner/work/_temp/3805a058-1892-4290-8cba-85426ee46210/cache.tzst -P -C /home/runner/work/subscription-proxy-inator/subscription-proxy-inator --use-compress-program unzstd
-2026-07-26T16:06:57.4333425Z Cache restored successfully
-2026-07-26T16:06:57.4419782Z Cache restored from key: node-cache-Linux-x64-npm-d646688cb45c60b2b56f0884e4837ff18c904d5466c86535b7fbbe92e688f443
-2026-07-26T16:06:57.4676900Z ##[group]Run npm install --global npm@10.9.2 --no-audit --no-fund
-2026-07-26T16:06:57.4677476Z [36;1mnpm install --global npm@10.9.2 --no-audit --no-fund[0m
-2026-07-26T16:06:57.4748734Z shell: /usr/bin/bash -e {0}
-2026-07-26T16:06:57.4749042Z ##[endgroup]
-2026-07-26T16:07:00.2428497Z 
-2026-07-26T16:07:00.2436341Z removed 11 packages, and changed 67 packages in 3s
-2026-07-26T16:07:00.2934403Z ##[group]Run set -euo pipefail
-2026-07-26T16:07:00.2934776Z [36;1mset -euo pipefail[0m
-2026-07-26T16:07:00.2935430Z [36;1mif [[ ! -f desktop/renderer/hooks/useSyncedDraft.js ]]; then[0m
-2026-07-26T16:07:00.2935811Z [36;1m  awk '[0m
-2026-07-26T16:07:00.2936073Z [36;1m    /python3 <<'"'"'PY'"'"'/ { capture=1; next }[0m
-2026-07-26T16:07:00.2936463Z [36;1m    capture && /^          PY$/ { capture=0; exit }[0m
-2026-07-26T16:07:00.2936810Z [36;1m    capture { sub(/^          /, ""); print }[0m
-2026-07-26T16:07:00.2937345Z [36;1m  ' .github/workflows/complete-ibm-redesign-followup.yml > "$RUNNER_TEMP/apply-followup.py"[0m
-2026-07-26T16:07:00.2937925Z [36;1m  test -s "$RUNNER_TEMP/apply-followup.py"[0m
-2026-07-26T16:07:00.2938323Z [36;1m  python3 "$RUNNER_TEMP/apply-followup.py"[0m
-2026-07-26T16:07:00.2938625Z [36;1mfi[0m
-2026-07-26T16:07:00.2938844Z [36;1m[0m
-2026-07-26T16:07:00.2939106Z [36;1mif [[ ! -s website/assets/social-card.png ]]; then[0m
-2026-07-26T16:07:00.2939496Z [36;1m  if command -v magick >/dev/null 2>&1; then[0m
-2026-07-26T16:07:00.2939934Z [36;1m    magick website/assets/social-card.svg website/assets/social-card.png[0m
-2026-07-26T16:07:00.2940390Z [36;1m  elif command -v convert >/dev/null 2>&1; then[0m
-2026-07-26T16:07:00.2940827Z [36;1m    convert website/assets/social-card.svg website/assets/social-card.png[0m
-2026-07-26T16:07:00.2941218Z [36;1m  else[0m
-2026-07-26T16:07:00.2941433Z [36;1m    sudo apt-get update[0m
-2026-07-26T16:07:00.2941791Z [36;1m    sudo apt-get install -y --no-install-recommends librsvg2-bin[0m
-2026-07-26T16:07:00.2942373Z [36;1m    rsvg-convert -w 1200 -h 630 website/assets/social-card.svg > website/assets/social-card.png[0m
-2026-07-26T16:07:00.2942843Z [36;1m  fi[0m
-2026-07-26T16:07:00.2943031Z [36;1mfi[0m
-2026-07-26T16:07:00.2943256Z [36;1mtest -s website/assets/social-card.png[0m
-2026-07-26T16:07:00.2989858Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
-2026-07-26T16:07:00.2990244Z ##[endgroup]
-2026-07-26T16:07:00.3283548Z /home/runner/work/_temp/apply-followup.py:733: SyntaxWarning: invalid escape sequence '\('
-2026-07-26T16:07:00.3284501Z   write('tests/repository/interface-followup.test.js', """import test from 'node:test';
-2026-07-26T16:07:00.3369457Z desktop/renderer/pages/Providers.jsx: expected one match, found 0: '              onClick={() => {\n      setDraft(provider);\n      setHeadersText(pretty(provider.header'
-2026-07-26T16:07:00.3423387Z ##[error]Process completed with exit code 1.
-2026-07-26T16:07:00.3589477Z Post job cleanup.
-2026-07-26T16:07:00.4497410Z [command]/usr/bin/git version
-2026-07-26T16:07:00.4529421Z git version 2.54.0
-2026-07-26T16:07:00.4578293Z Temporarily overriding HOME='/home/runner/work/_temp/33debe24-8b14-4e2d-894f-c2eb583ec638' before making global git config changes
-2026-07-26T16:07:00.4580465Z Adding repository directory to the temporary git global config as a safe directory
-2026-07-26T16:07:00.4586891Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-2026-07-26T16:07:00.4632221Z Removing SSH command configuration
-2026-07-26T16:07:00.4640074Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-07-26T16:07:00.4706780Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-07-26T16:07:00.4959110Z Removing HTTP extra header
-2026-07-26T16:07:00.4965316Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-07-26T16:07:00.5011008Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-07-26T16:07:00.5281574Z Removing includeIf entries pointing to credentials config files
-2026-07-26T16:07:00.5293360Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-07-26T16:07:00.5330502Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-2026-07-26T16:07:00.5331670Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-2026-07-26T16:07:00.5332539Z includeif.gitdir:/github/workspace/.git.path
-2026-07-26T16:07:00.5333457Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
-2026-07-26T16:07:00.5353283Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-2026-07-26T16:07:00.5370863Z /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5398634Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5436439Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-2026-07-26T16:07:00.5464143Z /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5476431Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5523009Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
-2026-07-26T16:07:00.5561393Z /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5563868Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5602594Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
-2026-07-26T16:07:00.5630088Z /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5640641Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config
-2026-07-26T16:07:00.5681165Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-07-26T16:07:00.5915498Z Removing credentials config '/home/runner/work/_temp/git-credentials-3b47a511-3241-4fba-b5f6-495591a82752.config'
-2026-07-26T16:07:00.6062418Z Cleaning up orphan processes
+2026-07-26T16:12:43.0518980Z Version: 20260720.247.2
+2026-07-26T16:12:43.0520349Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
+2026-07-26T16:12:43.0521916Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
+2026-07-26T16:12:43.0522989Z ##[endgroup]
+2026-07-26T16:12:43.0524265Z ##[group]GITHUB_TOKEN Permissions
+2026-07-26T16:12:43.0526979Z Contents: write
+2026-07-26T16:12:43.0527619Z Metadata: read
+2026-07-26T16:12:43.0528309Z ##[endgroup]
+2026-07-26T16:12:43.0530917Z Secret source: Actions
+2026-07-26T16:12:43.0532550Z Prepare workflow directory
+2026-07-26T16:12:43.0890939Z Prepare all required actions
+2026-07-26T16:12:43.0936186Z Getting action download info
+2026-07-26T16:12:43.3469093Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+2026-07-26T16:12:43.7645993Z Download action repository 'actions/setup-node@v6' (SHA:249970729cb0ef3589644e2896645e5dc5ba9c38)
+2026-07-26T16:12:44.3721446Z Complete job name: execute
+2026-07-26T16:12:44.4633388Z ##[group]Run actions/checkout@v6
+2026-07-26T16:12:44.4634285Z with:
+2026-07-26T16:12:44.4634791Z   ref: agent/complete-ibm-redesign-followup
+2026-07-26T16:12:44.4635420Z   fetch-depth: 0
+2026-07-26T16:12:44.4635960Z   repository: surajmandalcell/subscription-proxy-inator
+2026-07-26T16:12:44.4640087Z   token: ***
+2026-07-26T16:12:44.4640538Z   ssh-strict: true
+2026-07-26T16:12:44.4641003Z   ssh-user: git
+2026-07-26T16:12:44.4641456Z   persist-credentials: true
+2026-07-26T16:12:44.4641970Z   clean: true
+2026-07-26T16:12:44.4642425Z   sparse-checkout-cone-mode: true
+2026-07-26T16:12:44.4642951Z   fetch-tags: false
+2026-07-26T16:12:44.4643398Z   show-progress: true
+2026-07-26T16:12:44.4643863Z   lfs: false
+2026-07-26T16:12:44.4644304Z   submodules: false
+2026-07-26T16:12:44.4644764Z   set-safe-directory: true
+2026-07-26T16:12:44.4645528Z   allow-unsafe-pr-checkout: false
+2026-07-26T16:12:44.4646818Z ##[endgroup]
+2026-07-26T16:12:44.5798656Z Syncing repository: surajmandalcell/subscription-proxy-inator
+2026-07-26T16:12:44.5801777Z ##[group]Getting Git version info
+2026-07-26T16:12:44.5803168Z Working directory is '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator'
+2026-07-26T16:12:44.5805059Z [command]/usr/bin/git version
+2026-07-26T16:12:44.5861188Z git version 2.54.0
+2026-07-26T16:12:44.5886670Z ##[endgroup]
+2026-07-26T16:12:44.5904935Z Temporarily overriding HOME='/home/runner/work/_temp/a10c73c9-6bba-4919-86c8-29c17dfeb924' before making global git config changes
+2026-07-26T16:12:44.5907383Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-26T16:12:44.5911886Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+2026-07-26T16:12:44.5969757Z Deleting the contents of '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator'
+2026-07-26T16:12:44.5975928Z ##[group]Determining repository object format
+2026-07-26T16:12:44.7963548Z ##[endgroup]
+2026-07-26T16:12:44.7965249Z ##[group]Initializing the repository
+2026-07-26T16:12:44.7967550Z [command]/usr/bin/git init /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+2026-07-26T16:12:44.8065128Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-26T16:12:44.8068695Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-26T16:12:44.8070387Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-26T16:12:44.8071537Z hint: call:
+2026-07-26T16:12:44.8072302Z hint:
+2026-07-26T16:12:44.8073465Z hint: 	git config --global init.defaultBranch <name>
+2026-07-26T16:12:44.8074600Z hint:
+2026-07-26T16:12:44.8075446Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-26T16:12:44.8076898Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-26T16:12:44.8078277Z hint:
+2026-07-26T16:12:44.8079176Z hint: 	git branch -m <name>
+2026-07-26T16:12:44.8080242Z hint:
+2026-07-26T16:12:44.8081274Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-26T16:12:44.8083524Z Initialized empty Git repository in /home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/
+2026-07-26T16:12:44.8088043Z [command]/usr/bin/git remote add origin https://github.com/surajmandalcell/subscription-proxy-inator
+2026-07-26T16:12:44.8145472Z ##[endgroup]
+2026-07-26T16:12:44.8147389Z ##[group]Disabling automatic garbage collection
+2026-07-26T16:12:44.8151622Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-26T16:12:44.8202732Z ##[endgroup]
+2026-07-26T16:12:44.8204320Z ##[group]Setting up auth
+2026-07-26T16:12:44.8205357Z Removing SSH command configuration
+2026-07-26T16:12:44.8213373Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-26T16:12:44.8273747Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-26T16:12:44.8619646Z Removing HTTP extra header
+2026-07-26T16:12:44.8630968Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-26T16:12:44.8688833Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-26T16:12:44.8972224Z Removing includeIf entries pointing to credentials config files
+2026-07-26T16:12:44.8980454Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-26T16:12:44.9028344Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-26T16:12:44.9290078Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-26T16:12:44.9353483Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:44.9395394Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:44.9449495Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:44.9492286Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:44.9528777Z ##[endgroup]
+2026-07-26T16:12:44.9531145Z ##[group]Fetching the repository
+2026-07-26T16:12:44.9540464Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-07-26T16:12:45.8939963Z From https://github.com/surajmandalcell/subscription-proxy-inator
+2026-07-26T16:12:45.8944581Z  * [new branch]      agent/complete-ibm-redesign-followup -> origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:12:45.8948633Z  * [new branch]      agent/ibm-interface-redesign -> origin/agent/ibm-interface-redesign
+2026-07-26T16:12:45.8952374Z  * [new branch]      automation/final-audit-v2.1.0-20260726 -> origin/automation/final-audit-v2.1.0-20260726
+2026-07-26T16:12:45.8956515Z  * [new branch]      automation/release-v2.1.0-20260726 -> origin/automation/release-v2.1.0-20260726
+2026-07-26T16:12:45.8960173Z  * [new branch]      copilot/fix-code-scanning-alerts -> origin/copilot/fix-code-scanning-alerts
+2026-07-26T16:12:45.8963345Z  * [new branch]      master     -> origin/master
+2026-07-26T16:12:45.8965963Z  * [new branch]      recovery-v2-blobs-20260726 -> origin/recovery-v2-blobs-20260726
+2026-07-26T16:12:45.8968686Z  * [new tag]         v2.0.0     -> v2.0.0
+2026-07-26T16:12:45.8988781Z ##[endgroup]
+2026-07-26T16:12:45.8991183Z ##[group]Determining the checkout info
+2026-07-26T16:12:45.8993861Z [command]/usr/bin/git branch --list --remote origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:12:45.9035786Z   origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:12:45.9047226Z ##[endgroup]
+2026-07-26T16:12:45.9050208Z [command]/usr/bin/git sparse-checkout disable
+2026-07-26T16:12:45.9105633Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-26T16:12:45.9149073Z ##[group]Checking out the ref
+2026-07-26T16:12:45.9151974Z [command]/usr/bin/git checkout --progress --force -B agent/complete-ibm-redesign-followup refs/remotes/origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:12:45.9314096Z Switched to a new branch 'agent/complete-ibm-redesign-followup'
+2026-07-26T16:12:45.9318142Z branch 'agent/complete-ibm-redesign-followup' set up to track 'origin/agent/complete-ibm-redesign-followup'.
+2026-07-26T16:12:45.9323851Z ##[endgroup]
+2026-07-26T16:12:45.9385182Z [command]/usr/bin/git log -1 --format=%H
+2026-07-26T16:12:45.9425092Z a55a991cb442bba8ab911e7d2b34b107c65bcb23
+2026-07-26T16:12:45.9906830Z ##[group]Run actions/setup-node@v6
+2026-07-26T16:12:45.9907949Z with:
+2026-07-26T16:12:45.9908743Z   node-version: 22
+2026-07-26T16:12:45.9909594Z   cache: npm
+2026-07-26T16:12:45.9910404Z   check-latest: false
+2026-07-26T16:12:45.9918771Z   token: ***
+2026-07-26T16:12:45.9919629Z   package-manager-cache: true
+2026-07-26T16:12:45.9920621Z ##[endgroup]
+2026-07-26T16:12:46.1425069Z Found in cache @ /opt/hostedtoolcache/node/22.23.1/x64
+2026-07-26T16:12:46.1428530Z ##[group]Environment details
+2026-07-26T16:12:46.5107388Z node: v22.23.1
+2026-07-26T16:12:46.5117922Z npm: 10.9.8
+2026-07-26T16:12:46.5119095Z yarn: 1.22.22
+2026-07-26T16:12:46.5121171Z ##[endgroup]
+2026-07-26T16:12:46.5130768Z [command]/opt/hostedtoolcache/node/22.23.1/x64/bin/npm config get cache
+2026-07-26T16:12:46.6249242Z /home/runner/.npm
+2026-07-26T16:12:46.7916604Z Cache hit for: node-cache-Linux-x64-npm-d646688cb45c60b2b56f0884e4837ff18c904d5466c86535b7fbbe92e688f443
+2026-07-26T16:12:47.9555762Z Received 129836147 of 129836147 (100.0%), 120.1 MBs/sec
+2026-07-26T16:12:47.9558098Z Cache Size: ~124 MB (129836147 B)
+2026-07-26T16:12:47.9590027Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e15b0650-9d83-4d44-836e-4bee421e5ca0/cache.tzst -P -C /home/runner/work/subscription-proxy-inator/subscription-proxy-inator --use-compress-program unzstd
+2026-07-26T16:12:48.2443394Z Cache restored successfully
+2026-07-26T16:12:48.2513479Z Cache restored from key: node-cache-Linux-x64-npm-d646688cb45c60b2b56f0884e4837ff18c904d5466c86535b7fbbe92e688f443
+2026-07-26T16:12:48.2745409Z ##[group]Run npm install --global npm@10.9.2 --no-audit --no-fund
+2026-07-26T16:12:48.2746046Z [36;1mnpm install --global npm@10.9.2 --no-audit --no-fund[0m
+2026-07-26T16:12:48.2808992Z shell: /usr/bin/bash -e {0}
+2026-07-26T16:12:48.2809316Z ##[endgroup]
+2026-07-26T16:12:50.7743791Z 
+2026-07-26T16:12:50.7751322Z removed 11 packages, and changed 67 packages in 2s
+2026-07-26T16:12:50.8266621Z ##[group]Run set -euo pipefail
+2026-07-26T16:12:50.8267247Z [36;1mset -euo pipefail[0m
+2026-07-26T16:12:50.8267801Z [36;1mif [[ ! -f desktop/renderer/hooks/useSyncedDraft.js ]]; then[0m
+2026-07-26T16:12:50.8268403Z [36;1m  awk '[0m
+2026-07-26T16:12:50.8268759Z [36;1m    /python3 <<'"'"'PY'"'"'/ { capture=1; next }[0m
+2026-07-26T16:12:50.8269142Z [36;1m    capture && /^          PY$/ { capture=0; exit }[0m
+2026-07-26T16:12:50.8269518Z [36;1m    capture { sub(/^          /, ""); print }[0m
+2026-07-26T16:12:50.8270071Z [36;1m  ' .github/workflows/complete-ibm-redesign-followup.yml > "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:12:50.8270638Z [36;1m  test -s "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:12:50.8271152Z [36;1m  python3 scripts/prepare-followup-patch.py prepare "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:12:50.8271655Z [36;1m  python3 "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:12:50.8272124Z [36;1m  python3 scripts/prepare-followup-patch.py finish[0m
+2026-07-26T16:12:50.8272467Z [36;1mfi[0m
+2026-07-26T16:12:50.8272675Z [36;1m[0m
+2026-07-26T16:12:50.8272941Z [36;1mif [[ ! -s website/assets/social-card.png ]]; then[0m
+2026-07-26T16:12:50.8273307Z [36;1m  if command -v magick >/dev/null 2>&1; then[0m
+2026-07-26T16:12:50.8273742Z [36;1m    magick website/assets/social-card.svg website/assets/social-card.png[0m
+2026-07-26T16:12:50.8274191Z [36;1m  elif command -v convert >/dev/null 2>&1; then[0m
+2026-07-26T16:12:50.8274659Z [36;1m    convert website/assets/social-card.svg website/assets/social-card.png[0m
+2026-07-26T16:12:50.8275060Z [36;1m  else[0m
+2026-07-26T16:12:50.8275319Z [36;1m    sudo apt-get update[0m
+2026-07-26T16:12:50.8275687Z [36;1m    sudo apt-get install -y --no-install-recommends librsvg2-bin[0m
+2026-07-26T16:12:50.8276500Z [36;1m    rsvg-convert -w 1200 -h 630 website/assets/social-card.svg > website/assets/social-card.png[0m
+2026-07-26T16:12:50.8277100Z [36;1m  fi[0m
+2026-07-26T16:12:50.8277329Z [36;1mfi[0m
+2026-07-26T16:12:50.8277567Z [36;1mtest -s website/assets/social-card.png[0m
+2026-07-26T16:12:50.8330079Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-07-26T16:12:50.8330474Z ##[endgroup]
+2026-07-26T16:12:50.8959328Z /home/runner/work/_temp/apply-followup.py:735: SyntaxWarning: invalid escape sequence '\('
+2026-07-26T16:12:50.8960641Z   write('tests/repository/interface-followup.test.js', """import test from 'node:test';
+2026-07-26T16:12:50.9057531Z desktop/renderer/pages/Usage.jsx: expected one match, found 0: '      .then(([records, nextSummary]) => {\n        if (active) {\nsetRows(records);\nsetSummary(nextSum'
+2026-07-26T16:12:50.9121044Z ##[error]Process completed with exit code 1.
+2026-07-26T16:12:50.9296751Z Post job cleanup.
+2026-07-26T16:12:51.0445940Z [command]/usr/bin/git version
+2026-07-26T16:12:51.0516729Z git version 2.54.0
+2026-07-26T16:12:51.0568463Z Temporarily overriding HOME='/home/runner/work/_temp/e0370dd7-9891-4d3e-a9e1-f8118920573e' before making global git config changes
+2026-07-26T16:12:51.0572219Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-26T16:12:51.0575248Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+2026-07-26T16:12:51.0627842Z Removing SSH command configuration
+2026-07-26T16:12:51.0637794Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-26T16:12:51.0706720Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-26T16:12:51.1028171Z Removing HTTP extra header
+2026-07-26T16:12:51.1038042Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-26T16:12:51.1099109Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-26T16:12:51.1455899Z Removing includeIf entries pointing to credentials config files
+2026-07-26T16:12:51.1464924Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-26T16:12:51.1529192Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+2026-07-26T16:12:51.1531207Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+2026-07-26T16:12:51.1532702Z includeif.gitdir:/github/workspace/.git.path
+2026-07-26T16:12:51.1533865Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-07-26T16:12:51.1537491Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+2026-07-26T16:12:51.1580229Z /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1601497Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1663361Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+2026-07-26T16:12:51.1709167Z /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1721406Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1769199Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-07-26T16:12:51.1802633Z /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1812714Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1857697Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-07-26T16:12:51.1892649Z /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1903012Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config
+2026-07-26T16:12:51.1961046Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-26T16:12:51.2221687Z Removing credentials config '/home/runner/work/_temp/git-credentials-9f13dc80-aa4f-495f-8820-3210787b0085.config'
+2026-07-26T16:12:51.2397985Z Cleaning up orphan processes
