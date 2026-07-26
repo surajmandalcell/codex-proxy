@@ -1,871 +1,494 @@
-1-﻿2026-07-26T16:15:54.1713011Z Current runner version: '2.335.1'
-2-2026-07-26T16:15:54.1733589Z ##[group]Runner Image Provisioner
-3-2026-07-26T16:15:54.1734387Z Hosted Compute Agent
-4-2026-07-26T16:15:54.1734951Z Version: 20260707.563
-5-2026-07-26T16:15:54.1735541Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
-6-2026-07-26T16:15:54.1736227Z Build Date: 2026-07-07T19:33:50Z
-7-2026-07-26T16:15:54.1736871Z Worker ID: {91371132-5785-43bd-9eba-a309bc777cbe}
-8-2026-07-26T16:15:54.1737524Z Azure Region: westus3
-9-2026-07-26T16:15:54.1738028Z ##[endgroup]
-10-2026-07-26T16:15:54.1739811Z ##[group]Operating System
-11-2026-07-26T16:15:54.1740411Z Ubuntu
-12-2026-07-26T16:15:54.1740962Z 24.04.4
-13-2026-07-26T16:15:54.1741435Z LTS
-14-2026-07-26T16:15:54.1741903Z ##[endgroup]
-15-2026-07-26T16:15:54.1742417Z ##[group]Runner Image
-16-2026-07-26T16:15:54.1742977Z Image: ubuntu-24.04
-17-2026-07-26T16:15:54.1743463Z Version: 20260720.247.2
-18-2026-07-26T16:15:54.1744631Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
-19-2026-07-26T16:15:54.1746029Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
-20-2026-07-26T16:15:54.1746914Z ##[endgroup]
-21-2026-07-26T16:15:54.1747901Z ##[group]GITHUB_TOKEN Permissions
-22-2026-07-26T16:15:54.1749970Z Contents: write
-23-2026-07-26T16:15:54.1750487Z Metadata: read
-24-2026-07-26T16:15:54.1751056Z ##[endgroup]
-25-2026-07-26T16:15:54.1753227Z Secret source: Actions
-26-2026-07-26T16:15:54.1753919Z Prepare workflow directory
-27:2026-07-26T16:15:54.2053898Z Prepare all required actions
-28-2026-07-26T16:15:54.2091775Z Getting action download info
-29-2026-07-26T16:15:54.4858457Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
-30-2026-07-26T16:15:55.1285332Z Download action repository 'actions/setup-node@v6' (SHA:249970729cb0ef3589644e2896645e5dc5ba9c38)
-31-2026-07-26T16:15:55.9514204Z Complete job name: execute
-32-2026-07-26T16:15:56.0233314Z ##[group]Run actions/checkout@v6
-33-2026-07-26T16:15:56.0234521Z with:
-34-2026-07-26T16:15:56.0235386Z   ref: agent/complete-ibm-redesign-followup
-35-2026-07-26T16:15:56.0236511Z   fetch-depth: 0
-36-2026-07-26T16:15:56.0237514Z   repository: surajmandalcell/subscription-proxy-inator
-37-2026-07-26T16:15:56.0245138Z   token: ***
-38-2026-07-26T16:15:56.0245995Z   ssh-strict: true
-39-2026-07-26T16:15:56.0246814Z   ssh-user: git
-40-2026-07-26T16:15:56.0247661Z   persist-credentials: true
-41-2026-07-26T16:15:56.0248576Z   clean: true
-42-2026-07-26T16:15:56.0249511Z   sparse-checkout-cone-mode: true
-43-2026-07-26T16:15:56.0250513Z   fetch-tags: false
-44-2026-07-26T16:15:56.0251362Z   show-progress: true
-45-2026-07-26T16:15:56.0252199Z   lfs: false
-46-2026-07-26T16:15:56.0253003Z   submodules: false
-47-2026-07-26T16:15:56.0253839Z   set-safe-directory: true
-48-2026-07-26T16:15:56.0254792Z   allow-unsafe-pr-checkout: false
-49-2026-07-26T16:15:56.0255955Z ##[endgroup]
-50-2026-07-26T16:15:56.1221356Z Syncing repository: surajmandalcell/subscription-proxy-inator
-51-2026-07-26T16:15:56.1224938Z ##[group]Getting Git version info
-52-2026-07-26T16:15:56.1226894Z Working directory is '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator'
-53-2026-07-26T16:15:56.1230561Z [command]/usr/bin/git version
-54-2026-07-26T16:15:56.1247649Z git version 2.54.0
-55-2026-07-26T16:15:56.1270705Z ##[endgroup]
-56-2026-07-26T16:15:56.1283163Z Temporarily overriding HOME='/home/runner/work/_temp/7e645397-d5cd-4df8-bfd7-2f086e6c9133' before making global git config changes
-57-2026-07-26T16:15:56.1286073Z Adding repository directory to the temporary git global config as a safe directory
-58-2026-07-26T16:15:56.1289647Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-59-2026-07-26T16:15:56.1319282Z Deleting the contents of '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator'
-60-2026-07-26T16:15:56.1322360Z ##[group]Determining repository object format
-61-2026-07-26T16:15:56.4455005Z ##[endgroup]
-62-2026-07-26T16:15:56.4482966Z ##[group]Initializing the repository
-63-2026-07-26T16:15:56.4485018Z [command]/usr/bin/git init /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-64-2026-07-26T16:15:56.4501451Z hint: Using 'master' as the name for the initial branch. This default branch name
-65-2026-07-26T16:15:56.4504432Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-66-2026-07-26T16:15:56.4507085Z hint: to use in all of your new repositories, which will suppress this warning,
-67-2026-07-26T16:15:56.4509195Z hint: call:
-68-2026-07-26T16:15:56.4510415Z hint:
-69-2026-07-26T16:15:56.4511837Z hint: 	git config --global init.defaultBranch <name>
-70-2026-07-26T16:15:56.4513690Z hint:
-71-2026-07-26T16:15:56.4515113Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-72-2026-07-26T16:15:56.4517281Z hint: 'development'. The just-created branch can be renamed via this command:
-73-2026-07-26T16:15:56.4520090Z hint:
-74-2026-07-26T16:15:56.4521515Z hint: 	git branch -m <name>
-75-2026-07-26T16:15:56.4522738Z hint:
-76-2026-07-26T16:15:56.4524518Z hint: Disable this message with "git config set advice.defaultBranchName false"
-77-2026-07-26T16:15:56.4527978Z Initialized empty Git repository in /home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/
-78-2026-07-26T16:15:56.4533289Z [command]/usr/bin/git remote add origin https://github.com/surajmandalcell/subscription-proxy-inator
-79-2026-07-26T16:15:56.4544496Z ##[endgroup]
-80-2026-07-26T16:15:56.4546665Z ##[group]Disabling automatic garbage collection
-81-2026-07-26T16:15:56.4548582Z [command]/usr/bin/git config --local gc.auto 0
-82-2026-07-26T16:15:56.4583112Z ##[endgroup]
-83-2026-07-26T16:15:56.4585508Z ##[group]Setting up auth
-84-2026-07-26T16:15:56.4587188Z Removing SSH command configuration
-85-2026-07-26T16:15:56.4590025Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-86-2026-07-26T16:15:56.4627341Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-87-2026-07-26T16:15:56.4883952Z Removing HTTP extra header
-88-2026-07-26T16:15:56.4891342Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-89-2026-07-26T16:15:56.4923566Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-90-2026-07-26T16:15:56.5082717Z Removing includeIf entries pointing to credentials config files
-91-2026-07-26T16:15:56.5089126Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-92-2026-07-26T16:15:56.5120626Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-93-2026-07-26T16:15:56.5294240Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
-94-2026-07-26T16:15:56.5333123Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-95-2026-07-26T16:15:56.5357416Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-96-2026-07-26T16:15:56.5382129Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-97-2026-07-26T16:15:56.5405748Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-98-2026-07-26T16:15:56.5427346Z ##[endgroup]
-99-2026-07-26T16:15:56.5429587Z ##[group]Fetching the repository
-100-2026-07-26T16:15:56.5435869Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
-101-2026-07-26T16:15:57.7280143Z From https://github.com/surajmandalcell/subscription-proxy-inator
-102-2026-07-26T16:15:57.7281306Z  * [new branch]      agent/complete-ibm-redesign-followup -> origin/agent/complete-ibm-redesign-followup
-103-2026-07-26T16:15:57.7282254Z  * [new branch]      agent/ibm-interface-redesign -> origin/agent/ibm-interface-redesign
-104-2026-07-26T16:15:57.7283169Z  * [new branch]      automation/final-audit-v2.1.0-20260726 -> origin/automation/final-audit-v2.1.0-20260726
-105-2026-07-26T16:15:57.7284092Z  * [new branch]      automation/release-v2.1.0-20260726 -> origin/automation/release-v2.1.0-20260726
-106-2026-07-26T16:15:57.7284918Z  * [new branch]      copilot/fix-code-scanning-alerts -> origin/copilot/fix-code-scanning-alerts
-107-2026-07-26T16:15:57.7285674Z  * [new branch]      master     -> origin/master
-108-2026-07-26T16:15:57.7286290Z  * [new branch]      recovery-v2-blobs-20260726 -> origin/recovery-v2-blobs-20260726
-109-2026-07-26T16:15:57.7286880Z  * [new tag]         v2.0.0     -> v2.0.0
-110-2026-07-26T16:15:57.7303374Z ##[endgroup]
-111-2026-07-26T16:15:57.7304222Z ##[group]Determining the checkout info
-112-2026-07-26T16:15:57.7308887Z [command]/usr/bin/git branch --list --remote origin/agent/complete-ibm-redesign-followup
-113-2026-07-26T16:15:57.7332276Z   origin/agent/complete-ibm-redesign-followup
-114-2026-07-26T16:15:57.7335831Z ##[endgroup]
-115-2026-07-26T16:15:57.7340956Z [command]/usr/bin/git sparse-checkout disable
-116-2026-07-26T16:15:57.7371861Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-117-2026-07-26T16:15:57.7393837Z ##[group]Checking out the ref
+1-﻿2026-07-26T16:19:58.5558541Z Current runner version: '2.336.0'
+2-2026-07-26T16:19:58.5584513Z ##[group]Runner Image Provisioner
+3-2026-07-26T16:19:58.5585283Z Hosted Compute Agent
+4-2026-07-26T16:19:58.5585891Z Version: 20260707.563
+5-2026-07-26T16:19:58.5586484Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+6-2026-07-26T16:19:58.5587143Z Build Date: 2026-07-07T19:33:50Z
+7-2026-07-26T16:19:58.5587828Z Worker ID: {105c6333-630c-48e0-86d7-32ac322d2b38}
+8-2026-07-26T16:19:58.5588476Z Azure Region: centralus
+9-2026-07-26T16:19:58.5589022Z ##[endgroup]
+10-2026-07-26T16:19:58.5590862Z ##[group]Operating System
+11-2026-07-26T16:19:58.5591485Z Ubuntu
+12-2026-07-26T16:19:58.5592005Z 24.04.4
+13-2026-07-26T16:19:58.5592494Z LTS
+14-2026-07-26T16:19:58.5593009Z ##[endgroup]
+15-2026-07-26T16:19:58.5593536Z ##[group]Runner Image
+16-2026-07-26T16:19:58.5594086Z Image: ubuntu-24.04
+17-2026-07-26T16:19:58.5594591Z Version: 20260720.247.2
+18-2026-07-26T16:19:58.5595778Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
+19-2026-07-26T16:19:58.5597183Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
+20-2026-07-26T16:19:58.5598047Z ##[endgroup]
+21-2026-07-26T16:19:58.5599048Z ##[group]GITHUB_TOKEN Permissions
+22-2026-07-26T16:19:58.5601318Z Contents: write
+23-2026-07-26T16:19:58.5601926Z Metadata: read
+24-2026-07-26T16:19:58.5602448Z ##[endgroup]
+25-2026-07-26T16:19:58.5604887Z Secret source: Actions
+26-2026-07-26T16:19:58.5606122Z Prepare workflow directory
+27:2026-07-26T16:19:58.5915998Z Prepare all required actions
+28-2026-07-26T16:19:58.5959345Z Getting action download info
+29-2026-07-26T16:19:58.8423127Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+30-2026-07-26T16:19:59.3074850Z Download action repository 'actions/setup-node@v6' (SHA:249970729cb0ef3589644e2896645e5dc5ba9c38)
+31-2026-07-26T16:19:59.8826824Z Complete job name: execute
+32-2026-07-26T16:19:59.9803160Z ##[group]Run actions/checkout@v6
+33-2026-07-26T16:19:59.9804066Z with:
+34-2026-07-26T16:19:59.9804570Z   ref: agent/complete-ibm-redesign-followup
+35-2026-07-26T16:19:59.9805226Z   fetch-depth: 0
+36-2026-07-26T16:19:59.9805821Z   repository: surajmandalcell/subscription-proxy-inator
+37-2026-07-26T16:19:59.9810633Z   token: ***
+38-2026-07-26T16:19:59.9811070Z   ssh-strict: true
+39-2026-07-26T16:19:59.9811532Z   ssh-user: git
+40-2026-07-26T16:19:59.9811994Z   persist-credentials: true
+41-2026-07-26T16:19:59.9812513Z   clean: true
+42-2026-07-26T16:19:59.9812972Z   sparse-checkout-cone-mode: true
+43-2026-07-26T16:19:59.9813657Z   fetch-tags: false
+44-2026-07-26T16:19:59.9814277Z   show-progress: true
+45-2026-07-26T16:19:59.9814757Z   lfs: false
+46-2026-07-26T16:19:59.9815203Z   submodules: false
+47-2026-07-26T16:19:59.9815660Z   set-safe-directory: true
+48-2026-07-26T16:19:59.9816187Z   allow-unsafe-pr-checkout: false
+49-2026-07-26T16:19:59.9817073Z ##[endgroup]
+50-2026-07-26T16:20:00.0803922Z Syncing repository: surajmandalcell/subscription-proxy-inator
+51-2026-07-26T16:20:00.0805977Z ##[group]Getting Git version info
+52-2026-07-26T16:20:00.0807036Z Working directory is '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator'
+53-2026-07-26T16:20:00.0808668Z [command]/usr/bin/git version
+54-2026-07-26T16:20:00.0853580Z git version 2.54.0
+55-2026-07-26T16:20:00.0875659Z ##[endgroup]
+56-2026-07-26T16:20:00.0896843Z Temporarily overriding HOME='/home/runner/work/_temp/5eece079-1f19-4f85-878b-ebd7f67563cd' before making global git config changes
+57-2026-07-26T16:20:00.0901322Z Adding repository directory to the temporary git global config as a safe directory
+58-2026-07-26T16:20:00.0904567Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+59-2026-07-26T16:20:00.0946346Z Deleting the contents of '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator'
+60-2026-07-26T16:20:00.0951008Z ##[group]Determining repository object format
+61-2026-07-26T16:20:00.2973695Z ##[endgroup]
+62-2026-07-26T16:20:00.2976153Z ##[group]Initializing the repository
+63-2026-07-26T16:20:00.2979515Z [command]/usr/bin/git init /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+64-2026-07-26T16:20:00.3082543Z hint: Using 'master' as the name for the initial branch. This default branch name
+65-2026-07-26T16:20:00.3084911Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+66-2026-07-26T16:20:00.3092107Z hint: to use in all of your new repositories, which will suppress this warning,
+67-2026-07-26T16:20:00.3094083Z hint: call:
+68-2026-07-26T16:20:00.3094980Z hint:
+69-2026-07-26T16:20:00.3096149Z hint: 	git config --global init.defaultBranch <name>
+70-2026-07-26T16:20:00.3097603Z hint:
+71-2026-07-26T16:20:00.3098951Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+72-2026-07-26T16:20:00.3101802Z hint: 'development'. The just-created branch can be renamed via this command:
+73-2026-07-26T16:20:00.3103832Z hint:
+74-2026-07-26T16:20:00.3104765Z hint: 	git branch -m <name>
+75-2026-07-26T16:20:00.3106082Z hint:
+76-2026-07-26T16:20:00.3107831Z hint: Disable this message with "git config set advice.defaultBranchName false"
+77-2026-07-26T16:20:00.3111516Z Initialized empty Git repository in /home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/
+78-2026-07-26T16:20:00.3117271Z [command]/usr/bin/git remote add origin https://github.com/surajmandalcell/subscription-proxy-inator
+79-2026-07-26T16:20:00.3154493Z ##[endgroup]
+80-2026-07-26T16:20:00.3155792Z ##[group]Disabling automatic garbage collection
+81-2026-07-26T16:20:00.3159900Z [command]/usr/bin/git config --local gc.auto 0
+82-2026-07-26T16:20:00.3192901Z ##[endgroup]
+83-2026-07-26T16:20:00.3195204Z ##[group]Setting up auth
+84-2026-07-26T16:20:00.3196857Z Removing SSH command configuration
+85-2026-07-26T16:20:00.3202860Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+86-2026-07-26T16:20:00.3273709Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+87-2026-07-26T16:20:00.3553606Z Removing HTTP extra header
+88-2026-07-26T16:20:00.3559810Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+89-2026-07-26T16:20:00.3589136Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+90-2026-07-26T16:20:00.3751829Z Removing includeIf entries pointing to credentials config files
+91-2026-07-26T16:20:00.3756462Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+92-2026-07-26T16:20:00.3786100Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+93-2026-07-26T16:20:00.3963715Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+94-2026-07-26T16:20:00.4004283Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+95-2026-07-26T16:20:00.4036230Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+96-2026-07-26T16:20:00.4068022Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+97-2026-07-26T16:20:00.4101401Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+98-2026-07-26T16:20:00.4127625Z ##[endgroup]
+99-2026-07-26T16:20:00.4128934Z ##[group]Fetching the repository
+100-2026-07-26T16:20:00.4136834Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+101-2026-07-26T16:20:01.1745228Z From https://github.com/surajmandalcell/subscription-proxy-inator
+102-2026-07-26T16:20:01.1749385Z  * [new branch]      agent/complete-ibm-redesign-followup -> origin/agent/complete-ibm-redesign-followup
+103-2026-07-26T16:20:01.1753103Z  * [new branch]      agent/ibm-interface-redesign -> origin/agent/ibm-interface-redesign
+104-2026-07-26T16:20:01.1755663Z  * [new branch]      automation/final-audit-v2.1.0-20260726 -> origin/automation/final-audit-v2.1.0-20260726
+105-2026-07-26T16:20:01.1758010Z  * [new branch]      automation/release-v2.1.0-20260726 -> origin/automation/release-v2.1.0-20260726
+106-2026-07-26T16:20:01.1760471Z  * [new branch]      copilot/fix-code-scanning-alerts -> origin/copilot/fix-code-scanning-alerts
+107-2026-07-26T16:20:01.1762226Z  * [new branch]      master     -> origin/master
+108-2026-07-26T16:20:01.1763717Z  * [new branch]      recovery-v2-blobs-20260726 -> origin/recovery-v2-blobs-20260726
+109-2026-07-26T16:20:01.1765163Z  * [new tag]         v2.0.0     -> v2.0.0
+110-2026-07-26T16:20:01.1781269Z ##[endgroup]
+111-2026-07-26T16:20:01.1783123Z ##[group]Determining the checkout info
+112-2026-07-26T16:20:01.1787572Z [command]/usr/bin/git branch --list --remote origin/agent/complete-ibm-redesign-followup
+113-2026-07-26T16:20:01.1815156Z   origin/agent/complete-ibm-redesign-followup
+114-2026-07-26T16:20:01.1818973Z ##[endgroup]
+115-2026-07-26T16:20:01.1823130Z [command]/usr/bin/git sparse-checkout disable
+116-2026-07-26T16:20:01.1860175Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+117-2026-07-26T16:20:01.1884144Z ##[group]Checking out the ref
+118-2026-07-26T16:20:01.1888371Z [command]/usr/bin/git checkout --progress --force -B agent/complete-ibm-redesign-followup refs/remotes/origin/agent/complete-ibm-redesign-followup
+119-2026-07-26T16:20:01.1995557Z Switched to a new branch 'agent/complete-ibm-redesign-followup'
+120-2026-07-26T16:20:01.1999143Z branch 'agent/complete-ibm-redesign-followup' set up to track 'origin/agent/complete-ibm-redesign-followup'.
+121-2026-07-26T16:20:01.2005592Z ##[endgroup]
+122-2026-07-26T16:20:01.2040227Z [command]/usr/bin/git log -1 --format=%H
+123-2026-07-26T16:20:01.2064159Z 898cc61a4ea019c71b560332d68f73a83971191c
+124-2026-07-26T16:20:01.2395641Z ##[group]Run actions/setup-node@v6
+125-2026-07-26T16:20:01.2396641Z with:
+126-2026-07-26T16:20:01.2397381Z   node-version: 22
+127-2026-07-26T16:20:01.2398158Z   cache: npm
 --
-276-2026-07-26T16:16:31.0565245Z No services need to be restarted.
-277-2026-07-26T16:16:31.0565496Z 
-278-2026-07-26T16:16:31.0565683Z No containers need to be restarted.
-279-2026-07-26T16:16:31.0565907Z 
-280-2026-07-26T16:16:31.0566136Z No user sessions are running outdated binaries.
-281-2026-07-26T16:16:31.0566434Z 
-282-2026-07-26T16:16:31.0566665Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
-283-2026-07-26T16:16:31.8575790Z ##[group]Run npm ci --no-audit --no-fund
-284-2026-07-26T16:16:31.8576099Z [36;1mnpm ci --no-audit --no-fund[0m
-285-2026-07-26T16:16:31.8600703Z shell: /usr/bin/bash -e {0}
-286-2026-07-26T16:16:31.8600945Z ##[endgroup]
-287-2026-07-26T16:16:32.2764912Z npm warn skipping integrity check for git dependency ssh://git@github.com/electron/node-gyp.git
-288-2026-07-26T16:16:34.3529073Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-289-2026-07-26T16:16:34.3873110Z npm warn deprecated @npmcli/move-file@2.0.1: This functionality has been moved to @npmcli/fs
-290-2026-07-26T16:16:34.4232554Z npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
-291-2026-07-26T16:16:34.4591510Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-292-2026-07-26T16:16:34.5067745Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
-293-2026-07-26T16:16:34.5163100Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
-294-2026-07-26T16:16:34.5171132Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
-295-2026-07-26T16:16:34.5814067Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
-296-2026-07-26T16:16:34.6360858Z npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-297-2026-07-26T16:16:34.8263253Z npm warn deprecated tar@6.2.1: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
-298-2026-07-26T16:16:35.0263609Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
-299-2026-07-26T16:16:39.4653523Z 
-300-2026-07-26T16:16:39.4654011Z added 543 packages in 8s
-301-2026-07-26T16:16:39.4970809Z ##[group]Run npm run build
-302-2026-07-26T16:16:39.4971071Z [36;1mnpm run build[0m
-303-2026-07-26T16:16:39.4996232Z shell: /usr/bin/bash -e {0}
-304-2026-07-26T16:16:39.4996482Z ##[endgroup]
-305-2026-07-26T16:16:39.5762048Z 
-306-2026-07-26T16:16:39.5762451Z > subscription-proxy-inator@2.1.0 build
-307-2026-07-26T16:16:39.5762920Z > npm run check && npm run build:renderer && npm run build:site
-308-2026-07-26T16:16:39.5763172Z 
-309-2026-07-26T16:16:39.6550318Z 
-310-2026-07-26T16:16:39.6550804Z > subscription-proxy-inator@2.1.0 check
-311:2026-07-26T16:16:39.6551228Z > npm run verify && npm run test:coverage && npm run check:links
-312-2026-07-26T16:16:39.6551446Z 
-313-2026-07-26T16:16:39.7316819Z 
-314-2026-07-26T16:16:39.7317304Z > subscription-proxy-inator@2.1.0 verify
-315-2026-07-26T16:16:39.7317755Z > node scripts/verify.mjs
-316-2026-07-26T16:16:39.7317915Z 
-317-2026-07-26T16:16:43.1863330Z Verified 130 canonical public files, 72 source files, package metadata, architecture boundaries, and repository cleanliness.
-318-2026-07-26T16:16:43.2697009Z 
-319:2026-07-26T16:16:43.2697810Z > subscription-proxy-inator@2.1.0 test:coverage
-320:2026-07-26T16:16:43.2698391Z > node scripts/run-tests.mjs --coverage
-321-2026-07-26T16:16:43.2698867Z 
-322-2026-07-26T16:16:43.3501656Z TAP version 13
-323-2026-07-26T16:16:43.4110064Z # Subtest: provider updates preserve credential-bearing account state from public drafts
-324-2026-07-26T16:16:43.4111297Z ok 1 - provider updates preserve credential-bearing account state from public drafts
-325-2026-07-26T16:16:43.4129767Z   ---
-326-2026-07-26T16:16:43.4130270Z   duration_ms: 3.135288
-327-2026-07-26T16:16:43.4130734Z   type: 'test'
-328-2026-07-26T16:16:43.4131238Z   ...
-329-2026-07-26T16:16:43.4132025Z # Subtest: adding an account rolls back a freshly encrypted secret when config commit fails
-330-2026-07-26T16:16:43.4133066Z ok 2 - adding an account rolls back a freshly encrypted secret when config commit fails
-331-2026-07-26T16:16:43.4133989Z   ---
-332-2026-07-26T16:16:43.4134372Z   duration_ms: 2.471948
-333-2026-07-26T16:16:43.4134793Z   type: 'test'
-334-2026-07-26T16:16:43.4135164Z   ...
-335-2026-07-26T16:16:43.4135858Z # Subtest: updating a credential commits a new reference then removes the old secret
-336-2026-07-26T16:16:43.4136827Z ok 3 - updating a credential commits a new reference then removes the old secret
-337-2026-07-26T16:16:43.4137461Z   ---
-338-2026-07-26T16:16:43.4137825Z   duration_ms: 2.030125
-339-2026-07-26T16:16:43.4138225Z   type: 'test'
-340-2026-07-26T16:16:43.4138590Z   ...
-341-2026-07-26T16:16:43.4139614Z # Subtest: removing a provider commits config first and clears aliases, pricing, runtime, and secrets
-342-2026-07-26T16:16:43.4140756Z ok 4 - removing a provider commits config first and clears aliases, pricing, runtime, and secrets
-343-2026-07-26T16:16:43.4141467Z   ---
-344-2026-07-26T16:16:43.4141835Z   duration_ms: 0.594322
-345-2026-07-26T16:16:43.4142257Z   type: 'test'
-346-2026-07-26T16:16:43.4142633Z   ...
-347-2026-07-26T16:16:43.4143238Z # Subtest: unknown provider and account identifiers fail explicitly
-348-2026-07-26T16:16:43.4144094Z ok 5 - unknown provider and account identifiers fail explicitly
-349-2026-07-26T16:16:43.4144678Z   ---
-350-2026-07-26T16:16:43.4145048Z   duration_ms: 0.425597
-351-2026-07-26T16:16:43.4145457Z   type: 'test'
-352-2026-07-26T16:16:43.4145835Z   ...
-353-2026-07-26T16:16:43.4315008Z # Subtest: proxy execute estimates routes, serializes output, and records successful usage
-354-2026-07-26T16:16:43.4339945Z ok 6 - proxy execute estimates routes, serializes output, and records successful usage
-355-2026-07-26T16:16:43.4340523Z   ---
-356-2026-07-26T16:16:43.4340780Z   duration_ms: 2.784138
-357-2026-07-26T16:16:43.4341078Z   type: 'test'
-358-2026-07-26T16:16:43.4341329Z   ...
-359-2026-07-26T16:16:43.4341785Z # Subtest: proxy execute records terminal failures and rethrows them
-360-2026-07-26T16:16:43.4342429Z ok 7 - proxy execute records terminal failures and rethrows them
-361-2026-07-26T16:16:43.4342838Z   ---
-362-2026-07-26T16:16:43.4343095Z   duration_ms: 0.666408
-363-2026-07-26T16:16:43.4343412Z   type: 'test'
-364-2026-07-26T16:16:43.4343654Z   ...
-365-2026-07-26T16:16:43.4344159Z # Subtest: proxy streaming emits keep-alive comments and records selected route
-366-2026-07-26T16:16:43.4345206Z ok 8 - proxy streaming emits keep-alive comments and records selected route
-367-2026-07-26T16:16:43.4345732Z   ---
-368-2026-07-26T16:16:43.4345977Z   duration_ms: 1.611996
-369-2026-07-26T16:16:43.4346286Z   type: 'test'
-370-2026-07-26T16:16:43.4346518Z   ...
-371-2026-07-26T16:16:43.4346893Z # Subtest: proxy streaming records cancellation
-372-2026-07-26T16:16:43.4347397Z ok 9 - proxy streaming records cancellation
-373-2026-07-26T16:16:43.4347752Z   ---
-374-2026-07-26T16:16:43.4347993Z   duration_ms: 0.344794
-375-2026-07-26T16:16:43.4348289Z   type: 'test'
-376-2026-07-26T16:16:43.4348552Z   ...
-377-2026-07-26T16:16:43.4349185Z # Subtest: usage persistence errors are contained and logged
-378-2026-07-26T16:16:43.4349779Z ok 10 - usage persistence errors are contained and logged
-379-2026-07-26T16:16:43.4350170Z   ---
-380-2026-07-26T16:16:43.4350411Z   duration_ms: 0.206152
-381-2026-07-26T16:16:43.4350717Z   type: 'test'
-382-2026-07-26T16:16:43.4350954Z   ...
-383-2026-07-26T16:16:43.4382583Z # Subtest: provider registry registers and lists adapters
-384-2026-07-26T16:16:43.4409612Z ok 11 - provider registry registers and lists adapters
-385-2026-07-26T16:16:43.4439617Z   ---
-386-2026-07-26T16:16:43.4479585Z   duration_ms: 2.497817
-387-2026-07-26T16:16:43.4480387Z   type: 'test'
-388-2026-07-26T16:16:43.4480871Z   ...
-389-2026-07-26T16:16:43.4481550Z # Subtest: provider registry rejects malformed and duplicate adapters
-390-2026-07-26T16:16:43.4482389Z ok 12 - provider registry rejects malformed and duplicate adapters
-391-2026-07-26T16:16:43.4482951Z   ---
-392-2026-07-26T16:16:43.4483325Z   duration_ms: 0.809087
-393-2026-07-26T16:16:43.4483733Z   type: 'test'
-394-2026-07-26T16:16:43.4484100Z   ...
-395-2026-07-26T16:16:43.4484660Z # Subtest: provider registry can intentionally replace an adapter
-396-2026-07-26T16:16:43.4485425Z ok 13 - provider registry can intentionally replace an adapter
-397-2026-07-26T16:16:43.4485959Z   ---
-398-2026-07-26T16:16:43.4486327Z   duration_ms: 0.248791
-399-2026-07-26T16:16:43.4486991Z   type: 'test'
-400-2026-07-26T16:16:43.4487372Z   ...
-401-2026-07-26T16:16:43.4487861Z # Subtest: missing provider adapter is explicit
-402-2026-07-26T16:16:43.4488851Z ok 14 - missing provider adapter is explicit
-403-2026-07-26T16:16:43.4489367Z   ---
-404-2026-07-26T16:16:43.4489754Z   duration_ms: 0.178192
-405-2026-07-26T16:16:43.4490161Z   type: 'test'
-406-2026-07-26T16:16:43.4490524Z   ...
-407-2026-07-26T16:16:43.4491157Z # Subtest: runtime state tracks in-flight, success, EWMA, cooldown, and attention
-408-2026-07-26T16:16:43.4492096Z ok 15 - runtime state tracks in-flight, success, EWMA, cooldown, and attention
-409-2026-07-26T16:16:43.4492779Z   ---
-410-2026-07-26T16:16:43.4493146Z   duration_ms: 0.357543
---
-1339-2026-07-26T16:16:44.1437012Z   ---
-1340-2026-07-26T16:16:44.1437348Z   duration_ms: 0.679394
-1341-2026-07-26T16:16:44.1437685Z   type: 'test'
-1342-2026-07-26T16:16:44.1438024Z   ...
-1343-2026-07-26T16:16:44.2215861Z # Subtest: the renderer uses pinned IBM Plex packages without the retired presentation dependencies
-1344-2026-07-26T16:16:44.2217161Z ok 171 - the renderer uses pinned IBM Plex packages without the retired presentation dependencies
-1345-2026-07-26T16:16:44.2217706Z   ---
-1346-2026-07-26T16:16:44.2218020Z   duration_ms: 4.985101
-1347-2026-07-26T16:16:44.2218387Z   type: 'test'
-1348-2026-07-26T16:16:44.2218865Z   ...
-1349-2026-07-26T16:16:44.2219347Z # Subtest: desktop geometry follows the shared spacing and responsive contract
-1350-2026-07-26T16:16:44.2219992Z ok 172 - desktop geometry follows the shared spacing and responsive contract
-1351-2026-07-26T16:16:44.2220389Z   ---
-1352-2026-07-26T16:16:44.2220711Z   duration_ms: 2.644853
-1353-2026-07-26T16:16:44.2221123Z   type: 'test'
-1354-2026-07-26T16:16:44.2221481Z   ...
-1355-2026-07-26T16:16:44.2222298Z # Subtest: the website presents implemented facts instead of fabricated product telemetry
-1356-2026-07-26T16:16:44.2223384Z ok 173 - the website presents implemented facts instead of fabricated product telemetry
-1357-2026-07-26T16:16:44.2224045Z   ---
-1358-2026-07-26T16:16:44.2224672Z   duration_ms: 1.133435
-1359-2026-07-26T16:16:44.2225153Z   type: 'test'
-1360-2026-07-26T16:16:44.2225612Z   ...
-1361-2026-07-26T16:16:44.2226413Z # Subtest: the interface contract is documented and linked from the public documentation index
-1362-2026-07-26T16:16:44.2227497Z ok 174 - the interface contract is documented and linked from the public documentation index
-1363-2026-07-26T16:16:44.2228332Z   ---
-1364-2026-07-26T16:16:44.2228852Z   duration_ms: 1.636863
-1365-2026-07-26T16:16:44.2229336Z   type: 'test'
-1366-2026-07-26T16:16:44.2229679Z   ...
-1367-2026-07-26T16:16:44.2230340Z # Subtest: polling forms use dirty-aware drafts and mutations report success
-1368-2026-07-26T16:16:44.2231244Z ok 175 - polling forms use dirty-aware drafts and mutations report success
-1369-2026-07-26T16:16:44.2231880Z   ---
-1370-2026-07-26T16:16:44.2232265Z   duration_ms: 9.684012
-1371-2026-07-26T16:16:44.2232663Z   type: 'test'
-1372-2026-07-26T16:16:44.2233095Z   ...
-1373-2026-07-26T16:16:44.2233928Z # Subtest: usage interaction handles failures and keyboard selection
-1374:2026-07-26T16:16:44.2234792Z not ok 176 - usage interaction handles failures and keyboard selection
-1375-2026-07-26T16:16:44.2235326Z   ---
-1376-2026-07-26T16:16:44.2235666Z   duration_ms: 3.306457
-1377-2026-07-26T16:16:44.2235950Z   type: 'test'
-1378-2026-07-26T16:16:44.2236596Z   location: '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/tests/repository/interface-followup.test.js:24:1'
-1379-2026-07-26T16:16:44.2237257Z   failureType: 'testCodeFailure'
-1380-2026-07-26T16:16:44.2237648Z   error: |-
-1381-2026-07-26T16:16:44.2238047Z     The input did not match the regular expression /role="button"/. Input:
-1382-2026-07-26T16:16:44.2238455Z     
-1383-2026-07-26T16:16:44.2239011Z     "import React, { useEffect, useMemo, useState } from 'react';\n" +
-1384-2026-07-26T16:16:44.2239443Z       'import {\n' +
-1385-2026-07-26T16:16:44.2239795Z       '  ArrowDownToLine,\n' +
-1386-2026-07-26T16:16:44.2240148Z       '  CircleDollarSign,\n' +
-1387-2026-07-26T16:16:44.2240629Z       '  Database,\n' +
-1388-2026-07-26T16:16:44.2240933Z       '  Gauge,\n' +
-1389-2026-07-26T16:16:44.2241283Z       '  Layers3,\n' +
-1390-2026-07-26T16:16:44.2241576Z       '  LoaderCircle,\n' +
-1391-2026-07-26T16:16:44.2241889Z       '  Route,\n' +
-1392-2026-07-26T16:16:44.2242203Z       "} from 'lucide-react';\n" +
-1393-2026-07-26T16:16:44.2242806Z       "import { Empty, Metric, PageHeader, Panel, formatNumber, formatUsd } from '../components/Common.jsx';\n" +
-1394-2026-07-26T16:16:44.2243609Z       '\n' +
-1395-2026-07-26T16:16:44.2244057Z       'export function Usage({ snapshot }) {\n' +
-1396-2026-07-26T16:16:44.2244629Z       '  const [filters, setFilters] = useState({\n' +
-1397-2026-07-26T16:16:44.2245108Z       "    status: '',\n" +
-1398-2026-07-26T16:16:44.2245551Z       "    providerId: '',\n" +
-1399-2026-07-26T16:16:44.2245887Z       "    accountId: '',\n" +
-1400-2026-07-26T16:16:44.2246234Z       "    protocol: '',\n" +
-1401-2026-07-26T16:16:44.2246545Z       "    from: '',\n" +
-1402-2026-07-26T16:16:44.2246884Z       "    to: '',\n" +
-1403-2026-07-26T16:16:44.2247195Z       '  });\n' +
-1404-2026-07-26T16:16:44.2247645Z       '  const [rows, setRows] = useState(snapshot.recentUsage ?? []);\n' +
-1405-2026-07-26T16:16:44.2248214Z       '  const [summary, setSummary] = useState(snapshot.usageSummary ?? {});\n' +
-1406-2026-07-26T16:16:44.2248875Z       '  const [loading, setLoading] = useState(false);\n' +
-1407-2026-07-26T16:16:44.2249365Z       '  const [selected, setSelected] = useState(null);\n' +
-1408-2026-07-26T16:16:44.2249808Z       '  const [attempts, setAttempts] = useState([]);\n' +
-1409-2026-07-26T16:16:44.2250206Z       "  const [error, setError] = useState('');\n" +
-1410-2026-07-26T16:16:44.2250617Z       '\n' +
-1411-2026-07-26T16:16:44.2250924Z       '  const accounts = useMemo(\n' +
-1412-2026-07-26T16:16:44.2251508Z       '    () => snapshot.config.providers.flatMap((provider) => provider.accounts.map((account) => ({\n' +
-1413-2026-07-26T16:16:44.2252008Z       '      ...account,\n' +
-1414-2026-07-26T16:16:44.2252391Z       '      providerId: provider.id,\n' +
-1415-2026-07-26T16:16:44.2252787Z       '      providerName: provider.name,\n' +
-1416-2026-07-26T16:16:44.2253125Z       '    }))),\n' +
-1417-2026-07-26T16:16:44.2253655Z       '    [snapshot.config.providers],\n' +
-1418-2026-07-26T16:16:44.2254141Z       '  );\n' +
-1419-2026-07-26T16:16:44.2254671Z       '  const query = useMemo(() => normalizeFilters(filters), [filters]);\n' +
-1420-2026-07-26T16:16:44.2255206Z       '\n' +
-1421-2026-07-26T16:16:44.2255580Z       '  useEffect(() => {\n' +
-1422-2026-07-26T16:16:44.2256050Z       '    let active = true;\n' +
-1423-2026-07-26T16:16:44.2256535Z       '    setLoading(true);\n' +
-1424-2026-07-26T16:16:44.2256945Z       "    setError('');\n" +
-1425-2026-07-26T16:16:44.2257350Z       '    Promise.all([\n' +
-1426-2026-07-26T16:16:44.2257875Z       '      window.spi.listUsage(query, { limit: 1000 }),\n' +
-1427-2026-07-26T16:16:44.2258506Z       '      window.spi.summarizeUsage(query),\n' +
-1428-2026-07-26T16:16:44.2259157Z       '    ])\n' +
-1429-2026-07-26T16:16:44.2259694Z       '      .then(([records, nextSummary]) => {\n' +
-1430-2026-07-26T16:16:44.2260286Z       '        if (active) {\n' +
-1431-2026-07-26T16:16:44.2260789Z       '          setRows(records);\n' +
-1432-2026-07-26T16:16:44.2261330Z       '          setSummary(nextSummary);\n' +
-1433-2026-07-26T16:16:44.2261779Z       '        }\n' +
-1434-2026-07-26T16:16:44.2262145Z       '      })\n' +
-1435-2026-07-26T16:16:44.2262574Z       '      .catch((cause) => {\n' +
-1436-2026-07-26T16:16:44.2263074Z       '        if (active) {\n' +
-1437-2026-07-26T16:16:44.2263559Z       '          setRows([]);\n' +
-1438-2026-07-26T16:16:44.2264022Z       '          setSummary({});\n' +
-1439-2026-07-26T16:16:44.2264594Z       "          setError(cause?.message ?? 'Unable to load usage data.');\n" +
-1440-2026-07-26T16:16:44.2265172Z       '        }\n' +
-1441-2026-07-26T16:16:44.2265556Z       '      })\n' +
-1442-2026-07-26T16:16:44.2265996Z       '      .finally(() => {\n' +
-1443-2026-07-26T16:16:44.2266492Z       '        if (active) setLoading(false);\n' +
-1444-2026-07-26T16:16:44.2266966Z       '      });\n' +
-1445-2026-07-26T16:16:44.2267291Z       '    return () => {\n' +
-1446-2026-07-26T16:16:44.2267693Z       '      active = false;\n' +
-1447-2026-07-26T16:16:44.2268127Z       '    };\n' +
-1448-2026-07-26T16:16:44.2268462Z       '  }, [query]);\n' +
-1449-2026-07-26T16:16:44.2268985Z       '\n' +
-1450-2026-07-26T16:16:44.2269350Z       '  const selectRequest = async (record) => {\n' +
-1451-2026-07-26T16:16:44.2269754Z       '    setSelected(record);\n' +
-1452-2026-07-26T16:16:44.2270246Z       "    setError('');\n" +
-1453-2026-07-26T16:16:44.2270681Z       '    try {\n' +
-1454-2026-07-26T16:16:44.2271230Z       '      setAttempts(await window.spi.listAttempts(record.id));\n' +
-1455-2026-07-26T16:16:44.2271779Z       '    } catch (cause) {\n' +
-1456-2026-07-26T16:16:44.2272351Z       '      setAttempts([]);\n' +
-1457-2026-07-26T16:16:44.2273114Z       "      setError(cause?.message ?? 'Unable to load route attempts.');\n" +
-1458-2026-07-26T16:16:44.2273646Z       '    }\n' +
-1459-2026-07-26T16:16:44.2274012Z       '  };\n' +
-1460-2026-07-26T16:16:44.2274376Z       '\n' +
-1461-2026-07-26T16:16:44.2274770Z       '  const exportCsv = async () => {\n' +
-1462-2026-07-26T16:16:44.2275330Z       "    setError('');\n" +
-1463-2026-07-26T16:16:44.2275758Z       '    let csv;\n' +
-1464-2026-07-26T16:16:44.2276193Z       '    try {\n' +
---
-1632-2026-07-26T16:16:44.2365032Z       "                    <td>{record.protocol ?? '—'}</td>\n" +
-1633-2026-07-26T16:16:44.2365384Z       '                    <td>\n' +
-1634-2026-07-26T16:16:44.2365868Z       "                      {record.requestedModel ?? '—'}\n" +
-1635-2026-07-26T16:16:44.2366479Z       '                      {record.upstreamModel && record.upstreamModel !== record.requestedModel ? (\n' +
-1636-2026-07-26T16:16:44.2367114Z       '                        <small className="table-subline">→ {record.upstreamModel}</small>\n' +
-1637-2026-07-26T16:16:44.2367659Z       '                      ) : null}\n' +
-1638-2026-07-26T16:16:44.2368009Z       '                    </td>\n' +
-1639-2026-07-26T16:16:44.2368373Z       '                    <td>\n' +
-1640-2026-07-26T16:16:44.2369299Z       "                      {snapshot.config.providers.find((provider) => provider.id === record.providerId)?.name ?? '—'}\n" +
-1641-2026-07-26T16:16:44.2370162Z       '                      <small className="table-subline">\n' +
-1642-2026-07-26T16:16:44.2370723Z       "                        {accounts.find((account) => account.id === record.accountId)?.label ?? record.accountId ?? ''}\n" +
-1643-2026-07-26T16:16:44.2371213Z       '                      </small>\n' +
-1644-2026-07-26T16:16:44.2371568Z       '                    </td>\n' +
-1645-2026-07-26T16:16:44.2371975Z       '                    <td>{formatNumber(record.inputTokens)}</td>\n' +
-1646-2026-07-26T16:16:44.2372406Z       '                    <td>{formatNumber(record.outputTokens)}</td>\n' +
-1647-2026-07-26T16:16:44.2373003Z       '                    <td>{formatNumber(Number(record.cacheReadTokens ?? 0) + Number(record.cacheWriteTokens ?? 0))}</td>\n' +
-1648-2026-07-26T16:16:44.2373642Z       "                    <td>{record.latencyMs ?? '—'} ms</td>\n" +
-1649-2026-07-26T16:16:44.2374082Z       '                    <td>{formatUsd(record.estimatedCostUsd)}</td>\n' +
-1650-2026-07-26T16:16:44.2374459Z       '                  </tr>\n' +
-1651-2026-07-26T16:16:44.2374764Z       '                ))}\n' +
-1652-2026-07-26T16:16:44.2375105Z       '              </tbody>\n' +
-1653-2026-07-26T16:16:44.2375416Z       '            </table>\n' +
-1654-2026-07-26T16:16:44.2375730Z       '          </div>\n' +
-1655-2026-07-26T16:16:44.2376088Z       '        ) : (\n' +
-1656-2026-07-26T16:16:44.2376634Z       '          <Empty title="No matching requests" description="Change the filters or send a request through the local gateway." />\n' +
-1657-2026-07-26T16:16:44.2377317Z       '        )}\n' +
-1658-2026-07-26T16:16:44.2377606Z       '      </Panel>\n' +
-1659-2026-07-26T16:16:44.2377990Z       '\n' +
-1660-2026-07-26T16:16:44.2378306Z       '      {selected ? (\n' +
-1661-2026-07-26T16:16:44.2378835Z       '        <Panel\n' +
-1662-2026-07-26T16:16:44.2379180Z       '          title="Route attempts"\n' +
-1663-2026-07-26T16:16:44.2379757Z       '          description={`Every upstream attempt recorded for request ${selected.id}.`}\n' +
-1664-2026-07-26T16:16:44.2380234Z       '          action={(\n' +
-1665-2026-07-26T16:16:44.2380775Z       '            <button className="tertiary-button" type="button" onClick={() => { setSelected(null); setAtt'... 1685 more characters
-1666-2026-07-26T16:16:44.2381256Z     
-1667:2026-07-26T16:16:44.2381519Z   code: 'ERR_ASSERTION'
-1668:2026-07-26T16:16:44.2381781Z   name: 'AssertionError'
-1669-2026-07-26T16:16:44.2382113Z   expected:
-1670-2026-07-26T16:16:44.2382355Z   actual: |-
-1671-2026-07-26T16:16:44.2382703Z     import React, { useEffect, useMemo, useState } from 'react';
-1672-2026-07-26T16:16:44.2383067Z     import {
-1673-2026-07-26T16:16:44.2383301Z       ArrowDownToLine,
-1674-2026-07-26T16:16:44.2383628Z       CircleDollarSign,
-1675-2026-07-26T16:16:44.2383887Z       Database,
-1676-2026-07-26T16:16:44.2384140Z       Gauge,
-1677-2026-07-26T16:16:44.2384394Z       Layers3,
-1678-2026-07-26T16:16:44.2384624Z       LoaderCircle,
-1679-2026-07-26T16:16:44.2384922Z       Route,
-1680-2026-07-26T16:16:44.2385170Z     } from 'lucide-react';
-1681-2026-07-26T16:16:44.2385657Z     import { Empty, Metric, PageHeader, Panel, formatNumber, formatUsd } from '../components/Common.jsx';
-1682-2026-07-26T16:16:44.2386105Z     
-1683-2026-07-26T16:16:44.2386405Z     export function Usage({ snapshot }) {
-1684-2026-07-26T16:16:44.2386754Z       const [filters, setFilters] = useState({
-1685-2026-07-26T16:16:44.2387067Z         status: '',
-1686-2026-07-26T16:16:44.2387334Z         providerId: '',
-1687-2026-07-26T16:16:44.2387619Z         accountId: '',
-1688-2026-07-26T16:16:44.2387909Z         protocol: '',
-1689-2026-07-26T16:16:44.2388174Z         from: '',
-1690-2026-07-26T16:16:44.2388500Z         to: '',
-1691-2026-07-26T16:16:44.2388987Z       });
-1692-2026-07-26T16:16:44.2389358Z       const [rows, setRows] = useState(snapshot.recentUsage ?? []);
-1693-2026-07-26T16:16:44.2389816Z       const [summary, setSummary] = useState(snapshot.usageSummary ?? {});
-1694-2026-07-26T16:16:44.2390252Z       const [loading, setLoading] = useState(false);
-1695-2026-07-26T16:16:44.2390632Z       const [selected, setSelected] = useState(null);
-1696-2026-07-26T16:16:44.2391061Z       const [attempts, setAttempts] = useState([]);
-1697-2026-07-26T16:16:44.2391411Z       const [error, setError] = useState('');
-1698-2026-07-26T16:16:44.2391706Z     
-1699-2026-07-26T16:16:44.2391970Z       const accounts = useMemo(
-1700-2026-07-26T16:16:44.2392429Z         () => snapshot.config.providers.flatMap((provider) => provider.accounts.map((account) => ({
-1701-2026-07-26T16:16:44.2392921Z           ...account,
-1702-2026-07-26T16:16:44.2393211Z           providerId: provider.id,
-1703-2026-07-26T16:16:44.2393665Z           providerName: provider.name,
-1704-2026-07-26T16:16:44.2394079Z         }))),
-1705-2026-07-26T16:16:44.2394402Z         [snapshot.config.providers],
-1706-2026-07-26T16:16:44.2394833Z       );
-1707-2026-07-26T16:16:44.2395352Z       const query = useMemo(() => normalizeFilters(filters), [filters]);
-1708-2026-07-26T16:16:44.2395880Z     
-1709-2026-07-26T16:16:44.2396256Z       useEffect(() => {
-1710-2026-07-26T16:16:44.2396642Z         let active = true;
-1711-2026-07-26T16:16:44.2396997Z         setLoading(true);
-1712-2026-07-26T16:16:44.2397273Z         setError('');
-1713-2026-07-26T16:16:44.2397533Z         Promise.all([
-1714-2026-07-26T16:16:44.2397902Z           window.spi.listUsage(query, { limit: 1000 }),
-1715-2026-07-26T16:16:44.2398281Z           window.spi.summarizeUsage(query),
-1716-2026-07-26T16:16:44.2398610Z         ])
-1717-2026-07-26T16:16:44.2399054Z           .then(([records, nextSummary]) => {
-1718-2026-07-26T16:16:44.2399408Z             if (active) {
-1719-2026-07-26T16:16:44.2399810Z               setRows(records);
-1720-2026-07-26T16:16:44.2400088Z               setSummary(nextSummary);
-1721-2026-07-26T16:16:44.2400481Z             }
-1722-2026-07-26T16:16:44.2400723Z           })
-1723-2026-07-26T16:16:44.2401013Z           .catch((cause) => {
-1724-2026-07-26T16:16:44.2401305Z             if (active) {
-1725-2026-07-26T16:16:44.2401554Z               setRows([]);
-1726-2026-07-26T16:16:44.2401839Z               setSummary({});
-1727-2026-07-26T16:16:44.2402225Z               setError(cause?.message ?? 'Unable to load usage data.');
-1728-2026-07-26T16:16:44.2402727Z             }
-1729-2026-07-26T16:16:44.2403073Z           })
-1730-2026-07-26T16:16:44.2403380Z           .finally(() => {
-1731-2026-07-26T16:16:44.2403827Z             if (active) setLoading(false);
-1732-2026-07-26T16:16:44.2404285Z           });
-1733-2026-07-26T16:16:44.2404626Z         return () => {
-1734-2026-07-26T16:16:44.2405015Z           active = false;
-1735-2026-07-26T16:16:44.2405357Z         };
-1736-2026-07-26T16:16:44.2405709Z       }, [query]);
-1737-2026-07-26T16:16:44.2406087Z     
-1738-2026-07-26T16:16:44.2406547Z       const selectRequest = async (record) => {
-1739-2026-07-26T16:16:44.2407063Z         setSelected(record);
-1740-2026-07-26T16:16:44.2407443Z         setError('');
-1741-2026-07-26T16:16:44.2407841Z         try {
-1742-2026-07-26T16:16:44.2408276Z           setAttempts(await window.spi.listAttempts(record.id));
-1743-2026-07-26T16:16:44.2409484Z         } catch (cause) {
-1744-2026-07-26T16:16:44.2409898Z           setAttempts([]);
-1745-2026-07-26T16:16:44.2410285Z           setError(cause?.message ?? 'Unable to load route attempts.');
-1746-2026-07-26T16:16:44.2410763Z         }
-1747-2026-07-26T16:16:44.2411004Z       };
-1748-2026-07-26T16:16:44.2411277Z     
-1749-2026-07-26T16:16:44.2411553Z       const exportCsv = async () => {
-1750-2026-07-26T16:16:44.2411892Z         setError('');
-1751-2026-07-26T16:16:44.2412199Z         let csv;
-1752-2026-07-26T16:16:44.2412477Z         try {
-1753-2026-07-26T16:16:44.2412833Z           csv = await window.spi.exportUsageCsv(query);
-1754-2026-07-26T16:16:44.2413167Z         } catch (cause) {
-1755-2026-07-26T16:16:44.2413584Z           setError(cause?.message ?? 'Unable to export usage data.');
-1756-2026-07-26T16:16:44.2413946Z           return;
-1757-2026-07-26T16:16:44.2414223Z         }
-1758-2026-07-26T16:16:44.2414730Z         const blob = new Blob([csv], { type: 'text/csv' });
---
-2043-2026-07-26T16:16:44.2533394Z   type: 'test'
-2044-2026-07-26T16:16:44.2533631Z   ...
-2045-2026-07-26T16:16:44.2534073Z # Subtest: CodeQL is least-privilege and documentation hosting is explicit
-2046-2026-07-26T16:16:44.2534585Z ok 185 - CodeQL is least-privilege and documentation hosting is explicit
-2047-2026-07-26T16:16:44.2534971Z   ---
-2048-2026-07-26T16:16:44.2535207Z   duration_ms: 2.675714
-2049-2026-07-26T16:16:44.2535468Z   type: 'test'
-2050-2026-07-26T16:16:44.2535717Z   ...
-2051-2026-07-26T16:16:44.2536154Z # Subtest: release workflow requires a version tag and uploads checksummed artifacts
-2052-2026-07-26T16:16:44.2536731Z ok 186 - release workflow requires a version tag and uploads checksummed artifacts
-2053-2026-07-26T16:16:44.2537108Z   ---
-2054-2026-07-26T16:16:44.2537342Z   duration_ms: 1.324082
-2055-2026-07-26T16:16:44.2537652Z   type: 'test'
-2056-2026-07-26T16:16:44.2537878Z   ...
-2057-2026-07-26T16:16:44.2538259Z # Subtest: public website is local-asset only and links documentation
-2058-2026-07-26T16:16:44.2538867Z ok 187 - public website is local-asset only and links documentation
-2059-2026-07-26T16:16:44.2539224Z   ---
-2060-2026-07-26T16:16:44.2539526Z   duration_ms: 1.94272
-2061-2026-07-26T16:16:44.2539772Z   type: 'test'
-2062-2026-07-26T16:16:44.2540034Z   ...
-2063-2026-07-26T16:16:44.2540326Z # Subtest: repository policy files are present
-2064-2026-07-26T16:16:44.2540733Z ok 188 - repository policy files are present
-2065-2026-07-26T16:16:44.2541045Z   ---
-2066-2026-07-26T16:16:44.2541270Z   duration_ms: 1.489132
-2067-2026-07-26T16:16:44.2541553Z   type: 'test'
-2068-2026-07-26T16:16:44.2541788Z   ...
-2069-2026-07-26T16:16:44.2542051Z 1..188
-2070-2026-07-26T16:16:44.2542298Z # tests 188
-2071-2026-07-26T16:16:44.2542517Z # suites 0
-2072-2026-07-26T16:16:44.2542771Z # pass 187
-2073-2026-07-26T16:16:44.2542994Z # fail 1
-2074-2026-07-26T16:16:44.2543269Z # cancelled 0
-2075-2026-07-26T16:16:44.2543505Z # skipped 0
-2076-2026-07-26T16:16:44.2543730Z # todo 0
-2077-2026-07-26T16:16:44.2544009Z # duration_ms 842.856167
-2078:2026-07-26T16:16:44.2544418Z # start of coverage report
-2079-2026-07-26T16:16:44.2544941Z # -------------------------------------------------------------------------------------------------
-2080-2026-07-26T16:16:44.2545518Z # file                                 | line % | branch % | funcs % | uncovered lines
-2081-2026-07-26T16:16:44.2546007Z # -------------------------------------------------------------------------------------------------
-2082-2026-07-26T16:16:44.2546528Z # src                                  |        |          |         | 
-2083-2026-07-26T16:16:44.2546946Z #  application                         |        |          |         | 
-2084-2026-07-26T16:16:44.2547514Z #   provider-configuration-service.js  |  78.45 |    78.13 |   79.17 | 17-22 55-58 60 84-86 90-100
-2085-2026-07-26T16:16:44.2548038Z #   provider-registry.js               | 100.00 |   100.00 |  100.00 | 
-2086-2026-07-26T16:16:44.2548550Z #   proxy-service.js                   |  93.55 |    58.18 |   90.91 | 17-19 64 66-67
-2087-2026-07-26T16:16:44.2549192Z #   routing-service.js                 | 100.00 |    94.29 |  100.00 | 
-2088-2026-07-26T16:16:44.2549654Z #   runtime-state.js                   | 100.00 |    88.89 |  100.00 | 
-2089-2026-07-26T16:16:44.2550135Z #   settings-service.js                |  92.31 |    90.91 |   71.43 | 22-23 50-52
-2090-2026-07-26T16:16:44.2550660Z #   usage-service.js                   |  74.55 |    88.89 |   70.00 | 19-27 44-45 53-55
-2091-2026-07-26T16:16:44.2551106Z #  domain                              |        |          |         | 
-2092-2026-07-26T16:16:44.2551518Z #   config.js                          | 100.00 |    93.16 |  100.00 | 
-2093-2026-07-26T16:16:44.2551942Z #   protocol                           |        |          |         | 
-2094-2026-07-26T16:16:44.2552399Z #    anthropic.js                      | 100.00 |    89.74 |  100.00 | 
-2095-2026-07-26T16:16:44.2552815Z #    canonical.js                      | 100.00 |    92.00 |  100.00 | 
-2096-2026-07-26T16:16:44.2553222Z #    gemini.js                         | 100.00 |    96.67 |  100.00 | 
-2097-2026-07-26T16:16:44.2553636Z #    openai.js                         |  99.18 |    81.08 |  100.00 | 10
-2098-2026-07-26T16:16:44.2554084Z #   routing                            |        |          |         | 
-2099-2026-07-26T16:16:44.2554505Z #    errors.js                         | 100.00 |    95.24 |  100.00 | 
-2100-2026-07-26T16:16:44.2554967Z #    limits.js                         | 100.00 |    96.15 |  100.00 | 
-2101-2026-07-26T16:16:44.2555358Z #    router.js                         | 100.00 |    94.87 |  100.00 | 
-2102-2026-07-26T16:16:44.2555827Z #    strategies.js                     |  98.84 |    72.73 |  100.00 | 43
-2103-2026-07-26T16:16:44.2556232Z #   shared.js                          | 100.00 |    90.91 |  100.00 | 
-2104-2026-07-26T16:16:44.2556658Z #   usage.js                           | 100.00 |    80.00 |  100.00 | 
-2105-2026-07-26T16:16:44.2557165Z # -------------------------------------------------------------------------------------------------
-2106-2026-07-26T16:16:44.2557682Z # all files                            |  96.38 |    86.75 |   93.87 | 
-2107-2026-07-26T16:16:44.2558175Z # -------------------------------------------------------------------------------------------------
-2108:2026-07-26T16:16:44.2558565Z # end of coverage report
-2109:2026-07-26T16:16:44.2623639Z ##[error]Process completed with exit code 1.
-2110-2026-07-26T16:16:44.2757199Z Post job cleanup.
-2111-2026-07-26T16:16:44.3515358Z [command]/usr/bin/git version
-2112-2026-07-26T16:16:44.3547996Z git version 2.54.0
-2113-2026-07-26T16:16:44.3579033Z Temporarily overriding HOME='/home/runner/work/_temp/7aeb494d-1b8f-49fb-9c35-aabf6c7d3b1d' before making global git config changes
-2114-2026-07-26T16:16:44.3580412Z Adding repository directory to the temporary git global config as a safe directory
-2115-2026-07-26T16:16:44.3583920Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-2116-2026-07-26T16:16:44.3609496Z Removing SSH command configuration
-2117-2026-07-26T16:16:44.3615580Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2118-2026-07-26T16:16:44.3643887Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2119-2026-07-26T16:16:44.3827625Z Removing HTTP extra header
-2120-2026-07-26T16:16:44.3832894Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2121-2026-07-26T16:16:44.3859286Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2122-2026-07-26T16:16:44.4030851Z Removing includeIf entries pointing to credentials config files
-2123-2026-07-26T16:16:44.4037125Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2124-2026-07-26T16:16:44.4058890Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-2125-2026-07-26T16:16:44.4060385Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-2126-2026-07-26T16:16:44.4061478Z includeif.gitdir:/github/workspace/.git.path
-2127-2026-07-26T16:16:44.4062343Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
-2128-2026-07-26T16:16:44.4066813Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-2129-2026-07-26T16:16:44.4083309Z /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2130-2026-07-26T16:16:44.4092577Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2131-2026-07-26T16:16:44.4127031Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-2132-2026-07-26T16:16:44.4144545Z /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2133-2026-07-26T16:16:44.4153723Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2134-2026-07-26T16:16:44.4180771Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
-2135-2026-07-26T16:16:44.4197617Z /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2136-2026-07-26T16:16:44.4205446Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2137-2026-07-26T16:16:44.4231262Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
-2138-2026-07-26T16:16:44.4247898Z /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2139-2026-07-26T16:16:44.4256145Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2140-2026-07-26T16:16:44.4282291Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2141-2026-07-26T16:16:44.4456922Z Removing credentials config '/home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config'
-2142-2026-07-26T16:16:44.4575635Z Cleaning up orphan processes
+276-2026-07-26T16:20:23.9435031Z No services need to be restarted.
+277-2026-07-26T16:20:23.9435353Z 
+278-2026-07-26T16:20:23.9435579Z No containers need to be restarted.
+279-2026-07-26T16:20:23.9435856Z 
+280-2026-07-26T16:20:23.9436137Z No user sessions are running outdated binaries.
+281-2026-07-26T16:20:23.9436496Z 
+282-2026-07-26T16:20:23.9436928Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+283-2026-07-26T16:20:25.3503019Z ##[group]Run npm ci --no-audit --no-fund
+284-2026-07-26T16:20:25.3503524Z [36;1mnpm ci --no-audit --no-fund[0m
+285-2026-07-26T16:20:25.3529079Z shell: /usr/bin/bash -e {0}
+286-2026-07-26T16:20:25.3529491Z ##[endgroup]
+287-2026-07-26T16:20:25.8500249Z npm warn skipping integrity check for git dependency ssh://git@github.com/electron/node-gyp.git
+288-2026-07-26T16:20:27.9189086Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+289-2026-07-26T16:20:27.9526674Z npm warn deprecated @npmcli/move-file@2.0.1: This functionality has been moved to @npmcli/fs
+290-2026-07-26T16:20:27.9963659Z npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+291-2026-07-26T16:20:28.0408268Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+292-2026-07-26T16:20:28.0912752Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+293-2026-07-26T16:20:28.1031296Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+294-2026-07-26T16:20:28.1044092Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+295-2026-07-26T16:20:28.1780282Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+296-2026-07-26T16:20:28.2331278Z npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+297-2026-07-26T16:20:28.4182205Z npm warn deprecated tar@6.2.1: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+298-2026-07-26T16:20:28.6513907Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+299-2026-07-26T16:20:33.1905795Z 
+300-2026-07-26T16:20:33.1906941Z added 543 packages in 8s
+301-2026-07-26T16:20:33.2328374Z ##[group]Run npm run build
+302-2026-07-26T16:20:33.2328791Z [36;1mnpm run build[0m
+303-2026-07-26T16:20:33.2354503Z shell: /usr/bin/bash -e {0}
+304-2026-07-26T16:20:33.2354859Z ##[endgroup]
+305-2026-07-26T16:20:33.3283128Z 
+306-2026-07-26T16:20:33.3283516Z > subscription-proxy-inator@2.1.0 build
+307-2026-07-26T16:20:33.3283979Z > npm run check && npm run build:renderer && npm run build:site
+308-2026-07-26T16:20:33.3284255Z 
+309-2026-07-26T16:20:33.4208407Z 
+310-2026-07-26T16:20:33.4209294Z > subscription-proxy-inator@2.1.0 check
+311:2026-07-26T16:20:33.4210005Z > npm run verify && npm run test:coverage && npm run check:links
+312-2026-07-26T16:20:33.4210258Z 
+313-2026-07-26T16:20:33.5095928Z 
+314-2026-07-26T16:20:33.5096379Z > subscription-proxy-inator@2.1.0 verify
+315-2026-07-26T16:20:33.5097717Z > node scripts/verify.mjs
+316-2026-07-26T16:20:33.5098171Z 
+317-2026-07-26T16:20:35.4875704Z file:///home/runner/work/subscription-proxy-inator/subscription-proxy-inator/scripts/verify.mjs:85
+318:2026-07-26T16:20:35.4877058Z       throw new Error(`${relative(file)} failed JSX validation: ${errors
+319-2026-07-26T16:20:35.4877683Z             ^
+320-2026-07-26T16:20:35.4878023Z 
+321:2026-07-26T16:20:35.4882386Z Error: desktop/renderer/pages/Usage.jsx failed JSX validation: Invalid character.; Unexpected token. Did you mean `{'>'}` or `&gt;`?; Expected corresponding JSX closing tag for 'tbody'.; Unexpected token. Did you mean `{'}'}` or `&rbrace;`?; Expected corresponding JSX closing tag for 'table'.; Expected corresponding JSX closing tag for 'div'.; ')' expected.; Expected corresponding JSX closing tag for 'Panel'.; Unexpected token. Did you mean `{'}'}` or `&rbrace;`?; Expected corresponding closing tag for JSX fragment.; Signature declarations can only be used in TypeScript files.; Identifier expected.; ',' expected.; ',' expected.; Property assignment expected.; ',' expected.; Property assignment expected.; Expression expected.; ',' expected.; Declaration or statement expected.; Expression expected.; Declaration or statement expected.; Declaration or statement expected.; Declaration or statement expected.; Expression expected.; Expression expected.; Declaration or statement expected.
+322-2026-07-26T16:20:35.4886115Z     at validateJsx (file:///home/runner/work/subscription-proxy-inator/subscription-proxy-inator/scripts/verify.mjs:85:13)
+323-2026-07-26T16:20:35.4886965Z     at async file:///home/runner/work/subscription-proxy-inator/subscription-proxy-inator/scripts/verify.mjs:37:1
+324-2026-07-26T16:20:35.4887378Z 
+325-2026-07-26T16:20:35.4887470Z Node.js v22.23.1
+326:2026-07-26T16:20:35.5090466Z ##[error]Process completed with exit code 1.
+327-2026-07-26T16:20:35.5236153Z Post job cleanup.
+328-2026-07-26T16:20:35.6051627Z [command]/usr/bin/git version
+329-2026-07-26T16:20:35.6095388Z git version 2.54.0
+330-2026-07-26T16:20:35.6144250Z Temporarily overriding HOME='/home/runner/work/_temp/b9026b1c-cc20-4318-a57b-50b1fd17e91e' before making global git config changes
+331-2026-07-26T16:20:35.6145217Z Adding repository directory to the temporary git global config as a safe directory
+332-2026-07-26T16:20:35.6151391Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+333-2026-07-26T16:20:35.6179011Z Removing SSH command configuration
+334-2026-07-26T16:20:35.6186772Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+335-2026-07-26T16:20:35.6219218Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+336-2026-07-26T16:20:35.6411152Z Removing HTTP extra header
+337-2026-07-26T16:20:35.6418297Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+338-2026-07-26T16:20:35.6450416Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+339-2026-07-26T16:20:35.6663642Z Removing includeIf entries pointing to credentials config files
+340-2026-07-26T16:20:35.6669200Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+341-2026-07-26T16:20:35.6694257Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+342-2026-07-26T16:20:35.6696263Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+343-2026-07-26T16:20:35.6697685Z includeif.gitdir:/github/workspace/.git.path
+344-2026-07-26T16:20:35.6698716Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+345-2026-07-26T16:20:35.6705442Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+346-2026-07-26T16:20:35.6725590Z /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+347-2026-07-26T16:20:35.6736799Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+348-2026-07-26T16:20:35.6772618Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+349-2026-07-26T16:20:35.6791266Z /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+350-2026-07-26T16:20:35.6796752Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+351-2026-07-26T16:20:35.6824416Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+352-2026-07-26T16:20:35.6849211Z /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+353-2026-07-26T16:20:35.6857421Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+354-2026-07-26T16:20:35.6880395Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+355-2026-07-26T16:20:35.6898856Z /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+356-2026-07-26T16:20:35.6939238Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+357-2026-07-26T16:20:35.6991568Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+358-2026-07-26T16:20:35.7181775Z Removing credentials config '/home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config'
+359-2026-07-26T16:20:35.7305456Z Cleaning up orphan processes
 
 --- tail ---
-2026-07-26T16:16:44.2470397Z                   to: '',
-2026-07-26T16:16:44.2470720Z                 })}
-2026-07-26T16:16:44.2471003Z               >
-2026-07-26T16:16:44.2471268Z                 Clear
-2026-07-26T16:16:44.2471535Z               </button>
-2026-07-26T16:16:44.2471832Z             </div>
-2026-07-26T16:16:44.2472119Z     
-2026-07-26T16:16:44.2472377Z             {rows.length ? (
-2026-07-26T16:16:44.2472709Z               <div className="table-wrap">
-2026-07-26T16:16:44.2473018Z                 <table>
-2026-07-26T16:16:44.2473318Z                   <thead>
-2026-07-26T16:16:44.2473618Z                     <tr>
-2026-07-26T16:16:44.2473923Z                       <th>Started</th>
-2026-07-26T16:16:44.2474259Z                       <th>Status</th>
-2026-07-26T16:16:44.2474585Z                       <th>Protocol</th>
-2026-07-26T16:16:44.2474937Z                       <th>Model</th>
-2026-07-26T16:16:44.2475313Z                       <th>Provider and account</th>
-2026-07-26T16:16:44.2475648Z                       <th>Input</th>
-2026-07-26T16:16:44.2475968Z                       <th>Output</th>
-2026-07-26T16:16:44.2476309Z                       <th>Cache</th>
-2026-07-26T16:16:44.2476614Z                       <th>Latency</th>
-2026-07-26T16:16:44.2477025Z                       <th>Cost</th>
-2026-07-26T16:16:44.2477317Z                     </tr>
-2026-07-26T16:16:44.2477636Z                   </thead>
-2026-07-26T16:16:44.2477908Z                   <tbody>
-2026-07-26T16:16:44.2478218Z                     {rows.map((record) => (
-2026-07-26T16:16:44.2478558Z                       <tr
-2026-07-26T16:16:44.2479166Z                         key={record.id}
-2026-07-26T16:16:44.2479643Z                         className={selected?.id === record.id ? 'selected-row' : ''}
-2026-07-26T16:16:44.2480120Z                         onClick={() => selectRequest(record)}
-2026-07-26T16:16:44.2480491Z                       >
-2026-07-26T16:16:44.2481105Z                         <td>{record.startedAt ? new Date(record.startedAt).toLocaleString() : '—'}</td>
-2026-07-26T16:16:44.2481576Z                         <td>
-2026-07-26T16:16:44.2482192Z                           <span className={`badge ${record.status === 'success' ? 'success' : record.status === 'cancelled' ? 'muted' : 'danger'}`}>
-2026-07-26T16:16:44.2482762Z                             {record.status}
-2026-07-26T16:16:44.2483173Z                           </span>
-2026-07-26T16:16:44.2483475Z                         </td>
-2026-07-26T16:16:44.2483854Z                         <td>{record.protocol ?? '—'}</td>
-2026-07-26T16:16:44.2484206Z                         <td>
-2026-07-26T16:16:44.2484596Z                           {record.requestedModel ?? '—'}
-2026-07-26T16:16:44.2485170Z                           {record.upstreamModel && record.upstreamModel !== record.requestedModel ? (
-2026-07-26T16:16:44.2485887Z                             <small className="table-subline">→ {record.upstreamModel}</small>
-2026-07-26T16:16:44.2486313Z                           ) : null}
-2026-07-26T16:16:44.2486641Z                         </td>
-2026-07-26T16:16:44.2487003Z                         <td>
-2026-07-26T16:16:44.2487631Z                           {snapshot.config.providers.find((provider) => provider.id === record.providerId)?.name ?? '—'}
-2026-07-26T16:16:44.2488180Z                           <small className="table-subline">
-2026-07-26T16:16:44.2489029Z                             {accounts.find((account) => account.id === record.accountId)?.label ?? record.accountId ?? ''}
-2026-07-26T16:16:44.2489532Z                           </small>
-2026-07-26T16:16:44.2489850Z                         </td>
-2026-07-26T16:16:44.2490218Z                         <td>{formatNumber(record.inputTokens)}</td>
-2026-07-26T16:16:44.2490670Z                         <td>{formatNumber(record.outputTokens)}</td>
-2026-07-26T16:16:44.2491243Z                         <td>{formatNumber(Number(record.cacheReadTokens ?? 0) + Number(record.cacheWriteTokens ?? 0))}</td>
-2026-07-26T16:16:44.2491850Z                         <td>{record.latencyMs ?? '—'} ms</td>
-2026-07-26T16:16:44.2492279Z                         <td>{formatUsd(record.estimatedCostUsd)}</td>
-2026-07-26T16:16:44.2492672Z                       </tr>
-2026-07-26T16:16:44.2492957Z                     ))}
-2026-07-26T16:16:44.2493234Z                   </tbody>
-2026-07-26T16:16:44.2493523Z                 </table>
-2026-07-26T16:16:44.2493820Z               </div>
-2026-07-26T16:16:44.2494123Z             ) : (
-2026-07-26T16:16:44.2494645Z               <Empty title="No matching requests" description="Change the filters or send a request through the local gateway." />
-2026-07-26T16:16:44.2495177Z             )}
-2026-07-26T16:16:44.2495462Z           </Panel>
-2026-07-26T16:16:44.2495743Z     
-2026-07-26T16:16:44.2496021Z           {selected ? (
-2026-07-26T16:16:44.2496294Z             <Panel
-2026-07-26T16:16:44.2496581Z               title="Route attempts"
-2026-07-26T16:16:44.2497056Z               description={`Every upstream attempt recorded for request ${selected.id}.`}
-2026-07-26T16:16:44.2497486Z               action={(
-2026-07-26T16:16:44.2498005Z                 <button className="tertiary-button" type="button" onClick={() => { setSelected(null); setAttempts([]); }}>
-2026-07-26T16:16:44.2498537Z                   Close
-2026-07-26T16:16:44.2499168Z                 </button>
-2026-07-26T16:16:44.2499512Z               )}
-2026-07-26T16:16:44.2499775Z             >
-2026-07-26T16:16:44.2500100Z               {attempts.length ? (
-2026-07-26T16:16:44.2500438Z                 <div className="attempt-timeline">
-2026-07-26T16:16:44.2500878Z                   {attempts.map((attempt, index) => (
-2026-07-26T16:16:44.2501272Z                     <article key={attempt.id} className="attempt-row">
-2026-07-26T16:16:44.2501727Z                       <div className={`attempt-index ${attempt.status}`}>{index + 1}</div>
-2026-07-26T16:16:44.2502189Z                       <Route size={17} aria-hidden="true" />
-2026-07-26T16:16:44.2502541Z                       <div>
-2026-07-26T16:16:44.2503167Z                         <strong>{snapshot.config.providers.find((provider) => provider.id === attempt.providerId)?.name ?? attempt.providerId}</strong>
-2026-07-26T16:16:44.2504127Z                         <span>{accounts.find((account) => account.id === attempt.accountId)?.label ?? attempt.accountId} · {attempt.upstreamModel}</span>
-2026-07-26T16:16:44.2504703Z                       </div>
-2026-07-26T16:16:44.2505255Z                       <span className={`badge ${attempt.status === 'success' ? 'success' : attempt.status === 'cancelled' ? 'muted' : 'danger'}`}>
-2026-07-26T16:16:44.2505797Z                         {attempt.status}
-2026-07-26T16:16:44.2506123Z                       </span>
-2026-07-26T16:16:44.2506689Z                       <code>{attempt.latencyMs ?? '—'} ms{attempt.errorCode ? ` · ${attempt.errorCode}` : ''}</code>
-2026-07-26T16:16:44.2507128Z                     </article>
-2026-07-26T16:16:44.2507411Z                   ))}
-2026-07-26T16:16:44.2507663Z                 </div>
-2026-07-26T16:16:44.2507943Z               ) : (
-2026-07-26T16:16:44.2508494Z                 <Empty title="No attempt records" description="Pre-routing failures and older records may not include an upstream attempt." />
-2026-07-26T16:16:44.2509286Z               )}
-2026-07-26T16:16:44.2509553Z             </Panel>
-2026-07-26T16:16:44.2509811Z           ) : null}
-2026-07-26T16:16:44.2510195Z         </>
-2026-07-26T16:16:44.2510431Z       );
-2026-07-26T16:16:44.2510664Z     }
-2026-07-26T16:16:44.2510904Z     
-2026-07-26T16:16:44.2511191Z     function normalizeFilters(filters) {
-2026-07-26T16:16:44.2511824Z       const output = Object.fromEntries(Object.entries(filters).filter(([, value]) => value));
-2026-07-26T16:16:44.2512500Z       if (output.from) output.from = new Date(`${output.from}T00:00:00.000Z`).toISOString();
-2026-07-26T16:16:44.2513016Z       if (output.to) output.to = new Date(`${output.to}T23:59:59.999Z`).toISOString();
-2026-07-26T16:16:44.2513430Z       return output;
-2026-07-26T16:16:44.2513687Z     }
-2026-07-26T16:16:44.2513942Z     
-2026-07-26T16:16:44.2514191Z   operator: 'match'
-2026-07-26T16:16:44.2514447Z   stack: |-
-2026-07-26T16:16:44.2515140Z     TestContext.<anonymous> (file:///home/runner/work/subscription-proxy-inator/subscription-proxy-inator/tests/repository/interface-followup.test.js:27:10)
-2026-07-26T16:16:44.2515816Z     async Test.run (node:internal/test_runner/test:1054:7)
-2026-07-26T16:16:44.2516305Z     async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
-2026-07-26T16:16:44.2516692Z   ...
-2026-07-26T16:16:44.2517119Z # Subtest: site interaction and generated links remain safe and accessible
-2026-07-26T16:16:44.2517665Z ok 177 - site interaction and generated links remain safe and accessible
-2026-07-26T16:16:44.2518034Z   ---
-2026-07-26T16:16:44.2518307Z   duration_ms: 5.176369
-2026-07-26T16:16:44.2518607Z   type: 'test'
-2026-07-26T16:16:44.2519260Z   ...
-2026-07-26T16:16:44.2519730Z # Subtest: desktop status and compact responsive controls retain explicit states
-2026-07-26T16:16:44.2520264Z ok 178 - desktop status and compact responsive controls retain explicit states
-2026-07-26T16:16:44.2520673Z   ---
-2026-07-26T16:16:44.2520981Z   duration_ms: 2.224027
-2026-07-26T16:16:44.2521348Z   type: 'test'
-2026-07-26T16:16:44.2521625Z   ...
-2026-07-26T16:16:44.2521995Z # Subtest: package metadata identifies the current desktop application
-2026-07-26T16:16:44.2522558Z ok 179 - package metadata identifies the current desktop application
-2026-07-26T16:16:44.2522907Z   ---
-2026-07-26T16:16:44.2523180Z   duration_ms: 9.0042
-2026-07-26T16:16:44.2523438Z   type: 'test'
-2026-07-26T16:16:44.2523661Z   ...
-2026-07-26T16:16:44.2524040Z # Subtest: legacy and temporary repository roots are absent
-2026-07-26T16:16:44.2524464Z ok 180 - legacy and temporary repository roots are absent
-2026-07-26T16:16:44.2524808Z   ---
-2026-07-26T16:16:44.2525045Z   duration_ms: 2.749603
-2026-07-26T16:16:44.2525329Z   type: 'test'
-2026-07-26T16:16:44.2525572Z   ...
-2026-07-26T16:16:44.2525912Z # Subtest: renderer stays behind the preload capability boundary
-2026-07-26T16:16:44.2526387Z ok 181 - renderer stays behind the preload capability boundary
-2026-07-26T16:16:44.2526711Z   ---
-2026-07-26T16:16:44.2526974Z   duration_ms: 1.902151
-2026-07-26T16:16:44.2527240Z   type: 'test'
-2026-07-26T16:16:44.2527477Z   ...
-2026-07-26T16:16:44.2527831Z # Subtest: Electron window is sandboxed and context isolated
-2026-07-26T16:16:44.2528250Z ok 182 - Electron window is sandboxed and context isolated
-2026-07-26T16:16:44.2528593Z   ---
-2026-07-26T16:16:44.2529086Z   duration_ms: 1.004352
-2026-07-26T16:16:44.2529356Z   type: 'test'
-2026-07-26T16:16:44.2529643Z   ...
-2026-07-26T16:16:44.2530040Z # Subtest: public documentation covers every supported operating concern
-2026-07-26T16:16:44.2530531Z ok 183 - public documentation covers every supported operating concern
-2026-07-26T16:16:44.2530895Z   ---
-2026-07-26T16:16:44.2531147Z   duration_ms: 1.768849
-2026-07-26T16:16:44.2531486Z   type: 'test'
-2026-07-26T16:16:44.2531717Z   ...
-2026-07-26T16:16:44.2532060Z # Subtest: desktop CI validates and packages all three platforms
-2026-07-26T16:16:44.2532514Z ok 184 - desktop CI validates and packages all three platforms
-2026-07-26T16:16:44.2532855Z   ---
-2026-07-26T16:16:44.2533139Z   duration_ms: 1.080561
-2026-07-26T16:16:44.2533394Z   type: 'test'
-2026-07-26T16:16:44.2533631Z   ...
-2026-07-26T16:16:44.2534073Z # Subtest: CodeQL is least-privilege and documentation hosting is explicit
-2026-07-26T16:16:44.2534585Z ok 185 - CodeQL is least-privilege and documentation hosting is explicit
-2026-07-26T16:16:44.2534971Z   ---
-2026-07-26T16:16:44.2535207Z   duration_ms: 2.675714
-2026-07-26T16:16:44.2535468Z   type: 'test'
-2026-07-26T16:16:44.2535717Z   ...
-2026-07-26T16:16:44.2536154Z # Subtest: release workflow requires a version tag and uploads checksummed artifacts
-2026-07-26T16:16:44.2536731Z ok 186 - release workflow requires a version tag and uploads checksummed artifacts
-2026-07-26T16:16:44.2537108Z   ---
-2026-07-26T16:16:44.2537342Z   duration_ms: 1.324082
-2026-07-26T16:16:44.2537652Z   type: 'test'
-2026-07-26T16:16:44.2537878Z   ...
-2026-07-26T16:16:44.2538259Z # Subtest: public website is local-asset only and links documentation
-2026-07-26T16:16:44.2538867Z ok 187 - public website is local-asset only and links documentation
-2026-07-26T16:16:44.2539224Z   ---
-2026-07-26T16:16:44.2539526Z   duration_ms: 1.94272
-2026-07-26T16:16:44.2539772Z   type: 'test'
-2026-07-26T16:16:44.2540034Z   ...
-2026-07-26T16:16:44.2540326Z # Subtest: repository policy files are present
-2026-07-26T16:16:44.2540733Z ok 188 - repository policy files are present
-2026-07-26T16:16:44.2541045Z   ---
-2026-07-26T16:16:44.2541270Z   duration_ms: 1.489132
-2026-07-26T16:16:44.2541553Z   type: 'test'
-2026-07-26T16:16:44.2541788Z   ...
-2026-07-26T16:16:44.2542051Z 1..188
-2026-07-26T16:16:44.2542298Z # tests 188
-2026-07-26T16:16:44.2542517Z # suites 0
-2026-07-26T16:16:44.2542771Z # pass 187
-2026-07-26T16:16:44.2542994Z # fail 1
-2026-07-26T16:16:44.2543269Z # cancelled 0
-2026-07-26T16:16:44.2543505Z # skipped 0
-2026-07-26T16:16:44.2543730Z # todo 0
-2026-07-26T16:16:44.2544009Z # duration_ms 842.856167
-2026-07-26T16:16:44.2544418Z # start of coverage report
-2026-07-26T16:16:44.2544941Z # -------------------------------------------------------------------------------------------------
-2026-07-26T16:16:44.2545518Z # file                                 | line % | branch % | funcs % | uncovered lines
-2026-07-26T16:16:44.2546007Z # -------------------------------------------------------------------------------------------------
-2026-07-26T16:16:44.2546528Z # src                                  |        |          |         | 
-2026-07-26T16:16:44.2546946Z #  application                         |        |          |         | 
-2026-07-26T16:16:44.2547514Z #   provider-configuration-service.js  |  78.45 |    78.13 |   79.17 | 17-22 55-58 60 84-86 90-100
-2026-07-26T16:16:44.2548038Z #   provider-registry.js               | 100.00 |   100.00 |  100.00 | 
-2026-07-26T16:16:44.2548550Z #   proxy-service.js                   |  93.55 |    58.18 |   90.91 | 17-19 64 66-67
-2026-07-26T16:16:44.2549192Z #   routing-service.js                 | 100.00 |    94.29 |  100.00 | 
-2026-07-26T16:16:44.2549654Z #   runtime-state.js                   | 100.00 |    88.89 |  100.00 | 
-2026-07-26T16:16:44.2550135Z #   settings-service.js                |  92.31 |    90.91 |   71.43 | 22-23 50-52
-2026-07-26T16:16:44.2550660Z #   usage-service.js                   |  74.55 |    88.89 |   70.00 | 19-27 44-45 53-55
-2026-07-26T16:16:44.2551106Z #  domain                              |        |          |         | 
-2026-07-26T16:16:44.2551518Z #   config.js                          | 100.00 |    93.16 |  100.00 | 
-2026-07-26T16:16:44.2551942Z #   protocol                           |        |          |         | 
-2026-07-26T16:16:44.2552399Z #    anthropic.js                      | 100.00 |    89.74 |  100.00 | 
-2026-07-26T16:16:44.2552815Z #    canonical.js                      | 100.00 |    92.00 |  100.00 | 
-2026-07-26T16:16:44.2553222Z #    gemini.js                         | 100.00 |    96.67 |  100.00 | 
-2026-07-26T16:16:44.2553636Z #    openai.js                         |  99.18 |    81.08 |  100.00 | 10
-2026-07-26T16:16:44.2554084Z #   routing                            |        |          |         | 
-2026-07-26T16:16:44.2554505Z #    errors.js                         | 100.00 |    95.24 |  100.00 | 
-2026-07-26T16:16:44.2554967Z #    limits.js                         | 100.00 |    96.15 |  100.00 | 
-2026-07-26T16:16:44.2555358Z #    router.js                         | 100.00 |    94.87 |  100.00 | 
-2026-07-26T16:16:44.2555827Z #    strategies.js                     |  98.84 |    72.73 |  100.00 | 43
-2026-07-26T16:16:44.2556232Z #   shared.js                          | 100.00 |    90.91 |  100.00 | 
-2026-07-26T16:16:44.2556658Z #   usage.js                           | 100.00 |    80.00 |  100.00 | 
-2026-07-26T16:16:44.2557165Z # -------------------------------------------------------------------------------------------------
-2026-07-26T16:16:44.2557682Z # all files                            |  96.38 |    86.75 |   93.87 | 
-2026-07-26T16:16:44.2558175Z # -------------------------------------------------------------------------------------------------
-2026-07-26T16:16:44.2558565Z # end of coverage report
-2026-07-26T16:16:44.2623639Z ##[error]Process completed with exit code 1.
-2026-07-26T16:16:44.2757199Z Post job cleanup.
-2026-07-26T16:16:44.3515358Z [command]/usr/bin/git version
-2026-07-26T16:16:44.3547996Z git version 2.54.0
-2026-07-26T16:16:44.3579033Z Temporarily overriding HOME='/home/runner/work/_temp/7aeb494d-1b8f-49fb-9c35-aabf6c7d3b1d' before making global git config changes
-2026-07-26T16:16:44.3580412Z Adding repository directory to the temporary git global config as a safe directory
-2026-07-26T16:16:44.3583920Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
-2026-07-26T16:16:44.3609496Z Removing SSH command configuration
-2026-07-26T16:16:44.3615580Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-07-26T16:16:44.3643887Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-07-26T16:16:44.3827625Z Removing HTTP extra header
-2026-07-26T16:16:44.3832894Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-07-26T16:16:44.3859286Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-07-26T16:16:44.4030851Z Removing includeIf entries pointing to credentials config files
-2026-07-26T16:16:44.4037125Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-07-26T16:16:44.4058890Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-2026-07-26T16:16:44.4060385Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-2026-07-26T16:16:44.4061478Z includeif.gitdir:/github/workspace/.git.path
-2026-07-26T16:16:44.4062343Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
-2026-07-26T16:16:44.4066813Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-2026-07-26T16:16:44.4083309Z /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4092577Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4127031Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-2026-07-26T16:16:44.4144545Z /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4153723Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4180771Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
-2026-07-26T16:16:44.4197617Z /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4205446Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4231262Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
-2026-07-26T16:16:44.4247898Z /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4256145Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config
-2026-07-26T16:16:44.4282291Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-07-26T16:16:44.4456922Z Removing credentials config '/home/runner/work/_temp/git-credentials-51ce5319-87c8-4da3-ad53-64f9a17db97f.config'
-2026-07-26T16:16:44.4575635Z Cleaning up orphan processes
+2026-07-26T16:20:00.3155792Z ##[group]Disabling automatic garbage collection
+2026-07-26T16:20:00.3159900Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-26T16:20:00.3192901Z ##[endgroup]
+2026-07-26T16:20:00.3195204Z ##[group]Setting up auth
+2026-07-26T16:20:00.3196857Z Removing SSH command configuration
+2026-07-26T16:20:00.3202860Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-26T16:20:00.3273709Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-26T16:20:00.3553606Z Removing HTTP extra header
+2026-07-26T16:20:00.3559810Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-26T16:20:00.3589136Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-26T16:20:00.3751829Z Removing includeIf entries pointing to credentials config files
+2026-07-26T16:20:00.3756462Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-26T16:20:00.3786100Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-26T16:20:00.3963715Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-26T16:20:00.4004283Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:00.4036230Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:00.4068022Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:00.4101401Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:00.4127625Z ##[endgroup]
+2026-07-26T16:20:00.4128934Z ##[group]Fetching the repository
+2026-07-26T16:20:00.4136834Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-07-26T16:20:01.1745228Z From https://github.com/surajmandalcell/subscription-proxy-inator
+2026-07-26T16:20:01.1749385Z  * [new branch]      agent/complete-ibm-redesign-followup -> origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:20:01.1753103Z  * [new branch]      agent/ibm-interface-redesign -> origin/agent/ibm-interface-redesign
+2026-07-26T16:20:01.1755663Z  * [new branch]      automation/final-audit-v2.1.0-20260726 -> origin/automation/final-audit-v2.1.0-20260726
+2026-07-26T16:20:01.1758010Z  * [new branch]      automation/release-v2.1.0-20260726 -> origin/automation/release-v2.1.0-20260726
+2026-07-26T16:20:01.1760471Z  * [new branch]      copilot/fix-code-scanning-alerts -> origin/copilot/fix-code-scanning-alerts
+2026-07-26T16:20:01.1762226Z  * [new branch]      master     -> origin/master
+2026-07-26T16:20:01.1763717Z  * [new branch]      recovery-v2-blobs-20260726 -> origin/recovery-v2-blobs-20260726
+2026-07-26T16:20:01.1765163Z  * [new tag]         v2.0.0     -> v2.0.0
+2026-07-26T16:20:01.1781269Z ##[endgroup]
+2026-07-26T16:20:01.1783123Z ##[group]Determining the checkout info
+2026-07-26T16:20:01.1787572Z [command]/usr/bin/git branch --list --remote origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:20:01.1815156Z   origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:20:01.1818973Z ##[endgroup]
+2026-07-26T16:20:01.1823130Z [command]/usr/bin/git sparse-checkout disable
+2026-07-26T16:20:01.1860175Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-26T16:20:01.1884144Z ##[group]Checking out the ref
+2026-07-26T16:20:01.1888371Z [command]/usr/bin/git checkout --progress --force -B agent/complete-ibm-redesign-followup refs/remotes/origin/agent/complete-ibm-redesign-followup
+2026-07-26T16:20:01.1995557Z Switched to a new branch 'agent/complete-ibm-redesign-followup'
+2026-07-26T16:20:01.1999143Z branch 'agent/complete-ibm-redesign-followup' set up to track 'origin/agent/complete-ibm-redesign-followup'.
+2026-07-26T16:20:01.2005592Z ##[endgroup]
+2026-07-26T16:20:01.2040227Z [command]/usr/bin/git log -1 --format=%H
+2026-07-26T16:20:01.2064159Z 898cc61a4ea019c71b560332d68f73a83971191c
+2026-07-26T16:20:01.2395641Z ##[group]Run actions/setup-node@v6
+2026-07-26T16:20:01.2396641Z with:
+2026-07-26T16:20:01.2397381Z   node-version: 22
+2026-07-26T16:20:01.2398158Z   cache: npm
+2026-07-26T16:20:01.2398916Z   check-latest: false
+2026-07-26T16:20:01.2407204Z   token: ***
+2026-07-26T16:20:01.2408011Z   package-manager-cache: true
+2026-07-26T16:20:01.2408926Z ##[endgroup]
+2026-07-26T16:20:01.3746374Z Found in cache @ /opt/hostedtoolcache/node/22.23.1/x64
+2026-07-26T16:20:01.3749070Z ##[group]Environment details
+2026-07-26T16:20:05.1242445Z node: v22.23.1
+2026-07-26T16:20:05.1242776Z npm: 10.9.8
+2026-07-26T16:20:05.1242991Z yarn: 1.22.22
+2026-07-26T16:20:05.1243648Z ##[endgroup]
+2026-07-26T16:20:05.1265690Z [command]/opt/hostedtoolcache/node/22.23.1/x64/bin/npm config get cache
+2026-07-26T16:20:05.4513332Z /home/runner/.npm
+2026-07-26T16:20:05.5916661Z Cache hit for: node-cache-Linux-x64-npm-d646688cb45c60b2b56f0884e4837ff18c904d5466c86535b7fbbe92e688f443
+2026-07-26T16:20:06.7352293Z Received 125829120 of 129836147 (96.9%), 119.9 MBs/sec
+2026-07-26T16:20:06.8184498Z Received 129836147 of 129836147 (100.0%), 114.1 MBs/sec
+2026-07-26T16:20:06.8185702Z Cache Size: ~124 MB (129836147 B)
+2026-07-26T16:20:06.8318506Z [command]/usr/bin/tar -xf /home/runner/work/_temp/b147bff4-32e2-44fa-9307-9ed9d75ac97e/cache.tzst -P -C /home/runner/work/subscription-proxy-inator/subscription-proxy-inator --use-compress-program unzstd
+2026-07-26T16:20:07.0077144Z Cache restored successfully
+2026-07-26T16:20:07.0129427Z Cache restored from key: node-cache-Linux-x64-npm-d646688cb45c60b2b56f0884e4837ff18c904d5466c86535b7fbbe92e688f443
+2026-07-26T16:20:07.0257757Z ##[group]Run npm install --global npm@10.9.2 --no-audit --no-fund
+2026-07-26T16:20:07.0258299Z [36;1mnpm install --global npm@10.9.2 --no-audit --no-fund[0m
+2026-07-26T16:20:07.0300017Z shell: /usr/bin/bash -e {0}
+2026-07-26T16:20:07.0300325Z ##[endgroup]
+2026-07-26T16:20:10.2335369Z 
+2026-07-26T16:20:10.2342468Z removed 11 packages, and changed 67 packages in 3s
+2026-07-26T16:20:10.2597188Z ##[group]Run set -euo pipefail
+2026-07-26T16:20:10.2597536Z [36;1mset -euo pipefail[0m
+2026-07-26T16:20:10.2597873Z [36;1mif [[ ! -f desktop/renderer/hooks/useSyncedDraft.js ]]; then[0m
+2026-07-26T16:20:10.2598208Z [36;1m  awk '[0m
+2026-07-26T16:20:10.2598472Z [36;1m    /python3 <<'"'"'PY'"'"'/ { capture=1; next }[0m
+2026-07-26T16:20:10.2598821Z [36;1m    capture && /^          PY$/ { capture=0; exit }[0m
+2026-07-26T16:20:10.2599154Z [36;1m    capture { sub(/^          /, ""); print }[0m
+2026-07-26T16:20:10.2599860Z [36;1m  ' .github/workflows/complete-ibm-redesign-followup.yml > "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:20:10.2600371Z [36;1m  test -s "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:20:10.2600841Z [36;1m  python3 scripts/prepare-followup-patch.py prepare "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:20:10.2601368Z [36;1m  python3 "$RUNNER_TEMP/apply-followup.py"[0m
+2026-07-26T16:20:10.2601767Z [36;1m  python3 scripts/prepare-followup-patch.py finish[0m
+2026-07-26T16:20:10.2602097Z [36;1mfi[0m
+2026-07-26T16:20:10.2602285Z [36;1m[0m
+2026-07-26T16:20:10.2602525Z [36;1mif [[ ! -s website/assets/social-card.png ]]; then[0m
+2026-07-26T16:20:10.2602862Z [36;1m  if command -v magick >/dev/null 2>&1; then[0m
+2026-07-26T16:20:10.2603264Z [36;1m    magick website/assets/social-card.svg website/assets/social-card.png[0m
+2026-07-26T16:20:10.2603683Z [36;1m  elif command -v convert >/dev/null 2>&1; then[0m
+2026-07-26T16:20:10.2604103Z [36;1m    convert website/assets/social-card.svg website/assets/social-card.png[0m
+2026-07-26T16:20:10.2604513Z [36;1m  else[0m
+2026-07-26T16:20:10.2604740Z [36;1m    sudo apt-get update[0m
+2026-07-26T16:20:10.2605080Z [36;1m    sudo apt-get install -y --no-install-recommends librsvg2-bin[0m
+2026-07-26T16:20:10.2605626Z [36;1m    rsvg-convert -w 1200 -h 630 website/assets/social-card.svg > website/assets/social-card.png[0m
+2026-07-26T16:20:10.2606062Z [36;1m  fi[0m
+2026-07-26T16:20:10.2606259Z [36;1mfi[0m
+2026-07-26T16:20:10.2606486Z [36;1mtest -s website/assets/social-card.png[0m
+2026-07-26T16:20:10.2636318Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-07-26T16:20:10.2636675Z ##[endgroup]
+2026-07-26T16:20:10.3105252Z /home/runner/work/_temp/apply-followup.py:736: SyntaxWarning: invalid escape sequence '\('
+2026-07-26T16:20:10.3106543Z   write('tests/repository/interface-followup.test.js', """import test from 'node:test';
+2026-07-26T16:20:10.3215243Z skipping whitespace-sensitive replacement in desktop/renderer/pages/Providers.jsx: '              onClick={() => {\n      setDraft(provider);\n      setHeadersText(pr'
+2026-07-26T16:20:10.3217545Z skipping whitespace-sensitive replacement in desktop/renderer/pages/Usage.jsx: '      .then(([records, nextSummary]) => {\n        if (active) {\nsetRows(records)'
+2026-07-26T16:20:10.3220013Z skipping whitespace-sensitive replacement in desktop/renderer/pages/Usage.jsx: "                    className={selected?.id === record.id ? 'selected-row' : ''}"
+2026-07-26T16:20:10.5001424Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-07-26T16:20:10.5344499Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+2026-07-26T16:20:10.5346201Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-07-26T16:20:10.5358162Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-07-26T16:20:10.5368399Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-07-26T16:20:10.5433466Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-07-26T16:20:10.5445137Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-07-26T16:20:10.6397765Z Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
+2026-07-26T16:20:10.6773273Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [237 kB]
+2026-07-26T16:20:10.6953829Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [203 kB]
+2026-07-26T16:20:10.7037489Z Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [11.7 kB]
+2026-07-26T16:20:10.7621535Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1141 kB]
+2026-07-26T16:20:10.7707340Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [276 kB]
+2026-07-26T16:20:10.7736671Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+2026-07-26T16:20:10.7750951Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1676 kB]
+2026-07-26T16:20:10.7823382Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [333 kB]
+2026-07-26T16:20:10.7884894Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+2026-07-26T16:20:10.7937737Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1348 kB]
+2026-07-26T16:20:10.8021524Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [302 kB]
+2026-07-26T16:20:10.8045654Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.4 kB]
+2026-07-26T16:20:10.8062211Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.1 kB]
+2026-07-26T16:20:10.8480256Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+2026-07-26T16:20:10.8493755Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
+2026-07-26T16:20:10.8502501Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [32.5 kB]
+2026-07-26T16:20:10.8561344Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.7 kB]
+2026-07-26T16:20:10.8600845Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [881 kB]
+2026-07-26T16:20:10.8640979Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [196 kB]
+2026-07-26T16:20:10.8656172Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.3 kB]
+2026-07-26T16:20:10.8680842Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1197 kB]
+2026-07-26T16:20:10.8728813Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [238 kB]
+2026-07-26T16:20:10.8749124Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.4 kB]
+2026-07-26T16:20:10.8763886Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1240 kB]
+2026-07-26T16:20:10.8829074Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [281 kB]
+2026-07-26T16:20:10.8851676Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [40.3 kB]
+2026-07-26T16:20:10.8861704Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.4 kB]
+2026-07-26T16:20:10.9413193Z Get:36 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1428 B]
+2026-07-26T16:20:16.3716943Z Fetched 10.8 MB in 1s (7951 kB/s)
+2026-07-26T16:20:17.0532885Z Reading package lists...
+2026-07-26T16:20:17.0954020Z Reading package lists...
+2026-07-26T16:20:17.2326437Z Building dependency tree...
+2026-07-26T16:20:17.2333508Z Reading state information...
+2026-07-26T16:20:17.3656957Z The following additional packages will be installed:
+2026-07-26T16:20:17.3670724Z   librsvg2-2
+2026-07-26T16:20:17.3671234Z Recommended packages:
+2026-07-26T16:20:17.3671723Z   librsvg2-common
+2026-07-26T16:20:17.3983546Z The following NEW packages will be installed:
+2026-07-26T16:20:17.3987286Z   librsvg2-2 librsvg2-bin
+2026-07-26T16:20:17.4129513Z 0 upgraded, 2 newly installed, 0 to remove and 66 not upgraded.
+2026-07-26T16:20:17.4130152Z Need to get 4435 kB of archives.
+2026-07-26T16:20:17.4130798Z After this operation, 14.4 MB of additional disk space will be used.
+2026-07-26T16:20:17.4131481Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-07-26T16:20:17.4845719Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 librsvg2-2 amd64 2.58.0+dfsg-1build1 [2135 kB]
+2026-07-26T16:20:17.7375542Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librsvg2-bin amd64 2.58.0+dfsg-1build1 [2299 kB]
+2026-07-26T16:20:17.9908809Z Fetched 4435 kB in 0s (12.3 MB/s)
+2026-07-26T16:20:18.0411849Z Selecting previously unselected package librsvg2-2:amd64.
+2026-07-26T16:20:18.1358503Z (Reading database ... 
+2026-07-26T16:20:18.1358918Z (Reading database ... 5%
+2026-07-26T16:20:18.1359233Z (Reading database ... 10%
+2026-07-26T16:20:18.1359727Z (Reading database ... 15%
+2026-07-26T16:20:18.1360358Z (Reading database ... 20%
+2026-07-26T16:20:18.1360788Z (Reading database ... 25%
+2026-07-26T16:20:18.1361215Z (Reading database ... 30%
+2026-07-26T16:20:18.1361685Z (Reading database ... 35%
+2026-07-26T16:20:18.1362346Z (Reading database ... 40%
+2026-07-26T16:20:18.1362783Z (Reading database ... 45%
+2026-07-26T16:20:18.1363243Z (Reading database ... 50%
+2026-07-26T16:20:18.1636274Z (Reading database ... 55%
+2026-07-26T16:20:18.6131842Z (Reading database ... 60%
+2026-07-26T16:20:18.9589733Z (Reading database ... 65%
+2026-07-26T16:20:19.3762547Z (Reading database ... 70%
+2026-07-26T16:20:19.6595921Z (Reading database ... 75%
+2026-07-26T16:20:20.2231268Z (Reading database ... 80%
+2026-07-26T16:20:21.0001268Z (Reading database ... 85%
+2026-07-26T16:20:21.8186896Z (Reading database ... 90%
+2026-07-26T16:20:22.5162579Z (Reading database ... 95%
+2026-07-26T16:20:22.5162981Z (Reading database ... 100%
+2026-07-26T16:20:22.5163473Z (Reading database ... 202954 files and directories currently installed.)
+2026-07-26T16:20:22.5204221Z Preparing to unpack .../librsvg2-2_2.58.0+dfsg-1build1_amd64.deb ...
+2026-07-26T16:20:22.5241160Z Unpacking librsvg2-2:amd64 (2.58.0+dfsg-1build1) ...
+2026-07-26T16:20:22.5791562Z Selecting previously unselected package librsvg2-bin.
+2026-07-26T16:20:22.5898649Z Preparing to unpack .../librsvg2-bin_2.58.0+dfsg-1build1_amd64.deb ...
+2026-07-26T16:20:22.5908181Z Unpacking librsvg2-bin (2.58.0+dfsg-1build1) ...
+2026-07-26T16:20:22.6555064Z Setting up librsvg2-2:amd64 (2.58.0+dfsg-1build1) ...
+2026-07-26T16:20:22.6579312Z Setting up librsvg2-bin (2.58.0+dfsg-1build1) ...
+2026-07-26T16:20:22.6602033Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-07-26T16:20:22.6682559Z Not building database; man-db/auto-update is not 'true'.
+2026-07-26T16:20:22.6694221Z Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+2026-07-26T16:20:23.9433591Z 
+2026-07-26T16:20:23.9434415Z Running kernel seems to be up-to-date.
+2026-07-26T16:20:23.9434797Z 
+2026-07-26T16:20:23.9435031Z No services need to be restarted.
+2026-07-26T16:20:23.9435353Z 
+2026-07-26T16:20:23.9435579Z No containers need to be restarted.
+2026-07-26T16:20:23.9435856Z 
+2026-07-26T16:20:23.9436137Z No user sessions are running outdated binaries.
+2026-07-26T16:20:23.9436496Z 
+2026-07-26T16:20:23.9436928Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-07-26T16:20:25.3503019Z ##[group]Run npm ci --no-audit --no-fund
+2026-07-26T16:20:25.3503524Z [36;1mnpm ci --no-audit --no-fund[0m
+2026-07-26T16:20:25.3529079Z shell: /usr/bin/bash -e {0}
+2026-07-26T16:20:25.3529491Z ##[endgroup]
+2026-07-26T16:20:25.8500249Z npm warn skipping integrity check for git dependency ssh://git@github.com/electron/node-gyp.git
+2026-07-26T16:20:27.9189086Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-07-26T16:20:27.9526674Z npm warn deprecated @npmcli/move-file@2.0.1: This functionality has been moved to @npmcli/fs
+2026-07-26T16:20:27.9963659Z npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+2026-07-26T16:20:28.0408268Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-07-26T16:20:28.0912752Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-26T16:20:28.1031296Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-26T16:20:28.1044092Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-26T16:20:28.1780282Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+2026-07-26T16:20:28.2331278Z npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2026-07-26T16:20:28.4182205Z npm warn deprecated tar@6.2.1: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-26T16:20:28.6513907Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-26T16:20:33.1905795Z 
+2026-07-26T16:20:33.1906941Z added 543 packages in 8s
+2026-07-26T16:20:33.2328374Z ##[group]Run npm run build
+2026-07-26T16:20:33.2328791Z [36;1mnpm run build[0m
+2026-07-26T16:20:33.2354503Z shell: /usr/bin/bash -e {0}
+2026-07-26T16:20:33.2354859Z ##[endgroup]
+2026-07-26T16:20:33.3283128Z 
+2026-07-26T16:20:33.3283516Z > subscription-proxy-inator@2.1.0 build
+2026-07-26T16:20:33.3283979Z > npm run check && npm run build:renderer && npm run build:site
+2026-07-26T16:20:33.3284255Z 
+2026-07-26T16:20:33.4208407Z 
+2026-07-26T16:20:33.4209294Z > subscription-proxy-inator@2.1.0 check
+2026-07-26T16:20:33.4210005Z > npm run verify && npm run test:coverage && npm run check:links
+2026-07-26T16:20:33.4210258Z 
+2026-07-26T16:20:33.5095928Z 
+2026-07-26T16:20:33.5096379Z > subscription-proxy-inator@2.1.0 verify
+2026-07-26T16:20:33.5097717Z > node scripts/verify.mjs
+2026-07-26T16:20:33.5098171Z 
+2026-07-26T16:20:35.4875704Z file:///home/runner/work/subscription-proxy-inator/subscription-proxy-inator/scripts/verify.mjs:85
+2026-07-26T16:20:35.4877058Z       throw new Error(`${relative(file)} failed JSX validation: ${errors
+2026-07-26T16:20:35.4877683Z             ^
+2026-07-26T16:20:35.4878023Z 
+2026-07-26T16:20:35.4882386Z Error: desktop/renderer/pages/Usage.jsx failed JSX validation: Invalid character.; Unexpected token. Did you mean `{'>'}` or `&gt;`?; Expected corresponding JSX closing tag for 'tbody'.; Unexpected token. Did you mean `{'}'}` or `&rbrace;`?; Expected corresponding JSX closing tag for 'table'.; Expected corresponding JSX closing tag for 'div'.; ')' expected.; Expected corresponding JSX closing tag for 'Panel'.; Unexpected token. Did you mean `{'}'}` or `&rbrace;`?; Expected corresponding closing tag for JSX fragment.; Signature declarations can only be used in TypeScript files.; Identifier expected.; ',' expected.; ',' expected.; Property assignment expected.; ',' expected.; Property assignment expected.; Expression expected.; ',' expected.; Declaration or statement expected.; Expression expected.; Declaration or statement expected.; Declaration or statement expected.; Declaration or statement expected.; Expression expected.; Expression expected.; Declaration or statement expected.
+2026-07-26T16:20:35.4886115Z     at validateJsx (file:///home/runner/work/subscription-proxy-inator/subscription-proxy-inator/scripts/verify.mjs:85:13)
+2026-07-26T16:20:35.4886965Z     at async file:///home/runner/work/subscription-proxy-inator/subscription-proxy-inator/scripts/verify.mjs:37:1
+2026-07-26T16:20:35.4887378Z 
+2026-07-26T16:20:35.4887470Z Node.js v22.23.1
+2026-07-26T16:20:35.5090466Z ##[error]Process completed with exit code 1.
+2026-07-26T16:20:35.5236153Z Post job cleanup.
+2026-07-26T16:20:35.6051627Z [command]/usr/bin/git version
+2026-07-26T16:20:35.6095388Z git version 2.54.0
+2026-07-26T16:20:35.6144250Z Temporarily overriding HOME='/home/runner/work/_temp/b9026b1c-cc20-4318-a57b-50b1fd17e91e' before making global git config changes
+2026-07-26T16:20:35.6145217Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-26T16:20:35.6151391Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/subscription-proxy-inator/subscription-proxy-inator
+2026-07-26T16:20:35.6179011Z Removing SSH command configuration
+2026-07-26T16:20:35.6186772Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-26T16:20:35.6219218Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-26T16:20:35.6411152Z Removing HTTP extra header
+2026-07-26T16:20:35.6418297Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-26T16:20:35.6450416Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-26T16:20:35.6663642Z Removing includeIf entries pointing to credentials config files
+2026-07-26T16:20:35.6669200Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-26T16:20:35.6694257Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+2026-07-26T16:20:35.6696263Z includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+2026-07-26T16:20:35.6697685Z includeif.gitdir:/github/workspace/.git.path
+2026-07-26T16:20:35.6698716Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-07-26T16:20:35.6705442Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
+2026-07-26T16:20:35.6725590Z /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6736799Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6772618Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
+2026-07-26T16:20:35.6791266Z /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6796752Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6824416Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-07-26T16:20:35.6849211Z /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6857421Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6880395Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-07-26T16:20:35.6898856Z /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6939238Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config
+2026-07-26T16:20:35.6991568Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-26T16:20:35.7181775Z Removing credentials config '/home/runner/work/_temp/git-credentials-5c44c004-2840-4bcc-a25f-afd4afbe7886.config'
+2026-07-26T16:20:35.7305456Z Cleaning up orphan processes
