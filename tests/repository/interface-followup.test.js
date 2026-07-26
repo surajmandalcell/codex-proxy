@@ -42,8 +42,8 @@ test('site interaction and generated links remain safe and accessible', async ()
   assert.match(builder, /\^\[a-z\]\[a-z0-9\+\.\-\]\*:/);
   assert.doesNotMatch(builder, /<\[\^>\]\+>/);
   assert.match(html, /color-scheme" content="light"/);
-  assert.match(html, /social-card\.png/);
-  assert.equal(await exists('website/assets/social-card.png'), true);
+  assert.match(html, /social-card\.svg/);
+  assert.equal(await exists('website/assets/social-card.svg'), true);
 });
 
 test('desktop status and compact responsive controls retain explicit states', async () => {
