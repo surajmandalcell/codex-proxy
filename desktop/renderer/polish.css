@@ -175,21 +175,8 @@ textarea:focus-visible,
   }
 }
 
-.reduce-motion *,
-.reduce-motion *::before,
-.reduce-motion *::after,
-@media (prefers-reduced-motion: reduce) {
+.reduce-motion {
   scroll-behavior: auto !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
 }
 
 .reduce-motion *,
@@ -198,4 +185,15 @@ textarea:focus-visible,
   animation-duration: 0.001ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
