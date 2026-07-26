@@ -11,22 +11,24 @@ permissions:
 jobs:
   verify-live-site:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - name: Verify deployed website, manifest, and documentation
+      - name: Verify deployed website, manifest, documentation, and assets
         shell: bash
         run: |
           set -euo pipefail
           site="https://surajmandalcell.github.io/subscription-proxy-inator/"
           success=false
-          for attempt in $(seq 1 40); do
+          for attempt in $(seq 1 60); do
             root_code="$(curl --silent --show-error --location --max-time 30 --output root.html --write-out '%{http_code}' "$site" || true)"
             manifest_code="$(curl --silent --show-error --location --max-time 30 --output manifest.json --write-out '%{http_code}' "${site}manifest.webmanifest" || true)"
             docs_code="$(curl --silent --show-error --location --max-time 30 --output docs.html --write-out '%{http_code}' "${site}docs/" || true)"
-            printf 'attempt=%s root=%s manifest=%s docs=%s\n' "$attempt" "$root_code" "$manifest_code" "$docs_code"
-            if [[ "$root_code" == 200 && "$manifest_code" == 200 && "$docs_code" == 200 ]] && \
+            css_code="$(curl --silent --show-error --location --max-time 30 --output site.css --write-out '%{http_code}' "${site}assets/site.css" || true)"
+            printf 'attempt=%s root=%s manifest=%s docs=%s css=%s\n' "$attempt" "$root_code" "$manifest_code" "$docs_code" "$css_code"
+            if [[ "$root_code" == 200 && "$manifest_code" == 200 && "$docs_code" == 200 && "$css_code" == 200 ]] && \
                grep -q 'Subscription Proxy Inator' root.html && \
                grep -q 'Documentation' docs.html && \
+               grep -q -- '--surface' site.css && \
                jq -e '.name == "Subscription Proxy Inator" and .id == "./" and .lang == "en" and .display == "standalone"' manifest.json >/dev/null; then
               success=true
               break
@@ -39,6 +41,7 @@ jobs:
             printf 'root_status=200\n'
             printf 'manifest_status=200\n'
             printf 'docs_status=200\n'
+            printf 'css_status=200\n'
             printf 'title=Subscription Proxy Inator\n'
             printf 'manifest_id=.\/\n'
             printf 'manifest_lang=en\n'
