@@ -1,0 +1,212 @@
+name: Publish version 2.0.0 release
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - .github/workflows/publish-v2-release.yml
+
+permissions:
+  actions: read
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: publish-version-2.0.0
+  cancel-in-progress: false
+
+env:
+  RELEASE_TAG: v2.0.0
+  EXPECTED_VERSION: 2.0.0
+  EXPECTED_MASTER_SHA: 54852042a9c2517eded1b28f80a34805a6b41b83
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      master_sha: ${{ steps.guard.outputs.master_sha }}
+    steps:
+      - name: Check out canonical master
+        uses: actions/checkout@v6
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - name: Use repository npm version
+        run: npm install --global npm@10.9.2 --no-audit --no-fund
+      - name: Guard release identity
+        id: guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          master_sha="$(git rev-parse HEAD)"
+          test "$master_sha" = "$EXPECTED_MASTER_SHA"
+          test "$(node -p "require('./package.json').name")" = subscription-proxy-inator
+          test "$(node -p "require('./package.json').version")" = "$EXPECTED_VERSION"
+          if git ls-remote --exit-code --tags origin "refs/tags/$RELEASE_TAG" >/dev/null 2>&1; then
+            git fetch --tags origin "$RELEASE_TAG"
+            test "$(git rev-list -n 1 "$RELEASE_TAG")" = "$master_sha"
+          fi
+          printf 'master_sha=%s\n' "$master_sha" >> "$GITHUB_OUTPUT"
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify, test, and build
+        run: npm run build
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+  package:
+    needs: validate
+    timeout-minutes: 70
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out exact release source
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.validate.outputs.master_sha }}
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - name: Use repository npm version
+        run: npm install --global npm@10.9.2 --no-audit --no-fund
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build release packages
+        run: npm run dist
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      - name: Select distributable files and generate checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release-upload
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              *.dmg|*.zip|*.exe|*.AppImage|*.deb)
+                cp "$file" release-upload/
+                ;;
+            esac
+          done < <(find release -maxdepth 1 -type f -print0)
+          test "$(find release-upload -maxdepth 1 -type f | wc -l | tr -d ' ')" -ge 2
+          node scripts/checksums.mjs release-upload "checksums-${{ runner.os }}.txt"
+      - name: Upload release candidates
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-${{ runner.os }}
+          path: release-upload/*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [validate, package]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out canonical master
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.validate.outputs.master_sha }}
+          fetch-depth: 0
+      - name: Download release candidates
+        uses: actions/download-artifact@v8
+        with:
+          pattern: release-*
+          path: release-assets
+          merge-multiple: true
+      - name: Create verified tag and GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MASTER_SHA: ${{ needs.validate.outputs.master_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          count="$(find release-assets -maxdepth 1 -type f | wc -l | tr -d ' ')"
+          test "$count" -ge 9
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --tags origin
+          if git rev-parse -q --verify "refs/tags/$RELEASE_TAG" >/dev/null; then
+            test "$(git rev-list -n 1 "$RELEASE_TAG")" = "$MASTER_SHA"
+          else
+            git tag -a "$RELEASE_TAG" "$MASTER_SHA" -m "Subscription Proxy Inator $EXPECTED_VERSION"
+            git push origin "$RELEASE_TAG"
+          fi
+
+          cat > release-notes.md <<'NOTES'
+          # Subscription Proxy Inator 2.0.0
+
+          Version 2.0.0 is the complete cross-platform desktop rebuild: modular providers and multiple accounts, OpenAI- and Anthropic-compatible local APIs, native Gemini and xAI Grok support, configurable load balancing and failover, encrypted credentials, detailed local usage and pricing, and one shared Electron interface for macOS, Windows, and Linux.
+
+          The attached packages are unsigned development distributions produced from the verified public `master` commit. macOS notarization and Windows Authenticode signing require maintainer-owned certificates.
+
+          See `CHANGELOG.md`, the online documentation, and `docs/MIGRATION_V1.md` for the full behavior and migration details.
+          NOTES
+
+          if ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" \
+              --repo "$GITHUB_REPOSITORY" \
+              --verify-tag \
+              --title "Subscription Proxy Inator $EXPECTED_VERSION" \
+              --notes-file release-notes.md
+          fi
+
+          while IFS= read -r -d '' file; do
+            gh release upload "$RELEASE_TAG" "$file" --repo "$GITHUB_REPOSITORY" --clobber
+          done < <(find release-assets -maxdepth 1 -type f -print0)
+
+          gh release view "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --json tagName,isDraft,isPrerelease,url,assets > release-verification.json
+          jq -e --arg tag "$RELEASE_TAG" '
+            .tagName == $tag and
+            .isDraft == false and
+            .isPrerelease == false and
+            (.assets | length) >= 9
+          ' release-verification.json >/dev/null
+      - name: Upload release verification
+        uses: actions/upload-artifact@v7
+        with:
+          name: version-2.0.0-release-verification
+          path: release-verification.json
+          if-no-files-found: error
+          retention-days: 14
+
+  cleanup:
+    needs: publish
+    if: ${{ needs.publish.result == 'success' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Close temporary PR and remove temporary branches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          CURRENT_BRANCH: ${{ github.head_ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh pr close "$PR_NUMBER" \
+            --repo "$GITHUB_REPOSITORY" \
+            --comment "Version 2.0.0 was tagged, packaged on all three platforms, published, and verified. This release-only branch is intentionally not merged."
+          mapfile -t branches < <(
+            gh api --paginate "repos/$GITHUB_REPOSITORY/branches?per_page=100" \
+              --jq '.[] | .name | select(startswith("automation/") or startswith("agent/"))'
+          )
+          for branch in "${branches[@]}"; do
+            printf 'deleting %s\n' "$branch"
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$branch" || true
+          done
