@@ -44,6 +44,17 @@ elif mode == 'finish':
         )
         if count != 1:
             raise SystemExit(f'usage load error replacement count: {count}')
+
+    if 'role="button"' not in usage_text:
+        usage_text, count = re.subn(
+            r"(\s*className=\{selected\?\.id === record\.id \? 'selected-row' : ''\}\s*)onClick=\{\(\) => selectRequest\(record\)\}",
+            r"\1role=\"button\"\n                    tabIndex={0}\n                    aria-selected={selected?.id === record.id}\n                    onClick={() => selectRequest(record)}\n                    onKeyDown={(event) => {\n                      if (event.key === 'Enter' || event.key === ' ') {\n                        event.preventDefault();\n                        selectRequest(record);\n                      }\n                    }}",
+            usage_text,
+            count=1,
+        )
+        if count != 1:
+            raise SystemExit(f'usage keyboard row replacement count: {count}')
+
     usage_path.write_text(usage_text, encoding='utf-8')
 else:
     raise SystemExit(f'Unknown mode: {mode}')
