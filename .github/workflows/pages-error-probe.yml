@@ -1,0 +1,39 @@
+name: Pages error probe
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pages-error-probe.yml
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Capture failed Pages job log
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_ID: "89774982073"
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" \
+            --output pages-full.log
+          grep -n -B 30 -A 60 -E 'Configure Pages|##\[error\]|Get Pages site failed|HttpError|status code' pages-full.log > pages-error.log || true
+          tail -n 180 pages-full.log > pages-tail.log
+      - name: Upload Pages error evidence
+        uses: actions/upload-artifact@v7
+        with:
+          name: pages-error-probe
+          path: |
+            pages-error.log
+            pages-tail.log
+          if-no-files-found: error
+          retention-days: 1
