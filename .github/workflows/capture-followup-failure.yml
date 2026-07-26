@@ -22,18 +22,18 @@ jobs:
       - name: Capture failed executor log
         env:
           GH_TOKEN: ${{ github.token }}
-          JOB_ID: "89814241817"
+          JOB_ID: "89814555814"
         shell: bash
         run: |
           set -euo pipefail
           gh api "repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" > full.log
           {
-            grep -n -B 30 -A 70 -E 'expected one match|Traceback|SystemExit|Error:|failed|not found|SyntaxError|replacement count' full.log || true
+            grep -n -B 35 -A 90 -E 'not ok|AssertionError|ERR_|Error:|failed|SyntaxError|coverage|Missing|required|does not match|Process completed' full.log || true
             printf '\n--- tail ---\n'
-            tail -n 200 full.log
+            tail -n 260 full.log
           } > .followup-diagnostic.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .followup-diagnostic.txt
-          git commit -m "Record robust follow-up executor failure"
+          git commit -m "Record follow-up build failure"
           git push origin HEAD:${{ github.head_ref }}
