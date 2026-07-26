@@ -44,7 +44,41 @@ jobs:
               capture { sub(/^          /, ""); print }
             ' .github/workflows/complete-ibm-redesign-followup.yml > "$RUNNER_TEMP/apply-followup.py"
             test -s "$RUNNER_TEMP/apply-followup.py"
+            python3 - "$RUNNER_TEMP/apply-followup.py" <<'PY'
+          from pathlib import Path
+          import sys
+
+          path = Path(sys.argv[1])
+          text = path.read_text(encoding='utf-8')
+          old = """              if count != 1:
+                  raise SystemExit(f'{path}: expected one match, found {count}: {old[:100]!r}')
+"""
+          new = """              if count != 1:
+                  if path == 'desktop/renderer/pages/Providers.jsx' and 'setDraft(provider)' in old:
+                      return
+                  raise SystemExit(f'{path}: expected one match, found {count}: {old[:100]!r}')
+"""
+          if old not in text:
+              raise SystemExit('replace_once helper was not found in extracted patch script')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
             python3 "$RUNNER_TEMP/apply-followup.py"
+            python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('desktop/renderer/pages/Providers.jsx')
+          text = path.read_text(encoding='utf-8')
+          text, count = re.subn(
+              r"onClick=\{\(\) => \{\s*setDraft\(provider\);\s*setHeadersText\(pretty\(provider\.headers\)\);\s*setAdapterText\(pretty\(provider\.adapter\)\);\s*\}\}",
+              'onClick={reset}',
+              text,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit(f'provider discard handler replacement count: {count}')
+          path.write_text(text, encoding='utf-8')
+          PY
           fi
 
           if [[ ! -s website/assets/social-card.png ]]; then
@@ -80,6 +114,8 @@ jobs:
           set -euo pipefail
           rm -f .github/workflows/complete-ibm-redesign-followup.yml
           rm -f .github/workflows/execute-complete-followup.yml
+          rm -f .github/workflows/capture-followup-failure.yml
+          rm -f .followup-diagnostic.txt
           rm -rf .complete-followup
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
