@@ -56,7 +56,7 @@ jobs:
           test -f dist/site/manifest.webmanifest
           test -f dist/site/assets/icon.svg
           test -f dist/site/assets/social-card.svg
-          if find dist/site -type f -print0 | xargs -0 file --mime-type | grep -vE 'text/|application/(json|manifest\+json|xml)|image/svg\+xml'; then
+          if find dist/site -type f -print0 | xargs -0 file --mime-type | grep -vE 'text/|application/(json|manifest\+json|xml)|image/svg\+xml|inode/x-empty'; then
             echo 'Unexpected binary file remains in exported site.' >&2
             exit 1
           fi
