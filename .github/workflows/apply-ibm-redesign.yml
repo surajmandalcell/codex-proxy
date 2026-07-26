@@ -1,0 +1,178 @@
+name: Apply IBM interface redesign
+
+on:
+  push:
+    branches:
+      - agent/ibm-interface-redesign
+    paths:
+      - .design-publish/TRIGGER
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-ibm-interface-redesign
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      EXPECTED_MASTER_SHA: 54852042a9c2517eded1b28f80a34805a6b41b83
+      EXPECTED_ARCHIVE_SHA256: f8f7f24365162febb48d54f6877d825bb7eb4283abcd467d1d14ca8d32fc04cf
+      EXPECTED_FILES: "27"
+      EXPECTED_PARTS: "3"
+    steps:
+      - name: Check out redesign branch
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Use repository npm version
+        run: npm install --global npm@10.9.2 --no-audit --no-fund
+
+      - name: Verify branch base and reconstruct source
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          git fetch --prune origin master
+          test "$(git rev-parse refs/remotes/origin/master^{commit})" = "$EXPECTED_MASTER_SHA"
+          test "$(git merge-base HEAD refs/remotes/origin/master)" = "$EXPECTED_MASTER_SHA"
+
+          python <<'PY'
+          from pathlib import Path, PurePosixPath
+          import base64
+          import hashlib
+          import os
+          import tarfile
+
+          root = Path(os.environ['GITHUB_WORKSPACE'])
+          staging = root / '.design-publish'
+          encoded = ''.join(
+              (staging / f'source.part{index:02d}').read_text().strip()
+              for index in range(int(os.environ['EXPECTED_PARTS']))
+          )
+          archive = Path(os.environ['RUNNER_TEMP']) / 'ibm-interface-redesign.tar.xz'
+          archive.write_bytes(base64.b64decode(encoded, validate=True))
+          digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+          if digest != os.environ['EXPECTED_ARCHIVE_SHA256']:
+              raise SystemExit(f'archive digest mismatch: {digest}')
+
+          expected = {
+              'CHANGELOG.md',
+              'README.md',
+              'desktop/renderer/components/Common.jsx',
+              'desktop/renderer/components/Shell.jsx',
+              'desktop/renderer/main.jsx',
+              'desktop/renderer/pages/Catalog.jsx',
+              'desktop/renderer/pages/Dashboard.jsx',
+              'desktop/renderer/pages/Logs.jsx',
+              'desktop/renderer/pages/Providers.jsx',
+              'desktop/renderer/pages/Routing.jsx',
+              'desktop/renderer/pages/Settings.jsx',
+              'desktop/renderer/pages/Usage.jsx',
+              'desktop/renderer/styles.css',
+              'docs/ARCHITECTURE.md',
+              'docs/DESIGN_SYSTEM.md',
+              'docs/DEVELOPMENT.md',
+              'docs/INDEX.md',
+              'package.json',
+              'scripts/build-site.mjs',
+              'scripts/verify.mjs',
+              'tests/repository/design-system.test.js',
+              'tests/repository/repository.test.js',
+              'website/assets/icon.svg',
+              'website/assets/site.css',
+              'website/assets/site.js',
+              'website/assets/social-card.svg',
+              'website/index.html',
+          }
+          with tarfile.open(archive, 'r:xz') as bundle:
+              members = bundle.getmembers()
+              names = {member.name.removeprefix('./') for member in members}
+              if names != expected or len(members) != int(os.environ['EXPECTED_FILES']):
+                  raise SystemExit(f'unexpected redesign payload: {sorted(names ^ expected)}')
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if member.name.startswith('/') or '..' in path.parts or not member.isfile():
+                      raise SystemExit(f'unsafe archive entry: {member.name}')
+              bundle.extractall(root, filter='data')
+          PY
+
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/build-site.mjs')
+          source = path.read_text()
+          old = """async function copyWebsiteFonts() {\n  const source = path.join(root, 'node_modules/@fontsource/ibm-plex-sans/files');\n  const destination = path.join(output, 'assets/fonts');\n  await mkdir(destination, { recursive: true });\n  for (const weight of [300, 400, 500, 600]) {\n    const name = `ibm-plex-sans-latin-${weight}-normal.woff2`;\n    await cp(path.join(source, name), path.join(destination, name));\n  }\n}\n"""
+          new = """async function copyWebsiteFonts() {\n  const destination = path.join(output, 'assets/fonts');\n  await mkdir(destination, { recursive: true });\n\n  for (const [family, weights] of [\n    ['ibm-plex-sans', [300, 400, 500, 600]],\n    ['ibm-plex-mono', [400, 500]],\n  ]) {\n    const source = path.join(root, `node_modules/@fontsource/${family}/files`);\n    for (const weight of weights) {\n      const name = `${family}-latin-${weight}-normal.woff2`;\n      await cp(path.join(source, name), path.join(destination, name));\n    }\n  }\n}\n"""
+          if old not in source:
+              raise SystemExit('website font-copy source did not match the guarded patch')
+          path.write_text(source.replace(old, new, 1))
+          PY
+
+          rm -rf .design-publish
+          rm -f .github/workflows/apply-ibm-redesign.yml
+
+      - name: Generate exact dependency lock
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify, test, and build both interfaces
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Preserve browser previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ui-preview"
+          cp -a dist/renderer "$RUNNER_TEMP/ui-preview/renderer"
+          cp -a dist/site "$RUNNER_TEMP/ui-preview/site"
+          test -f "$RUNNER_TEMP/ui-preview/renderer/index.html"
+          test -f "$RUNNER_TEMP/ui-preview/site/index.html"
+          test -f "$RUNNER_TEMP/ui-preview/site/assets/fonts/ibm-plex-sans-latin-400-normal.woff2"
+          test -f "$RUNNER_TEMP/ui-preview/site/assets/fonts/ibm-plex-mono-latin-400-normal.woff2"
+
+      - name: Build unpacked Linux application
+        run: npm run dist:dir
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Commit canonical redesign
+        id: commit
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          rm -rf node_modules dist release coverage
+          test ! -e .design-publish
+          test ! -e .github/workflows/apply-ibm-redesign.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Redesign desktop and website with IBM-inspired interface system"
+          redesign_sha="$(git rev-parse HEAD)"
+          printf 'redesign_sha=%s\n' "$redesign_sha" >> "$GITHUB_OUTPUT"
+          printf 'commit=%s\narchive=%s\n' "$redesign_sha" "$EXPECTED_ARCHIVE_SHA256" > "$RUNNER_TEMP/ui-preview/verification.txt"
+          git push origin HEAD:agent/ibm-interface-redesign
+
+      - name: Upload responsive preview and verification
+        uses: actions/upload-artifact@v7
+        with:
+          name: ibm-interface-redesign-preview
+          path: ${{ runner.temp }}/ui-preview
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
