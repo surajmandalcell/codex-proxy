@@ -55,6 +55,13 @@ jobs:
               raise SystemExit('README 2.1.1 badge was not produced')
           readme.write_text(text, encoding='utf-8')
 
+          for relative in ['scripts/verify.mjs', 'tests/repository/repository.test.js']:
+              path = Path(relative)
+              source = path.read_text(encoding='utf-8')
+              if '2.1.0' not in source and '2.1.1' not in source:
+                  raise SystemExit(f'No version contract found in {relative}')
+              path.write_text(source.replace('2.1.0', '2.1.1'), encoding='utf-8')
+
           changelog = Path('CHANGELOG.md')
           text = changelog.read_text(encoding='utf-8')
           marker = '## 2.1.0 - 2026-07-26\n'
@@ -81,6 +88,12 @@ jobs:
               text = text.replace(marker, entry + marker, 1)
           changelog.write_text(text, encoding='utf-8')
           PY
+
+          test "$(node -p "require('./package.json').version")" = 2.1.1
+          test "$(node -p "require('./package-lock.json').version")" = 2.1.1
+          test "$(node -p "require('./package-lock.json').packages[''].version")" = 2.1.1
+          grep -q "pkg.version !== '2.1.1'" scripts/verify.mjs
+          grep -q "assert.equal(pkg.version, '2.1.1')" tests/repository/repository.test.js
 
       - name: Install exact dependencies
         run: npm ci --no-audit --no-fund
