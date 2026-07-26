@@ -56,3 +56,17 @@ test('desktop status and compact responsive controls retain explicit states', as
   assert.match(styles, /\.compact select[\s\S]*right 12px center/);
   assert.match(styles, /api-key-row[\s\S]*auto auto/);
 });
+
+test('temporary completion machinery is absent from the publishable branch', async () => {
+  for (const relative of [
+    '.complete-followup',
+    '.followup-diagnostic.txt',
+    '.github/workflows/complete-ibm-redesign-followup.yml',
+    '.github/workflows/execute-complete-followup.yml',
+    '.github/workflows/execute-complete-followup-v2.yml',
+    '.github/workflows/capture-followup-failure.yml',
+    'scripts/prepare-followup-patch.py',
+  ]) {
+    assert.equal(await exists(relative), false, `${relative} must not be published`);
+  }
+});
