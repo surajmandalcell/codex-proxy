@@ -13,7 +13,7 @@ The desktop renderer, product website, and generated documentation use one visua
 
 ## Spacing and grid
 
-The base unit is 8 px. Layout and component spacing use multiples of that unit:
+The token scale uses a Carbon-like 4 px base with an 8 px major layout rhythm. Optical adjustments may use 2 px; component and section spacing primarily use 8 px multiples:
 
 | Token | Value | Primary use |
 | --- | ---: | --- |
