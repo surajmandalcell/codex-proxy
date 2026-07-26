@@ -1,0 +1,71 @@
+name: Final live verification and cleanup
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/final-live-verification.yml
+
+permissions:
+  contents: write
+
+jobs:
+  verify-live-site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Verify deployed website, manifest, and documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          site="https://surajmandalcell.github.io/subscription-proxy-inator/"
+          success=false
+          for attempt in $(seq 1 40); do
+            root_code="$(curl --silent --show-error --location --max-time 30 --output root.html --write-out '%{http_code}' "$site" || true)"
+            manifest_code="$(curl --silent --show-error --location --max-time 30 --output manifest.json --write-out '%{http_code}' "${site}manifest.webmanifest" || true)"
+            docs_code="$(curl --silent --show-error --location --max-time 30 --output docs.html --write-out '%{http_code}' "${site}docs/" || true)"
+            printf 'attempt=%s root=%s manifest=%s docs=%s\n' "$attempt" "$root_code" "$manifest_code" "$docs_code"
+            if [[ "$root_code" == 200 && "$manifest_code" == 200 && "$docs_code" == 200 ]] && \
+               grep -q 'Subscription Proxy Inator' root.html && \
+               grep -q 'Documentation' docs.html && \
+               jq -e '.name == "Subscription Proxy Inator" and .id == "./" and .lang == "en" and .display == "standalone"' manifest.json >/dev/null; then
+              success=true
+              break
+            fi
+            sleep 15
+          done
+          test "$success" = true
+          {
+            printf 'site=%s\n' "$site"
+            printf 'root_status=200\n'
+            printf 'manifest_status=200\n'
+            printf 'docs_status=200\n'
+            printf 'title=Subscription Proxy Inator\n'
+            printf 'manifest_id=.\/\n'
+            printf 'manifest_lang=en\n'
+          } > final-live-verification.txt
+
+      - name: Upload final verification evidence
+        uses: actions/upload-artifact@v7
+        with:
+          name: final-live-verification
+          path: final-live-verification.txt
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Delete temporary branches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CURRENT_BRANCH: agent/final-live-verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t branches < <(
+            gh api --paginate "repos/$GITHUB_REPOSITORY/branches?per_page=100" \
+              --jq '.[] | .name | select(startswith("automation/") or startswith("agent/"))'
+          )
+          for branch in "${branches[@]}"; do
+            [[ "$branch" == "$CURRENT_BRANCH" ]] && continue
+            printf 'deleting %s\n' "$branch"
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$branch" || true
+          done
+          gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$CURRENT_BRANCH"
