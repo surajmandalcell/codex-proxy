@@ -71,6 +71,7 @@ test('temporary completion machinery is absent from the publishable branch', asy
     '.github/workflows/capture-mac-package-error.yml',
     '.github/workflows/diagnose-mac-package.yml',
     '.github/workflows/finalize-icon-packaging.yml',
+    '.github/workflows/finalize-web-icon-fallbacks.yml',
   ]) {
     assert.equal(await exists(relative), false, `${relative} must not be published`);
   }

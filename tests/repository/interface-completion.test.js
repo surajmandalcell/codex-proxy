@@ -36,6 +36,7 @@ test('one balanced calendar-refresh icon is used across website, desktop, and pa
   const pkg = JSON.parse(await text('package.json'));
   const manifest = JSON.parse(await text('website/manifest.webmanifest'));
   const readme = await text('README.md');
+  const rendererDocument = await text('index.html');
 
   assert.equal(normalizedSvg(websiteIcon), normalizedSvg(desktopIcon));
   assert.equal(normalizedSvg(websiteIcon), normalizedSvg(buildIcon));
@@ -48,13 +49,27 @@ test('one balanced calendar-refresh icon is used across website, desktop, and pa
   assert.equal(pkg.build.mac.icon, 'build/icon.png');
   assert.equal(pkg.build.win.icon, 'build/icon.png');
   assert.equal(pkg.build.linux.icon, 'build/icon.svg');
-  assert.equal(manifest.icons.length, 1);
-  assert.equal(manifest.icons[0].src, 'assets/icon.svg');
+  assert.deepEqual(manifest.icons.map((icon) => icon.src), [
+    'assets/icon.svg',
+    'assets/icon-192.png',
+    'assets/icon-512.png',
+  ]);
+  assert.equal(manifest.icons[0].purpose, 'any');
+  assert.match(rendererDocument, /href="\/desktop\/renderer\/assets\/icon\.svg"/);
   assert.match(readme, /website\/assets\/icon\.svg/);
   const packagingIcon = await readFile(path.join(root, 'build/icon.png'));
   assert.deepEqual([...packagingIcon.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
   assert.ok(packagingIcon.length > 5000);
-  assert.equal(await exists('website/assets/icon-512.png'), false);
+  for (const [asset, size] of [
+    ['website/assets/apple-touch-icon.png', 180],
+    ['website/assets/icon-192.png', 192],
+    ['website/assets/icon-512.png', 512],
+  ]) {
+    const png = await readFile(path.join(root, asset));
+    assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+    assert.equal(png.readUInt32BE(16), size);
+    assert.equal(png.readUInt32BE(20), size);
+  }
   assert.equal(await exists('website/assets/social-card.png'), false);
 });
 

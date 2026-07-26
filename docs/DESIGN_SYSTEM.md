@@ -11,6 +11,8 @@ The canonical mark is a balanced rounded-square icon containing a calendar with 
 - `website/assets/icon.svg`, `desktop/renderer/assets/icon.svg`, and `build/icon.svg` must remain identical.
 - The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, Linux packaging, and the generated package raster.
 - `build/icon.png` is a deterministic 1024×1024 render of the canonical SVG for the pinned macOS and Windows package converter. It is not an independent design source.
+- `website/assets/apple-touch-icon.png`, `website/assets/icon-192.png`, and `website/assets/icon-512.png` are deterministic web compatibility renders of the same SVG. They are not independent design sources.
+- The manifest uses the SVG and explicit 192×192 and 512×512 PNG fallbacks with `purpose: any`; the edge-positioned refresh badge is not advertised as maskable.
 - The mark must retain an even optical margin, rounded outer corners, and a high-contrast refresh badge at small sizes.
 - Retired raster icon sources must not remain in the repository after the SVG source becomes canonical.
 

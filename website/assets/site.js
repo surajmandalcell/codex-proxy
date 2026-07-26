@@ -72,7 +72,10 @@ if (header) {
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealNodes = [...document.querySelectorAll('[data-reveal]')];
-for (const node of revealNodes) node.classList.add('reveal');
+for (const [index, node] of revealNodes.entries()) {
+  node.classList.add('reveal');
+  node.style.transitionDelay = `${Math.min(index * 40, 200)}ms`;
+}
 
 if (reducedMotion || !('IntersectionObserver' in window)) {
   for (const node of revealNodes) node.classList.add('is-visible');
