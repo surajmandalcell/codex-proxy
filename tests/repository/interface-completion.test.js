@@ -22,6 +22,7 @@ test('the hero explains the product before presenting calls to action', async ()
   assert.match(html, /records usage locally/);
   assert.match(html, /class="hero-flow"/);
   assert.match(html, /aria-label="How the local gateway works"/);
+  assert.match(html, /class="hero-actions" role="group" aria-label="Get started"/);
   assert.match(styles, /\.hero-actions\s*\{[\s\S]*gap:\s*16px/);
   assert.match(styles, /\.hero-actions \.button[\s\S]*min-inline-size:\s*168px/);
   assert.match(styles, /\.button:focus-visible[\s\S]*outline:\s*3px solid/);
@@ -35,6 +36,7 @@ test('one balanced calendar-refresh icon is used across website, desktop, and pa
   const app = await text('desktop/renderer/App.jsx');
   const pkg = JSON.parse(await text('package.json'));
   const manifest = JSON.parse(await text('website/manifest.webmanifest'));
+  const websiteDocument = await text('website/index.html');
   const readme = await text('README.md');
   const rendererDocument = await text('index.html');
 
@@ -55,7 +57,10 @@ test('one balanced calendar-refresh icon is used across website, desktop, and pa
     'assets/icon-512.png',
   ]);
   assert.equal(manifest.icons[0].purpose, 'any');
+  assert.ok(manifest.icons.every((icon) => icon.purpose === 'any'));
+  assert.match(websiteDocument, /rel="apple-touch-icon" href="assets\/apple-touch-icon\.png"/);
   assert.match(rendererDocument, /href="\/desktop\/renderer\/assets\/icon\.svg"/);
+  assert.doesNotMatch(rendererDocument, /data:image\/svg\+xml/);
   assert.match(readme, /website\/assets\/icon\.svg/);
   const packagingIcon = await readFile(path.join(root, 'build/icon.png'));
   assert.deepEqual([...packagingIcon.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
@@ -85,6 +90,8 @@ test('website and desktop motion are purposeful and respect reduced-motion prefe
   assert.match(websiteScript, /IntersectionObserver/);
   assert.match(websiteScript, /prefers-reduced-motion: reduce/);
   assert.match(websiteScript, /firstLink\?\.focus/);
+  assert.match(websiteScript, /transitionDelay = `\$\{Math\.min\(index \* 40, 200\)\}ms`/);
+  assert.doesNotMatch(websiteStyles, /\[data-reveal\]:nth-of-type/);
   assert.match(websiteStyles, /\.reveal\s*\{[\s\S]*opacity:\s*0/);
   assert.match(websiteStyles, /\.reveal\.is-visible\s*\{[\s\S]*opacity:\s*1/);
   assert.match(websiteStyles, /@media \(prefers-reduced-motion: reduce\)/);
@@ -105,4 +112,5 @@ test('the social preview and documentation contract use the finished icon and mo
   assert.match(docs, /CTA groups use at least 16 px between adjacent actions/);
   assert.match(docs, /Motion is limited to opacity, color, and short spatial transitions/);
   assert.match(docs, /calendar with a refresh badge/);
+  assert.match(docs, /explicit 192×192 and 512×512 PNG fallbacks/);
 });
