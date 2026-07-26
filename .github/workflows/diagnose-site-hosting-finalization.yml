@@ -1,0 +1,39 @@
+name: Diagnose hosting finalization
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/diagnose-site-hosting-finalization.yml
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download failed validation job log
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_ID: "89777757873"
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" \
+            --output validation-full.log
+          grep -n -B 35 -A 60 -E 'not ok|AssertionError|ERR_ASSERTION|Missing required|Stale legacy|# fail|Error:' validation-full.log > validation-failure.log || true
+          tail -n 260 validation-full.log > validation-tail.log
+      - name: Upload validation diagnostics
+        uses: actions/upload-artifact@v7
+        with:
+          name: hosting-finalization-diagnostics
+          path: |
+            validation-failure.log
+            validation-tail.log
+          if-no-files-found: error
+          retention-days: 1
