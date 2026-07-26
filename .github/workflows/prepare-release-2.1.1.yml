@@ -1,0 +1,104 @@
+name: Prepare version 2.1.1
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - .github/workflows/prepare-release-2.1.1.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-version-2.1.1
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out release branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Use repository npm version
+        run: npm install --global npm@10.9.2 --no-audit --no-fund
+
+      - name: Apply patch version metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(node -p "require('./package.json').version")" = 2.1.0
+          npm version 2.1.1 --no-git-tag-version
+          python3 <<'PY'
+          from pathlib import Path
+
+          readme = Path('README.md')
+          text = readme.read_text(encoding='utf-8')
+          old = 'img.shields.io/badge/version-2.1.0-0f62fe'
+          new = 'img.shields.io/badge/version-2.1.1-0f62fe'
+          if text.count(old) != 1:
+              raise SystemExit('README version badge was not found exactly once')
+          readme.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          changelog = Path('CHANGELOG.md')
+          text = changelog.read_text(encoding='utf-8')
+          marker = '## 2.1.0 - 2026-07-26\n'
+          entry = '''## 2.1.1 - 2026-07-26
+
+### Interface correctness
+
+- Preserved unsaved provider, account, routing, catalog, and settings edits while the desktop snapshot refreshes.
+- Kept API keys and account forms intact after failed mutations instead of clearing user input.
+- Added keyboard-selectable usage rows and visible usage, attempt, and export errors.
+- Completed titlebar state, focus, contrast, compact-control, responsive API-key, mobile-menu, and clipboard behavior.
+- Rejected unsupported schemes in generated documentation links and removed the redundant slug expression flagged by CodeQL.
+- Added a raster social preview and regression contracts that prevent temporary completion machinery from entering the public tree.
+
+### Validation
+
+- Passed the complete build and coverage suite, production dependency audit, Responsive UI Audit, CodeQL, and unpacked Electron packaging on Linux, macOS, and Windows.
+- Rebuilt and production-verified the public website and generated documentation from the corrected application master.
+
+'''
+          if marker not in text:
+              raise SystemExit('2.1.0 changelog marker not found')
+          if '## 2.1.1 - 2026-07-26' not in text:
+              text = text.replace(marker, entry + marker, 1)
+          changelog.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify, test, and build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Build unpacked Linux application
+        run: npm run dist:dir
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Commit clean release preparation
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/prepare-release-2.1.1.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Prepare version 2.1.1"
+          git push origin HEAD:${{ github.head_ref }}
