@@ -1,0 +1,40 @@
+name: Capture macOS package error
+
+on:
+  push:
+    branches:
+      - agent/finish-hero-icon-motion
+    paths:
+      - .github/workflows/capture-mac-package-error.yml
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/finish-hero-icon-motion
+          fetch-depth: 0
+      - name: Capture package failure
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_ID: "89848927548"
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" > full.log
+          {
+            grep -n -B 30 -A 90 -E 'ERR_|Error|error|failed|icon|Icon|icns|ICNS|svg|SVG|Process completed' full.log || true
+            printf '\n--- tail ---\n'
+            tail -n 180 full.log
+          } > .mac-package-error.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .mac-package-error.txt
+          git commit -m "Record macOS package failure"
+          git push origin HEAD:agent/finish-hero-icon-motion
