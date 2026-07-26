@@ -13,6 +13,7 @@ concurrency:
   group: prepare-version-2.1.1
   cancel-in-progress: false
 
+# This workflow exists only on the release-preparation branch and removes itself.
 jobs:
   prepare:
     runs-on: ubuntu-24.04
