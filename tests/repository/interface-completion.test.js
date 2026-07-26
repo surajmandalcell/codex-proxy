@@ -39,6 +39,7 @@ test('one balanced calendar-refresh icon is used across website, desktop, and pa
 
   assert.equal(normalizedSvg(websiteIcon), normalizedSvg(desktopIcon));
   assert.equal(normalizedSvg(websiteIcon), normalizedSvg(buildIcon));
+  assert.match(websiteIcon, /width="1024" height="1024"/);
   assert.match(websiteIcon, /rx="14"/);
   assert.match(websiteIcon, /id="calendar"/);
   assert.match(websiteIcon, /id="refresh-badge"/);
