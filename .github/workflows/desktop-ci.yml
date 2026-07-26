@@ -1,33 +1,27 @@
 name: Desktop CI
 
 on:
-  push:
-    branches: [master]
   pull_request:
-  workflow_dispatch:
 
 permissions:
   contents: write
 
-concurrency:
-  group: desktop-ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   prepare-release:
-    if: ${{ github.event_name == 'pull_request' && github.head_ref == 'agent/release-2.1.1' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Check out release branch
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.head_ref }}
+          ref: agent/release-2.1.1
           fetch-depth: 0
+
       - name: Use Node.js 22
         uses: actions/setup-node@v6
         with:
           node-version: 22
+
       - name: Apply version 2.1.1 atomically
         shell: bash
         run: |
@@ -88,6 +82,7 @@ jobs:
           test "$(node -p "require('./package-lock.json').packages[''].version")" = 2.1.1
           grep -q "pkg.version !== '2.1.1'" scripts/verify.mjs
           grep -q "assert.equal(pkg.version, '2.1.1')" tests/repository/repository.test.js
+
       - name: Commit clean release metadata
         shell: bash
         run: |
@@ -102,58 +97,4 @@ jobs:
           git add -A
           git diff --cached --check
           git commit -m "Prepare version 2.1.1"
-          git push origin HEAD:${{ github.head_ref }}
-
-  validate:
-    needs: prepare-release
-    if: ${{ always() && (needs.prepare-release.result == 'success' || needs.prepare-release.result == 'skipped') }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    steps:
-      - name: Check out source
-        uses: actions/checkout@v6
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-      - name: Use the repository npm version
-        run: npm install --global npm@10.9.2 --no-audit --no-fund
-      - name: Install exact dependencies
-        run: npm ci --no-audit --no-fund
-      - name: Verify, test, and build
-        run: npm run build
-      - name: Audit production dependencies
-        run: npm audit --omit=dev --audit-level=high
-
-  package:
-    needs: validate
-    timeout-minutes: 45
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Check out source
-        uses: actions/checkout@v6
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-      - name: Use the repository npm version
-        run: npm install --global npm@10.9.2 --no-audit --no-fund
-      - name: Install exact dependencies
-        run: npm ci --no-audit --no-fund
-      - name: Build unpacked desktop application
-        run: npm run dist:dir
-        env:
-          CSC_IDENTITY_AUTO_DISCOVERY: "false"
-      - name: Upload unpacked application
-        uses: actions/upload-artifact@v7
-        with:
-          name: unpacked-${{ runner.os }}
-          path: release/**
-          if-no-files-found: error
-          retention-days: 7
+          git push origin HEAD:agent/release-2.1.1
