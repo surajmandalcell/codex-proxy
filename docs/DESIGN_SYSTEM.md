@@ -9,7 +9,8 @@ The desktop renderer, product website, and generated documentation use one visua
 The canonical mark is a balanced rounded-square icon containing a calendar with a refresh badge in the bottom-right corner. The calendar represents subscription and usage periods; the refresh badge represents routing, retry, and provider switching.
 
 - `website/assets/icon.svg`, `desktop/renderer/assets/icon.svg`, and `build/icon.svg` must remain identical.
-- The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, and Electron packaging on Windows, macOS, and Linux.
+- The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, Linux packaging, and the generated package raster.
+- `build/icon.png` is a deterministic 1024×1024 render of the canonical SVG for the pinned macOS and Windows package converter. It is not an independent design source.
 - The mark must retain an even optical margin, rounded outer corners, and a high-contrast refresh badge at small sizes.
 - Retired raster icon sources must not remain in the repository after the SVG source becomes canonical.
 

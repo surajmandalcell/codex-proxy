@@ -44,13 +44,15 @@ test('one balanced calendar-refresh icon is used across website, desktop, and pa
   assert.match(websiteIcon, /id="refresh-badge"/);
   assert.match(shell, /ProductIcon/);
   assert.match(app, /ProductIcon/);
-  assert.equal(pkg.build.mac.icon, 'build/icon.svg');
-  assert.equal(pkg.build.win.icon, 'build/icon.svg');
+  assert.equal(pkg.build.mac.icon, 'build/icon.png');
+  assert.equal(pkg.build.win.icon, 'build/icon.png');
   assert.equal(pkg.build.linux.icon, 'build/icon.svg');
   assert.equal(manifest.icons.length, 1);
   assert.equal(manifest.icons[0].src, 'assets/icon.svg');
   assert.match(readme, /website\/assets\/icon\.svg/);
-  assert.equal(await exists('build/icon.png'), false);
+  const packagingIcon = await readFile(path.join(root, 'build/icon.png'));
+  assert.deepEqual([...packagingIcon.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+  assert.ok(packagingIcon.length > 5000);
   assert.equal(await exists('website/assets/icon-512.png'), false);
   assert.equal(await exists('website/assets/social-card.png'), false);
 });

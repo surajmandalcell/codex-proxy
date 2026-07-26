@@ -79,14 +79,14 @@
     ],
     "mac": {
       "category": "public.app-category.developer-tools",
-      "icon": "build/icon.svg",
+      "icon": "build/icon.png",
       "target": [
         "dmg",
         "zip"
       ]
     },
     "win": {
-      "icon": "build/icon.svg",
+      "icon": "build/icon.png",
       "target": [
         "nsis",
         "zip"
