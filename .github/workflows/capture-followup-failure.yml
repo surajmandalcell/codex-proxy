@@ -1,0 +1,39 @@
+name: Capture follow-up failure
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - .github/workflows/capture-followup-failure.yml
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Capture failed executor log
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_ID: "89813666333"
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" > full.log
+          {
+            grep -n -B 20 -A 50 -E 'expected one match|Traceback|SystemExit|Error:|failed|not found|SyntaxError' full.log || true
+            printf '\n--- tail ---\n'
+            tail -n 160 full.log
+          } > .followup-diagnostic.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .followup-diagnostic.txt
+          git commit -m "Record follow-up executor failure"
+          git push origin HEAD:${{ github.head_ref }}
