@@ -18,7 +18,7 @@ test('the hero explains the product before presenting calls to action', async ()
   assert.match(html, /One local API for all your AI providers\./);
   assert.match(html, /OpenAI, Anthropic, Gemini, Grok/);
   assert.match(html, /routes each request to an eligible account/);
-  assert.match(html, /fails over before streaming starts/);
+  assert.match(html, /fails over before streaming\s+starts/);
   assert.match(html, /records usage locally/);
   assert.match(html, /class="hero-flow"/);
   assert.match(html, /aria-label="How the local gateway works"/);
@@ -67,8 +67,8 @@ test('website and desktop motion are purposeful and respect reduced-motion prefe
   assert.match(websiteScript, /IntersectionObserver/);
   assert.match(websiteScript, /prefers-reduced-motion: reduce/);
   assert.match(websiteScript, /firstLink\?\.focus/);
-  assert.match(websiteStyles, /\.reveal[\s\S]*opacity:\s*0/);
-  assert.match(websiteStyles, /\.reveal\.is-visible[\s\S]*opacity:\s*1/);
+  assert.match(websiteStyles, /\.reveal\s*\{[\s\S]*opacity:\s*0/);
+  assert.match(websiteStyles, /\.reveal\.is-visible\s*\{[\s\S]*opacity:\s*1/);
   assert.match(websiteStyles, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(desktopEntry, /\.\/polish\.css/);
   assert.match(desktopStyles, /@keyframes page-enter/);
