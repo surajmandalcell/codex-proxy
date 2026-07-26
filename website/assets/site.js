@@ -1,7 +1,7 @@
 const scriptUrl = document.currentScript?.src;
 if (scriptUrl) {
   const polishHref = new URL('polish.css', scriptUrl).href;
-  if (!document.querySelector(`link[href="${polishHref}"]`)) {
+  if (!document.querySelector('link[href$="polish.css"]')) {
     const polish = document.createElement('link');
     polish.rel = 'stylesheet';
     polish.href = polishHref;
