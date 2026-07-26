@@ -1,991 +1,243 @@
-216-2026-07-26T22:27:01.8125240Z # Subtest: unknown provider and account identifiers fail explicitly
-217-2026-07-26T22:27:01.8125720Z ok 5 - unknown provider and account identifiers fail explicitly
-218-2026-07-26T22:27:01.8126200Z   ---
-219-2026-07-26T22:27:01.8126480Z   duration_ms: 0.159292
-220-2026-07-26T22:27:01.8126650Z   type: 'test'
-221-2026-07-26T22:27:01.8126810Z   ...
-222-2026-07-26T22:27:01.8177720Z # Subtest: proxy execute estimates routes, serializes output, and records successful usage
-223-2026-07-26T22:27:01.8182630Z ok 6 - proxy execute estimates routes, serializes output, and records successful usage
-224-2026-07-26T22:27:01.8183120Z   ---
-225-2026-07-26T22:27:01.8195160Z   duration_ms: 2.671334
-226-2026-07-26T22:27:01.8195480Z   type: 'test'
-227-2026-07-26T22:27:01.8195810Z   ...
-228-2026-07-26T22:27:01.8196320Z # Subtest: proxy execute records terminal failures and rethrows them
-229-2026-07-26T22:27:01.8197820Z ok 7 - proxy execute records terminal failures and rethrows them
-230-2026-07-26T22:27:01.8210520Z   ---
-231-2026-07-26T22:27:01.8210890Z   duration_ms: 0.447917
-232-2026-07-26T22:27:01.8211260Z   type: 'test'
-233-2026-07-26T22:27:01.8211620Z   ...
-234-2026-07-26T22:27:01.8212110Z # Subtest: proxy streaming emits keep-alive comments and records selected route
-235-2026-07-26T22:27:01.8212750Z ok 8 - proxy streaming emits keep-alive comments and records selected route
-236-2026-07-26T22:27:01.8213160Z   ---
-237-2026-07-26T22:27:01.8213420Z   duration_ms: 1.040875
-238-2026-07-26T22:27:01.8213760Z   type: 'test'
-239-2026-07-26T22:27:01.8214090Z   ...
-240-2026-07-26T22:27:01.8214430Z # Subtest: proxy streaming records cancellation
-241-2026-07-26T22:27:01.8214950Z ok 9 - proxy streaming records cancellation
-242-2026-07-26T22:27:01.8215340Z   ---
-243-2026-07-26T22:27:01.8215640Z   duration_ms: 0.191958
-244-2026-07-26T22:27:01.8215950Z   type: 'test'
-245-2026-07-26T22:27:01.8216200Z   ...
-246:2026-07-26T22:27:01.8216770Z # Subtest: usage persistence errors are contained and logged
-247:2026-07-26T22:27:01.8217280Z ok 10 - usage persistence errors are contained and logged
-248-2026-07-26T22:27:01.8217710Z   ---
-249-2026-07-26T22:27:01.8217950Z   duration_ms: 0.17725
-250-2026-07-26T22:27:01.8218220Z   type: 'test'
-251-2026-07-26T22:27:01.8218470Z   ...
-252-2026-07-26T22:27:01.8759860Z # Subtest: provider registry registers and lists adapters
-253-2026-07-26T22:27:01.8845740Z ok 11 - provider registry registers and lists adapters
-254-2026-07-26T22:27:01.8846470Z   ---
-255-2026-07-26T22:27:01.8847290Z   duration_ms: 1.129208
-256-2026-07-26T22:27:01.8847860Z   type: 'test'
-257-2026-07-26T22:27:01.8848250Z   ...
-258-2026-07-26T22:27:01.8849170Z # Subtest: provider registry rejects malformed and duplicate adapters
-259-2026-07-26T22:27:01.8849970Z ok 12 - provider registry rejects malformed and duplicate adapters
-260-2026-07-26T22:27:01.8850580Z   ---
-261-2026-07-26T22:27:01.8850880Z   duration_ms: 0.383125
-262-2026-07-26T22:27:01.8851260Z   type: 'test'
-263-2026-07-26T22:27:01.8851640Z   ...
-264-2026-07-26T22:27:01.8852160Z # Subtest: provider registry can intentionally replace an adapter
-265-2026-07-26T22:27:01.8852720Z ok 13 - provider registry can intentionally replace an adapter
-266-2026-07-26T22:27:01.8853080Z   ---
-267-2026-07-26T22:27:01.8853320Z   duration_ms: 0.091959
-268-2026-07-26T22:27:01.8853580Z   type: 'test'
-269-2026-07-26T22:27:01.8853910Z   ...
-270-2026-07-26T22:27:01.8854340Z # Subtest: missing provider adapter is explicit
-271-2026-07-26T22:27:01.8854960Z ok 14 - missing provider adapter is explicit
-272-2026-07-26T22:27:01.8857920Z   ---
-273-2026-07-26T22:27:01.8858280Z   duration_ms: 0.070166
-274-2026-07-26T22:27:01.8858600Z   type: 'test'
-275-2026-07-26T22:27:01.8858860Z   ...
-276-2026-07-26T22:27:01.8859430Z # Subtest: runtime state tracks in-flight, success, EWMA, cooldown, and attention
-277-2026-07-26T22:27:01.8860150Z ok 15 - runtime state tracks in-flight, success, EWMA, cooldown, and attention
-278-2026-07-26T22:27:01.8860890Z   ---
-279-2026-07-26T22:27:01.8861090Z   duration_ms: 0.139458
-280-2026-07-26T22:27:01.8861430Z   type: 'test'
-281-2026-07-26T22:27:01.8861610Z   ...
-282-2026-07-26T22:27:01.8862110Z # Subtest: runtime cancellation only decrements in-flight
-283-2026-07-26T22:27:01.8862560Z ok 16 - runtime cancellation only decrements in-flight
-284-2026-07-26T22:27:01.8863120Z   ---
-285-2026-07-26T22:27:01.8863380Z   duration_ms: 0.058959
-286-2026-07-26T22:27:01.8863760Z   type: 'test'
-287-2026-07-26T22:27:01.8864020Z   ...
-288-2026-07-26T22:27:01.8864330Z # Subtest: runtime snapshots are detached
-289-2026-07-26T22:27:01.8864840Z ok 17 - runtime snapshots are detached
-290-2026-07-26T22:27:01.8865130Z   ---
-291-2026-07-26T22:27:01.8865500Z   duration_ms: 0.069792
-292-2026-07-26T22:27:01.8865680Z   type: 'test'
-293-2026-07-26T22:27:01.8866030Z   ...
-294-2026-07-26T22:27:01.8866340Z # Subtest: runtime clear operations remove health state
-295-2026-07-26T22:27:01.8866700Z ok 18 - runtime clear operations remove health state
-296-2026-07-26T22:27:01.8866940Z   ---
-297-2026-07-26T22:27:01.8867210Z   duration_ms: 0.060583
-298-2026-07-26T22:27:01.8867500Z   type: 'test'
-299-2026-07-26T22:27:01.8867690Z   ...
-300-2026-07-26T22:27:01.8868050Z # Subtest: routing service returns the first successful route
-301-2026-07-26T22:27:01.8869120Z ok 19 - routing service returns the first successful route
-302-2026-07-26T22:27:01.8869900Z   ---
-303-2026-07-26T22:27:01.8870140Z   duration_ms: 9.030375
-304-2026-07-26T22:27:01.8870450Z   type: 'test'
-305-2026-07-26T22:27:01.8870710Z   ...
-306:2026-07-26T22:27:01.8871070Z # Subtest: routing service fails over after retryable errors
-307:2026-07-26T22:27:01.8871520Z ok 20 - routing service fails over after retryable errors
-308-2026-07-26T22:27:01.8871830Z   ---
-309-2026-07-26T22:27:01.8872080Z   duration_ms: 0.51775
-310-2026-07-26T22:27:01.8872250Z   type: 'test'
-311-2026-07-26T22:27:01.8872410Z   ...
-312:2026-07-26T22:27:01.8872800Z # Subtest: routing service stops on non-retryable errors
-313:2026-07-26T22:27:01.8873260Z ok 21 - routing service stops on non-retryable errors
-314-2026-07-26T22:27:01.8873520Z   ---
-315-2026-07-26T22:27:01.8873660Z   duration_ms: 0.290625
-316-2026-07-26T22:27:01.8873840Z   type: 'test'
-317-2026-07-26T22:27:01.8873990Z   ...
-318-2026-07-26T22:27:01.8874270Z # Subtest: routing service does not retry client cancellation
-319-2026-07-26T22:27:01.8874900Z ok 22 - routing service does not retry client cancellation
-320-2026-07-26T22:27:01.8875140Z   ---
-321-2026-07-26T22:27:01.8875290Z   duration_ms: 0.157583
-322-2026-07-26T22:27:01.8875460Z   type: 'test'
-323-2026-07-26T22:27:01.8875650Z   ...
-324-2026-07-26T22:27:01.8875920Z # Subtest: routing service exposes no-route failures
-325-2026-07-26T22:27:01.8876270Z ok 23 - routing service exposes no-route failures
-326-2026-07-26T22:27:01.8876590Z   ---
-327-2026-07-26T22:27:01.8877030Z   duration_ms: 0.099708
-328-2026-07-26T22:27:01.8877200Z   type: 'test'
-329-2026-07-26T22:27:01.8877360Z   ...
-330-2026-07-26T22:27:01.8877660Z # Subtest: routing hooks receive attempt lifecycle events
-331-2026-07-26T22:27:01.8878060Z ok 24 - routing hooks receive attempt lifecycle events
-332-2026-07-26T22:27:01.8878310Z   ---
-333-2026-07-26T22:27:01.8878470Z   duration_ms: 0.115042
-334-2026-07-26T22:27:01.8878660Z   type: 'test'
-335-2026-07-26T22:27:01.8878800Z   ...
-336-2026-07-26T22:27:01.8879210Z # Subtest: streaming fails over before client-visible output
-337-2026-07-26T22:27:01.8879720Z ok 25 - streaming fails over before client-visible output
-338-2026-07-26T22:27:01.8879980Z   ---
-339-2026-07-26T22:27:01.8880190Z   duration_ms: 0.452459
-340-2026-07-26T22:27:01.8880410Z   type: 'test'
-341-2026-07-26T22:27:01.8880560Z   ...
-342-2026-07-26T22:27:01.8880840Z # Subtest: streaming never fails over after visible text
-343-2026-07-26T22:27:01.8881210Z ok 26 - streaming never fails over after visible text
-344-2026-07-26T22:27:01.8881460Z   ---
-345-2026-07-26T22:27:01.8881620Z   duration_ms: 0.637334
-346-2026-07-26T22:27:01.8881800Z   type: 'test'
-347-2026-07-26T22:27:01.8881960Z   ...
-348-2026-07-26T22:27:01.8882250Z # Subtest: tool calls are client-visible failover boundaries
-349-2026-07-26T22:27:01.8882650Z ok 27 - tool calls are client-visible failover boundaries
-350-2026-07-26T22:27:01.8882910Z   ---
-351-2026-07-26T22:27:01.8883060Z   duration_ms: 0.174583
-352-2026-07-26T22:27:01.8883230Z   type: 'test'
-353-2026-07-26T22:27:01.8883370Z   ...
-354-2026-07-26T22:27:01.8883690Z # Subtest: non-visible completed streams flush buffered metadata
-355-2026-07-26T22:27:01.8884110Z ok 28 - non-visible completed streams flush buffered metadata
-356-2026-07-26T22:27:01.8884360Z   ---
-357-2026-07-26T22:27:01.8884520Z   duration_ms: 0.156458
-358-2026-07-26T22:27:01.8884780Z   type: 'test'
-359-2026-07-26T22:27:01.8884960Z   ...
-360-2026-07-26T22:27:01.8885280Z # Subtest: usage service applies pricing and stores records
-361-2026-07-26T22:27:01.8885660Z ok 29 - usage service applies pricing and stores records
-362-2026-07-26T22:27:01.8885920Z   ---
-363-2026-07-26T22:27:01.8886070Z   duration_ms: 0.871625
-364-2026-07-26T22:27:01.8886250Z   type: 'test'
-365-2026-07-26T22:27:01.8886400Z   ...
-366-2026-07-26T22:27:01.8886710Z # Subtest: usage service delegates list, summary, CSV, and prune
-367-2026-07-26T22:27:01.8887110Z ok 30 - usage service delegates list, summary, CSV, and prune
-368-2026-07-26T22:27:01.8887360Z   ---
-369-2026-07-26T22:27:01.8887520Z   duration_ms: 0.421958
-370-2026-07-26T22:27:01.8887710Z   type: 'test'
-371-2026-07-26T22:27:01.8887860Z   ...
-372-2026-07-26T22:27:01.8904810Z # Subtest: settings patch merges domains and restarts only when endpoint changes
-373-2026-07-26T22:27:01.8906110Z ok 31 - settings patch merges domains and restarts only when endpoint changes
-374-2026-07-26T22:27:01.8906770Z   ---
-375-2026-07-26T22:27:01.8907050Z   duration_ms: 1.217834
-376-2026-07-26T22:27:01.8907340Z   type: 'test'
-377-2026-07-26T22:27:01.8907590Z   ...
-378-2026-07-26T22:27:01.8908210Z # Subtest: settings rollback configuration and effects when restart fails
-379-2026-07-26T22:27:01.8908730Z ok 32 - settings rollback configuration and effects when restart fails
-380-2026-07-26T22:27:01.8909030Z   ---
-381-2026-07-26T22:27:01.8909180Z   duration_ms: 0.464166
-382-2026-07-26T22:27:01.8909370Z   type: 'test'
-383-2026-07-26T22:27:01.8909530Z   ...
-384-2026-07-26T22:27:01.8909950Z # Subtest: local API key is encrypted, replaceable, clearable, and redacted
-385-2026-07-26T22:27:01.8910530Z ok 33 - local API key is encrypted, replaceable, clearable, and redacted
-386-2026-07-26T22:27:01.8911140Z   ---
-387-2026-07-26T22:27:01.8911440Z   duration_ms: 0.238625
-388-2026-07-26T22:27:01.8911710Z   type: 'test'
-389-2026-07-26T22:27:01.8911960Z   ...
-390-2026-07-26T22:27:01.8912290Z # Subtest: empty API key clears the current key
-391-2026-07-26T22:27:01.8912760Z ok 34 - empty API key clears the current key
-392-2026-07-26T22:27:01.8913170Z   ---
-393-2026-07-26T22:27:01.8913470Z   duration_ms: 0.114375
-394-2026-07-26T22:27:01.8913740Z   type: 'test'
-395-2026-07-26T22:27:01.8914020Z   ...
-396-2026-07-26T22:27:01.8914510Z # Subtest: endpoint change predicate ignores dynamic server options
-397-2026-07-26T22:27:01.8915110Z ok 35 - endpoint change predicate ignores dynamic server options
-398-2026-07-26T22:27:01.8915760Z   ---
-399-2026-07-26T22:27:01.8916000Z   duration_ms: 0.06575
-400-2026-07-26T22:27:01.8916260Z   type: 'test'
-401-2026-07-26T22:27:01.8916500Z   ...
-402-2026-07-26T22:27:01.9292790Z # Subtest: shared helpers cover finite, clone, glob, clamp, and stable ordering branches
-403-2026-07-26T22:27:01.9300540Z ok 36 - shared helpers cover finite, clone, glob, clamp, and stable ordering branches
---
-408-2026-07-26T22:27:01.9309900Z # Subtest: canonical block normalization ignores unknown and non-object values
-409-2026-07-26T22:27:01.9310490Z ok 37 - canonical block normalization ignores unknown and non-object values
-410-2026-07-26T22:27:01.9310820Z   ---
-411-2026-07-26T22:27:01.9311070Z   duration_ms: 0.725625
-412-2026-07-26T22:27:01.9311290Z   type: 'test'
-413-2026-07-26T22:27:01.9311550Z   ...
-414-2026-07-26T22:27:01.9312100Z # Subtest: OpenAI conversion covers image variants, invalid arguments, stop arrays, and tool choice
-415-2026-07-26T22:27:01.9312980Z ok 38 - OpenAI conversion covers image variants, invalid arguments, stop arrays, and tool choice
-416-2026-07-26T22:27:01.9313810Z   ---
-417-2026-07-26T22:27:01.9314000Z   duration_ms: 0.613208
-418-2026-07-26T22:27:01.9314220Z   type: 'test'
-419-2026-07-26T22:27:01.9314400Z   ...
-420-2026-07-26T22:27:01.9314860Z # Subtest: OpenAI Responses covers string input and ignored non-function tools
-421-2026-07-26T22:27:01.9315440Z ok 39 - OpenAI Responses covers string input and ignored non-function tools
-422-2026-07-26T22:27:01.9315800Z   ---
-423-2026-07-26T22:27:01.9316000Z   duration_ms: 0.167625
-424-2026-07-26T22:27:01.9316240Z   type: 'test'
-425-2026-07-26T22:27:01.9316450Z   ...
-426-2026-07-26T22:27:01.9316910Z # Subtest: OpenAI stream serializers cover start, tool, usage, finish, and fallback events
-427-2026-07-26T22:27:01.9344380Z ok 40 - OpenAI stream serializers cover start, tool, usage, finish, and fallback events
-428-2026-07-26T22:27:01.9345250Z   ---
-429-2026-07-26T22:27:01.9345830Z   duration_ms: 0.189833
-430-2026-07-26T22:27:01.9346690Z   type: 'test'
-431-2026-07-26T22:27:01.9347690Z   ...
-432-2026-07-26T22:27:01.9348470Z # Subtest: OpenAI response and chunk fallbacks cover empty content and length finish
-433-2026-07-26T22:27:01.9349550Z ok 41 - OpenAI response and chunk fallbacks cover empty content and length finish
-434-2026-07-26T22:27:01.9349970Z   ---
-435-2026-07-26T22:27:01.9350240Z   duration_ms: 0.237291
-436-2026-07-26T22:27:01.9350490Z   type: 'test'
-437-2026-07-26T22:27:01.9351940Z   ...
-438:2026-07-26T22:27:01.9352840Z # Subtest: Anthropic conversion covers empty content, tool errors, unknown blocks, and fallback stops
-439:2026-07-26T22:27:01.9353520Z ok 42 - Anthropic conversion covers empty content, tool errors, unknown blocks, and fallback stops
-440-2026-07-26T22:27:01.9354690Z   ---
-441-2026-07-26T22:27:01.9355250Z   duration_ms: 0.227667
-442-2026-07-26T22:27:01.9355800Z   type: 'test'
-443-2026-07-26T22:27:01.9357080Z   ...
-444-2026-07-26T22:27:01.9358460Z # Subtest: Anthropic stream covers start, first tool without delta, usage, and ignored events
-445-2026-07-26T22:27:01.9359930Z ok 43 - Anthropic stream covers start, first tool without delta, usage, and ignored events
-446-2026-07-26T22:27:01.9360370Z   ---
-447-2026-07-26T22:27:01.9360570Z   duration_ms: 0.162583
-448-2026-07-26T22:27:01.9367850Z   type: 'test'
-449-2026-07-26T22:27:01.9368700Z   ...
-450-2026-07-26T22:27:01.9369310Z # Subtest: Gemini payload covers URL images, assistant tools, absent generation values, and stop sequences
-451-2026-07-26T22:27:01.9370290Z ok 44 - Gemini payload covers URL images, assistant tools, absent generation values, and stop sequences
-452-2026-07-26T22:27:01.9370690Z   ---
-453-2026-07-26T22:27:01.9371180Z   duration_ms: 0.19
-454-2026-07-26T22:27:01.9372030Z   type: 'test'
-455-2026-07-26T22:27:01.9372610Z   ...
-456-2026-07-26T22:27:01.9373650Z # Subtest: Gemini response covers unknown finish and no candidates
-457-2026-07-26T22:27:01.9374470Z ok 45 - Gemini response covers unknown finish and no candidates
-458-2026-07-26T22:27:01.9374970Z   ---
-459-2026-07-26T22:27:01.9375610Z   duration_ms: 0.232542
-460-2026-07-26T22:27:01.9376140Z   type: 'test'
-461-2026-07-26T22:27:01.9376340Z   ...
-462-2026-07-26T22:27:01.9377170Z # Subtest: account limits use callback-backed observations and period boundaries
-463-2026-07-26T22:27:01.9377740Z ok 46 - account limits use callback-backed observations and period boundaries
-464-2026-07-26T22:27:01.9379850Z   ---
-465-2026-07-26T22:27:01.9380100Z   duration_ms: 0.855
-466-2026-07-26T22:27:01.9380460Z   type: 'test'
-467-2026-07-26T22:27:01.9380670Z   ...
-468-2026-07-26T22:27:01.9381140Z # Subtest: strategy branches cover sticky without key, prune, and weighted final fallback
-469-2026-07-26T22:27:01.9381820Z ok 47 - strategy branches cover sticky without key, prune, and weighted final fallback
-470-2026-07-26T22:27:01.9382180Z   ---
-471-2026-07-26T22:27:01.9382790Z   duration_ms: 7.736416
-472-2026-07-26T22:27:01.9383670Z   type: 'test'
-473-2026-07-26T22:27:01.9383970Z   ...
-474:2026-07-26T22:27:01.9384600Z # Subtest: error classification covers quota, retry-after clamp, network status, and invalid retry dates
-475:2026-07-26T22:27:01.9385360Z ok 48 - error classification covers quota, retry-after clamp, network status, and invalid retry dates
-476-2026-07-26T22:27:01.9385950Z   ---
-477-2026-07-26T22:27:01.9386150Z   duration_ms: 0.443667
-478-2026-07-26T22:27:01.9386370Z   type: 'test'
-479-2026-07-26T22:27:01.9386570Z   ...
-480-2026-07-26T22:27:01.9387000Z # Subtest: usage service uses repository fallbacks when summary and csv are absent
-481-2026-07-26T22:27:01.9387610Z ok 49 - usage service uses repository fallbacks when summary and csv are absent
-482-2026-07-26T22:27:01.9387980Z   ---
-483-2026-07-26T22:27:01.9388180Z   duration_ms: 0.324959
-484-2026-07-26T22:27:01.9388410Z   type: 'test'
-485-2026-07-26T22:27:01.9388610Z   ...
-486-2026-07-26T22:27:01.9389000Z # Subtest: routing stream reports no route when every provider is disabled
-487-2026-07-26T22:27:01.9389530Z ok 50 - routing stream reports no route when every provider is disabled
-488-2026-07-26T22:27:01.9391000Z   ---
-489-2026-07-26T22:27:01.9391200Z   duration_ms: 0.814417
-490-2026-07-26T22:27:01.9391430Z   type: 'test'
-491-2026-07-26T22:27:01.9391620Z   ...
-492-2026-07-26T22:27:01.9415860Z # Subtest: default config is loopback-only and valid
-493-2026-07-26T22:27:01.9475650Z ok 51 - default config is loopback-only and valid
-494-2026-07-26T22:27:01.9476010Z   ---
-495-2026-07-26T22:27:01.9476230Z   duration_ms: 0.942416
-496-2026-07-26T22:27:01.9476460Z   type: 'test'
-497-2026-07-26T22:27:01.9476660Z   ...
-498-2026-07-26T22:27:01.9476980Z # Subtest: provider defaults are useful and independent
-499-2026-07-26T22:27:01.9477400Z ok 52 - provider defaults are useful and independent
-500-2026-07-26T22:27:01.9477690Z   ---
-501-2026-07-26T22:27:01.9478340Z   duration_ms: 0.817083
-502-2026-07-26T22:27:01.9478600Z   type: 'test'
-503-2026-07-26T22:27:01.9478800Z   ...
-504-2026-07-26T22:27:01.9479120Z # Subtest: account coerces priority and positive weight
-505-2026-07-26T22:27:01.9479530Z ok 53 - account coerces priority and positive weight
-506-2026-07-26T22:27:01.9479810Z   ---
-507-2026-07-26T22:27:01.9480010Z   duration_ms: 0.148667
-508-2026-07-26T22:27:01.9480240Z   type: 'test'
-509-2026-07-26T22:27:01.9480450Z   ...
-510-2026-07-26T22:27:01.9480720Z # Subtest: account normalizes local limits
-511-2026-07-26T22:27:01.9481060Z ok 54 - account normalizes local limits
-512-2026-07-26T22:27:01.9481310Z   ---
-513-2026-07-26T22:27:01.9481510Z   duration_ms: 0.079292
-514-2026-07-26T22:27:01.9481720Z   type: 'test'
-515-2026-07-26T22:27:01.9481920Z   ...
-516-2026-07-26T22:27:01.9482220Z # Subtest: sensitive provider headers are discarded
-517-2026-07-26T22:27:01.9482660Z ok 55 - sensitive provider headers are discarded
-518-2026-07-26T22:27:01.9482950Z   ---
-519-2026-07-26T22:27:01.9483140Z   duration_ms: 0.269917
-520-2026-07-26T22:27:01.9483370Z   type: 'test'
-521-2026-07-26T22:27:01.9483560Z   ...
-522-2026-07-26T22:27:01.9483850Z # Subtest: normalization merges nested defaults
-523-2026-07-26T22:27:01.9484230Z ok 56 - normalization merges nested defaults
-524-2026-07-26T22:27:01.9484470Z   ---
-525-2026-07-26T22:27:01.9484640Z   duration_ms: 0.127584
-526-2026-07-26T22:27:01.9484860Z   type: 'test'
-527-2026-07-26T22:27:01.9485020Z   ...
-528-2026-07-26T22:27:01.9485310Z # Subtest: validation rejects non-loopback binding
-529-2026-07-26T22:27:01.9485940Z ok 57 - validation rejects non-loopback binding
-530-2026-07-26T22:27:01.9486230Z   ---
-531-2026-07-26T22:27:01.9486510Z   duration_ms: 0.270833
-532-2026-07-26T22:27:01.9486720Z   type: 'test'
-533-2026-07-26T22:27:01.9486910Z   ...
-534-2026-07-26T22:27:01.9487170Z # Subtest: validation rejects unsafe ports
-535-2026-07-26T22:27:01.9487510Z ok 58 - validation rejects unsafe ports
-536-2026-07-26T22:27:01.9487760Z   ---
-537-2026-07-26T22:27:01.9487990Z   duration_ms: 0.141708
-538-2026-07-26T22:27:01.9488190Z   type: 'test'
-539-2026-07-26T22:27:01.9488360Z   ...
-540-2026-07-26T22:27:01.9488630Z # Subtest: validation rejects unknown strategies
-541-2026-07-26T22:27:01.9488980Z ok 59 - validation rejects unknown strategies
-542-2026-07-26T22:27:01.9489340Z   ---
-543-2026-07-26T22:27:01.9489760Z   duration_ms: 0.082875
-544-2026-07-26T22:27:01.9490000Z   type: 'test'
-545-2026-07-26T22:27:01.9490190Z   ...
-546-2026-07-26T22:27:01.9490480Z # Subtest: validation rejects duplicate provider ids
-547-2026-07-26T22:27:01.9490960Z ok 60 - validation rejects duplicate provider ids
-548-2026-07-26T22:27:01.9491890Z   ---
-549-2026-07-26T22:27:01.9492050Z   duration_ms: 0.098041
-550-2026-07-26T22:27:01.9492260Z   type: 'test'
-551-2026-07-26T22:27:01.9492430Z   ...
-552-2026-07-26T22:27:01.9492810Z # Subtest: validation rejects duplicate account ids across providers
-553-2026-07-26T22:27:01.9493320Z ok 61 - validation rejects duplicate account ids across providers
-554-2026-07-26T22:27:01.9493640Z   ---
-555-2026-07-26T22:27:01.9493840Z   duration_ms: 0.116584
-556-2026-07-26T22:27:01.9494070Z   type: 'test'
-557-2026-07-26T22:27:01.9494270Z   ...
-558-2026-07-26T22:27:01.9494640Z # Subtest: validation rejects aliases referencing a missing provider
-559-2026-07-26T22:27:01.9495140Z ok 62 - validation rejects aliases referencing a missing provider
-560-2026-07-26T22:27:01.9495460Z   ---
-561-2026-07-26T22:27:01.9495660Z   duration_ms: 0.130667
-562-2026-07-26T22:27:01.9495880Z   type: 'test'
-563-2026-07-26T22:27:01.9496320Z   ...
-564-2026-07-26T22:27:01.9496620Z # Subtest: public config redacts secret references
-565-2026-07-26T22:27:01.9497010Z ok 63 - public config redacts secret references
---
-780-2026-07-26T22:27:02.0201360Z # Subtest: sticky reuses a healthy route
-781-2026-07-26T22:27:02.0201680Z ok 99 - sticky reuses a healthy route
-782-2026-07-26T22:27:02.0201930Z   ---
-783-2026-07-26T22:27:02.0202110Z   duration_ms: 0.150333
-784-2026-07-26T22:27:02.0202320Z   type: 'test'
-785-2026-07-26T22:27:02.0202550Z   ...
-786-2026-07-26T22:27:02.0202870Z # Subtest: sticky expires and selects again
-787-2026-07-26T22:27:02.0203210Z ok 100 - sticky expires and selects again
-788-2026-07-26T22:27:02.0203450Z   ---
-789-2026-07-26T22:27:02.0203650Z   duration_ms: 0.055709
-790-2026-07-26T22:27:02.0204360Z   type: 'test'
-791-2026-07-26T22:27:02.0204570Z   ...
-792-2026-07-26T22:27:02.0204900Z # Subtest: unknown strategy is rejected
-793-2026-07-26T22:27:02.0205480Z ok 101 - unknown strategy is rejected
-794-2026-07-26T22:27:02.0205750Z   ---
-795-2026-07-26T22:27:02.0205940Z   duration_ms: 0.250292
-796-2026-07-26T22:27:02.0206150Z   type: 'test'
-797-2026-07-26T22:27:02.0206350Z   ...
-798-2026-07-26T22:27:02.0206610Z # Subtest: empty candidate list is rejected
-799-2026-07-26T22:27:02.0206960Z ok 102 - empty candidate list is rejected
-800-2026-07-26T22:27:02.0207200Z   ---
-801-2026-07-26T22:27:02.0207520Z   duration_ms: 0.063667
-802-2026-07-26T22:27:02.0207910Z   type: 'test'
-803-2026-07-26T22:27:02.0208080Z   ...
-804-2026-07-26T22:27:02.0208400Z # Subtest: retry-after parses seconds and dates
-805-2026-07-26T22:27:02.0208770Z ok 103 - retry-after parses seconds and dates
-806-2026-07-26T22:27:02.0209030Z   ---
-807-2026-07-26T22:27:02.0209220Z   duration_ms: 0.089333
-808-2026-07-26T22:27:02.0209430Z   type: 'test'
-809-2026-07-26T22:27:02.0209620Z   ...
-810:2026-07-26T22:27:02.0209910Z # Subtest: classification preserves upstream errors
-811:2026-07-26T22:27:02.0210300Z ok 104 - classification preserves upstream errors
-812-2026-07-26T22:27:02.0210580Z   ---
-813-2026-07-26T22:27:02.0210760Z   duration_ms: 0.183459
-814-2026-07-26T22:27:02.0210980Z   type: 'test'
-815-2026-07-26T22:27:02.0211160Z   ...
-816:2026-07-26T22:27:02.0211520Z # Subtest: authentication errors request attention and may fail over
-817:2026-07-26T22:27:02.0212020Z ok 105 - authentication errors request attention and may fail over
-818-2026-07-26T22:27:02.0212330Z   ---
-819-2026-07-26T22:27:02.0212520Z   duration_ms: 0.078834
-820-2026-07-26T22:27:02.0212990Z   type: 'test'
-821-2026-07-26T22:27:02.0213180Z   ...
-822-2026-07-26T22:27:02.0213430Z # Subtest: rate limits honor retry-after
-823-2026-07-26T22:27:02.0213760Z ok 106 - rate limits honor retry-after
-824-2026-07-26T22:27:02.0214000Z   ---
-825-2026-07-26T22:27:02.0214190Z   duration_ms: 0.118
-826-2026-07-26T22:27:02.0214360Z   type: 'test'
-827-2026-07-26T22:27:02.0214530Z   ...
-828-2026-07-26T22:27:02.0214810Z # Subtest: server failures use exponential cooldown
-829-2026-07-26T22:27:02.0215180Z ok 107 - server failures use exponential cooldown
-830-2026-07-26T22:27:02.0215610Z   ---
-831-2026-07-26T22:27:02.0215970Z   duration_ms: 0.128542
-832-2026-07-26T22:27:02.0216290Z   type: 'test'
-833-2026-07-26T22:27:02.0216480Z   ...
-834-2026-07-26T22:27:02.0216760Z # Subtest: client cancellation is not retryable
-835-2026-07-26T22:27:02.0217130Z ok 108 - client cancellation is not retryable
-836-2026-07-26T22:27:02.0217390Z   ---
-837-2026-07-26T22:27:02.0217570Z   duration_ms: 0.055375
-838-2026-07-26T22:27:02.0217780Z   type: 'test'
-839-2026-07-26T22:27:02.0217970Z   ...
-840-2026-07-26T22:27:02.0218280Z # Subtest: network and timeout failures are retryable
-841-2026-07-26T22:27:02.0218680Z ok 109 - network and timeout failures are retryable
-842-2026-07-26T22:27:02.0219030Z   ---
-843-2026-07-26T22:27:02.0219380Z   duration_ms: 0.171875
-844-2026-07-26T22:27:02.0219590Z   type: 'test'
-845-2026-07-26T22:27:02.0219740Z   ...
-846:2026-07-26T22:27:02.0220010Z # Subtest: ordinary 400 errors are not retryable
-847:2026-07-26T22:27:02.0220370Z ok 110 - ordinary 400 errors are not retryable
-848-2026-07-26T22:27:02.0220630Z   ---
-849-2026-07-26T22:27:02.0220830Z   duration_ms: 0.056709
-850-2026-07-26T22:27:02.0221860Z   type: 'test'
-851-2026-07-26T22:27:02.0222030Z   ...
-852-2026-07-26T22:27:02.0222310Z # Subtest: limits report every exceeded budget
-853-2026-07-26T22:27:02.0222680Z ok 111 - limits report every exceeded budget
-854-2026-07-26T22:27:02.0222930Z   ---
-855-2026-07-26T22:27:02.0223090Z   duration_ms: 0.223334
-856-2026-07-26T22:27:02.0223330Z   type: 'test'
-857-2026-07-26T22:27:02.0223540Z   ...
-858-2026-07-26T22:27:02.0223790Z # Subtest: unset limits allow traffic
-859-2026-07-26T22:27:02.0224120Z ok 112 - unset limits allow traffic
-860-2026-07-26T22:27:02.0224360Z   ---
-861-2026-07-26T22:27:02.0224550Z   duration_ms: 0.249167
-862-2026-07-26T22:27:02.0224770Z   type: 'test'
-863-2026-07-26T22:27:02.0224970Z   ...
-864-2026-07-26T22:27:02.0225440Z # Subtest: routing candidates exclude disabled, cooldown, attention, model mismatch, and limits
-865-2026-07-26T22:27:02.0226310Z ok 113 - routing candidates exclude disabled, cooldown, attention, model mismatch, and limits
-866-2026-07-26T22:27:02.0226720Z   ---
-867-2026-07-26T22:27:02.0226920Z   duration_ms: 1.029417
-868-2026-07-26T22:27:02.0227380Z   type: 'test'
-869-2026-07-26T22:27:02.0227600Z   ...
-870-2026-07-26T22:27:02.0227920Z # Subtest: routing plan avoids retrying the same route
-871-2026-07-26T22:27:02.0228340Z ok 114 - routing plan avoids retrying the same route
-872-2026-07-26T22:27:02.0228630Z   ---
-873-2026-07-26T22:27:02.0228830Z   duration_ms: 0.299875
-874-2026-07-26T22:27:02.0229050Z   type: 'test'
-875-2026-07-26T22:27:02.0229250Z   ...
-876-2026-07-26T22:27:02.0229530Z # Subtest: provider max attempts is respected
-877-2026-07-26T22:27:02.0229890Z ok 115 - provider max attempts is respected
-878-2026-07-26T22:27:02.0230160Z   ---
-879-2026-07-26T22:27:02.0231840Z   duration_ms: 0.141625
-880-2026-07-26T22:27:02.0232110Z   type: 'test'
-881-2026-07-26T22:27:02.0232320Z   ...
-882-2026-07-26T22:27:02.0580810Z # Subtest: provider-specific exact pricing wins
-883-2026-07-26T22:27:02.0603610Z ok 116 - provider-specific exact pricing wins
-884-2026-07-26T22:27:02.0624100Z   ---
-885-2026-07-26T22:27:02.0671820Z   duration_ms: 0.76925
-886-2026-07-26T22:27:02.0672160Z   type: 'test'
-887-2026-07-26T22:27:02.0672760Z   ...
-888-2026-07-26T22:27:02.0679910Z # Subtest: specific model glob wins over broad type rule
-889-2026-07-26T22:27:02.0680990Z ok 117 - specific model glob wins over broad type rule
-890-2026-07-26T22:27:02.0681300Z   ---
-891-2026-07-26T22:27:02.0681450Z   duration_ms: 0.176084
-892-2026-07-26T22:27:02.0681650Z   type: 'test'
-893-2026-07-26T22:27:02.0681810Z   ...
-894-2026-07-26T22:27:02.0682060Z # Subtest: no pricing match returns null
-895-2026-07-26T22:27:02.0682720Z ok 118 - no pricing match returns null
-896-2026-07-26T22:27:02.0682950Z   ---
-897-2026-07-26T22:27:02.0683090Z   duration_ms: 0.067833
-898-2026-07-26T22:27:02.0683420Z   type: 'test'
-899-2026-07-26T22:27:02.0683590Z   ...
-900-2026-07-26T22:27:02.0683920Z # Subtest: newer verification breaks equal specificity ties
-901-2026-07-26T22:27:02.0684370Z ok 119 - newer verification breaks equal specificity ties
-902-2026-07-26T22:27:02.0684650Z   ---
-903-2026-07-26T22:27:02.0684810Z   duration_ms: 7.4895
-904-2026-07-26T22:27:02.0685000Z   type: 'test'
-905-2026-07-26T22:27:02.0685160Z   ...
-906-2026-07-26T22:27:02.0685590Z # Subtest: cost includes input, output, cache read, and cache write independently
-907-2026-07-26T22:27:02.0686200Z ok 120 - cost includes input, output, cache read, and cache write independently
-908-2026-07-26T22:27:02.0686530Z   ---
-909-2026-07-26T22:27:02.0686670Z   duration_ms: 0.127916
-910-2026-07-26T22:27:02.0686830Z   type: 'test'
-911-2026-07-26T22:27:02.0686970Z   ...
-912-2026-07-26T22:27:02.0687180Z # Subtest: unknown pricing is explicit
-913-2026-07-26T22:27:02.0687460Z ok 121 - unknown pricing is explicit
-914-2026-07-26T22:27:02.0687690Z   ---
-915-2026-07-26T22:27:02.0687870Z   duration_ms: 0.494916
-916-2026-07-26T22:27:02.0688060Z   type: 'test'
-917-2026-07-26T22:27:02.0688240Z   ...
-918-2026-07-26T22:27:02.0688530Z # Subtest: usage filters compose across dimensions
-919-2026-07-26T22:27:02.0688930Z ok 122 - usage filters compose across dimensions
-920-2026-07-26T22:27:02.0689150Z   ---
-921-2026-07-26T22:27:02.0689280Z   duration_ms: 0.11925
-922-2026-07-26T22:27:02.0689450Z   type: 'test'
-923-2026-07-26T22:27:02.0689620Z   ...
-924-2026-07-26T22:27:02.0690280Z # Subtest: date filters are inclusive
-925-2026-07-26T22:27:02.0690600Z ok 123 - date filters are inclusive
-926-2026-07-26T22:27:02.0690840Z   ---
-927-2026-07-26T22:27:02.0691010Z   duration_ms: 0.6785
-928-2026-07-26T22:27:02.0691210Z   type: 'test'
-929-2026-07-26T22:27:02.0691390Z   ...
-930-2026-07-26T22:27:02.0691710Z # Subtest: summary aggregates status, tokens, cache, cost, latency
-931-2026-07-26T22:27:02.0692150Z ok 124 - summary aggregates status, tokens, cache, cost, latency
-932-2026-07-26T22:27:02.0692420Z   ---
-933-2026-07-26T22:27:02.0692560Z   duration_ms: 0.173042
-934-2026-07-26T22:27:02.0692720Z   type: 'test'
-935-2026-07-26T22:27:02.0692870Z   ...
-936-2026-07-26T22:27:02.0693070Z # Subtest: summary applies filters
-937-2026-07-26T22:27:02.0693320Z ok 125 - summary applies filters
---
-1044-2026-07-26T22:27:02.1728320Z # Subtest: SQLite where builder handles no filters
-1045-2026-07-26T22:27:02.1728700Z ok 143 - SQLite where builder handles no filters
-1046-2026-07-26T22:27:02.1728970Z   ---
-1047-2026-07-26T22:27:02.1729760Z   duration_ms: 0.053375
-1048-2026-07-26T22:27:02.1730060Z   type: 'test'
-1049-2026-07-26T22:27:02.1730250Z   ...
-1050-2026-07-26T22:27:02.1730510Z # Subtest: HTTP bearer parsing is strict
-1051-2026-07-26T22:27:02.1730830Z ok 144 - HTTP bearer parsing is strict
-1052-2026-07-26T22:27:02.1731080Z   ---
-1053-2026-07-26T22:27:02.1731260Z   duration_ms: 0.087125
-1054-2026-07-26T22:27:02.1731480Z   type: 'test'
-1055-2026-07-26T22:27:02.1731660Z   ...
-1056-2026-07-26T22:27:02.1732050Z # Subtest: constant time string comparison handles missing and unequal values
-1057-2026-07-26T22:27:02.1732610Z ok 145 - constant time string comparison handles missing and unequal values
-1058-2026-07-26T22:27:02.1732950Z   ---
-1059-2026-07-26T22:27:02.1733100Z   duration_ms: 0.073125
-1060-2026-07-26T22:27:02.1733300Z   type: 'test'
-1061-2026-07-26T22:27:02.1733510Z   ...
-1062-2026-07-26T22:27:02.1733900Z # Subtest: model discovery includes aliases and exact provider model ids only
-1063-2026-07-26T22:27:02.1734440Z ok 146 - model discovery includes aliases and exact provider model ids only
-1064-2026-07-26T22:27:02.1734760Z   ---
-1065-2026-07-26T22:27:02.1734950Z   duration_ms: 0.177291
-1066-2026-07-26T22:27:02.1735160Z   type: 'test'
-1067-2026-07-26T22:27:02.1735350Z   ...
-1068-2026-07-26T22:27:02.1735670Z # Subtest: token estimation is positive and size-sensitive
-1069-2026-07-26T22:27:02.1736090Z ok 147 - token estimation is positive and size-sensitive
-1070-2026-07-26T22:27:02.1736380Z   ---
-1071-2026-07-26T22:27:02.1736560Z   duration_ms: 0.0955
-1072-2026-07-26T22:27:02.1736770Z   type: 'test'
-1073-2026-07-26T22:27:02.1736950Z   ...
-1074:2026-07-26T22:27:02.1737290Z # Subtest: streaming protocol errors use native wire envelopes
-1075:2026-07-26T22:27:02.1737740Z ok 148 - streaming protocol errors use native wire envelopes
-1076-2026-07-26T22:27:02.1738030Z   ---
-1077-2026-07-26T22:27:02.1738210Z   duration_ms: 0.144875
-1078-2026-07-26T22:27:02.1738430Z   type: 'test'
-1079-2026-07-26T22:27:02.1738610Z   ...
-1080-2026-07-26T22:27:02.1824950Z # Subtest: SSE encoder and parser support event names and multiline data
-1081-2026-07-26T22:27:02.1855980Z ok 149 - SSE encoder and parser support event names and multiline data
-1082-2026-07-26T22:27:02.1859020Z   ---
-1083-2026-07-26T22:27:02.1859240Z   duration_ms: 2.535292
-1084-2026-07-26T22:27:02.1859470Z   type: 'test'
-1085-2026-07-26T22:27:02.1859650Z   ...
-1086-2026-07-26T22:27:02.1860530Z # Subtest: SSE parser flushes a final unterminated frame
-1087-2026-07-26T22:27:02.1861010Z ok 150 - SSE parser flushes a final unterminated frame
-1088-2026-07-26T22:27:02.1861300Z   ---
-1089-2026-07-26T22:27:02.1861480Z   duration_ms: 0.473
-1090-2026-07-26T22:27:02.1861690Z   type: 'test'
-1091-2026-07-26T22:27:02.1861880Z   ...
-1092-2026-07-26T22:27:02.1862200Z # Subtest: auth headers place secrets only in authorization
-1093-2026-07-26T22:27:02.1862640Z ok 151 - auth headers place secrets only in authorization
-1094-2026-07-26T22:27:02.1862930Z   ---
-1095-2026-07-26T22:27:02.1863120Z   duration_ms: 0.604333
-1096-2026-07-26T22:27:02.1863330Z   type: 'test'
-1097-2026-07-26T22:27:02.1863520Z   ...
-1098-2026-07-26T22:27:02.1863820Z # Subtest: fetch helper returns successful responses
-1099-2026-07-26T22:27:02.1864200Z ok 152 - fetch helper returns successful responses
-1100-2026-07-26T22:27:02.1864480Z   ---
-1101-2026-07-26T22:27:02.1864670Z   duration_ms: 12.88275
-1102-2026-07-26T22:27:02.1864880Z   type: 'test'
-1103-2026-07-26T22:27:02.1865060Z   ...
-1104-2026-07-26T22:27:02.1865400Z # Subtest: fetch helper maps upstream status and retry-after
-1105-2026-07-26T22:27:02.1865850Z ok 153 - fetch helper maps upstream status and retry-after
-1106-2026-07-26T22:27:02.1866140Z   ---
-1107-2026-07-26T22:27:02.1866320Z   duration_ms: 0.78025
-1108-2026-07-26T22:27:02.1866540Z   type: 'test'
-1109-2026-07-26T22:27:02.1866720Z   ...
-1110-2026-07-26T22:27:02.1867040Z # Subtest: fetch helper maps client cancellation distinctly
-1111-2026-07-26T22:27:02.1867470Z ok 154 - fetch helper maps client cancellation distinctly
-1112-2026-07-26T22:27:02.1868730Z   ---
-1113-2026-07-26T22:27:02.1868920Z   duration_ms: 0.309292
-1114-2026-07-26T22:27:02.1869130Z   type: 'test'
-1115-2026-07-26T22:27:02.1869320Z   ...
-1116-2026-07-26T22:27:02.1869610Z # Subtest: OpenAI adapter executes chat completions
-1117-2026-07-26T22:27:02.1870000Z ok 155 - OpenAI adapter executes chat completions
-1118-2026-07-26T22:27:02.1870940Z   ---
-1119-2026-07-26T22:27:02.1871170Z   duration_ms: 0.666583
-1120-2026-07-26T22:27:02.1871410Z   type: 'test'
-1121-2026-07-26T22:27:02.1871610Z   ...
-1122-2026-07-26T22:27:02.1871960Z # Subtest: OpenAI adapter streams canonical events
-1123-2026-07-26T22:27:02.1916390Z ok 156 - OpenAI adapter streams canonical events
-1124-2026-07-26T22:27:02.1916710Z   ---
-1125-2026-07-26T22:27:02.1916930Z   duration_ms: 1.375708
-1126-2026-07-26T22:27:02.1917180Z   type: 'test'
-1127-2026-07-26T22:27:02.1917380Z   ...
-1128-2026-07-26T22:27:02.1917730Z # Subtest: Anthropic adapter executes native message payloads
-1129-2026-07-26T22:27:02.1918240Z ok 157 - Anthropic adapter executes native message payloads
-1130-2026-07-26T22:27:02.1918550Z   ---
-1131-2026-07-26T22:27:02.1918740Z   duration_ms: 0.453125
-1132-2026-07-26T22:27:02.1918960Z   type: 'test'
-1133-2026-07-26T22:27:02.1919150Z   ...
-1134-2026-07-26T22:27:02.1919440Z # Subtest: Anthropic adapter streams text and usage
-1135-2026-07-26T22:27:02.1919830Z ok 158 - Anthropic adapter streams text and usage
-1136-2026-07-26T22:27:02.1920100Z   ---
-1137-2026-07-26T22:27:02.1920290Z   duration_ms: 0.340959
-1138-2026-07-26T22:27:02.1920500Z   type: 'test'
-1139-2026-07-26T22:27:02.1920680Z   ...
-1140-2026-07-26T22:27:02.1921060Z # Subtest: Gemini adapter uses key query and native response conversion
-1141-2026-07-26T22:27:02.1921580Z ok 159 - Gemini adapter uses key query and native response conversion
-1142-2026-07-26T22:27:02.1921900Z   ---
-1143-2026-07-26T22:27:02.1922080Z   duration_ms: 0.457458
-1144-2026-07-26T22:27:02.1922290Z   type: 'test'
-1145-2026-07-26T22:27:02.1922480Z   ...
-1146-2026-07-26T22:27:02.1922740Z # Subtest: Gemini adapter streams SSE chunks
-1147-2026-07-26T22:27:02.1923090Z ok 160 - Gemini adapter streams SSE chunks
-1148-2026-07-26T22:27:02.1923350Z   ---
-1149-2026-07-26T22:27:02.1923540Z   duration_ms: 0.843125
-1150-2026-07-26T22:27:02.1923760Z   type: 'test'
-1151-2026-07-26T22:27:02.1923940Z   ...
-1152-2026-07-26T22:27:02.1924300Z # Subtest: command adapter exchanges JSON lines and secret environment
-1153-2026-07-26T22:27:02.1924800Z ok 161 - command adapter exchanges JSON lines and secret environment
-1154-2026-07-26T22:27:02.1925120Z   ---
-1155-2026-07-26T22:27:02.1925300Z   duration_ms: 45.338334
-1156-2026-07-26T22:27:02.1925520Z   type: 'test'
-1157-2026-07-26T22:27:02.1925700Z   ...
-1158-2026-07-26T22:27:02.2153490Z # Subtest: command adapter reports nonzero exits
-1159-2026-07-26T22:27:02.2187340Z ok 162 - command adapter reports nonzero exits
-1160-2026-07-26T22:27:02.2187690Z   ---
-1161-2026-07-26T22:27:02.2187900Z   duration_ms: 33.278792
-1162-2026-07-26T22:27:02.2188120Z   type: 'test'
-1163-2026-07-26T22:27:02.2188310Z   ...
-1164-2026-07-26T22:27:02.2188700Z # Subtest: command adapter requires an explicit executable
-1165-2026-07-26T22:27:02.2189140Z ok 163 - command adapter requires an explicit executable
---
-1212-2026-07-26T22:27:02.5374770Z # Subtest: the renderer uses pinned IBM Plex packages without the retired presentation dependencies
-1213-2026-07-26T22:27:02.5375770Z ok 171 - the renderer uses pinned IBM Plex packages without the retired presentation dependencies
-1214-2026-07-26T22:27:02.5376280Z   ---
-1215-2026-07-26T22:27:02.5376530Z   duration_ms: 3.298166
-1216-2026-07-26T22:27:02.5376790Z   type: 'test'
-1217-2026-07-26T22:27:02.5377030Z   ...
-1218-2026-07-26T22:27:02.5377480Z # Subtest: desktop geometry follows the shared spacing and responsive contract
-1219-2026-07-26T22:27:02.5378090Z ok 172 - desktop geometry follows the shared spacing and responsive contract
-1220-2026-07-26T22:27:02.5378470Z   ---
-1221-2026-07-26T22:27:02.5378700Z   duration_ms: 1.391708
-1222-2026-07-26T22:27:02.5378960Z   type: 'test'
-1223-2026-07-26T22:27:02.5379240Z   ...
-1224-2026-07-26T22:27:02.5380050Z # Subtest: the website presents implemented facts instead of fabricated product telemetry
-1225-2026-07-26T22:27:02.5380780Z ok 173 - the website presents implemented facts instead of fabricated product telemetry
-1226-2026-07-26T22:27:02.5381190Z   ---
-1227-2026-07-26T22:27:02.5381420Z   duration_ms: 1.004583
-1228-2026-07-26T22:27:02.5381680Z   type: 'test'
-1229-2026-07-26T22:27:02.5381910Z   ...
-1230-2026-07-26T22:27:02.5382410Z # Subtest: the interface contract is documented and linked from the public documentation index
-1231-2026-07-26T22:27:02.5383120Z ok 174 - the interface contract is documented and linked from the public documentation index
-1232-2026-07-26T22:27:02.5383560Z   ---
-1233-2026-07-26T22:27:02.5383790Z   duration_ms: 0.821459
-1234-2026-07-26T22:27:02.5384050Z   type: 'test'
-1235-2026-07-26T22:27:02.5384280Z   ...
-1236-2026-07-26T22:27:02.5384700Z # Subtest: the hero explains the product before presenting calls to action
-1237-2026-07-26T22:27:02.5385270Z ok 175 - the hero explains the product before presenting calls to action
-1238-2026-07-26T22:27:02.5385640Z   ---
-1239-2026-07-26T22:27:02.5385870Z   duration_ms: 3.5415
-1240-2026-07-26T22:27:02.5386110Z   type: 'test'
-1241-2026-07-26T22:27:02.5386350Z   ...
-1242:2026-07-26T22:27:02.5386840Z # Subtest: one balanced calendar-refresh icon is used across website, desktop, and packaging
-1243:2026-07-26T22:27:02.5387550Z ok 176 - one balanced calendar-refresh icon is used across website, desktop, and packaging
-1244-2026-07-26T22:27:02.5388450Z   ---
-1245-2026-07-26T22:27:02.5388870Z   duration_ms: 3.593333
-1246-2026-07-26T22:27:02.5389680Z   type: 'test'
-1247-2026-07-26T22:27:02.5389940Z   ...
-1248-2026-07-26T22:27:02.5390470Z # Subtest: website and desktop motion are purposeful and respect reduced-motion preferences
-1249-2026-07-26T22:27:02.5391280Z ok 177 - website and desktop motion are purposeful and respect reduced-motion preferences
-1250-2026-07-26T22:27:02.5392110Z   ---
-1251-2026-07-26T22:27:02.5392370Z   duration_ms: 1.38925
-1252-2026-07-26T22:27:02.5392790Z   type: 'test'
-1253-2026-07-26T22:27:02.5393880Z   ...
-1254:2026-07-26T22:27:02.5394430Z # Subtest: the social preview and documentation contract use the finished icon and motion rules
-1255:2026-07-26T22:27:02.5395240Z ok 178 - the social preview and documentation contract use the finished icon and motion rules
-1256-2026-07-26T22:27:02.5395620Z   ---
-1257-2026-07-26T22:27:02.5395760Z   duration_ms: 1.311958
-1258-2026-07-26T22:27:02.5395920Z   type: 'test'
-1259-2026-07-26T22:27:02.5396060Z   ...
-1260-2026-07-26T22:27:02.5396400Z # Subtest: polling forms use dirty-aware drafts and mutations report success
-1261-2026-07-26T22:27:02.5396930Z ok 179 - polling forms use dirty-aware drafts and mutations report success
-1262-2026-07-26T22:27:02.5397210Z   ---
-1263-2026-07-26T22:27:02.5397360Z   duration_ms: 4.174084
-1264-2026-07-26T22:27:02.5397530Z   type: 'test'
-1265-2026-07-26T22:27:02.5397670Z   ...
-1266-2026-07-26T22:27:02.5397980Z # Subtest: usage interaction handles failures and keyboard selection
-1267-2026-07-26T22:27:02.5398810Z ok 180 - usage interaction handles failures and keyboard selection
-1268-2026-07-26T22:27:02.5399080Z   ---
-1269-2026-07-26T22:27:02.5399230Z   duration_ms: 0.589375
-1270-2026-07-26T22:27:02.5399410Z   type: 'test'
-1271-2026-07-26T22:27:02.5399560Z   ...
-1272-2026-07-26T22:27:02.5399930Z # Subtest: site interaction and generated links remain safe and accessible
-1273-2026-07-26T22:27:02.5400550Z ok 181 - site interaction and generated links remain safe and accessible
-1274-2026-07-26T22:27:02.5400930Z   ---
-1275-2026-07-26T22:27:02.5401090Z   duration_ms: 1.420542
-1276-2026-07-26T22:27:02.5401290Z   type: 'test'
-1277-2026-07-26T22:27:02.5401450Z   ...
-1278-2026-07-26T22:27:02.5401870Z # Subtest: desktop status and compact responsive controls retain explicit states
-1279-2026-07-26T22:27:02.5402470Z ok 182 - desktop status and compact responsive controls retain explicit states
-1280-2026-07-26T22:27:02.5402800Z   ---
-1281-2026-07-26T22:27:02.5402940Z   duration_ms: 0.743542
-1282-2026-07-26T22:27:02.5403210Z   type: 'test'
-1283-2026-07-26T22:27:02.5403660Z   ...
-1284-2026-07-26T22:27:02.5404150Z # Subtest: temporary completion machinery is absent from the publishable branch
-1285-2026-07-26T22:27:02.5405080Z ok 183 - temporary completion machinery is absent from the publishable branch
-1286-2026-07-26T22:27:02.5405460Z   ---
-1287-2026-07-26T22:27:02.5405620Z   duration_ms: 0.847458
-1288-2026-07-26T22:27:02.5405790Z   type: 'test'
-1289-2026-07-26T22:27:02.5405930Z   ...
-1290-2026-07-26T22:27:02.5406260Z # Subtest: package metadata identifies the current desktop application
-1291-2026-07-26T22:27:02.5406730Z ok 184 - package metadata identifies the current desktop application
-1292-2026-07-26T22:27:02.5407000Z   ---
-1293-2026-07-26T22:27:02.5407140Z   duration_ms: 3.260458
-1294-2026-07-26T22:27:02.5407320Z   type: 'test'
-1295-2026-07-26T22:27:02.5407450Z   ...
-1296-2026-07-26T22:27:02.5407730Z # Subtest: legacy and temporary repository roots are absent
-1297-2026-07-26T22:27:02.5408120Z ok 185 - legacy and temporary repository roots are absent
-1298-2026-07-26T22:27:02.5408360Z   ---
-1299-2026-07-26T22:27:02.5408500Z   duration_ms: 1.31425
-1300-2026-07-26T22:27:02.5408670Z   type: 'test'
-1301-2026-07-26T22:27:02.5408810Z   ...
-1302-2026-07-26T22:27:02.5409100Z # Subtest: renderer stays behind the preload capability boundary
-1303-2026-07-26T22:27:02.5409520Z ok 186 - renderer stays behind the preload capability boundary
-1304-2026-07-26T22:27:02.5409790Z   ---
-1305-2026-07-26T22:27:02.5409940Z   duration_ms: 1.036
-1306-2026-07-26T22:27:02.5410100Z   type: 'test'
-1307-2026-07-26T22:27:02.5410240Z   ...
-1308-2026-07-26T22:27:02.5410530Z # Subtest: Electron window is sandboxed and context isolated
-1309-2026-07-26T22:27:02.5410920Z ok 187 - Electron window is sandboxed and context isolated
-1310-2026-07-26T22:27:02.5411170Z   ---
-1311-2026-07-26T22:27:02.5411400Z   duration_ms: 0.501333
-1312-2026-07-26T22:27:02.5411570Z   type: 'test'
-1313-2026-07-26T22:27:02.5411710Z   ...
-1314-2026-07-26T22:27:02.5412030Z # Subtest: public documentation covers every supported operating concern
-1315-2026-07-26T22:27:02.5412500Z ok 188 - public documentation covers every supported operating concern
-1316-2026-07-26T22:27:02.5412780Z   ---
-1317-2026-07-26T22:27:02.5412940Z   duration_ms: 0.926625
-1318-2026-07-26T22:27:02.5413130Z   type: 'test'
-1319-2026-07-26T22:27:02.5413270Z   ...
-1320-2026-07-26T22:27:02.5413600Z # Subtest: desktop CI validates and packages all three platforms
-1321-2026-07-26T22:27:02.5414030Z ok 189 - desktop CI validates and packages all three platforms
-1322-2026-07-26T22:27:02.5414290Z   ---
-1323-2026-07-26T22:27:02.5414510Z   duration_ms: 0.463625
-1324-2026-07-26T22:27:02.5414710Z   type: 'test'
-1325-2026-07-26T22:27:02.5414870Z   ...
-1326-2026-07-26T22:27:02.5415220Z # Subtest: CodeQL is least-privilege and documentation hosting is explicit
-1327-2026-07-26T22:27:02.5415720Z ok 190 - CodeQL is least-privilege and documentation hosting is explicit
-1328-2026-07-26T22:27:02.5416840Z   ---
-1329-2026-07-26T22:27:02.5417080Z   duration_ms: 1.378583
-1330-2026-07-26T22:27:02.5417340Z   type: 'test'
-1331-2026-07-26T22:27:02.5417500Z   ...
-1332-2026-07-26T22:27:02.5417990Z # Subtest: release workflow requires a version tag and uploads checksummed artifacts
-1333-2026-07-26T22:27:02.5418650Z ok 191 - release workflow requires a version tag and uploads checksummed artifacts
-1334-2026-07-26T22:27:02.5419030Z   ---
-1335-2026-07-26T22:27:02.5419190Z   duration_ms: 0.47825
-1336-2026-07-26T22:27:02.5419400Z   type: 'test'
-1337-2026-07-26T22:27:02.5419570Z   ...
-1338-2026-07-26T22:27:02.5419940Z # Subtest: public website is local-asset only and links documentation
-1339-2026-07-26T22:27:02.5420490Z ok 192 - public website is local-asset only and links documentation
-1340-2026-07-26T22:27:02.5420770Z   ---
-1341-2026-07-26T22:27:02.5420910Z   duration_ms: 0.583292
-1342-2026-07-26T22:27:02.5421070Z   type: 'test'
-1343-2026-07-26T22:27:02.5421210Z   ...
-1344-2026-07-26T22:27:02.5421440Z # Subtest: repository policy files are present
-1345-2026-07-26T22:27:02.5421760Z ok 193 - repository policy files are present
---
-1350-2026-07-26T22:27:02.5429490Z 1..193
-1351-2026-07-26T22:27:02.5429630Z # tests 193
-1352-2026-07-26T22:27:02.5429770Z # suites 0
-1353-2026-07-26T22:27:02.5429910Z # pass 193
-1354-2026-07-26T22:27:02.5430050Z # fail 0
-1355-2026-07-26T22:27:02.5430180Z # cancelled 0
-1356-2026-07-26T22:27:02.5430330Z # skipped 0
-1357-2026-07-26T22:27:02.5430450Z # todo 0
-1358-2026-07-26T22:27:02.5430960Z # duration_ms 743.352125
-1359-2026-07-26T22:27:02.5431170Z # start of coverage report
-1360-2026-07-26T22:27:02.5431630Z # -------------------------------------------------------------------------------------------------
-1361-2026-07-26T22:27:02.5432120Z # file                                 | line % | branch % | funcs % | uncovered lines
-1362-2026-07-26T22:27:02.5432630Z # -------------------------------------------------------------------------------------------------
-1363-2026-07-26T22:27:02.5433080Z # src                                  |        |          |         | 
-1364-2026-07-26T22:27:02.5433490Z #  application                         |        |          |         | 
-1365-2026-07-26T22:27:02.5434030Z #   provider-configuration-service.js  |  78.45 |    78.13 |   79.17 | 17-22 55-58 60 84-86 90-100
-1366-2026-07-26T22:27:02.5434540Z #   provider-registry.js               | 100.00 |   100.00 |  100.00 | 
-1367-2026-07-26T22:27:02.5435010Z #   proxy-service.js                   |  93.55 |    58.18 |   90.91 | 17-19 64 66-67
-1368-2026-07-26T22:27:02.5435470Z #   routing-service.js                 | 100.00 |    94.29 |  100.00 | 
-1369-2026-07-26T22:27:02.5435900Z #   runtime-state.js                   | 100.00 |    88.89 |  100.00 | 
-1370-2026-07-26T22:27:02.5436350Z #   settings-service.js                |  92.31 |    90.91 |   71.43 | 22-23 50-52
-1371-2026-07-26T22:27:02.5436830Z #   usage-service.js                   |  74.55 |    88.89 |   70.00 | 19-27 44-45 53-55
-1372-2026-07-26T22:27:02.5437260Z #  domain                              |        |          |         | 
-1373-2026-07-26T22:27:02.5437790Z #   config.js                          | 100.00 |    93.16 |  100.00 | 
-1374-2026-07-26T22:27:02.5438190Z #   protocol                           |        |          |         | 
-1375-2026-07-26T22:27:02.5438730Z #    anthropic.js                      | 100.00 |    89.74 |  100.00 | 
-1376-2026-07-26T22:27:02.5439140Z #    canonical.js                      | 100.00 |    92.00 |  100.00 | 
-1377-2026-07-26T22:27:02.5439760Z #    gemini.js                         | 100.00 |    96.67 |  100.00 | 
-1378-2026-07-26T22:27:02.5440310Z #    openai.js                         |  99.18 |    81.08 |  100.00 | 10
-1379-2026-07-26T22:27:02.5440880Z #   routing                            |        |          |         | 
-1380:2026-07-26T22:27:02.5441270Z #    errors.js                         | 100.00 |    95.24 |  100.00 | 
-1381-2026-07-26T22:27:02.5441680Z #    limits.js                         | 100.00 |    96.15 |  100.00 | 
-1382-2026-07-26T22:27:02.5442130Z #    router.js                         | 100.00 |    94.87 |  100.00 | 
-1383-2026-07-26T22:27:02.5442610Z #    strategies.js                     |  98.84 |    72.73 |  100.00 | 43
-1384-2026-07-26T22:27:02.5443140Z #   shared.js                          | 100.00 |    90.91 |  100.00 | 
-1385-2026-07-26T22:27:02.5443580Z #   usage.js                           | 100.00 |    80.00 |  100.00 | 
-1386-2026-07-26T22:27:02.5444090Z # -------------------------------------------------------------------------------------------------
-1387-2026-07-26T22:27:02.5444690Z # all files                            |  96.38 |    86.75 |   93.87 | 
-1388-2026-07-26T22:27:02.5446020Z # -------------------------------------------------------------------------------------------------
-1389-2026-07-26T22:27:02.5446500Z # end of coverage report
-1390-2026-07-26T22:27:02.6613880Z 
-1391-2026-07-26T22:27:02.6714860Z > subscription-proxy-inator@2.1.0 check:links
-1392-2026-07-26T22:27:02.6814980Z > node scripts/check-links.mjs
-1393-2026-07-26T22:27:02.6915660Z 
-1394-2026-07-26T22:27:02.7589690Z Checked 25 Markdown files: no broken local links.
-1395-2026-07-26T22:27:02.8782590Z 
-1396-2026-07-26T22:27:02.8783110Z > subscription-proxy-inator@2.1.0 build:renderer
-1397-2026-07-26T22:27:02.8783500Z > vite build
-1398-2026-07-26T22:27:02.8783690Z 
-1399-2026-07-26T22:27:03.0789090Z [36mvite v7.0.6 [32mbuilding for production...[36m[39m
-1400-2026-07-26T22:27:03.1139330Z transforming...
-1401-2026-07-26T22:27:04.0789180Z [32m✓[39m 1599 modules transformed.
-1402-2026-07-26T22:27:04.1601820Z rendering chunks...
-1403-2026-07-26T22:27:04.2369340Z computing gzip size...
-1404-2026-07-26T22:27:04.2473180Z [2mdist/renderer/[22m[32mindex.html                                                   [39m[1m[2m  1.68 kB[22m[1m[22m[2m │ gzip:  0.77 kB[22m
-1405-2026-07-26T22:27:04.2474400Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-vietnamese-500-normal-C8zxqsMH.woff     [39m[1m[2m  5.62 kB[22m[1m[22m
-1406-2026-07-26T22:27:04.2475510Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-vietnamese-400-normal-DDuiU_S-.woff     [39m[1m[2m  5.62 kB[22m[1m[22m
-1407-2026-07-26T22:27:04.2476570Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-ext-500-normal-BIfNGwUT.woff   [39m[1m[2m  5.77 kB[22m[1m[22m
-1408-2026-07-26T22:27:04.2477610Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-ext-400-normal-DMdlQ8Kv.woff   [39m[1m[2m  5.82 kB[22m[1m[22m
-1409-2026-07-26T22:27:04.2478670Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-vietnamese-400-normal-BulugwFq.woff2    [39m[1m[2m  5.87 kB[22m[1m[22m
-1410-2026-07-26T22:27:04.2479700Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-vietnamese-500-normal-DZ4AoWbu.woff2    [39m[1m[2m  6.04 kB[22m[1m[22m
-1411-2026-07-26T22:27:04.2480740Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-400-normal-fK1oJ5dG.woff     [39m[1m[2m  6.39 kB[22m[1m[22m
-1412-2026-07-26T22:27:04.2489410Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-300-normal-CkYRZD2a.woff     [39m[1m[2m  6.44 kB[22m[1m[22m
-1413-2026-07-26T22:27:04.2490520Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-600-normal-DgdngZtN.woff     [39m[1m[2m  6.58 kB[22m[1m[22m
-1414-2026-07-26T22:27:04.2492110Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-500-normal-BEb3_waV.woff     [39m[1m[2m  6.59 kB[22m[1m[22m
-1415-2026-07-26T22:27:04.2493190Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-ext-400-normal-xuaO2J-f.woff2  [39m[1m[2m  6.91 kB[22m[1m[22m
-1416-2026-07-26T22:27:04.2494280Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-ext-500-normal-BqneJy0T.woff2  [39m[1m[2m  6.97 kB[22m[1m[22m
-1417-2026-07-26T22:27:04.2495370Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-400-normal-CEL4l2ZJ.woff       [39m[1m[2m  7.20 kB[22m[1m[22m
-1418-2026-07-26T22:27:04.2496390Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-500-normal-Ael50iVv.woff       [39m[1m[2m  7.21 kB[22m[1m[22m
-1419-2026-07-26T22:27:04.2497670Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-400-normal-DG4YqDda.woff2    [39m[1m[2m  8.20 kB[22m[1m[22m
-1420-2026-07-26T22:27:04.2498940Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-300-normal-SDfX6ktj.woff2    [39m[1m[2m  8.23 kB[22m[1m[22m
-1421-2026-07-26T22:27:04.2500180Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-400-normal-BSMlKf0J.woff2      [39m[1m[2m  8.36 kB[22m[1m[22m
-1422-2026-07-26T22:27:04.2501280Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-500-normal-e4dixQRQ.woff2    [39m[1m[2m  8.42 kB[22m[1m[22m
-1423-2026-07-26T22:27:04.2502280Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-vietnamese-600-normal-DpPYBSTl.woff2    [39m[1m[2m  8.46 kB[22m[1m[22m
-1424-2026-07-26T22:27:04.2503660Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-cyrillic-500-normal-Bq9vWWag.woff2      [39m[1m[2m  8.46 kB[22m[1m[22m
-1425-2026-07-26T22:27:04.2504870Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-400-normal-D9ESIMu3.woff          [39m[1m[2m  8.76 kB[22m[1m[22m
-1426-2026-07-26T22:27:04.2505860Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-500-normal-CuWXN6rf.woff          [39m[1m[2m  9.15 kB[22m[1m[22m
-1427-2026-07-26T22:27:04.2506840Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-300-normal-STc8XiDr.woff          [39m[1m[2m  9.17 kB[22m[1m[22m
-1428-2026-07-26T22:27:04.2507850Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-600-normal-D-CqTdkO.woff          [39m[1m[2m  9.22 kB[22m[1m[22m
-1429-2026-07-26T22:27:04.2509010Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-400-normal-_efipK4i.woff2         [39m[1m[2m  9.94 kB[22m[1m[22m
-1430-2026-07-26T22:27:04.2510050Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-400-normal-Dsrv2Tcn.woff   [39m[1m[2m 10.29 kB[22m[1m[22m
-1431-2026-07-26T22:27:04.2511260Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-600-normal-DzTrcv_p.woff2         [39m[1m[2m 10.37 kB[22m[1m[22m
-1432-2026-07-26T22:27:04.2512300Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-500-normal-JMMifIXV.woff2         [39m[1m[2m 10.38 kB[22m[1m[22m
-1433-2026-07-26T22:27:04.2513350Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-greek-300-normal-J-CBqZoJ.woff2         [39m[1m[2m 10.42 kB[22m[1m[22m
-1434-2026-07-26T22:27:04.2514340Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-300-normal-Bbd5v1xK.woff   [39m[1m[2m 10.50 kB[22m[1m[22m
-1435-2026-07-26T22:27:04.2515430Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-500-normal-DB5PtV2g.woff   [39m[1m[2m 10.59 kB[22m[1m[22m
-1436-2026-07-26T22:27:04.2516410Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-600-normal-Bz0x94Yp.woff   [39m[1m[2m 10.62 kB[22m[1m[22m
-1437-2026-07-26T22:27:04.2517430Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-ext-400-normal-D3D2R8hC.woff      [39m[1m[2m 11.77 kB[22m[1m[22m
-1438-2026-07-26T22:27:04.2519300Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-ext-500-normal-CZ70TYgx.woff      [39m[1m[2m 11.77 kB[22m[1m[22m
-1439-2026-07-26T22:27:04.2520390Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-400-normal-g30qAdWV.woff2  [39m[1m[2m 12.15 kB[22m[1m[22m
-1440-2026-07-26T22:27:04.2521430Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-600-normal-DUMzJB7m.woff2  [39m[1m[2m 12.30 kB[22m[1m[22m
-1441-2026-07-26T22:27:04.2522440Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-300-normal-DqmgDkIN.woff2  [39m[1m[2m 12.31 kB[22m[1m[22m
-1442-2026-07-26T22:27:04.2523440Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-ext-500-normal-Cs5J6C77.woff2  [39m[1m[2m 12.31 kB[22m[1m[22m
-1443-2026-07-26T22:27:04.2525290Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-400-normal-CvHOgSBP.woff          [39m[1m[2m 13.14 kB[22m[1m[22m
-1444-2026-07-26T22:27:04.2526240Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-500-normal-CB9ihrfo.woff          [39m[1m[2m 13.16 kB[22m[1m[22m
-1445-2026-07-26T22:27:04.2527230Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-ext-400-normal-BmRBH3aV.woff2     [39m[1m[2m 13.35 kB[22m[1m[22m
-1446-2026-07-26T22:27:04.2528200Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-ext-500-normal-CAhNIIs5.woff2     [39m[1m[2m 13.43 kB[22m[1m[22m
-1447-2026-07-26T22:27:04.2529170Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-400-normal-BTotfTJu.woff       [39m[1m[2m 13.51 kB[22m[1m[22m
-1448-2026-07-26T22:27:04.2531050Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-300-normal-LoaTnByX.woff       [39m[1m[2m 13.80 kB[22m[1m[22m
-1449-2026-07-26T22:27:04.2532310Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-500-normal-ByOcLdNv.woff       [39m[1m[2m 13.86 kB[22m[1m[22m
-1450-2026-07-26T22:27:04.2533330Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-600-normal-BGq0mW3O.woff       [39m[1m[2m 13.89 kB[22m[1m[22m
-1451-2026-07-26T22:27:04.2534580Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-400-normal-RBey6euL.woff      [39m[1m[2m 14.36 kB[22m[1m[22m
-1452-2026-07-26T22:27:04.2535650Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2         [39m[1m[2m 14.71 kB[22m[1m[22m
-1453-2026-07-26T22:27:04.2537170Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-500-normal-D0aIdm-b.woff      [39m[1m[2m 14.74 kB[22m[1m[22m
-1454-2026-07-26T22:27:04.2538540Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-600-normal-DIrixKbi.woff      [39m[1m[2m 14.77 kB[22m[1m[22m
-1455-2026-07-26T22:27:04.2539730Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-400-normal-DZqxrq2p.woff2      [39m[1m[2m 14.80 kB[22m[1m[22m
-1456-2026-07-26T22:27:04.2540660Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-mono-latin-500-normal-DSY6xOcd.woff2         [39m[1m[2m 14.89 kB[22m[1m[22m
-1457-2026-07-26T22:27:04.2541870Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-300-normal-B8Zgwjh3.woff      [39m[1m[2m 14.90 kB[22m[1m[22m
-1458-2026-07-26T22:27:04.2544300Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-300-normal-RhT0Ayi3.woff2      [39m[1m[2m 14.96 kB[22m[1m[22m
-1459-2026-07-26T22:27:04.2545620Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-500-normal-CocWQlwt.woff2      [39m[1m[2m 15.00 kB[22m[1m[22m
-1460-2026-07-26T22:27:04.2546880Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-cyrillic-600-normal-71GNu3SW.woff2      [39m[1m[2m 15.04 kB[22m[1m[22m
-1461-2026-07-26T22:27:04.2548110Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-400-normal-C5H60-Va.woff2     [39m[1m[2m 15.98 kB[22m[1m[22m
-1462-2026-07-26T22:27:04.2549420Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-600-normal-DOrvGEcy.woff2     [39m[1m[2m 16.45 kB[22m[1m[22m
-1463-2026-07-26T22:27:04.2550600Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-500-normal-DakdToA3.woff2     [39m[1m[2m 16.46 kB[22m[1m[22m
-1464-2026-07-26T22:27:04.2551760Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-ext-300-normal-BLFuR0P1.woff2     [39m[1m[2m 16.54 kB[22m[1m[22m
-1465-2026-07-26T22:27:04.2552790Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-400-normal-CYLoc0-x.woff          [39m[1m[2m 22.10 kB[22m[1m[22m
-1466-2026-07-26T22:27:04.2553820Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-400-normal-CDDApCn2.woff2         [39m[1m[2m 22.59 kB[22m[1m[22m
-1467-2026-07-26T22:27:04.2554830Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff          [39m[1m[2m 23.88 kB[22m[1m[22m
-1468-2026-07-26T22:27:04.2555930Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-500-normal-BgVn5rGT.woff          [39m[1m[2m 23.92 kB[22m[1m[22m
-1469-2026-07-26T22:27:04.2557610Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-300-normal-C9Of02-5.woff          [39m[1m[2m 23.94 kB[22m[1m[22m
-1470-2026-07-26T22:27:04.2558670Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-500-normal-6ng42L7E.woff2         [39m[1m[2m 24.18 kB[22m[1m[22m
-1471-2026-07-26T22:27:04.2559710Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-600-normal-CuJfVYMP.woff2         [39m[1m[2m 24.25 kB[22m[1m[22m
-1472-2026-07-26T22:27:04.2560740Z [2mdist/renderer/[22m[2massets/[22m[32mibm-plex-sans-latin-300-normal-b4i7YzLG.woff2         [39m[1m[2m 24.29 kB[22m[1m[22m
-1473-2026-07-26T22:27:04.2561800Z [2mdist/renderer/[22m[2massets/[22m[35mindex-CCMSolIZ.css                                    [39m[1m[2m 43.17 kB[22m[1m[22m[2m │ gzip:  7.70 kB[22m
-1474-2026-07-26T22:27:04.2562940Z [2mdist/renderer/[22m[2massets/[22m[36mindex-Dvuu4j6N.js                                     [39m[1m[2m255.61 kB[22m[1m[22m[2m │ gzip: 75.87 kB[22m[2m │ map: 1,052.78 kB[22m
-1475-2026-07-26T22:27:04.2564400Z [32m✓ built in 1.15s[39m
-1476-2026-07-26T22:27:04.3723710Z 
-1477-2026-07-26T22:27:04.3724160Z > subscription-proxy-inator@2.1.0 build:site
-1478-2026-07-26T22:27:04.3724660Z > node scripts/build-site.mjs && node scripts/check-links.mjs --site
-1479-2026-07-26T22:27:04.3724890Z 
-1480-2026-07-26T22:27:04.4362130Z Generated the product site and 18 documentation pages in dist/site.
-1481-2026-07-26T22:27:04.4886370Z Checked 19 generated HTML files: no broken local links.
-1482-2026-07-26T22:27:05.0781100Z   • electron-builder  version=26.0.12 os=25.4.0
-1483-2026-07-26T22:27:05.0783460Z   • publishing will be skipped  reason=current build is a part of pull request solution=set env PUBLISH_FOR_PULL_REQUEST to true to force code signing
-1484-2026-07-26T22:27:05.0784550Z There are serious security concerns with PUBLISH_FOR_PULL_REQUEST=true (see the  CircleCI documentation (https://circleci.com/docs/1.0/fork-pr-builds/) for details)
-1485-2026-07-26T22:27:05.0785710Z If you have SSH keys, sensitive env vars or AWS credentials stored in your project settings and untrusted forks can make pull requests against your repo, then this option isn't for you.
-1486-2026-07-26T22:27:05.0806200Z   • loaded configuration  file=package.json ("build" field)
-1487-2026-07-26T22:27:05.2357360Z   • executing @electron/rebuild  electronVersion=37.2.0 arch=arm64 buildFromSource=false appDir=./
-1488-2026-07-26T22:27:05.2362260Z   • installing native dependencies  arch=arm64
-1489-2026-07-26T22:27:05.4956900Z   • preparing       moduleName=better-sqlite3 arch=arm64
-1490-2026-07-26T22:27:05.5911690Z   • finished        moduleName=better-sqlite3 arch=arm64
-1491-2026-07-26T22:27:05.5931860Z   • completed installing native dependencies
-1492-2026-07-26T22:27:05.5955210Z   • packaging       platform=darwin arch=arm64 electron=37.2.0 appOutDir=release/mac-arm64
-1493-2026-07-26T22:27:05.7292310Z   • downloading     url=https://github.com/electron/electron/releases/download/v37.2.0/electron-v37.2.0-darwin-arm64.zip size=110 MB parts=6
-1494-2026-07-26T22:27:06.2123890Z   • downloaded      url=https://github.com/electron/electron/releases/download/v37.2.0/electron-v37.2.0-darwin-arm64.zip duration=603ms
-1495-2026-07-26T22:27:11.8937690Z   ⨯ open : no such file or directory
-1496:2026-07-26T22:27:11.8938070Z github.com/develar/app-builder/pkg/icons.LoadImage
-1497:2026-07-26T22:27:11.8938500Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/image-util.go:27
-1498:2026-07-26T22:27:11.8938930Z github.com/develar/app-builder/pkg/icons.loadImage
-1499:2026-07-26T22:27:11.8939390Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:342
-1500:2026-07-26T22:27:11.8939910Z github.com/develar/app-builder/pkg/icons.(*InputFileInfo).GetMaxImage
-1501:2026-07-26T22:27:11.8940400Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/icons-api.go:51
-1502:2026-07-26T22:27:11.8940820Z github.com/develar/app-builder/pkg/icons.ConvertToIcns
-1503:2026-07-26T22:27:11.8941200Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/icns.go:69
-1504:2026-07-26T22:27:11.8941660Z github.com/develar/app-builder/pkg/icons.convertSingleFile
-1505:2026-07-26T22:27:11.8942100Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:294
-1506:2026-07-26T22:27:11.8942580Z github.com/develar/app-builder/pkg/icons.doConvertIcon
-1507:2026-07-26T22:27:11.8942980Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:255
-1508:2026-07-26T22:27:11.8943400Z github.com/develar/app-builder/pkg/icons.ConvertIcon
-1509:2026-07-26T22:27:11.8943780Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:56
-1510:2026-07-26T22:27:11.8944240Z github.com/develar/app-builder/pkg/icons.ConfigureCommand.func1
-1511:2026-07-26T22:27:11.8944680Z 	/Users/runner/work/app-builder/app-builder/pkg/icons/icon-converter.go:33
-1512-2026-07-26T22:27:11.8945110Z github.com/alecthomas/kingpin.(*actionMixin).applyActions
-1513-2026-07-26T22:27:11.8945570Z 	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/actions.go:28
-1514-2026-07-26T22:27:11.8946040Z github.com/alecthomas/kingpin.(*Application).applyActions
-1515-2026-07-26T22:27:11.8946480Z 	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:557
-1516-2026-07-26T22:27:11.8946930Z github.com/alecthomas/kingpin.(*Application).execute
-1517-2026-07-26T22:27:11.8947350Z 	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:390
-1518-2026-07-26T22:27:11.8947840Z github.com/alecthomas/kingpin.(*Application).Parse
-1519-2026-07-26T22:27:11.8948260Z 	/Users/runner/go/pkg/mod/github.com/alecthomas/kingpin@v2.2.6+incompatible/app.go:222
-1520-2026-07-26T22:27:11.8948590Z main.main
-1521-2026-07-26T22:27:11.8948820Z 	/Users/runner/work/app-builder/app-builder/main.go:90
-1522-2026-07-26T22:27:11.8949050Z runtime.main
-1523-2026-07-26T22:27:11.8949710Z 	/Users/runner/hostedtoolcache/go/1.21.13/arm64/src/runtime/proc.go:267
-1524-2026-07-26T22:27:11.8950040Z runtime.goexit
-1525-2026-07-26T22:27:11.8950350Z 	/Users/runner/hostedtoolcache/go/1.21.13/arm64/src/runtime/asm_arm64.s:1197  
-1526:2026-07-26T22:27:12.1163120Z   ⨯ /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
-1527-2026-07-26T22:27:12.1210650Z Exit code:
-1528:2026-07-26T22:27:12.1292790Z 1  failedTask=build stackTrace=Error: /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/app-builder-bin/mac/app-builder_arm64 process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
-1529-2026-07-26T22:27:12.1299110Z Exit code:
-1530-2026-07-26T22:27:12.1349810Z 1
-1531-2026-07-26T22:27:12.1433120Z     at ChildProcess.<anonymous> (/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/node_modules/builder-util/src/util.ts:259:14)
-1532-2026-07-26T22:27:12.1433820Z     at Object.onceWrapper (node:events:634:26)
-1533-2026-07-26T22:27:12.1434170Z     at ChildProcess.emit (node:events:519:28)
-1534-2026-07-26T22:27:12.1434520Z     at maybeClose (node:internal/child_process:1101:16)
-1535-2026-07-26T22:27:12.1435000Z     at Process.ChildProcess._handle.onexit (node:internal/child_process:304:5)
-1536:2026-07-26T22:27:12.1446680Z ##[error]Process completed with exit code 1.
-1537-2026-07-26T22:27:12.1573000Z Post job cleanup.
-1538-2026-07-26T22:27:12.4282790Z [command]/opt/homebrew/bin/git version
-1539-2026-07-26T22:27:12.4475740Z git version 2.55.0
-1540-2026-07-26T22:27:12.4520530Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/63ce5613-f4a7-4f1d-bd52-0ec2da81f545/.gitconfig'
-1541-2026-07-26T22:27:12.4521660Z Temporarily overriding HOME='/Users/runner/work/_temp/63ce5613-f4a7-4f1d-bd52-0ec2da81f545' before making global git config changes
-1542-2026-07-26T22:27:12.4522940Z Adding repository directory to the temporary git global config as a safe directory
-1543-2026-07-26T22:27:12.4523770Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/subscription-proxy-inator/subscription-proxy-inator
-1544-2026-07-26T22:27:12.4614330Z Removing SSH command configuration
-1545-2026-07-26T22:27:12.4619350Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
-1546-2026-07-26T22:27:12.4677370Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-1547-2026-07-26T22:27:12.5409760Z Removing HTTP extra header
-1548-2026-07-26T22:27:12.5413620Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-1549-2026-07-26T22:27:12.5467990Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-1550-2026-07-26T22:27:12.6133450Z Removing includeIf entries pointing to credentials config files
-1551-2026-07-26T22:27:12.6138250Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-1552-2026-07-26T22:27:12.6187160Z includeif.gitdir:/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-1553-2026-07-26T22:27:12.6188820Z includeif.gitdir:/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-1554-2026-07-26T22:27:12.6189520Z includeif.gitdir:/github/workspace/.git.path
-1555-2026-07-26T22:27:12.6189940Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
-1556-2026-07-26T22:27:12.6193820Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path
-1557-2026-07-26T22:27:12.6240190Z /Users/runner/work/_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1558-2026-07-26T22:27:12.6247450Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git.path /Users/runner/work/_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1559-2026-07-26T22:27:12.6304850Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path
-1560-2026-07-26T22:27:12.6354810Z /Users/runner/work/_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1561-2026-07-26T22:27:12.6361160Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/subscription-proxy-inator/subscription-proxy-inator/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1562-2026-07-26T22:27:12.6415390Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
-1563-2026-07-26T22:27:12.6460250Z /github/runner_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1564-2026-07-26T22:27:12.6465770Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1565-2026-07-26T22:27:12.6515360Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
-1566-2026-07-26T22:27:12.6566720Z /github/runner_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1567-2026-07-26T22:27:12.6602570Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config
-1568-2026-07-26T22:27:12.6631520Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-1569-2026-07-26T22:27:12.7279100Z Removing credentials config '/Users/runner/work/_temp/git-credentials-698e7553-b356-40c9-9819-33dc5816fed7.config'
-1570-2026-07-26T22:27:12.7391500Z Cleaning up orphan processes
-
---- tail ---
+2026-07-26T22:27:02.1923940Z   ...
+2026-07-26T22:27:02.1924300Z # Subtest: command adapter exchanges JSON lines and secret environment
+2026-07-26T22:27:02.1924800Z ok 161 - command adapter exchanges JSON lines and secret environment
+2026-07-26T22:27:02.1925120Z   ---
+2026-07-26T22:27:02.1925300Z   duration_ms: 45.338334
+2026-07-26T22:27:02.1925520Z   type: 'test'
+2026-07-26T22:27:02.1925700Z   ...
+2026-07-26T22:27:02.2153490Z # Subtest: command adapter reports nonzero exits
+2026-07-26T22:27:02.2187340Z ok 162 - command adapter reports nonzero exits
+2026-07-26T22:27:02.2187690Z   ---
+2026-07-26T22:27:02.2187900Z   duration_ms: 33.278792
+2026-07-26T22:27:02.2188120Z   type: 'test'
+2026-07-26T22:27:02.2188310Z   ...
+2026-07-26T22:27:02.2188700Z # Subtest: command adapter requires an explicit executable
+2026-07-26T22:27:02.2189140Z ok 163 - command adapter requires an explicit executable
+2026-07-26T22:27:02.2189440Z   ---
+2026-07-26T22:27:02.2189630Z   duration_ms: 0.163667
+2026-07-26T22:27:02.2189850Z   type: 'test'
+2026-07-26T22:27:02.2190420Z   ...
+2026-07-26T22:27:02.2190790Z # Subtest: external modules are restricted to trusted root and cached
+2026-07-26T22:27:02.2191300Z ok 164 - external modules are restricted to trusted root and cached
+2026-07-26T22:27:02.2191620Z   ---
+2026-07-26T22:27:02.2191800Z   duration_ms: 1.603625
+2026-07-26T22:27:02.2192020Z   type: 'test'
+2026-07-26T22:27:02.2192210Z   ...
+2026-07-26T22:27:02.2192580Z # Subtest: built-in registry contains every provider architecture type
+2026-07-26T22:27:02.2194270Z ok 165 - built-in registry contains every provider architecture type
+2026-07-26T22:27:02.2195160Z   ---
+2026-07-26T22:27:02.2197290Z   duration_ms: 0.197292
+2026-07-26T22:27:02.2197570Z   type: 'test'
+2026-07-26T22:27:02.2197770Z   ...
+2026-07-26T22:27:02.2198180Z # Subtest: Gemini Deep Research request uses Interactions API agent options
+2026-07-26T22:27:02.2199230Z ok 166 - Gemini Deep Research request uses Interactions API agent options
+2026-07-26T22:27:02.2199600Z   ---
+2026-07-26T22:27:02.2199830Z   duration_ms: 0.230917
+2026-07-26T22:27:02.2200140Z   type: 'test'
+2026-07-26T22:27:02.2200320Z   ...
+2026-07-26T22:27:02.2201400Z # Subtest: Gemini Deep Research completed interaction converts cited text, images, and usage
+2026-07-26T22:27:02.2202040Z ok 167 - Gemini Deep Research completed interaction converts cited text, images, and usage
+2026-07-26T22:27:02.2202440Z   ---
+2026-07-26T22:27:02.2202600Z   duration_ms: 0.151625
+2026-07-26T22:27:02.2202800Z   type: 'test'
+2026-07-26T22:27:02.2202970Z   ...
+2026-07-26T22:27:02.2203320Z # Subtest: Gemini adapter executes completed Deep Research interactions
+2026-07-26T22:27:02.2203830Z ok 168 - Gemini adapter executes completed Deep Research interactions
+2026-07-26T22:27:02.2204140Z   ---
+2026-07-26T22:27:02.2204290Z   duration_ms: 0.429792
+2026-07-26T22:27:02.2204480Z   type: 'test'
+2026-07-26T22:27:02.2204650Z   ...
+2026-07-26T22:27:02.4762080Z # Subtest: Gemini Deep Research compatibility stream emits safe heartbeats before final report
+2026-07-26T22:27:02.4763170Z ok 169 - Gemini Deep Research compatibility stream emits safe heartbeats before final report
+2026-07-26T22:27:02.4763800Z   ---
+2026-07-26T22:27:02.4764130Z   duration_ms: 257.319667
+2026-07-26T22:27:02.4764500Z   type: 'test'
+2026-07-26T22:27:02.4764820Z   ...
+2026-07-26T22:27:02.4765580Z # Subtest: Grok adapter forwards sticky conversation ids and service tiers
+2026-07-26T22:27:02.4766430Z ok 170 - Grok adapter forwards sticky conversation ids and service tiers
+2026-07-26T22:27:02.4770220Z   ---
+2026-07-26T22:27:02.4770580Z   duration_ms: 0.547542
+2026-07-26T22:27:02.4770950Z   type: 'test'
+2026-07-26T22:27:02.4771270Z   ...
+2026-07-26T22:27:02.5374770Z # Subtest: the renderer uses pinned IBM Plex packages without the retired presentation dependencies
+2026-07-26T22:27:02.5375770Z ok 171 - the renderer uses pinned IBM Plex packages without the retired presentation dependencies
+2026-07-26T22:27:02.5376280Z   ---
+2026-07-26T22:27:02.5376530Z   duration_ms: 3.298166
+2026-07-26T22:27:02.5376790Z   type: 'test'
+2026-07-26T22:27:02.5377030Z   ...
+2026-07-26T22:27:02.5377480Z # Subtest: desktop geometry follows the shared spacing and responsive contract
+2026-07-26T22:27:02.5378090Z ok 172 - desktop geometry follows the shared spacing and responsive contract
+2026-07-26T22:27:02.5378470Z   ---
+2026-07-26T22:27:02.5378700Z   duration_ms: 1.391708
+2026-07-26T22:27:02.5378960Z   type: 'test'
+2026-07-26T22:27:02.5379240Z   ...
+2026-07-26T22:27:02.5380050Z # Subtest: the website presents implemented facts instead of fabricated product telemetry
+2026-07-26T22:27:02.5380780Z ok 173 - the website presents implemented facts instead of fabricated product telemetry
+2026-07-26T22:27:02.5381190Z   ---
+2026-07-26T22:27:02.5381420Z   duration_ms: 1.004583
+2026-07-26T22:27:02.5381680Z   type: 'test'
+2026-07-26T22:27:02.5381910Z   ...
+2026-07-26T22:27:02.5382410Z # Subtest: the interface contract is documented and linked from the public documentation index
+2026-07-26T22:27:02.5383120Z ok 174 - the interface contract is documented and linked from the public documentation index
+2026-07-26T22:27:02.5383560Z   ---
+2026-07-26T22:27:02.5383790Z   duration_ms: 0.821459
+2026-07-26T22:27:02.5384050Z   type: 'test'
+2026-07-26T22:27:02.5384280Z   ...
+2026-07-26T22:27:02.5384700Z # Subtest: the hero explains the product before presenting calls to action
+2026-07-26T22:27:02.5385270Z ok 175 - the hero explains the product before presenting calls to action
+2026-07-26T22:27:02.5385640Z   ---
+2026-07-26T22:27:02.5385870Z   duration_ms: 3.5415
+2026-07-26T22:27:02.5386110Z   type: 'test'
+2026-07-26T22:27:02.5386350Z   ...
+2026-07-26T22:27:02.5386840Z # Subtest: one balanced calendar-refresh icon is used across website, desktop, and packaging
+2026-07-26T22:27:02.5387550Z ok 176 - one balanced calendar-refresh icon is used across website, desktop, and packaging
+2026-07-26T22:27:02.5388450Z   ---
+2026-07-26T22:27:02.5388870Z   duration_ms: 3.593333
+2026-07-26T22:27:02.5389680Z   type: 'test'
+2026-07-26T22:27:02.5389940Z   ...
+2026-07-26T22:27:02.5390470Z # Subtest: website and desktop motion are purposeful and respect reduced-motion preferences
+2026-07-26T22:27:02.5391280Z ok 177 - website and desktop motion are purposeful and respect reduced-motion preferences
+2026-07-26T22:27:02.5392110Z   ---
+2026-07-26T22:27:02.5392370Z   duration_ms: 1.38925
+2026-07-26T22:27:02.5392790Z   type: 'test'
+2026-07-26T22:27:02.5393880Z   ...
+2026-07-26T22:27:02.5394430Z # Subtest: the social preview and documentation contract use the finished icon and motion rules
+2026-07-26T22:27:02.5395240Z ok 178 - the social preview and documentation contract use the finished icon and motion rules
+2026-07-26T22:27:02.5395620Z   ---
+2026-07-26T22:27:02.5395760Z   duration_ms: 1.311958
+2026-07-26T22:27:02.5395920Z   type: 'test'
+2026-07-26T22:27:02.5396060Z   ...
+2026-07-26T22:27:02.5396400Z # Subtest: polling forms use dirty-aware drafts and mutations report success
+2026-07-26T22:27:02.5396930Z ok 179 - polling forms use dirty-aware drafts and mutations report success
+2026-07-26T22:27:02.5397210Z   ---
+2026-07-26T22:27:02.5397360Z   duration_ms: 4.174084
+2026-07-26T22:27:02.5397530Z   type: 'test'
+2026-07-26T22:27:02.5397670Z   ...
+2026-07-26T22:27:02.5397980Z # Subtest: usage interaction handles failures and keyboard selection
+2026-07-26T22:27:02.5398810Z ok 180 - usage interaction handles failures and keyboard selection
+2026-07-26T22:27:02.5399080Z   ---
+2026-07-26T22:27:02.5399230Z   duration_ms: 0.589375
+2026-07-26T22:27:02.5399410Z   type: 'test'
+2026-07-26T22:27:02.5399560Z   ...
+2026-07-26T22:27:02.5399930Z # Subtest: site interaction and generated links remain safe and accessible
+2026-07-26T22:27:02.5400550Z ok 181 - site interaction and generated links remain safe and accessible
+2026-07-26T22:27:02.5400930Z   ---
+2026-07-26T22:27:02.5401090Z   duration_ms: 1.420542
+2026-07-26T22:27:02.5401290Z   type: 'test'
+2026-07-26T22:27:02.5401450Z   ...
+2026-07-26T22:27:02.5401870Z # Subtest: desktop status and compact responsive controls retain explicit states
+2026-07-26T22:27:02.5402470Z ok 182 - desktop status and compact responsive controls retain explicit states
+2026-07-26T22:27:02.5402800Z   ---
+2026-07-26T22:27:02.5402940Z   duration_ms: 0.743542
+2026-07-26T22:27:02.5403210Z   type: 'test'
+2026-07-26T22:27:02.5403660Z   ...
+2026-07-26T22:27:02.5404150Z # Subtest: temporary completion machinery is absent from the publishable branch
+2026-07-26T22:27:02.5405080Z ok 183 - temporary completion machinery is absent from the publishable branch
+2026-07-26T22:27:02.5405460Z   ---
+2026-07-26T22:27:02.5405620Z   duration_ms: 0.847458
+2026-07-26T22:27:02.5405790Z   type: 'test'
+2026-07-26T22:27:02.5405930Z   ...
+2026-07-26T22:27:02.5406260Z # Subtest: package metadata identifies the current desktop application
+2026-07-26T22:27:02.5406730Z ok 184 - package metadata identifies the current desktop application
+2026-07-26T22:27:02.5407000Z   ---
+2026-07-26T22:27:02.5407140Z   duration_ms: 3.260458
+2026-07-26T22:27:02.5407320Z   type: 'test'
+2026-07-26T22:27:02.5407450Z   ...
+2026-07-26T22:27:02.5407730Z # Subtest: legacy and temporary repository roots are absent
+2026-07-26T22:27:02.5408120Z ok 185 - legacy and temporary repository roots are absent
+2026-07-26T22:27:02.5408360Z   ---
+2026-07-26T22:27:02.5408500Z   duration_ms: 1.31425
+2026-07-26T22:27:02.5408670Z   type: 'test'
+2026-07-26T22:27:02.5408810Z   ...
+2026-07-26T22:27:02.5409100Z # Subtest: renderer stays behind the preload capability boundary
+2026-07-26T22:27:02.5409520Z ok 186 - renderer stays behind the preload capability boundary
+2026-07-26T22:27:02.5409790Z   ---
+2026-07-26T22:27:02.5409940Z   duration_ms: 1.036
+2026-07-26T22:27:02.5410100Z   type: 'test'
+2026-07-26T22:27:02.5410240Z   ...
+2026-07-26T22:27:02.5410530Z # Subtest: Electron window is sandboxed and context isolated
+2026-07-26T22:27:02.5410920Z ok 187 - Electron window is sandboxed and context isolated
+2026-07-26T22:27:02.5411170Z   ---
+2026-07-26T22:27:02.5411400Z   duration_ms: 0.501333
+2026-07-26T22:27:02.5411570Z   type: 'test'
+2026-07-26T22:27:02.5411710Z   ...
+2026-07-26T22:27:02.5412030Z # Subtest: public documentation covers every supported operating concern
+2026-07-26T22:27:02.5412500Z ok 188 - public documentation covers every supported operating concern
+2026-07-26T22:27:02.5412780Z   ---
+2026-07-26T22:27:02.5412940Z   duration_ms: 0.926625
+2026-07-26T22:27:02.5413130Z   type: 'test'
+2026-07-26T22:27:02.5413270Z   ...
+2026-07-26T22:27:02.5413600Z # Subtest: desktop CI validates and packages all three platforms
+2026-07-26T22:27:02.5414030Z ok 189 - desktop CI validates and packages all three platforms
+2026-07-26T22:27:02.5414290Z   ---
+2026-07-26T22:27:02.5414510Z   duration_ms: 0.463625
+2026-07-26T22:27:02.5414710Z   type: 'test'
+2026-07-26T22:27:02.5414870Z   ...
+2026-07-26T22:27:02.5415220Z # Subtest: CodeQL is least-privilege and documentation hosting is explicit
+2026-07-26T22:27:02.5415720Z ok 190 - CodeQL is least-privilege and documentation hosting is explicit
+2026-07-26T22:27:02.5416840Z   ---
+2026-07-26T22:27:02.5417080Z   duration_ms: 1.378583
+2026-07-26T22:27:02.5417340Z   type: 'test'
+2026-07-26T22:27:02.5417500Z   ...
+2026-07-26T22:27:02.5417990Z # Subtest: release workflow requires a version tag and uploads checksummed artifacts
+2026-07-26T22:27:02.5418650Z ok 191 - release workflow requires a version tag and uploads checksummed artifacts
+2026-07-26T22:27:02.5419030Z   ---
+2026-07-26T22:27:02.5419190Z   duration_ms: 0.47825
+2026-07-26T22:27:02.5419400Z   type: 'test'
+2026-07-26T22:27:02.5419570Z   ...
+2026-07-26T22:27:02.5419940Z # Subtest: public website is local-asset only and links documentation
+2026-07-26T22:27:02.5420490Z ok 192 - public website is local-asset only and links documentation
+2026-07-26T22:27:02.5420770Z   ---
+2026-07-26T22:27:02.5420910Z   duration_ms: 0.583292
+2026-07-26T22:27:02.5421070Z   type: 'test'
+2026-07-26T22:27:02.5421210Z   ...
+2026-07-26T22:27:02.5421440Z # Subtest: repository policy files are present
+2026-07-26T22:27:02.5421760Z ok 193 - repository policy files are present
+2026-07-26T22:27:02.5421970Z   ---
+2026-07-26T22:27:02.5422110Z   duration_ms: 0.637541
+2026-07-26T22:27:02.5422280Z   type: 'test'
+2026-07-26T22:27:02.5429280Z   ...
+2026-07-26T22:27:02.5429490Z 1..193
+2026-07-26T22:27:02.5429630Z # tests 193
+2026-07-26T22:27:02.5429770Z # suites 0
+2026-07-26T22:27:02.5429910Z # pass 193
+2026-07-26T22:27:02.5430050Z # fail 0
+2026-07-26T22:27:02.5430180Z # cancelled 0
+2026-07-26T22:27:02.5430330Z # skipped 0
+2026-07-26T22:27:02.5430450Z # todo 0
+2026-07-26T22:27:02.5430960Z # duration_ms 743.352125
+2026-07-26T22:27:02.5431170Z # start of coverage report
+2026-07-26T22:27:02.5431630Z # -------------------------------------------------------------------------------------------------
+2026-07-26T22:27:02.5432120Z # file                                 | line % | branch % | funcs % | uncovered lines
+2026-07-26T22:27:02.5432630Z # -------------------------------------------------------------------------------------------------
+2026-07-26T22:27:02.5433080Z # src                                  |        |          |         | 
+2026-07-26T22:27:02.5433490Z #  application                         |        |          |         | 
+2026-07-26T22:27:02.5434030Z #   provider-configuration-service.js  |  78.45 |    78.13 |   79.17 | 17-22 55-58 60 84-86 90-100
+2026-07-26T22:27:02.5434540Z #   provider-registry.js               | 100.00 |   100.00 |  100.00 | 
+2026-07-26T22:27:02.5435010Z #   proxy-service.js                   |  93.55 |    58.18 |   90.91 | 17-19 64 66-67
+2026-07-26T22:27:02.5435470Z #   routing-service.js                 | 100.00 |    94.29 |  100.00 | 
+2026-07-26T22:27:02.5435900Z #   runtime-state.js                   | 100.00 |    88.89 |  100.00 | 
+2026-07-26T22:27:02.5436350Z #   settings-service.js                |  92.31 |    90.91 |   71.43 | 22-23 50-52
+2026-07-26T22:27:02.5436830Z #   usage-service.js                   |  74.55 |    88.89 |   70.00 | 19-27 44-45 53-55
+2026-07-26T22:27:02.5437260Z #  domain                              |        |          |         | 
+2026-07-26T22:27:02.5437790Z #   config.js                          | 100.00 |    93.16 |  100.00 | 
+2026-07-26T22:27:02.5438190Z #   protocol                           |        |          |         | 
+2026-07-26T22:27:02.5438730Z #    anthropic.js                      | 100.00 |    89.74 |  100.00 | 
+2026-07-26T22:27:02.5439140Z #    canonical.js                      | 100.00 |    92.00 |  100.00 | 
+2026-07-26T22:27:02.5439760Z #    gemini.js                         | 100.00 |    96.67 |  100.00 | 
+2026-07-26T22:27:02.5440310Z #    openai.js                         |  99.18 |    81.08 |  100.00 | 10
+2026-07-26T22:27:02.5440880Z #   routing                            |        |          |         | 
+2026-07-26T22:27:02.5441270Z #    errors.js                         | 100.00 |    95.24 |  100.00 | 
+2026-07-26T22:27:02.5441680Z #    limits.js                         | 100.00 |    96.15 |  100.00 | 
+2026-07-26T22:27:02.5442130Z #    router.js                         | 100.00 |    94.87 |  100.00 | 
+2026-07-26T22:27:02.5442610Z #    strategies.js                     |  98.84 |    72.73 |  100.00 | 43
+2026-07-26T22:27:02.5443140Z #   shared.js                          | 100.00 |    90.91 |  100.00 | 
+2026-07-26T22:27:02.5443580Z #   usage.js                           | 100.00 |    80.00 |  100.00 | 
+2026-07-26T22:27:02.5444090Z # -------------------------------------------------------------------------------------------------
+2026-07-26T22:27:02.5444690Z # all files                            |  96.38 |    86.75 |   93.87 | 
+2026-07-26T22:27:02.5446020Z # -------------------------------------------------------------------------------------------------
+2026-07-26T22:27:02.5446500Z # end of coverage report
+2026-07-26T22:27:02.6613880Z 
 2026-07-26T22:27:02.6714860Z > subscription-proxy-inator@2.1.0 check:links
 2026-07-26T22:27:02.6814980Z > node scripts/check-links.mjs
 2026-07-26T22:27:02.6915660Z 
