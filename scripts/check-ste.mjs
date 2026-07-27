@@ -50,14 +50,53 @@ const prohibited = [
 const contractions = /\b(?:aren't|can't|couldn't|didn't|doesn't|don't|hasn't|haven't|isn't|it's|shouldn't|that's|they're|wasn't|weren't|won't|wouldn't|you're)\b/i;
 const wordPattern = /[A-Za-z0-9]+(?:[.'_-][A-Za-z0-9]+)*/g;
 
+const namedEntities = new Map([
+  ['&amp;', '&'],
+  ['&lt;', '<'],
+  ['&gt;', '>'],
+  ['&quot;', '"'],
+  ['&#39;', "'"],
+]);
+
 function decodeEntities(value) {
-  return value
-    .replaceAll('&amp;', '&')
-    .replaceAll('&lt;', '<')
-    .replaceAll('&gt;', '>')
-    .replaceAll('&quot;', '"')
-    .replaceAll('&#39;', "'")
-    .replace(/&#(\d+);/g, (_, number) => String.fromCodePoint(Number(number)));
+  return value.replace(/&(?:amp|lt|gt|quot|#39|#\d+);/g, (entity) => {
+    const named = namedEntities.get(entity);
+    if (named !== undefined) return named;
+    const codePoint = Number(entity.slice(2, -1));
+    if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) return entity;
+    if (codePoint >= 0xd800 && codePoint <= 0xdfff) return entity;
+    return String.fromCodePoint(codePoint);
+  });
+}
+
+function stripHtmlElement(source, tag, replacement = ' ') {
+  const openToken = `<${tag}`;
+  const closeToken = `</${tag}`;
+  let output = '';
+  let cursor = 0;
+
+  while (cursor < source.length) {
+    const lower = source.toLowerCase();
+    let start = lower.indexOf(openToken, cursor);
+    while (start !== -1) {
+      const boundary = lower[start + openToken.length];
+      if (boundary === '>' || boundary === '/' || /\s/.test(boundary ?? '')) break;
+      start = lower.indexOf(openToken, start + openToken.length);
+    }
+    if (start === -1) return output + source.slice(cursor);
+
+    const openEnd = lower.indexOf('>', start + openToken.length);
+    if (openEnd === -1) return output + source.slice(cursor);
+    const closeStart = lower.indexOf(closeToken, openEnd + 1);
+    if (closeStart === -1) return output + source.slice(cursor, start) + replacement;
+    const closeEnd = lower.indexOf('>', closeStart + closeToken.length);
+    if (closeEnd === -1) return output + source.slice(cursor, start) + replacement;
+
+    output += source.slice(cursor, start) + replacement;
+    cursor = closeEnd + 1;
+  }
+
+  return output;
 }
 
 function removeInlineCode(value) {
@@ -113,18 +152,23 @@ function markdownSegments(source) {
 }
 
 function htmlSegments(source) {
-  const clean = source
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
-    .replace(/<pre[\s\S]*?<\/pre>/gi, ' ')
-    .replace(/<code[\s\S]*?<\/code>/gi, ' TECHNICAL_TERM ');
+  let clean = source;
+  for (const [tag, replacement] of [
+    ['script', ' '],
+    ['style', ' '],
+    ['svg', ' '],
+    ['pre', ' '],
+    ['code', ' TECHNICAL_TERM '],
+  ]) {
+    clean = stripHtmlElement(clean, tag, replacement);
+  }
+
   const output = [];
   for (const match of clean.matchAll(/>([^<>]+)</g)) {
     const text = decodeEntities(match[1]).trim();
     if (text) output.push({ text, instruction: false });
   }
-  for (const match of source.matchAll(/\b(?:content|aria-label|alt|title)="([^"]+)"/g)) {
+  for (const match of clean.matchAll(/\b(?:content|aria-label|alt|title)="([^"]+)"/g)) {
     const text = decodeEntities(match[1]).trim();
     if (text) output.push({ text, instruction: false });
   }
