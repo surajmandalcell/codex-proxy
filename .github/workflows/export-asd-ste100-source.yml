@@ -1,0 +1,41 @@
+name: Export source for ASD-STE100 rewrite
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - .github/workflows/export-asd-ste100-source.yml
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Build source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar \
+            --exclude=.git \
+            --exclude=node_modules \
+            --exclude=dist \
+            --exclude=release \
+            --exclude=coverage \
+            --exclude=.github/workflows/export-asd-ste100-source.yml \
+            -cJf /tmp/subscription-proxy-inator-source.tar.xz .
+          sha256sum /tmp/subscription-proxy-inator-source.tar.xz > /tmp/subscription-proxy-inator-source.sha256
+      - name: Upload source archive
+        uses: actions/upload-artifact@v7
+        with:
+          name: subscription-proxy-inator-source
+          path: |
+            /tmp/subscription-proxy-inator-source.tar.xz
+            /tmp/subscription-proxy-inator-source.sha256
+          if-no-files-found: error
+          retention-days: 3
