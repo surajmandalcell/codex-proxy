@@ -86,3 +86,28 @@ jobs:
           path: release/**
           if-no-files-found: error
           retention-days: 7
+
+  verify-branch-cleanup:
+    name: Verify one persistent branch
+    needs: [validate, package]
+    if: ${{ always() && needs.validate.result == 'success' && needs.package.result == 'success' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Confirm only the default branch remains
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          default_branch="$(gh api "repos/$GITHUB_REPOSITORY" --jq '.default_branch')"
+          mapfile -t remaining < <(
+            gh api --paginate "repos/$GITHUB_REPOSITORY/branches?per_page=100" \
+              --jq ".[].name | select(. != \"$default_branch\")"
+          )
+          if ((${#remaining[@]})); then
+            printf 'Non-default branches remain:\n%s\n' "${remaining[*]}" >&2
+            exit 1
+          fi
