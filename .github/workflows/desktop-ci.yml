@@ -7,14 +7,106 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: desktop-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  prepare-release:
+    if: github.event_name == 'pull_request' && github.head_ref == 'agent/release-2.1.1-ste'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out release branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Apply version 2.1.1 and commit the clean branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --global npm@10.9.2 --no-audit --no-fund
+          test "$(node -p "require('./package.json').version")" = 2.1.0
+          npm version 2.1.1 --no-git-tag-version
+          python3 <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              'README.md': [
+                  ('Version 2.1.0', 'Version 2.1.1'),
+                  ('version-2.1.0-0f62fe', 'version-2.1.1-0f62fe'),
+              ],
+              'scripts/verify.mjs': [
+                  ("pkg.version !== '2.1.0'", "pkg.version !== '2.1.1'"),
+                  ('subscription-proxy-inator@2.1.0', 'subscription-proxy-inator@2.1.1'),
+              ],
+              'tests/repository/repository.test.js': [
+                  ("pkg.version, '2.1.0'", "pkg.version, '2.1.1'"),
+              ],
+              'tests/repository/design-system.test.js': [
+                  ("pkg.version, '2.1.0'", "pkg.version, '2.1.1'"),
+                  ('Version 2\\.1\\.0', 'Version 2\\.1\\.1'),
+              ],
+              '.github/ISSUE_TEMPLATE/bug.yml': [
+                  ('placeholder: 2.1.0', 'placeholder: 2.1.1'),
+              ],
+              'website/index.html': [
+                  ('Version 2.1.0 · MIT', 'Version 2.1.1 · MIT'),
+              ],
+          }
+
+          for relative, pairs in replacements.items():
+              path = Path(relative)
+              source = path.read_text(encoding='utf-8')
+              for old, new in pairs:
+                  if source.count(old) != 1:
+                      raise SystemExit(f'Expected one match for {old!r} in {relative}')
+                  source = source.replace(old, new, 1)
+              path.write_text(source, encoding='utf-8')
+
+          changelog = Path('CHANGELOG.md')
+          source = changelog.read_text(encoding='utf-8')
+          marker = '## 2.1.0 - 2026-07-26\n'
+          entry = '''## 2.1.1 - 2026-07-27
+
+### Documentation
+
+- Rewrites public project text with the ASD-STE100 Issue 9 project profile.
+- Adds an automated check for sentence length, contractions, semicolons, and prohibited phrases.
+- Adds the controlled technical-term list and writing maintenance rules.
+- Fixes HTML text extraction for encoded entities and raw-text elements.
+
+### Validation
+
+- Passes 195 tests, coverage limits, documentation links, CodeQL, and the responsive browser audit.
+- Passes unpacked Electron package builds on Linux, macOS, and Windows.
+
+'''
+          if marker not in source:
+              raise SystemExit('The 2.1.0 changelog marker is absent.')
+          source = source.replace(marker, entry + marker, 1)
+          changelog.write_text(source, encoding='utf-8')
+          PY
+          git checkout origin/master -- .github/workflows/desktop-ci.yml
+          rm -f .github/workflows/prepare-v2.1.1-ste.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 9
+          git commit -m 'Prepare version 2.1.1'
+          git push origin HEAD:${{ github.head_ref }}
+
   validate:
+    needs: prepare-release
+    if: always() && (needs.prepare-release.result == 'success' || needs.prepare-release.result == 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
