@@ -5,23 +5,25 @@
 
 ## Context
 
-A multi-provider desktop proxy combines protocol translation, routing, credentials, persistence, Electron, and UI. Allowing these concerns to import each other directly makes provider changes risky and tests dependent on frameworks.
+The desktop gateway contains protocols, routing, credentials, storage, Electron code, and user-interface code.
+
+Direct imports between these concerns make provider changes dangerous. They also make tests depend on frameworks.
 
 ## Decision
 
 Use inward dependencies:
 
-- Domain is pure.
-- Application coordinates ports and domain policy.
-- Providers translate canonical protocol contracts.
-- Infrastructure implements storage and local HTTP.
-- Desktop code composes services and presents public state.
+- The domain is pure.
+- The application uses ports and domain rules.
+- Providers convert canonical protocols.
+- Infrastructure supplies storage and local HTTP.
+- Desktop code connects services and shows public state.
 
-Repository verification enforces forbidden import directions.
+Repository checks prevent invalid import directions.
 
-## Consequences
+## Results
 
-- Routing can be tested without network, Electron, or SQLite.
-- Providers cannot silently change account-selection policy.
-- Renderer code cannot access credentials or process APIs.
-- More explicit adapters and service constructors are required.
+- Routing tests do not require Electron, a network, or SQLite.
+- Providers cannot change account selection.
+- Renderer code cannot read credentials or process APIs.
+- The code needs explicit adapters and service constructors.

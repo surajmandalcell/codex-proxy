@@ -5,15 +5,21 @@
 
 ## Context
 
-Retrying a failed stream on another provider can improve reliability before the client observes output. Retrying after text or a tool call can duplicate content, repeat side effects, or create a response assembled from different models.
+A second provider can recover a stream before the client receives output.
+
+A retry after visible output can duplicate text or tool effects. It can also mix output from different models.
 
 ## Decision
 
-Buffer non-visible stream metadata. Allow route failover only until the first non-empty text delta or tool call. Heartbeat comments do not establish visibility. After visibility, return an error on the same stream and never invoke another provider.
+Buffer stream metadata that is not visible. Permit failover only before the first text delta or tool call.
 
-## Consequences
+Heartbeat comments do not start the visible-output state.
 
-- Pre-output rate-limit and overload failures remain recoverable.
-- Long-running Deep Research can keep connections alive without forfeiting failover safety.
-- Partial streams remain partial rather than being silently spliced.
-- Tool execution is never duplicated by gateway retry after tool visibility.
+After visible output starts, return the error on the same stream. Do not call another provider.
+
+## Results
+
+- The gateway can recover from a pre-output rate limit.
+- Deep Research can send heartbeats without changing the failover rule.
+- A partial stream stays partial.
+- A gateway retry cannot repeat a visible tool call.
