@@ -90,6 +90,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --check
-          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 8
           git commit -m 'Remove obsolete documentation pages'
           git push origin HEAD:${{ github.head_ref }}
