@@ -37,7 +37,18 @@ jobs:
           cache: npm
 
       - name: Apply the source change
-        run: python3 .cleanup/apply.py
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! python3 .cleanup/apply.py >.cleanup/OUTPUT 2>.cleanup/ERROR; then
+            cat .cleanup/ERROR >&2
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .cleanup/ERROR .cleanup/OUTPUT
+            git commit -m 'Record cleanup assertion failure'
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+            exit 1
+          fi
 
       - name: Install exact dependencies
         run: |
