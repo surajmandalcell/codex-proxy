@@ -1,0 +1,12 @@
+/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.cleanup/apply.py:205: SyntaxWarning: invalid escape sequence '\.'
+  replacement = '''test('the hero uses one concise message and one routing diagram', async () => {
+Traceback (most recent call last):
+  File "/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/.cleanup/apply.py", line 227, in <module>
+    source, count = pattern.subn(replacement, source, count=1)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/__init__.py", line 334, in _compile_template
+    return _sre.template(pattern, _parser.parse_template(repl, pattern))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/re/_parser.py", line 1075, in parse_template
+    raise s.error('bad escape %s' % this, len(this)) from None
+re.error: bad escape \s at position 617 (line 11, column 30)
