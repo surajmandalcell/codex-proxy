@@ -54,10 +54,17 @@ jobs:
           replace_once('README.md', 'version-2.1.1-0f62fe', 'version-2.1.2-0f62fe')
           replace_once('scripts/verify.mjs', "pkg.version !== '2.1.1'", "pkg.version !== '2.1.2'")
           replace_once('scripts/verify.mjs', 'subscription-proxy-inator@2.1.1', 'subscription-proxy-inator@2.1.2')
-          replace_once('tests/repository/repository.test.js', "assert.equal(pkg.version, '2.1.1');", "assert.equal(pkg.version, '2.1.2');")
-          replace_once('tests/repository/repository.test.js', "assert.equal(pkg.version, '2.1.1');", "assert.equal(pkg.version, '2.1.2');")
-          replace_once('tests/repository/repository.test.js', r'/Version 2\.1\.1/', r'/Version 2\.1\.2/')
-          replace_once('tests/repository/repository.test.js', r'/Version 2\.1\.1 · MIT/', r'/Version 2\.1\.2 · MIT/')
+
+          repository_test = Path('tests/repository/repository.test.js')
+          source = repository_test.read_text(encoding='utf-8')
+          old = "assert.equal(pkg.version, '2.1.1');"
+          if source.count(old) != 2:
+              raise SystemExit(f'repository.test.js: expected two package-version assertions, got {source.count(old)}')
+          source = source.replace(old, "assert.equal(pkg.version, '2.1.2');")
+          source = source.replace(r'/Version 2\.1\.1/', r'/Version 2\.1\.2/', 1)
+          source = source.replace(r'/Version 2\.1\.1 · MIT/', r'/Version 2\.1\.2 · MIT/', 1)
+          repository_test.write_text(source, encoding='utf-8')
+
           replace_once('tests/repository/design-system.test.js', "assert.equal(pkg.version, '2.1.1');", "assert.equal(pkg.version, '2.1.2');")
           replace_once('.github/ISSUE_TEMPLATE/bug.yml', 'placeholder: 2.1.1', 'placeholder: 2.1.2')
           replace_once('website/index.html', 'Version 2.1.1 · MIT License', 'Version 2.1.2 · MIT License')
