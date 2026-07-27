@@ -67,16 +67,13 @@ Use equal columns for wide split sections unless the information needs a differe
 
 ## Website hierarchy
 
-The first viewport must identify these facts:
+The first viewport must use one headline, one descriptive sentence, two actions, and one system diagram.
 
-1. The product is a desktop AI gateway.
-2. The product gives clients one local compatible API.
-3. The product routes requests and records usage.
-4. Quick start and Download are separate actions.
+The headline identifies the local API. The sentence identifies the routing function.
 
-Use one short product statement in the hero. Use one supporting sentence. Do not add diagrams, assurance text, or repeated feature text to the hero.
+The diagram shows Claude, Codex, and Z.ai as example sources. It shows Harness, Automation, and App as example local clients.
 
-Show detailed provider, routing, API, and security information after the hero.
+Quick start and Download are separate actions. Do not add a version strip, assurance paragraph, adapter labels, or client descriptions to the hero.
 
 Do not show false traffic, cost, latency, user, or account values.
 
@@ -108,6 +105,8 @@ Use motion only to show a state or direction.
 - Keep movement at 16 px or less.
 - Keep hover movement at 2 px or less.
 - Reveal a website section one time.
+- Move diagram dashes slowly to show direction.
+- Keep diagram labels static.
 - Use a short page fade in the desktop app.
 - Remove nonessential motion when Reduce motion is on.
 - Respect the operating-system reduced-motion setting.
@@ -117,6 +116,7 @@ Use motion only to show a state or direction.
 - Give each control a visible 3 px focus indicator.
 - Do not use color as the only status signal.
 - Keep visible labels on form fields.
+- Give the hero diagram a complete text alternative.
 - Update `aria-expanded` for mobile navigation.
 - Move focus into an open mobile menu.
 - Close the menu with Escape.
