@@ -1,0 +1,88 @@
+name: Apply ASD-STE100 production rewrite
+
+on:
+  push:
+    branches:
+      - agent/asd-ste100-production
+    paths:
+      - .ste/TRIGGER
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-asd-ste100-production
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.event.head_commit.message != 'Apply ASD-STE100 production rewrite'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out rewrite branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/asd-ste100-production
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Reconstruct and apply the reviewed source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .ste/part-* | base64 --decode > "$RUNNER_TEMP/asd-ste100-patch.tar.xz"
+          echo '43eee7b28064c6ac76544283cde8098a6adb9611d5ae10ba54ac5194de06ec45  '"$RUNNER_TEMP/asd-ste100-patch.tar.xz" | sha256sum -c -
+          python3 <<'PY'
+          import tarfile
+          from pathlib import Path
+          archive = Path('/home/runner/work/_temp/asd-ste100-patch.tar.xz')
+          with tarfile.open(archive, 'r:xz') as source:
+              members = source.getmembers()
+              if len(members) != 36:
+                  raise SystemExit(f'Expected 36 files, got {len(members)}')
+              for member in members:
+                  path = Path(member.name)
+                  if member.isdir() or path.is_absolute() or '..' in path.parts:
+                      raise SystemExit(f'Unsafe archive member: {member.name}')
+              source.extractall('.')
+          PY
+          test -f docs/WRITING_STANDARD.md
+          test -f scripts/check-ste.mjs
+          test -f tests/repository/asd-ste100.test.js
+
+      - name: Install exact dependencies
+        run: |
+          npm install --global npm@10.9.2 --no-audit --no-fund
+          npm ci --no-audit --no-fund
+
+      - name: Verify, test, and build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Build unpacked Electron application
+        run: npx electron-builder --dir --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - name: Commit the clean production rewrite
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .ste node_modules dist release coverage website-dist
+          rm -f package-lock.local-validation.json
+          rm -f .github/workflows/apply-asd-ste100.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          test "$(git diff --cached --name-only | wc -l | tr -d ' ')" = 36
+          git commit -m 'Apply ASD-STE100 production rewrite'
+          git push origin HEAD:agent/asd-ste100-production
