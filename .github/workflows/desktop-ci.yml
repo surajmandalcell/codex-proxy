@@ -15,7 +15,6 @@ concurrency:
 
 jobs:
   prepare-release:
-    if: github.event_name == 'pull_request' && github.head_ref == 'agent/release-2.1.1-ste'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -32,6 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test "$GITHUB_HEAD_REF" = agent/release-2.1.1-ste
           npm install --global npm@10.9.2 --no-audit --no-fund
           test "$(node -p "require('./package.json').version")" = 2.1.0
           npm version 2.1.1 --no-git-tag-version
@@ -106,7 +106,6 @@ jobs:
 
   validate:
     needs: prepare-release
-    if: always() && (needs.prepare-release.result == 'success' || needs.prepare-release.result == 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
