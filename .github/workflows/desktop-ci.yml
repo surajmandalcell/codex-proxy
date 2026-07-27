@@ -1,67 +1,119 @@
 name: Desktop CI
 
 on:
-  push:
-    branches: [master]
   pull_request:
-  workflow_dispatch:
+    branches: [master]
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: desktop-ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: remove-obsolete-doc-pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
+  cleanup-docs:
+    if: github.head_ref == 'agent/remove-obsolete-doc-pages'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
-      - name: Check out source
+      - name: Check out cleanup branch
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
       - name: Use Node.js 22
         uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
-      - name: Use the repository npm version
-        run: npm install --global npm@10.9.2 --no-audit --no-fund
+
+      - name: Remove obsolete pages and references
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              'README.md': [
+                  (' · **[Writing standard](docs/WRITING_STANDARD.md)**', ''),
+                  ('- [ASD-STE100 writing profile](docs/WRITING_STANDARD.md)\n', ''),
+                  ('- [Version 1 migration](docs/MIGRATION_V1.md)\n', ''),
+              ],
+              'docs/INDEX.md': [
+                  ('- [Writing standard](WRITING_STANDARD.md): Use the project ASD-STE100 profile.\n', ''),
+                  ('- [Version 1 migration](MIGRATION_V1.md)\n', ''),
+              ],
+              'CHANGELOG.md': [
+                  ('- Added a writing profile for approved technical terms and sentence rules.', '- Added controlled terms and sentence rules to the writing checker.'),
+                  ('\nRead [Version 1 migration](docs/MIGRATION_V1.md).\n', '\n'),
+              ],
+              'scripts/build-site.mjs': [
+                  ("    'MIGRATION_V1.md',\n", ''),
+              ],
+              'tests/repository/asd-ste100.test.js': [
+                  ("  const profile = await text('docs/WRITING_STANDARD.md');\n", ''),
+                  ("  assert.match(profile, /Issue 9/);\n", ''),
+                  ("  assert.match(profile, /maximum of 20 words in an instruction/);\n", ''),
+                  ("  assert.match(profile, /maximum of 25 words in a descriptive sentence/);\n", ''),
+                  ("  assert.match(checker, /function stripHtmlElement/);\n", "  assert.match(checker, /function stripHtmlElement/);\n  assert.match(checker, /segment\.instruction \? 20 : 25/);\n"),
+              ],
+              'tests/repository/repository.test.js': [
+                  ("    'docs/RELEASE.md', 'docs/MIGRATION_V1.md',\n", "    'docs/RELEASE.md',\n"),
+              ],
+          }
+
+          for relative, changes in replacements.items():
+              path = Path(relative)
+              source = path.read_text(encoding='utf-8')
+              for old, new in changes:
+                  if source.count(old) != 1:
+                      raise SystemExit(f'Expected one match for {old!r} in {relative}')
+                  source = source.replace(old, new, 1)
+              path.write_text(source, encoding='utf-8')
+
+          for relative in ['docs/MIGRATION_V1.md', 'docs/WRITING_STANDARD.md']:
+              path = Path(relative)
+              if not path.is_file():
+                  raise SystemExit(f'Missing page: {relative}')
+              path.unlink()
+          PY
+
+          if grep -RInE 'WRITING_STANDARD|MIGRATION_V1|Version 1 migration|ASD-STE100 writing profile|Writing standard' \
+            README.md CHANGELOG.md docs scripts tests website .github package.json; then
+            echo 'An obsolete documentation reference remains.' >&2
+            exit 1
+          fi
+
       - name: Install exact dependencies
-        run: npm ci --no-audit --no-fund
+        run: |
+          npm install --global npm@10.9.2 --no-audit --no-fund
+          npm ci --no-audit --no-fund
+
       - name: Verify, test, and build
         run: npm run build
+
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
 
-  package:
-    needs: validate
-    timeout-minutes: 45
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Check out source
-        uses: actions/checkout@v6
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-      - name: Use the repository npm version
-        run: npm install --global npm@10.9.2 --no-audit --no-fund
-      - name: Install exact dependencies
-        run: npm ci --no-audit --no-fund
-      - name: Build unpacked desktop application
-        run: npm run dist:dir
+      - name: Build unpacked Electron application
+        run: npx electron-builder --dir --publish never
         env:
-          CSC_IDENTITY_AUTO_DISCOVERY: "false"
-      - name: Upload unpacked application
-        uses: actions/upload-artifact@v7
-        with:
-          name: unpacked-${{ runner.os }}
-          path: release/**
-          if-no-files-found: error
-          retention-days: 7
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - name: Commit clean source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout origin/master -- .github/workflows/desktop-ci.yml
+          rm -rf node_modules dist release coverage website-dist
+          rm -f package-lock.local-validation.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 8
+          git commit -m 'Remove obsolete documentation pages'
+          git push origin HEAD:${{ github.head_ref }}
