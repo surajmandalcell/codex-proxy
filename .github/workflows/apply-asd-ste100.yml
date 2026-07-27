@@ -1,11 +1,11 @@
 name: Apply ASD-STE100 production rewrite
 
 on:
-  push:
-    branches:
-      - agent/asd-ste100-production
+  pull_request:
+    branches: [master]
     paths:
-      - .ste/TRIGGER
+      - .github/workflows/apply-asd-ste100.yml
+      - .ste/**
 
 permissions:
   contents: write
@@ -16,14 +16,14 @@ concurrency:
 
 jobs:
   apply:
-    if: github.event.head_commit.message != 'Apply ASD-STE100 production rewrite'
+    if: github.head_ref == 'agent/asd-ste100-production'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - name: Check out rewrite branch
         uses: actions/checkout@v6
         with:
-          ref: agent/asd-ste100-production
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Use Node.js 22
@@ -39,9 +39,10 @@ jobs:
           cat .ste/part-* | base64 --decode > "$RUNNER_TEMP/asd-ste100-patch.tar.xz"
           echo '43eee7b28064c6ac76544283cde8098a6adb9611d5ae10ba54ac5194de06ec45  '"$RUNNER_TEMP/asd-ste100-patch.tar.xz" | sha256sum -c -
           python3 <<'PY'
+          import os
           import tarfile
           from pathlib import Path
-          archive = Path('/home/runner/work/_temp/asd-ste100-patch.tar.xz')
+          archive = Path(os.environ['RUNNER_TEMP']) / 'asd-ste100-patch.tar.xz'
           with tarfile.open(archive, 'r:xz') as source:
               members = source.getmembers()
               if len(members) != 36:
@@ -85,4 +86,4 @@ jobs:
           git diff --cached --check
           test "$(git diff --cached --name-only | wc -l | tr -d ' ')" = 36
           git commit -m 'Apply ASD-STE100 production rewrite'
-          git push origin HEAD:agent/asd-ste100-production
+          git push origin HEAD:${{ github.head_ref }}
