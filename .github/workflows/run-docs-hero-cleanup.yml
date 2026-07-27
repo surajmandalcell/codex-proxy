@@ -57,6 +57,33 @@ jobs:
             git push origin HEAD:${{ github.head_ref || github.ref_name }}
             exit 1
           fi
+          python3 <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              file = Path(path)
+              source = file.read_text(encoding='utf-8')
+              count = source.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected one match for {old!r}, got {count}')
+              file.write_text(source.replace(old, new, 1), encoding='utf-8')
+
+          replace_once(
+              'CHANGELOG.md',
+              '- Removed the Version 1 migration page.\n- Removed the public writing-profile page. The automated ASD-STE100 gate remains active.',
+              '- Removed two obsolete documentation pages.\n- Kept the automated ASD-STE100 gate active.',
+          )
+          replace_once(
+              'tests/repository/design-system.test.js',
+              '  assert.match(html, /Windows, macOS, and Linux/);',
+              '  assert.match(html, /One local API for Claude, Codex, and Z\\.ai\\./);\n  assert.doesNotMatch(html, /hero-label|hero-assurance/);',
+          )
+          replace_once(
+              'tests/repository/interface-completion.test.js',
+              '  assert.match(docs, /system diagram shows sources, Proxy-Inator, and clients/);',
+              '  assert.match(docs, /diagram shows Claude, Codex, and Z\\.ai as example sources/);',
+          )
+          PY
 
       - name: Install exact dependencies
         run: |
@@ -97,6 +124,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --check
-          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 5
+          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 6
           git commit -m 'Simplify the homepage hero'
           git push origin HEAD:${{ github.head_ref || github.ref_name }}
