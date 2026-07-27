@@ -89,7 +89,20 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Verify, test, and build
-        run: npm run build
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/release-diagnostics"
+          npm run build 2>&1 | tee "$RUNNER_TEMP/release-diagnostics/build.log"
+
+      - name: Upload build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-2.1.2-build-diagnostics
+          path: ${{ runner.temp }}/release-diagnostics/**
+          if-no-files-found: error
+          retention-days: 3
 
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
