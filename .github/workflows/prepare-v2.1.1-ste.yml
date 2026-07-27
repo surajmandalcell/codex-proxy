@@ -3,8 +3,6 @@ name: Prepare version 2.1.1 STE release
 on:
   pull_request:
     branches: [master]
-    paths:
-      - .github/workflows/prepare-v2.1.1-ste.yml
 
 permissions:
   contents: write
