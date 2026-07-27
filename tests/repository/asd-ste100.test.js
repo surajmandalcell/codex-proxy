@@ -20,6 +20,10 @@ test('public text uses the ASD-STE100 project gate', async () => {
   assert.match(checker, /'website\/index\.html'/);
   assert.match(checker, /'website\/manifest\.webmanifest'/);
   assert.match(checker, /walkMarkdown\(path\.join\(root, 'docs'\)\)/);
+  assert.match(checker, /const namedEntities = new Map/);
+  assert.match(checker, /function stripHtmlElement/);
+  assert.doesNotMatch(checker, /replaceAll\('&amp;', '&'\)/);
+  assert.doesNotMatch(checker, /<script\[\\s\\S\]\*\?<\\\/script>/);
   assert.match(profile, /Issue 9/);
   assert.match(profile, /maximum of 20 words in an instruction/);
   assert.match(profile, /maximum of 25 words in a descriptive sentence/);
