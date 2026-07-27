@@ -19,6 +19,7 @@ test('the hero uses one concise message and one routing diagram', async () => {
   assert.match(html, /Proxy-Inator routes requests from your tools to configured provider accounts\./);
   assert.equal((html.match(/class="hero-description"/g) ?? []).length, 1);
   assert.doesNotMatch(html, /hero-label|hero-assurance/);
+  assert.doesNotMatch(html, /Anthropic adapter|Command adapter|Compatible HTTP adapter|Scheduled or event-driven|Your local integration/);
   assert.match(html, /class="hero-system"/);
   assert.match(html, /class="system-diagram"/);
   assert.match(html, /Claude[\s\S]*Codex[\s\S]*Z\.ai[\s\S]*Proxy-Inator[\s\S]*Harness[\s\S]*Automation[\s\S]*App/);
