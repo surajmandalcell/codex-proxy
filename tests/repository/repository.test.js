@@ -10,7 +10,7 @@ const exists = (relative) => stat(path.join(root, relative)).then(() => true, ()
 test('package metadata identifies the current desktop application', async () => {
   const pkg = JSON.parse(await text('package.json'));
   assert.equal(pkg.name, 'subscription-proxy-inator');
-  assert.equal(pkg.version, '2.1.0');
+  assert.equal(pkg.version, '2.1.1');
   assert.equal(pkg.private, true);
   assert.equal(pkg.main, 'desktop/main/index.js');
   assert.deepEqual(
