@@ -2,116 +2,138 @@
 
 ## Scope
 
-The desktop renderer, product website, and generated documentation use one visual contract. The implementation is inspired by IBM Plex, IBM's public 2x Grid guidance, and Carbon's spacing and interaction principles. Subscription Proxy Inator is not affiliated with or endorsed by IBM.
+The desktop renderer, website, and generated docs use one visual system.
+
+The design uses IBM Plex and guidance from IBM 2x Grid and Carbon. The project is not affiliated with or endorsed by IBM.
 
 ## Product icon
 
-The canonical mark is a blue rounded-square tile containing a white calendar-and-refresh glyph. The calendar represents subscription and usage periods; the refresh badge represents routing, retry, and provider switching.
+The product icon is a blue rounded square. It contains one white calendar and refresh glyph.
 
-- `website/assets/icon.svg`, `desktop/renderer/assets/icon.svg`, and `build/icon.svg` must remain identical.
-- The white calendar-and-refresh glyph on the blue product tile uses no dark internal badge or second accent color.
-- The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, Linux packaging, and generated package raster.
-- `build/icon.png` is a deterministic 1024×1024 render of the canonical SVG for the pinned macOS and Windows package converter. It is not an independent design source.
-- `website/assets/apple-touch-icon.png`, `website/assets/icon-192.png`, and `website/assets/icon-512.png` are deterministic web compatibility renders of the same SVG. They are not independent design sources.
-- The manifest uses the SVG and explicit 192×192 and 512×512 PNG fallbacks with `purpose: any`; the edge-positioned refresh badge is not advertised as maskable.
-- The mark must retain an even optical margin, rounded outer corners, balanced calendar bindings, and a legible refresh badge at small sizes.
-- Retired raster icon sources must not remain in the repository after the SVG source becomes canonical.
+Rules:
 
-## Typography
+- The website, renderer, and build SVG files must be identical.
+- The glyph uses white only.
+- The SVG is the primary icon source.
+- `build/icon.png` is a generated 1024 px package icon.
+- Web PNG icons are generated from the same SVG.
+- The web manifest uses 192 px and 512 px PNG alternatives.
+- The icon must have an even optical margin.
+- The refresh mark must remain clear at small sizes.
+- Do not keep a retired icon source in the repository.
 
-- IBM Plex Sans is the interface typeface at weights 300, 400, 500, and 600.
-- IBM Plex Mono is used for routes, identifiers, logs, configuration JSON, and shell commands.
-- The desktop renderer imports pinned local Fontsource packages. The website generator copies the same pinned font files into the static site.
-- Primary interface text does not shrink to fit smaller windows. Layout changes before typography becomes unreadable.
+## Type
 
-## Spacing and grid
+- Use IBM Plex Sans for interface text.
+- Use IBM Plex Mono for routes, IDs, logs, JSON, and shell commands.
+- Load the typefaces from pinned local packages.
+- Do not reduce important text to fit a small window.
 
-The token scale uses a Carbon-like 4 px base with an 8 px major layout rhythm. Optical adjustments may use 2 px; component and section spacing primarily use 8 px multiples:
+## Spacing
 
-| Token | Value | Primary use |
+Use a 4 px base and an 8 px main rhythm.
+
+| Token | Value | Use |
 | --- | ---: | --- |
-| `spacing-01` | 2 px | Hairline optical adjustment |
-| `spacing-02` | 4 px | Tight label and icon spacing |
-| `spacing-03` | 8 px | Inline control spacing |
-| `spacing-04` | 12 px | Compact internal padding |
-| `spacing-05` | 16 px | Standard component padding |
-| `spacing-06` | 24 px | Section and panel spacing |
-| `spacing-07` | 32 px | Page gutters and large gaps |
-| `spacing-08` | 40 px | Compact page transitions |
-| `spacing-09` | 48 px | Major section spacing |
-| `spacing-10` | 64 px | Wide-screen section spacing |
+| `spacing-01` | 2 px | Optical correction |
+| `spacing-02` | 4 px | Tight icon or label gap |
+| `spacing-03` | 8 px | Inline control gap |
+| `spacing-04` | 12 px | Compact padding |
+| `spacing-05` | 16 px | Standard padding |
+| `spacing-06` | 24 px | Panel gap |
+| `spacing-07` | 32 px | Page gutter |
+| `spacing-08` | 40 px | Compact page gap |
+| `spacing-09` | 48 px | Main section gap |
+| `spacing-10` | 64 px | Wide section gap |
 
-The website and desktop page headers use a 16-column grid at wide sizes. Components collapse into fewer columns at defined breakpoints rather than using arbitrary widths.
+Use a 16-column grid on wide screens. Change the column count at defined breakpoints.
 
-CTA groups use at least 16 px between adjacent actions on standard layouts and at least 12 px when stacked on narrow screens. Adjacent actions must remain visually separate; one-pixel seams are reserved for data grids, not primary actions.
+Use at least 16 px between adjacent calls to action. Use at least 12 px when the actions stack.
 
-Wide split sections use equal content columns unless the information itself requires a different ratio. Routing, API, and build sections use balanced 1:1 columns; card collections use equal tracks and equal internal padding.
+Use equal columns for wide split sections unless the information needs a different ratio.
 
 ## Geometry and alignment
 
-- Primary controls are at least 40 px high; public website CTAs are at least 48 px high.
-- Table rows and navigation targets are at least 40 px high; mobile navigation targets are at least 48 px high.
-- Panels, fields, tables, and navigation use square or minimally rounded geometry.
-- Action groups align to the same baseline and wrap as a group before controls become cramped.
-- Page gutters, panel padding, heading spacing, and form gaps use shared tokens rather than one-off values.
-- Borders and layer changes establish hierarchy. Gradients, glass surfaces, ambient glows, and decorative shadows are not part of the system.
-- Color is functional: blue for primary action/selection, green for success, yellow for warning, and red for destructive/error states.
+- Make primary desktop controls at least 40 px high.
+- Make website calls to action at least 48 px high.
+- Make mobile navigation targets at least 48 px high.
+- Use square or small-radius surfaces.
+- Align action groups to one baseline.
+- Wrap the complete action group before controls become crowded.
+- Use shared tokens for gutters, padding, headings, and form gaps.
+- Use borders and background layers for hierarchy.
+- Do not use glass effects or decorative glows.
+- Use color for a defined state or action.
 
-## Website information hierarchy
+## Website hierarchy
 
-The first viewport must explain the application without requiring scrolling. It contains:
+The first viewport must identify these facts:
 
-1. The product category: desktop multi-provider AI gateway.
-2. The primary outcome: AI subscriptions reused through one local API.
-3. The factual behavior: compatible endpoints, routing, pre-stream failover, and local usage accounting.
-4. A visible system diagram: three configured sources → Proxy-Inator → three local clients.
-5. Separate Quick start and Download actions.
+1. The product is a desktop multi-provider AI gateway.
+2. The product gives clients one local compatible API.
+3. The product routes requests and records usage.
+4. Failover stops after visible output starts.
+5. The system diagram shows sources, Proxy-Inator, and clients.
+6. Quick start and Download are separate actions.
 
-The current diagram uses Claude through the Anthropic adapter, Codex through a command adapter, and Z.ai through a compatible HTTP adapter as concrete source examples. Harness, Automation, and App are generic local client examples that consume the compatible gateway.
+The diagram uses Claude, Codex, and Z.ai as configured source examples.
 
-The website contains only project facts and direct actions. It does not display fabricated traffic, cost, latency, availability, user, or account data. Remaining sections document implemented capabilities, provider adapters, routing strategies, exact local HTTP routes, security boundaries, and build links.
+Claude uses the Anthropic adapter. Codex uses a command adapter. Z.ai uses a compatible HTTP adapter.
 
-## Desktop structure
+Harness, Automation, and App are example local clients. They are not live user data.
 
-The desktop shell has three stable regions:
+Do not show false traffic, cost, latency, user, or account values.
 
-1. A 48 px custom titlebar containing product identity, gateway state, and window controls.
-2. A 256 px side navigation at wide and medium widths.
-3. A scrollable content region with a bounded maximum width and responsive grid.
+## Desktop layout
 
-Responsive behavior:
+The desktop shell has these areas:
 
-- At 1320 px and below, high-density editors use fewer columns.
-- At 1040 px and below, two-column page layouts become one column and the side navigation becomes an icon rail.
-- At 800 px and below, page headers and actions stack, data filters use two columns, and wide tables scroll horizontally.
-- At 620 px and below, form grids and strategy cards become one column while titlebar controls remain reachable.
+1. A 48 px titlebar
+2. A 256 px side navigation on wide screens
+3. A scrollable content area
 
-The renderer does not expose separate platform-specific page layouts. macOS, Windows, and Linux use the same DOM, tokens, sizes, and breakpoints.
+Responsive rules:
+
+- At 1320 px, dense editors use fewer columns.
+- At 1040 px, two-column pages use one column.
+- At 1040 px, the side navigation becomes an icon rail.
+- At 800 px, page actions stack.
+- At 800 px, data filters use two columns.
+- At 620 px, forms and strategy cards use one column.
+
+Windows, macOS, and Linux use the same DOM and breakpoints.
 
 ## Motion
 
-Motion is limited to opacity, color, and short spatial transitions that explain state or navigation changes.
+Use motion only to show a state or direction.
 
-- Interactive color and border transitions use approximately 120 ms.
-- Page, notice, and reveal transitions use approximately 180–260 ms.
-- Spatial movement is limited to 16 px or less and must not block input.
-- Hover movement is limited to 1–2 px and cannot be the only indication of interactivity.
-- Website sections reveal once as they enter the viewport; they do not loop or animate while reading.
-- Diagram connector dashes move slowly to clarify direction; source, hub, and client labels remain static and readable.
-- Desktop page changes use a short fade and vertical settle; loading and error layers use short opacity/position transitions.
-- The application Reduce motion preference and the operating-system `prefers-reduced-motion` setting both remove nonessential animation and smooth scrolling.
+- Use about 120 ms for color and border changes.
+- Use 180 through 260 ms for page and notice changes.
+- Keep movement at 16 px or less.
+- Keep hover movement at 2 px or less.
+- Reveal a website section one time.
+- Move diagram dashes slowly to show direction.
+- Keep diagram labels static.
+- Use a short page fade in the desktop app.
+- Remove nonessential motion when Reduce motion is on.
+- Respect the operating-system reduced-motion setting.
 
 ## Accessibility
 
-- All interactive controls have visible 3 px focus indicators with sufficient contrast.
-- Color is not the only status indicator; status text is always present.
-- Form inputs retain visible labels and helper text.
-- The hero diagram has a complete textual accessible name that states all sources, the Proxy-Inator hub, and all clients.
-- Mobile navigation maintains `aria-expanded`, moves focus to the opened menu, closes on Escape, and restores focus to the trigger.
-- Copy actions announce success or failure without removing their accessible name.
-- Horizontal scrolling is allowed for dense tables instead of compressing columns below usable widths.
-- Icon-only controls have explicit accessible labels; decorative product icons are hidden from assistive technology when adjacent text provides the name.
+- Give each control a visible 3 px focus indicator.
+- Do not use color as the only status signal.
+- Keep visible labels on form fields.
+- Give the hero diagram a complete text alternative.
+- Update `aria-expanded` for mobile navigation.
+- Move focus into an open mobile menu.
+- Close the menu with Escape.
+- Return focus to the menu button.
+- Announce copy success or failure.
+- Permit horizontal table scrolling.
+- Give each icon-only control an accessible name.
 
-## Maintenance rules
+## Maintenance
 
-A visual change must update tests when it changes a design contract. New components must use existing spacing, type, color, motion, and responsive tokens before introducing new values. Marketing copy, fake metrics, mock account names presented as live data, and unsupported capability claims are prohibited from the public website.
+Update a repository test when a design rule changes. Use existing tokens before you add a new value.
+
+Do not add marketing claims, false metrics, or unsupported functions.
