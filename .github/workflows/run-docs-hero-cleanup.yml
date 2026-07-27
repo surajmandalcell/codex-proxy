@@ -49,6 +49,7 @@ jobs:
           script = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines) + '\n'
           Path('/tmp/apply-cleanup.py').write_text(script, encoding='utf-8')
           PY
+          touch docs/MIGRATION_V1.md docs/WRITING_STANDARD.md
           python3 /tmp/apply-cleanup.py
 
       - name: Install exact dependencies
@@ -79,6 +80,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --check
-          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 7
-          git commit -m 'Remove obsolete docs and simplify the homepage hero'
+          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 5
+          git commit -m 'Simplify the homepage hero'
           git push origin HEAD:${{ github.head_ref || github.ref_name }}
