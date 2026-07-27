@@ -67,15 +67,32 @@ Use equal columns for wide split sections unless the information needs a differe
 
 ## Website hierarchy
 
-The first viewport must use one headline, one descriptive sentence, two actions, and one system diagram.
+The first viewport uses one headline, one descriptive sentence, two actions, and one system diagram.
 
 The headline identifies the local API. The sentence identifies the routing function.
 
-The diagram shows Claude, Codex, and Z.ai as example sources. It shows Harness, Automation, and App as example local clients.
+The diagram shows Claude, Codex, and Z.ai as example sources. It shows three example local clients.
+
+The diagram renders only two connector lines. One line enters the gateway, and one line leaves the gateway.
 
 Quick start and Download are separate actions. Do not add a version strip, assurance paragraph, adapter labels, or client descriptions to the hero.
 
 Do not show false traffic, cost, latency, user, or account values.
+
+## Documentation layout
+
+The generated documentation uses one fixed navigation contract.
+
+- Keep each desktop navigation row at least 44 px high.
+- Keep active and inactive labels at the same font weight.
+- Do not wrap navigation labels.
+- Use ellipsis when a label exceeds the available width.
+- Reserve scrollbar space on every documentation page.
+- Keep the article width and content padding constant.
+- Use a 48 px navigation target on narrow screens.
+- Use a border for active state without changing row size.
+
+These rules prevent movement when a reader changes pages from the sidebar.
 
 ## Desktop layout
 
