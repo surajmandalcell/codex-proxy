@@ -16,6 +16,10 @@ test('public text uses the ASD-STE100 project gate', async () => {
   assert.match(checker, /ASD-STE100 project profile/);
   assert.match(checker, /sentence exceeds/);
   assert.match(checker, /prohibited phrase/);
+  assert.match(checker, /'README\.md'/);
+  assert.match(checker, /'website\/index\.html'/);
+  assert.match(checker, /'website\/manifest\.webmanifest'/);
+  assert.match(checker, /walkMarkdown\(path\.join\(root, 'docs'\)\)/);
   assert.match(profile, /Issue 9/);
   assert.match(profile, /maximum of 20 words in an instruction/);
   assert.match(profile, /maximum of 25 words in a descriptive sentence/);
