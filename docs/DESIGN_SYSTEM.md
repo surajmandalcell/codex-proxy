@@ -6,14 +6,15 @@ The desktop renderer, product website, and generated documentation use one visua
 
 ## Product icon
 
-The canonical mark is a balanced rounded-square icon containing a calendar with a refresh badge in the bottom-right corner. The calendar represents subscription and usage periods; the refresh badge represents routing, retry, and provider switching.
+The canonical mark is a blue rounded-square tile containing a white calendar-and-refresh glyph. The calendar represents subscription and usage periods; the refresh badge represents routing, retry, and provider switching.
 
 - `website/assets/icon.svg`, `desktop/renderer/assets/icon.svg`, and `build/icon.svg` must remain identical.
-- The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, Linux packaging, and the generated package raster.
+- The white calendar-and-refresh glyph on the blue product tile uses no dark internal badge or second accent color.
+- The SVG is the source for the favicon, website header, desktop shell, boot state, web manifest, Linux packaging, and generated package raster.
 - `build/icon.png` is a deterministic 1024×1024 render of the canonical SVG for the pinned macOS and Windows package converter. It is not an independent design source.
 - `website/assets/apple-touch-icon.png`, `website/assets/icon-192.png`, and `website/assets/icon-512.png` are deterministic web compatibility renders of the same SVG. They are not independent design sources.
 - The manifest uses the SVG and explicit 192×192 and 512×512 PNG fallbacks with `purpose: any`; the edge-positioned refresh badge is not advertised as maskable.
-- The mark must retain an even optical margin, rounded outer corners, and a high-contrast refresh badge at small sizes.
+- The mark must retain an even optical margin, rounded outer corners, balanced calendar bindings, and a legible refresh badge at small sizes.
 - Retired raster icon sources must not remain in the repository after the SVG source becomes canonical.
 
 ## Typography
@@ -44,6 +45,8 @@ The website and desktop page headers use a 16-column grid at wide sizes. Compone
 
 CTA groups use at least 16 px between adjacent actions on standard layouts and at least 12 px when stacked on narrow screens. Adjacent actions must remain visually separate; one-pixel seams are reserved for data grids, not primary actions.
 
+Wide split sections use equal content columns unless the information itself requires a different ratio. Routing, API, and build sections use balanced 1:1 columns; card collections use equal tracks and equal internal padding.
+
 ## Geometry and alignment
 
 - Primary controls are at least 40 px high; public website CTAs are at least 48 px high.
@@ -59,10 +62,12 @@ CTA groups use at least 16 px between adjacent actions on standard layouts and a
 The first viewport must explain the application without requiring scrolling. It contains:
 
 1. The product category: desktop multi-provider AI gateway.
-2. The primary outcome: one local API for multiple AI providers.
-3. The factual behavior: account eligibility, routing, pre-stream failover, and local usage accounting.
-4. A client → local gateway → provider request path.
+2. The primary outcome: AI subscriptions reused through one local API.
+3. The factual behavior: compatible endpoints, routing, pre-stream failover, and local usage accounting.
+4. A visible system diagram: three configured sources → Proxy-Inator → three local clients.
 5. Separate Quick start and Download actions.
+
+The current diagram uses Claude through the Anthropic adapter, Codex through a command adapter, and Z.ai through a compatible HTTP adapter as concrete source examples. Harness, Automation, and App are generic local client examples that consume the compatible gateway.
 
 The website contains only project facts and direct actions. It does not display fabricated traffic, cost, latency, availability, user, or account data. Remaining sections document implemented capabilities, provider adapters, routing strategies, exact local HTTP routes, security boundaries, and build links.
 
@@ -92,6 +97,7 @@ Motion is limited to opacity, color, and short spatial transitions that explain 
 - Spatial movement is limited to 16 px or less and must not block input.
 - Hover movement is limited to 1–2 px and cannot be the only indication of interactivity.
 - Website sections reveal once as they enter the viewport; they do not loop or animate while reading.
+- Diagram connector dashes move slowly to clarify direction; source, hub, and client labels remain static and readable.
 - Desktop page changes use a short fade and vertical settle; loading and error layers use short opacity/position transitions.
 - The application Reduce motion preference and the operating-system `prefers-reduced-motion` setting both remove nonessential animation and smooth scrolling.
 
@@ -100,6 +106,7 @@ Motion is limited to opacity, color, and short spatial transitions that explain 
 - All interactive controls have visible 3 px focus indicators with sufficient contrast.
 - Color is not the only status indicator; status text is always present.
 - Form inputs retain visible labels and helper text.
+- The hero diagram has a complete textual accessible name that states all sources, the Proxy-Inator hub, and all clients.
 - Mobile navigation maintains `aria-expanded`, moves focus to the opened menu, closes on Escape, and restores focus to the trigger.
 - Copy actions announce success or failure without removing their accessible name.
 - Horizontal scrolling is allowed for dense tables instead of compressing columns below usable widths.
@@ -107,4 +114,4 @@ Motion is limited to opacity, color, and short spatial transitions that explain 
 
 ## Maintenance rules
 
-A visual change must update tests when it changes a design contract. New components must use existing spacing, type, color, motion, and responsive tokens before introducing new values. Marketing copy, fake metrics, mock account names, and unsupported capability claims are prohibited from the public website.
+A visual change must update tests when it changes a design contract. New components must use existing spacing, type, color, motion, and responsive tokens before introducing new values. Marketing copy, fake metrics, mock account names presented as live data, and unsupported capability claims are prohibited from the public website.
