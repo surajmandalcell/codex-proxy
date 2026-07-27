@@ -1,0 +1,128 @@
+name: Prepare version 2.1.1 STE release
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - .github/workflows/prepare-v2.1.1-ste.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-v2.1.1-ste
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.head_ref == 'agent/release-2.1.1-ste'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out release branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Apply version 2.1.1 metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --global npm@10.9.2 --no-audit --no-fund
+          test "$(node -p "require('./package.json').version")" = 2.1.0
+          npm version 2.1.1 --no-git-tag-version
+          python3 <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              'README.md': [
+                  ('Version 2.1.0', 'Version 2.1.1'),
+                  ('version-2.1.0-0f62fe', 'version-2.1.1-0f62fe'),
+              ],
+              'scripts/verify.mjs': [
+                  ("pkg.version !== '2.1.0'", "pkg.version !== '2.1.1'"),
+                  ('subscription-proxy-inator@2.1.0', 'subscription-proxy-inator@2.1.1'),
+              ],
+              'tests/repository/repository.test.js': [
+                  ("pkg.version, '2.1.0'", "pkg.version, '2.1.1'"),
+              ],
+              'tests/repository/design-system.test.js': [
+                  ("pkg.version, '2.1.0'", "pkg.version, '2.1.1'"),
+              ],
+              '.github/ISSUE_TEMPLATE/bug.yml': [
+                  ('placeholder: 2.1.0', 'placeholder: 2.1.1'),
+              ],
+              'website/index.html': [
+                  ('Version 2.1.0 · MIT', 'Version 2.1.1 · MIT'),
+              ],
+          }
+
+          for relative, pairs in replacements.items():
+              path = Path(relative)
+              source = path.read_text(encoding='utf-8')
+              for old, new in pairs:
+                  if source.count(old) != 1:
+                      raise SystemExit(f'Expected one match for {old!r} in {relative}')
+                  source = source.replace(old, new, 1)
+              path.write_text(source, encoding='utf-8')
+
+          changelog = Path('CHANGELOG.md')
+          source = changelog.read_text(encoding='utf-8')
+          marker = '## 2.1.0 - 2026-07-26\n'
+          entry = '''## 2.1.1 - 2026-07-27
+
+### Documentation
+
+- Rewrites public project text with the ASD-STE100 Issue 9 project profile.
+- Adds an automated check for sentence length, contractions, semicolons, and prohibited phrases.
+- Adds the controlled technical-term list and writing maintenance rules.
+- Fixes HTML text extraction for encoded entities and raw-text elements.
+
+### Validation
+
+- Passes 195 tests, coverage limits, documentation links, CodeQL, and the responsive browser audit.
+- Passes unpacked Electron package builds on Linux, macOS, and Windows.
+
+'''
+          if '## 2.1.1 - 2026-07-27' not in source:
+              if marker not in source:
+                  raise SystemExit('The 2.1.0 changelog marker is absent.')
+              source = source.replace(marker, entry + marker, 1)
+          changelog.write_text(source, encoding='utf-8')
+          PY
+
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify, test, and build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Build unpacked Electron application
+        run: npx electron-builder --dir --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - name: Commit clean release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf node_modules dist release coverage website-dist
+          rm -f package-lock.local-validation.json
+          rm -f .github/workflows/prepare-v2.1.1-ste.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 9
+          git commit -m 'Prepare version 2.1.1'
+          git push origin HEAD:${{ github.head_ref }}
