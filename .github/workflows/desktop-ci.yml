@@ -82,7 +82,7 @@ jobs:
           PY
 
           if grep -RInE 'WRITING_STANDARD|MIGRATION_V1|Version 1 migration|ASD-STE100 writing profile|Writing standard' \
-            README.md CHANGELOG.md docs scripts tests website .github package.json; then
+            README.md CHANGELOG.md docs scripts tests website package.json; then
             echo 'An obsolete documentation reference remains.' >&2
             exit 1
           fi
