@@ -67,20 +67,13 @@ Use equal columns for wide split sections unless the information needs a differe
 
 ## Website hierarchy
 
-The first viewport must identify these facts:
+The first viewport must use one headline, one descriptive sentence, two actions, and one system diagram.
 
-1. The product is a desktop multi-provider AI gateway.
-2. The product gives clients one local compatible API.
-3. The product routes requests and records usage.
-4. Failover stops after visible output starts.
-5. The system diagram shows sources, Proxy-Inator, and clients.
-6. Quick start and Download are separate actions.
+The headline identifies the local API. The sentence identifies the routing function.
 
-The diagram uses Claude, Codex, and Z.ai as configured source examples.
+The diagram shows Claude, Codex, and Z.ai as example sources. It shows Harness, Automation, and App as example local clients.
 
-Claude uses the Anthropic adapter. Codex uses a command adapter. Z.ai uses a compatible HTTP adapter.
-
-Harness, Automation, and App are example local clients. They are not live user data.
+Quick start and Download are separate actions. Do not add a version strip, assurance paragraph, adapter labels, or client descriptions to the hero.
 
 Do not show false traffic, cost, latency, user, or account values.
 

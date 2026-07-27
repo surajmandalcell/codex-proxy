@@ -59,28 +59,20 @@
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div class="site-grid">
-          <div class="hero-label" data-reveal>Version 2.1.1 · MIT · Windows, macOS, and Linux</div>
           <div class="hero-copy" data-reveal>
-            <p class="hero-kicker">Desktop multi-provider AI gateway</p>
-            <h1 id="hero-title">Use your AI providers through one local gateway.</h1>
-            <p class="hero-description">
-              Connect Claude, Codex, Z.ai, and other supported providers. Proxy-Inator gives local clients OpenAI-compatible and Anthropic-compatible routes.
-            </p>
-            <p class="hero-description">
-              It selects routes, changes routes before output starts, and records usage on your computer.
-            </p>
-            <div class="hero-actions" role="group" aria-label="Start or download">
+            <p class="hero-kicker">Local AI gateway</p>
+            <h1 id="hero-title">One local API for Claude, Codex, and Z.ai.</h1>
+            <p class="hero-description">Proxy-Inator routes requests from your tools to configured provider accounts.</p>
+            <div class="hero-actions" role="group" aria-label="Get started">
               <a class="button button-primary" href="docs/quick_start/" aria-label="Open the quick start guide">Quick start</a>
               <a class="button button-secondary" href="https://github.com/surajmandalcell/subscription-proxy-inator/releases/latest" aria-label="Download the latest desktop release">Download latest</a>
             </div>
-            <p class="hero-assurance">The server listens on loopback by default. The app does not need a hosted control plane.</p>
           </div>
 
-          <figure class="hero-system" aria-labelledby="hero-system-title hero-system-caption" data-reveal>
+          <figure class="hero-system" aria-labelledby="hero-system-title" data-reveal>
             <figcaption>
-              <span class="diagram-eyebrow">Subscription routing</span>
-              <strong id="hero-system-title">Connect providers once. Use them in many clients.</strong>
-              <p id="hero-system-caption">Configured subscriptions enter Proxy-Inator. Local clients use one compatible API.</p>
+              <span class="diagram-eyebrow">Request flow</span>
+              <strong id="hero-system-title">Subscriptions in. Local clients out.</strong>
             </figcaption>
 
             <div
@@ -104,47 +96,22 @@
 
               <div class="diagram-column diagram-sources" aria-label="Configured provider sources">
                 <span class="diagram-column-label">Sources</span>
-                <div class="diagram-node">
-                  <span>Subscription</span>
-                  <strong>Claude</strong>
-                  <small>Anthropic adapter</small>
-                </div>
-                <div class="diagram-node">
-                  <span>Subscription</span>
-                  <strong>Codex</strong>
-                  <small>Command adapter</small>
-                </div>
-                <div class="diagram-node">
-                  <span>Subscription</span>
-                  <strong>Z.ai</strong>
-                  <small>Compatible HTTP adapter</small>
-                </div>
+                <div class="diagram-node"><strong>Claude</strong></div>
+                <div class="diagram-node"><strong>Codex</strong></div>
+                <div class="diagram-node"><strong>Z.ai</strong></div>
               </div>
 
               <div class="diagram-hub">
                 <img src="assets/icon.svg" width="72" height="72" alt="" aria-hidden="true">
-                <span>Local gateway</span>
                 <strong>Proxy-Inator</strong>
-                <small>Routes requests and records usage</small>
+                <small>Local API</small>
               </div>
 
               <div class="diagram-column diagram-clients" aria-label="Example local clients">
                 <span class="diagram-column-label">Clients</span>
-                <div class="diagram-node">
-                  <span>Developer tool</span>
-                  <strong>Harness</strong>
-                  <small>Compatible client</small>
-                </div>
-                <div class="diagram-node">
-                  <span>Workflow</span>
-                  <strong>Automation</strong>
-                  <small>Scheduled or event-driven</small>
-                </div>
-                <div class="diagram-node">
-                  <span>Product</span>
-                  <strong>App</strong>
-                  <small>Your local integration</small>
-                </div>
+                <div class="diagram-node"><strong>Harness</strong></div>
+                <div class="diagram-node"><strong>Automation</strong></div>
+                <div class="diagram-node"><strong>App</strong></div>
               </div>
             </div>
           </figure>
@@ -314,7 +281,7 @@ npm run dev</code></pre>
       <div class="site-grid">
         <div class="footer-product">
           <strong>Subscription Proxy Inator</strong>
-          <span>MIT License</span>
+          <span>Version 2.1.1 · MIT License</span>
         </div>
         <nav aria-label="Footer navigation">
           <a href="docs/">Documentation</a>

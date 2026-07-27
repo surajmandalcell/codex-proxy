@@ -11,23 +11,24 @@ function normalizedSvg(source) {
   return source.replace(/\s+/g, ' ').trim();
 }
 
-test('the hero explains the subscription-to-client product flow before the calls to action', async () => {
+test('the hero uses one concise message and one routing diagram', async () => {
   const html = await text('website/index.html');
   const styles = await text('website/assets/polish.css');
 
-  assert.match(html, /Use your AI providers through one local gateway\./);
-  assert.match(html, /Claude, Codex, Z\.ai/);
-  assert.match(html, /Proxy-Inator gives local clients OpenAI-compatible and Anthropic-compatible routes/);
-  assert.match(html, /changes routes before output starts, and records usage/);
+  assert.match(html, /One local API for Claude, Codex, and Z\.ai\./);
+  assert.match(html, /Proxy-Inator routes requests from your tools to configured provider accounts\./);
+  assert.equal((html.match(/class="hero-description"/g) ?? []).length, 1);
+  assert.doesNotMatch(html, /hero-label|hero-assurance/);
   assert.match(html, /class="hero-system"/);
   assert.match(html, /class="system-diagram"/);
   assert.match(html, /Claude[\s\S]*Codex[\s\S]*Z\.ai[\s\S]*Proxy-Inator[\s\S]*Harness[\s\S]*Automation[\s\S]*App/);
   assert.match(html, /aria-label="Claude, Codex, and Z\.ai connect to Proxy-Inator/);
-  assert.match(html, /class="hero-actions" role="group" aria-label="Start or download"/);
-  assert.match(styles, /\.hero-actions\s*\{[\s\S]*align-items:\s*center/);
+  assert.match(html, /class="hero-actions" role="group" aria-label="Get started"/);
+  assert.match(styles, /\.hero \.site-grid\s*\{[\s\S]*min-height:\s*640px/);
   assert.match(styles, /\.hero-actions\s*\{[\s\S]*gap:\s*16px/);
-  assert.match(styles, /\.hero-actions\s*\{[\s\S]*margin-top:\s*40px/);
+  assert.match(styles, /\.hero-actions\s*\{[\s\S]*margin-top:\s*32px/);
   assert.match(styles, /\.hero-actions \.button[\s\S]*min-inline-size:\s*168px/);
+  assert.match(styles, /\.diagram-node\s*\{[\s\S]*min-height:\s*64px/);
   assert.match(styles, /\.button:focus-visible[\s\S]*outline:\s*3px solid/);
 });
 
@@ -130,7 +131,7 @@ test('the social preview and documentation contract use the finished diagram, ic
   assert.match(social, /id="refresh-badge"/);
   assert.doesNotMatch(social, /fill="#161616" stroke="#ffffff"/);
   assert.match(docs, /Use at least 16 px between adjacent calls to action/);
-  assert.match(docs, /system diagram shows sources, Proxy-Inator, and clients/);
+  assert.match(docs, /diagram shows Claude, Codex, and Z\.ai as example sources/);
   assert.match(docs, /Use equal columns for wide split sections/);
   assert.match(docs, /white calendar and refresh glyph/);
   assert.match(docs, /Use motion only to show a state or direction/);
