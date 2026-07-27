@@ -40,6 +40,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+          path = Path('.cleanup/apply.py')
+          source = path.read_text(encoding='utf-8')
+          source = source.replace("replacement = '''test('the hero uses one concise message", "replacement = r'''test('the hero uses one concise message", 1)
+          source = source.replace('source, count = pattern.subn(replacement, source, count=1)', 'source, count = pattern.subn(lambda _match: replacement, source, count=1)', 1)
+          path.write_text(source, encoding='utf-8')
+          PY
           if ! python3 .cleanup/apply.py >.cleanup/OUTPUT 2>.cleanup/ERROR; then
             cat .cleanup/ERROR >&2
             git config user.name 'github-actions[bot]'
