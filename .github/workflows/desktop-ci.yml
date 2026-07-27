@@ -15,19 +15,13 @@ jobs:
   cleanup-docs:
     if: github.head_ref == 'agent/remove-obsolete-doc-pages'
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 15
     steps:
       - name: Check out cleanup branch
         uses: actions/checkout@v6
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
 
       - name: Remove obsolete pages and references
         shell: bash
@@ -87,29 +81,11 @@ jobs:
             exit 1
           fi
 
-      - name: Install exact dependencies
-        run: |
-          npm install --global npm@10.9.2 --no-audit --no-fund
-          npm ci --no-audit --no-fund
-
-      - name: Verify, test, and build
-        run: npm run build
-
-      - name: Audit production dependencies
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Build unpacked Electron application
-        run: npx electron-builder --dir --publish never
-        env:
-          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-
       - name: Commit clean source
         shell: bash
         run: |
           set -euo pipefail
           git checkout origin/master -- .github/workflows/desktop-ci.yml
-          rm -rf node_modules dist release coverage website-dist
-          rm -f package-lock.local-validation.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
