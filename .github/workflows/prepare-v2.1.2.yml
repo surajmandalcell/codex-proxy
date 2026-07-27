@@ -1,0 +1,110 @@
+name: Prepare version 2.1.2
+
+on:
+  push:
+    branches:
+      - agent/release-2.1.2
+    paths:
+      - .release-v2.1.2/TRIGGER
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-version-2.1.2
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out release branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/release-2.1.2
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Apply version metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --global npm@10.9.2 --no-audit --no-fund
+          test "$(node -p "require('./package.json').version")" = 2.1.1
+          npm version 2.1.2 --no-git-tag-version
+          python3 <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              file = Path(path)
+              source = file.read_text(encoding='utf-8')
+              count = source.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected one match for {old!r}, got {count}')
+              file.write_text(source.replace(old, new, 1), encoding='utf-8')
+
+          replace_once('README.md', 'Version 2.1.1', 'Version 2.1.2')
+          replace_once('README.md', 'version-2.1.1-0f62fe', 'version-2.1.2-0f62fe')
+          replace_once('scripts/verify.mjs', "pkg.version !== '2.1.1'", "pkg.version !== '2.1.2'")
+          replace_once('scripts/verify.mjs', 'subscription-proxy-inator@2.1.1', 'subscription-proxy-inator@2.1.2')
+          replace_once('tests/repository/repository.test.js', "assert.equal(pkg.version, '2.1.1');", "assert.equal(pkg.version, '2.1.2');")
+          replace_once('tests/repository/repository.test.js', "assert.equal(pkg.version, '2.1.1');", "assert.equal(pkg.version, '2.1.2');")
+          replace_once('tests/repository/repository.test.js', r'/Version 2\.1\.1/', r'/Version 2\.1\.2/')
+          replace_once('tests/repository/repository.test.js', r'/Version 2\.1\.1 · MIT/', r'/Version 2\.1\.2 · MIT/')
+          replace_once('tests/repository/design-system.test.js', "assert.equal(pkg.version, '2.1.1');", "assert.equal(pkg.version, '2.1.2');")
+          replace_once('.github/ISSUE_TEMPLATE/bug.yml', 'placeholder: 2.1.1', 'placeholder: 2.1.2')
+          replace_once('website/index.html', 'Version 2.1.1 · MIT License', 'Version 2.1.2 · MIT License')
+
+          changelog = Path('CHANGELOG.md')
+          source = changelog.read_text(encoding='utf-8')
+          heading = '## Unreleased\n\n'
+          next_heading = '## 2.1.1 - 2026-07-27\n'
+          if source.count(heading) != 1 or source.count(next_heading) != 1:
+              raise SystemExit('Unexpected changelog headings.')
+          start = source.index(heading) + len(heading)
+          end = source.index(next_heading)
+          body = source[start:end].strip()
+          if not body:
+              raise SystemExit('The Unreleased section is empty.')
+          replacement = heading + '## 2.1.2 - 2026-07-28\n\n' + body + '\n\n'
+          source = source[:source.index(heading)] + replacement + source[end:]
+          changelog.write_text(source, encoding='utf-8')
+          PY
+
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify, test, and build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Build unpacked Electron application
+        run: npx electron-builder --dir --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - name: Commit clean release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf node_modules dist release coverage website-dist .release-v2.1.2
+          rm -f package-lock.local-validation.json
+          rm -f .github/workflows/prepare-v2.1.2.yml
+          test "$(node -p "require('./package.json').version")" = 2.1.2
+          test "$(node -p "require('./package-lock.json').version")" = 2.1.2
+          test "$(node -p "require('./package-lock.json').packages[''].version")" = 2.1.2
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 9
+          git commit -m 'Prepare version 2.1.2'
+          git push origin HEAD:agent/release-2.1.2
