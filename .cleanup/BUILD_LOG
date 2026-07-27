@@ -24,1045 +24,1045 @@ TAP version 13
 # Subtest: provider updates preserve credential-bearing account state from public drafts
 ok 1 - provider updates preserve credential-bearing account state from public drafts
   ---
-  duration_ms: 2.85004
+  duration_ms: 4.34211
   type: 'test'
   ...
 # Subtest: adding an account rolls back a freshly encrypted secret when config commit fails
 ok 2 - adding an account rolls back a freshly encrypted secret when config commit fails
   ---
-  duration_ms: 1.57021
+  duration_ms: 3.082895
   type: 'test'
   ...
 # Subtest: updating a credential commits a new reference then removes the old secret
 ok 3 - updating a credential commits a new reference then removes the old secret
   ---
-  duration_ms: 1.642878
+  duration_ms: 2.222476
   type: 'test'
   ...
 # Subtest: removing a provider commits config first and clears aliases, pricing, runtime, and secrets
 ok 4 - removing a provider commits config first and clears aliases, pricing, runtime, and secrets
   ---
-  duration_ms: 0.375266
+  duration_ms: 0.899441
   type: 'test'
   ...
 # Subtest: unknown provider and account identifiers fail explicitly
 ok 5 - unknown provider and account identifiers fail explicitly
   ---
-  duration_ms: 0.246586
+  duration_ms: 0.597468
   type: 'test'
   ...
 # Subtest: proxy execute estimates routes, serializes output, and records successful usage
 ok 6 - proxy execute estimates routes, serializes output, and records successful usage
   ---
-  duration_ms: 2.765264
+  duration_ms: 3.766112
   type: 'test'
   ...
 # Subtest: proxy execute records terminal failures and rethrows them
 ok 7 - proxy execute records terminal failures and rethrows them
   ---
-  duration_ms: 0.713198
+  duration_ms: 0.885506
   type: 'test'
   ...
 # Subtest: proxy streaming emits keep-alive comments and records selected route
 ok 8 - proxy streaming emits keep-alive comments and records selected route
   ---
-  duration_ms: 0.770153
+  duration_ms: 1.046848
   type: 'test'
   ...
 # Subtest: proxy streaming records cancellation
 ok 9 - proxy streaming records cancellation
   ---
-  duration_ms: 1.672932
+  duration_ms: 1.338954
   type: 'test'
   ...
 # Subtest: usage persistence errors are contained and logged
 ok 10 - usage persistence errors are contained and logged
   ---
-  duration_ms: 0.306796
+  duration_ms: 0.286065
   type: 'test'
   ...
 # Subtest: provider registry registers and lists adapters
 ok 11 - provider registry registers and lists adapters
   ---
-  duration_ms: 1.59018
+  duration_ms: 3.502058
   type: 'test'
   ...
 # Subtest: provider registry rejects malformed and duplicate adapters
 ok 12 - provider registry rejects malformed and duplicate adapters
   ---
-  duration_ms: 0.506692
+  duration_ms: 0.890856
   type: 'test'
   ...
 # Subtest: provider registry can intentionally replace an adapter
 ok 13 - provider registry can intentionally replace an adapter
   ---
-  duration_ms: 0.120458
+  duration_ms: 0.261499
   type: 'test'
   ...
 # Subtest: missing provider adapter is explicit
 ok 14 - missing provider adapter is explicit
   ---
-  duration_ms: 0.090134
+  duration_ms: 0.198021
   type: 'test'
   ...
 # Subtest: runtime state tracks in-flight, success, EWMA, cooldown, and attention
 ok 15 - runtime state tracks in-flight, success, EWMA, cooldown, and attention
   ---
-  duration_ms: 0.231263
+  duration_ms: 0.42831
   type: 'test'
   ...
 # Subtest: runtime cancellation only decrements in-flight
 ok 16 - runtime cancellation only decrements in-flight
   ---
-  duration_ms: 0.097695
+  duration_ms: 0.240549
   type: 'test'
   ...
 # Subtest: runtime snapshots are detached
 ok 17 - runtime snapshots are detached
   ---
-  duration_ms: 0.119667
+  duration_ms: 0.285444
   type: 'test'
   ...
 # Subtest: runtime clear operations remove health state
 ok 18 - runtime clear operations remove health state
   ---
-  duration_ms: 0.097465
+  duration_ms: 0.213499
   type: 'test'
   ...
 # Subtest: routing service returns the first successful route
 ok 19 - routing service returns the first successful route
   ---
-  duration_ms: 7.455945
+  duration_ms: 14.701231
   type: 'test'
   ...
 # Subtest: routing service fails over after retryable errors
 ok 20 - routing service fails over after retryable errors
   ---
-  duration_ms: 1.00454
+  duration_ms: 1.20307
   type: 'test'
   ...
 # Subtest: routing service stops on non-retryable errors
 ok 21 - routing service stops on non-retryable errors
   ---
-  duration_ms: 0.551909
+  duration_ms: 0.753449
   type: 'test'
   ...
 # Subtest: routing service does not retry client cancellation
 ok 22 - routing service does not retry client cancellation
   ---
-  duration_ms: 0.382998
+  duration_ms: 0.583521
   type: 'test'
   ...
 # Subtest: routing service exposes no-route failures
 ok 23 - routing service exposes no-route failures
   ---
-  duration_ms: 0.24934
+  duration_ms: 0.370624
   type: 'test'
   ...
 # Subtest: routing hooks receive attempt lifecycle events
 ok 24 - routing hooks receive attempt lifecycle events
   ---
-  duration_ms: 0.294557
+  duration_ms: 0.452336
   type: 'test'
   ...
 # Subtest: streaming fails over before client-visible output
 ok 25 - streaming fails over before client-visible output
   ---
-  duration_ms: 0.854459
+  duration_ms: 2.188804
   type: 'test'
   ...
 # Subtest: streaming never fails over after visible text
 ok 26 - streaming never fails over after visible text
   ---
-  duration_ms: 1.041676
+  duration_ms: 1.987788
   type: 'test'
   ...
 # Subtest: tool calls are client-visible failover boundaries
 ok 27 - tool calls are client-visible failover boundaries
   ---
-  duration_ms: 0.428516
+  duration_ms: 0.693427
   type: 'test'
   ...
 # Subtest: non-visible completed streams flush buffered metadata
 ok 28 - non-visible completed streams flush buffered metadata
   ---
-  duration_ms: 0.334036
+  duration_ms: 0.586457
   type: 'test'
   ...
 # Subtest: usage service applies pricing and stores records
 ok 29 - usage service applies pricing and stores records
   ---
-  duration_ms: 0.510939
+  duration_ms: 0.863184
   type: 'test'
   ...
 # Subtest: usage service delegates list, summary, CSV, and prune
 ok 30 - usage service delegates list, summary, CSV, and prune
   ---
-  duration_ms: 0.546381
+  duration_ms: 0.970174
   type: 'test'
   ...
 # Subtest: settings patch merges domains and restarts only when endpoint changes
 ok 31 - settings patch merges domains and restarts only when endpoint changes
   ---
-  duration_ms: 1.878999
+  duration_ms: 2.732309
   type: 'test'
   ...
 # Subtest: settings rollback configuration and effects when restart fails
 ok 32 - settings rollback configuration and effects when restart fails
   ---
-  duration_ms: 0.756232
+  duration_ms: 0.984722
   type: 'test'
   ...
 # Subtest: local API key is encrypted, replaceable, clearable, and redacted
 ok 33 - local API key is encrypted, replaceable, clearable, and redacted
   ---
-  duration_ms: 0.400744
+  duration_ms: 0.620821
   type: 'test'
   ...
 # Subtest: empty API key clears the current key
 ok 34 - empty API key clears the current key
   ---
-  duration_ms: 0.190122
+  duration_ms: 0.28372
   type: 'test'
   ...
 # Subtest: endpoint change predicate ignores dynamic server options
 ok 35 - endpoint change predicate ignores dynamic server options
   ---
-  duration_ms: 0.881388
+  duration_ms: 1.036558
   type: 'test'
   ...
 # Subtest: shared helpers cover finite, clone, glob, clamp, and stable ordering branches
 ok 36 - shared helpers cover finite, clone, glob, clamp, and stable ordering branches
   ---
-  duration_ms: 1.397514
+  duration_ms: 2.181259
   type: 'test'
   ...
 # Subtest: canonical block normalization ignores unknown and non-object values
 ok 37 - canonical block normalization ignores unknown and non-object values
   ---
-  duration_ms: 1.084209
+  duration_ms: 1.620711
   type: 'test'
   ...
 # Subtest: OpenAI conversion covers image variants, invalid arguments, stop arrays, and tool choice
 ok 38 - OpenAI conversion covers image variants, invalid arguments, stop arrays, and tool choice
   ---
-  duration_ms: 1.070208
+  duration_ms: 1.629317
   type: 'test'
   ...
 # Subtest: OpenAI Responses covers string input and ignored non-function tools
 ok 39 - OpenAI Responses covers string input and ignored non-function tools
   ---
-  duration_ms: 0.329328
+  duration_ms: 0.509903
   type: 'test'
   ...
 # Subtest: OpenAI stream serializers cover start, tool, usage, finish, and fallback events
 ok 40 - OpenAI stream serializers cover start, tool, usage, finish, and fallback events
   ---
-  duration_ms: 0.360475
+  duration_ms: 0.560879
   type: 'test'
   ...
 # Subtest: OpenAI response and chunk fallbacks cover empty content and length finish
 ok 41 - OpenAI response and chunk fallbacks cover empty content and length finish
   ---
-  duration_ms: 0.461225
+  duration_ms: 0.667449
   type: 'test'
   ...
 # Subtest: Anthropic conversion covers empty content, tool errors, unknown blocks, and fallback stops
 ok 42 - Anthropic conversion covers empty content, tool errors, unknown blocks, and fallback stops
   ---
-  duration_ms: 0.447594
+  duration_ms: 0.610442
   type: 'test'
   ...
 # Subtest: Anthropic stream covers start, first tool without delta, usage, and ignored events
 ok 43 - Anthropic stream covers start, first tool without delta, usage, and ignored events
   ---
-  duration_ms: 0.339735
+  duration_ms: 0.467114
   type: 'test'
   ...
 # Subtest: Gemini payload covers URL images, assistant tools, absent generation values, and stop sequences
 ok 44 - Gemini payload covers URL images, assistant tools, absent generation values, and stop sequences
   ---
-  duration_ms: 0.47176
+  duration_ms: 0.550509
   type: 'test'
   ...
 # Subtest: Gemini response covers unknown finish and no candidates
 ok 45 - Gemini response covers unknown finish and no candidates
   ---
-  duration_ms: 0.528865
+  duration_ms: 0.650336
   type: 'test'
   ...
 # Subtest: account limits use callback-backed observations and period boundaries
 ok 46 - account limits use callback-backed observations and period boundaries
   ---
-  duration_ms: 0.644477
+  duration_ms: 0.777213
   type: 'test'
   ...
 # Subtest: strategy branches cover sticky without key, prune, and weighted final fallback
 ok 47 - strategy branches cover sticky without key, prune, and weighted final fallback
   ---
-  duration_ms: 7.623634
+  duration_ms: 12.402512
   type: 'test'
   ...
 # Subtest: error classification covers quota, retry-after clamp, network status, and invalid retry dates
 ok 48 - error classification covers quota, retry-after clamp, network status, and invalid retry dates
   ---
-  duration_ms: 0.752016
+  duration_ms: 1.007454
   type: 'test'
   ...
 # Subtest: usage service uses repository fallbacks when summary and csv are absent
 ok 49 - usage service uses repository fallbacks when summary and csv are absent
   ---
-  duration_ms: 0.681331
+  duration_ms: 0.872481
   type: 'test'
   ...
 # Subtest: routing stream reports no route when every provider is disabled
 ok 50 - routing stream reports no route when every provider is disabled
   ---
-  duration_ms: 1.654385
+  duration_ms: 2.475359
   type: 'test'
   ...
 # Subtest: default config is loopback-only and valid
 ok 51 - default config is loopback-only and valid
   ---
-  duration_ms: 1.119831
+  duration_ms: 1.900414
   type: 'test'
   ...
 # Subtest: provider defaults are useful and independent
 ok 52 - provider defaults are useful and independent
   ---
-  duration_ms: 1.116427
+  duration_ms: 1.934177
   type: 'test'
   ...
 # Subtest: account coerces priority and positive weight
 ok 53 - account coerces priority and positive weight
   ---
-  duration_ms: 0.275649
+  duration_ms: 0.381233
   type: 'test'
   ...
 # Subtest: account normalizes local limits
 ok 54 - account normalizes local limits
   ---
-  duration_ms: 0.133909
+  duration_ms: 0.183213
   type: 'test'
   ...
 # Subtest: sensitive provider headers are discarded
 ok 55 - sensitive provider headers are discarded
   ---
-  duration_ms: 0.970441
+  duration_ms: 1.199694
   type: 'test'
   ...
 # Subtest: normalization merges nested defaults
 ok 56 - normalization merges nested defaults
   ---
-  duration_ms: 0.234698
+  duration_ms: 0.306833
   type: 'test'
   ...
 # Subtest: validation rejects non-loopback binding
 ok 57 - validation rejects non-loopback binding
   ---
-  duration_ms: 0.36331
+  duration_ms: 0.699959
   type: 'test'
   ...
 # Subtest: validation rejects unsafe ports
 ok 58 - validation rejects unsafe ports
   ---
-  duration_ms: 0.145066
+  duration_ms: 0.350976
   type: 'test'
   ...
 # Subtest: validation rejects unknown strategies
 ok 59 - validation rejects unknown strategies
   ---
-  duration_ms: 0.099578
+  duration_ms: 0.236613
   type: 'test'
   ...
 # Subtest: validation rejects duplicate provider ids
 ok 60 - validation rejects duplicate provider ids
   ---
-  duration_ms: 0.201029
+  duration_ms: 0.346518
   type: 'test'
   ...
 # Subtest: validation rejects duplicate account ids across providers
 ok 61 - validation rejects duplicate account ids across providers
   ---
-  duration_ms: 0.285453
+  duration_ms: 0.438961
   type: 'test'
   ...
 # Subtest: validation rejects aliases referencing a missing provider
 ok 62 - validation rejects aliases referencing a missing provider
   ---
-  duration_ms: 0.223562
+  duration_ms: 0.259135
   type: 'test'
   ...
 # Subtest: public config redacts secret references
 ok 63 - public config redacts secret references
   ---
-  duration_ms: 0.265434
+  duration_ms: 0.435093
   type: 'test'
   ...
 # Subtest: replaceProviderOverrides updates global strategy and clears overrides
 ok 64 - replaceProviderOverrides updates global strategy and clears overrides
   ---
-  duration_ms: 0.314627
+  duration_ms: 0.463938
   type: 'test'
   ...
 # Subtest: model alias resolution prefers provider-specific mappings
 ok 65 - model alias resolution prefers provider-specific mappings
   ---
-  duration_ms: 0.280786
+  duration_ms: 0.453748
   type: 'test'
   ...
 # Subtest: validation rejects insecure remote provider URLs and malformed browser origins
 ok 66 - validation rejects insecure remote provider URLs and malformed browser origins
   ---
-  duration_ms: 0.664436
+  duration_ms: 0.990763
   type: 'test'
   ...
 # Subtest: validation rejects duplicate aliases and invalid pricing records
 ok 67 - validation rejects duplicate aliases and invalid pricing records
   ---
-  duration_ms: 0.644386
+  duration_ms: 0.925791
   type: 'test'
   ...
 # Subtest: validation bounds retention and provider attempts
 ok 68 - validation bounds retention and provider attempts
   ---
-  duration_ms: 0.314787
+  duration_ms: 0.423231
   type: 'test'
   ...
 # Subtest: canonical request requires model
 ok 69 - canonical request requires model
   ---
-  duration_ms: 1.69813
+  duration_ms: 1.701722
   type: 'test'
   ...
 # Subtest: canonical request normalizes strings and roles
 ok 70 - canonical request normalizes strings and roles
   ---
-  duration_ms: 3.917414
+  duration_ms: 2.236392
   type: 'test'
   ...
 # Subtest: normalize blocks preserves tools and images
 ok 71 - normalize blocks preserves tools and images
   ---
-  duration_ms: 0.327706
+  duration_ms: 0.359182
   type: 'test'
   ...
 # Subtest: usage supports OpenAI fields and cache
 ok 72 - usage supports OpenAI fields and cache
   ---
-  duration_ms: 0.238293
+  duration_ms: 0.259505
   type: 'test'
   ...
 # Subtest: canonical response supplies stable defaults
 ok 73 - canonical response supplies stable defaults
   ---
-  duration_ms: 0.2764
+  duration_ms: 0.306463
   type: 'test'
   ...
 # Subtest: OpenAI Chat request separates system and tools
 ok 74 - OpenAI Chat request separates system and tools
   ---
-  duration_ms: 0.568865
+  duration_ms: 0.821928
   type: 'test'
   ...
 # Subtest: OpenAI Chat tool calls and results normalize
 ok 75 - OpenAI Chat tool calls and results normalize
   ---
-  duration_ms: 0.254298
+  duration_ms: 0.288719
   type: 'test'
   ...
 # Subtest: OpenAI Responses input and function output normalize
 ok 76 - OpenAI Responses input and function output normalize
   ---
-  duration_ms: 0.410309
+  duration_ms: 0.425065
   type: 'test'
   ...
 # Subtest: OpenAI chat response serializes text, tools, usage
 ok 77 - OpenAI chat response serializes text, tools, usage
   ---
-  duration_ms: 0.421495
+  duration_ms: 0.505655
   type: 'test'
   ...
 # Subtest: OpenAI Responses response serializes output items
 ok 78 - OpenAI Responses response serializes output items
   ---
-  duration_ms: 0.345513
+  duration_ms: 0.442518
   type: 'test'
   ...
 # Subtest: OpenAI chat stream maps visible and finish events
 ok 79 - OpenAI chat stream maps visible and finish events
   ---
-  duration_ms: 0.250992
+  duration_ms: 0.309419
   type: 'test'
   ...
 # Subtest: OpenAI Responses stream maps deltas
 ok 80 - OpenAI Responses stream maps deltas
   ---
-  duration_ms: 0.193747
+  duration_ms: 0.273903
   type: 'test'
   ...
 # Subtest: OpenAI chunk parsing emits text, tool, finish, usage
 ok 81 - OpenAI chunk parsing emits text, tool, finish, usage
   ---
-  duration_ms: 0.392022
+  duration_ms: 0.553976
   type: 'test'
   ...
 # Subtest: Anthropic request supports images and tool results
 ok 82 - Anthropic request supports images and tool results
   ---
-  duration_ms: 0.429918
+  duration_ms: 0.669321
   type: 'test'
   ...
 # Subtest: Anthropic response serializes content and cache usage
 ok 83 - Anthropic response serializes content and cache usage
   ---
-  duration_ms: 0.291643
+  duration_ms: 0.386342
   type: 'test'
   ...
 # Subtest: Anthropic stream maintains stable block indexes
 ok 84 - Anthropic stream maintains stable block indexes
   ---
-  duration_ms: 0.445842
+  duration_ms: 0.584203
   type: 'test'
   ...
 # Subtest: Anthropic usage normalizes all cache counters
 ok 85 - Anthropic usage normalizes all cache counters
   ---
-  duration_ms: 0.142842
+  duration_ms: 0.247532
   type: 'test'
   ...
 # Subtest: Gemini payload uses native system instructions, images, tools, and parameters
 ok 86 - Gemini payload uses native system instructions, images, tools, and parameters
   ---
-  duration_ms: 0.461875
+  duration_ms: 0.504954
   type: 'test'
   ...
 # Subtest: Gemini payload preserves tool result names
 ok 87 - Gemini payload preserves tool result names
   ---
-  duration_ms: 0.221139
+  duration_ms: 0.242994
   type: 'test'
   ...
 # Subtest: Gemini response maps text, functions, usage, and stop reason
 ok 88 - Gemini response maps text, functions, usage, and stop reason
   ---
-  duration_ms: 0.314707
+  duration_ms: 0.55612
   type: 'test'
   ...
 # Subtest: Gemini stream emits canonical events
 ok 89 - Gemini stream emits canonical events
   ---
-  duration_ms: 0.284001
+  duration_ms: 0.339284
   type: 'test'
   ...
 # Subtest: priority chooses the lowest numeric value
 ok 90 - priority chooses the lowest numeric value
   ---
-  duration_ms: 7.579609
+  duration_ms: 11.222125
   type: 'test'
   ...
 # Subtest: priority is deterministic for ties
 ok 91 - priority is deterministic for ties
   ---
-  duration_ms: 0.173998
+  duration_ms: 0.298388
   type: 'test'
   ...
 # Subtest: round robin cycles candidates
 ok 92 - round robin cycles candidates
   ---
-  duration_ms: 0.74137
+  duration_ms: 1.359422
   type: 'test'
   ...
 # Subtest: round robin counters are isolated by scope
 ok 93 - round robin counters are isolated by scope
   ---
-  duration_ms: 0.106397
+  duration_ms: 0.254146
   type: 'test'
   ...
 # Subtest: weighted random honors boundaries
 ok 94 - weighted random honors boundaries
   ---
-  duration_ms: 0.224173
+  duration_ms: 0.409676
   type: 'test'
   ...
 # Subtest: weighted random falls back when all weights are zero
 ok 95 - weighted random falls back when all weights are zero
   ---
-  duration_ms: 0.108271
+  duration_ms: 0.222476
   type: 'test'
   ...
 # Subtest: least inflight chooses the smallest active count
 ok 96 - least inflight chooses the smallest active count
   ---
-  duration_ms: 0.123793
+  duration_ms: 0.31003
   type: 'test'
   ...
 # Subtest: lowest latency treats unknown latency as infinity
 ok 97 - lowest latency treats unknown latency as infinity
   ---
-  duration_ms: 0.109132
+  duration_ms: 0.286716
   type: 'test'
   ...
 # Subtest: lowest cost chooses the estimated minimum
 ok 98 - lowest cost chooses the estimated minimum
   ---
-  duration_ms: 0.165375
+  duration_ms: 0.313165
   type: 'test'
   ...
 # Subtest: sticky reuses a healthy route
 ok 99 - sticky reuses a healthy route
   ---
-  duration_ms: 0.217813
+  duration_ms: 0.376915
   type: 'test'
   ...
 # Subtest: sticky expires and selects again
 ok 100 - sticky expires and selects again
   ---
-  duration_ms: 0.127249
+  duration_ms: 0.18727
   type: 'test'
   ...
 # Subtest: unknown strategy is rejected
 ok 101 - unknown strategy is rejected
   ---
-  duration_ms: 0.378852
+  duration_ms: 0.60433
   type: 'test'
   ...
 # Subtest: empty candidate list is rejected
 ok 102 - empty candidate list is rejected
   ---
-  duration_ms: 0.098646
+  duration_ms: 0.174166
   type: 'test'
   ...
 # Subtest: retry-after parses seconds and dates
 ok 103 - retry-after parses seconds and dates
   ---
-  duration_ms: 0.113708
+  duration_ms: 0.214972
   type: 'test'
   ...
 # Subtest: classification preserves upstream errors
 ok 104 - classification preserves upstream errors
   ---
-  duration_ms: 0.237522
+  duration_ms: 0.449861
   type: 'test'
   ...
 # Subtest: authentication errors request attention and may fail over
 ok 105 - authentication errors request attention and may fail over
   ---
-  duration_ms: 0.132917
+  duration_ms: 0.233306
   type: 'test'
   ...
 # Subtest: rate limits honor retry-after
 ok 106 - rate limits honor retry-after
   ---
-  duration_ms: 0.158546
+  duration_ms: 0.329836
   type: 'test'
   ...
 # Subtest: server failures use exponential cooldown
 ok 107 - server failures use exponential cooldown
   ---
-  duration_ms: 0.176322
+  duration_ms: 0.357057
   type: 'test'
   ...
 # Subtest: client cancellation is not retryable
 ok 108 - client cancellation is not retryable
   ---
-  duration_ms: 0.098877
+  duration_ms: 0.200214
   type: 'test'
   ...
 # Subtest: network and timeout failures are retryable
 ok 109 - network and timeout failures are retryable
   ---
-  duration_ms: 0.214308
+  duration_ms: 0.459971
   type: 'test'
   ...
 # Subtest: ordinary 400 errors are not retryable
 ok 110 - ordinary 400 errors are not retryable
   ---
-  duration_ms: 0.116042
+  duration_ms: 0.188011
   type: 'test'
   ...
 # Subtest: limits report every exceeded budget
 ok 111 - limits report every exceeded budget
   ---
-  duration_ms: 0.30378
+  duration_ms: 0.554217
   type: 'test'
   ...
 # Subtest: unset limits allow traffic
 ok 112 - unset limits allow traffic
   ---
-  duration_ms: 0.323279
+  duration_ms: 0.637272
   type: 'test'
   ...
 # Subtest: routing candidates exclude disabled, cooldown, attention, model mismatch, and limits
 ok 113 - routing candidates exclude disabled, cooldown, attention, model mismatch, and limits
   ---
-  duration_ms: 0.718827
+  duration_ms: 1.268211
   type: 'test'
   ...
 # Subtest: routing plan avoids retrying the same route
 ok 114 - routing plan avoids retrying the same route
   ---
-  duration_ms: 0.435527
+  duration_ms: 0.819312
   type: 'test'
   ...
 # Subtest: provider max attempts is respected
 ok 115 - provider max attempts is respected
   ---
-  duration_ms: 0.267767
+  duration_ms: 0.452065
   type: 'test'
   ...
 # Subtest: provider-specific exact pricing wins
 ok 116 - provider-specific exact pricing wins
   ---
-  duration_ms: 1.352738
+  duration_ms: 1.506848
   type: 'test'
   ...
 # Subtest: specific model glob wins over broad type rule
 ok 117 - specific model glob wins over broad type rule
   ---
-  duration_ms: 0.273516
+  duration_ms: 0.308267
   type: 'test'
   ...
 # Subtest: no pricing match returns null
 ok 118 - no pricing match returns null
   ---
-  duration_ms: 0.142762
+  duration_ms: 0.166432
   type: 'test'
   ...
 # Subtest: newer verification breaks equal specificity ties
 ok 119 - newer verification breaks equal specificity ties
   ---
-  duration_ms: 8.001114
+  duration_ms: 7.857363
   type: 'test'
   ...
 # Subtest: cost includes input, output, cache read, and cache write independently
 ok 120 - cost includes input, output, cache read, and cache write independently
   ---
-  duration_ms: 0.28325
+  duration_ms: 0.458568
   type: 'test'
   ...
 # Subtest: unknown pricing is explicit
 ok 121 - unknown pricing is explicit
   ---
-  duration_ms: 0.987896
+  duration_ms: 1.566981
   type: 'test'
   ...
 # Subtest: usage filters compose across dimensions
 ok 122 - usage filters compose across dimensions
   ---
-  duration_ms: 1.065482
+  duration_ms: 0.417902
   type: 'test'
   ...
 # Subtest: date filters are inclusive
 ok 123 - date filters are inclusive
   ---
-  duration_ms: 0.178204
+  duration_ms: 1.592307
   type: 'test'
   ...
 # Subtest: summary aggregates status, tokens, cache, cost, latency
 ok 124 - summary aggregates status, tokens, cache, cost, latency
   ---
-  duration_ms: 2.598176
+  duration_ms: 0.424224
   type: 'test'
   ...
 # Subtest: summary applies filters
 ok 125 - summary applies filters
   ---
-  duration_ms: 0.230442
+  duration_ms: 0.33676
   type: 'test'
   ...
 # Subtest: CSV has stable columns and escapes values
 ok 126 - CSV has stable columns and escapes values
   ---
-  duration_ms: 0.375917
+  duration_ms: 0.495827
   type: 'test'
   ...
 # Subtest: CSV applies the same filters
 ok 127 - CSV applies the same filters
   ---
-  duration_ms: 0.181329
+  duration_ms: 0.297667
   type: 'test'
   ...
 # Subtest: normalizes Windows repository paths to stable POSIX separators
 ok 128 - normalizes Windows repository paths to stable POSIX separators
   ---
-  duration_ms: 0.717906
+  duration_ms: 1.315269
   type: 'test'
   ...
 # Subtest: keeps already-normalized repository paths unchanged
 ok 129 - keeps already-normalized repository paths unchanged
   ---
-  duration_ms: 0.947566
+  duration_ms: 0.971787
   type: 'test'
   ...
 # Subtest: config store creates a default file atomically
 ok 130 - config store creates a default file atomically
   ---
-  duration_ms: 10.254539
+  duration_ms: 11.095208
   type: 'test'
   ...
 # Subtest: config store loads existing configuration
 ok 131 - config store loads existing configuration
   ---
-  duration_ms: 1.961391
+  duration_ms: 1.624828
   type: 'test'
   ...
 # Subtest: config updates are serialized and revisions increase
 ok 132 - config updates are serialized and revisions increase
   ---
-  duration_ms: 23.726062
+  duration_ms: 24.749682
   type: 'test'
   ...
 # Subtest: config save validates configuration
 ok 133 - config save validates configuration
   ---
-  duration_ms: 3.40278
+  duration_ms: 2.333894
   type: 'test'
   ...
 # Subtest: AES secret store encrypts and survives restart
 ok 134 - AES secret store encrypts and survives restart
   ---
-  duration_ms: 10.88192
+  duration_ms: 7.503702
   type: 'test'
   ...
 # Subtest: secret store can replace and delete a reference
 ok 135 - secret store can replace and delete a reference
   ---
-  duration_ms: 3.885156
+  duration_ms: 4.927975
   type: 'test'
   ...
 # Subtest: safeStorage mode is used when available
 ok 136 - safeStorage mode is used when available
   ---
-  duration_ms: 3.264254
+  duration_ms: 3.282448
   type: 'test'
   ...
 # Subtest: secret references are listed deterministically
 ok 137 - secret references are listed deterministically
   ---
-  duration_ms: 124.718449
+  duration_ms: 7.048561
   type: 'test'
   ...
 # Subtest: memory usage repository inserts, sorts, paginates, summarizes, and exports
 ok 138 - memory usage repository inserts, sorts, paginates, summarizes, and exports
   ---
-  duration_ms: 9.006277
+  duration_ms: 14.028158
   type: 'test'
   ...
 # Subtest: memory usage repository generates ids and prunes old records
 ok 139 - memory usage repository generates ids and prunes old records
   ---
-  duration_ms: 0.501634
+  duration_ms: 0.650567
   type: 'test'
   ...
 # Subtest: redaction handles nested keys and bearer strings
 ok 140 - redaction handles nested keys and bearer strings
   ---
-  duration_ms: 0.614471
+  duration_ms: 0.830544
   type: 'test'
   ...
 # Subtest: logger maintains bounded history and subscriptions
 ok 141 - logger maintains bounded history and subscriptions
   ---
-  duration_ms: 0.49855
+  duration_ms: 0.741005
   type: 'test'
   ...
 # Subtest: SQLite where builder uses parameters for every filter
 ok 142 - SQLite where builder uses parameters for every filter
   ---
-  duration_ms: 0.388577
+  duration_ms: 0.507699
   type: 'test'
   ...
 # Subtest: SQLite where builder handles no filters
 ok 143 - SQLite where builder handles no filters
   ---
-  duration_ms: 0.145796
+  duration_ms: 0.201517
   type: 'test'
   ...
 # Subtest: HTTP bearer parsing is strict
 ok 144 - HTTP bearer parsing is strict
   ---
-  duration_ms: 0.228169
+  duration_ms: 0.242734
   type: 'test'
   ...
 # Subtest: constant time string comparison handles missing and unequal values
 ok 145 - constant time string comparison handles missing and unequal values
   ---
-  duration_ms: 0.16837
+  duration_ms: 0.232756
   type: 'test'
   ...
 # Subtest: model discovery includes aliases and exact provider model ids only
 ok 146 - model discovery includes aliases and exact provider model ids only
   ---
-  duration_ms: 0.434045
+  duration_ms: 0.588431
   type: 'test'
   ...
 # Subtest: token estimation is positive and size-sensitive
 ok 147 - token estimation is positive and size-sensitive
   ---
-  duration_ms: 0.266976
+  duration_ms: 0.364141
   type: 'test'
   ...
 # Subtest: streaming protocol errors use native wire envelopes
 ok 148 - streaming protocol errors use native wire envelopes
   ---
-  duration_ms: 0.350731
+  duration_ms: 0.500967
   type: 'test'
   ...
 # Subtest: SSE encoder and parser support event names and multiline data
 ok 149 - SSE encoder and parser support event names and multiline data
   ---
-  duration_ms: 3.434517
+  duration_ms: 6.041537
   type: 'test'
   ...
 # Subtest: SSE parser flushes a final unterminated frame
 ok 150 - SSE parser flushes a final unterminated frame
   ---
-  duration_ms: 0.607832
+  duration_ms: 0.878283
   type: 'test'
   ...
 # Subtest: auth headers place secrets only in authorization
 ok 151 - auth headers place secrets only in authorization
   ---
-  duration_ms: 0.736213
+  duration_ms: 1.079268
   type: 'test'
   ...
 # Subtest: fetch helper returns successful responses
 ok 152 - fetch helper returns successful responses
   ---
-  duration_ms: 21.398102
+  duration_ms: 27.921954
   type: 'test'
   ...
 # Subtest: fetch helper maps upstream status and retry-after
 ok 153 - fetch helper maps upstream status and retry-after
   ---
-  duration_ms: 1.203656
+  duration_ms: 1.911415
   type: 'test'
   ...
 # Subtest: fetch helper maps client cancellation distinctly
 ok 154 - fetch helper maps client cancellation distinctly
   ---
-  duration_ms: 0.573852
+  duration_ms: 0.782914
   type: 'test'
   ...
 # Subtest: OpenAI adapter executes chat completions
 ok 155 - OpenAI adapter executes chat completions
   ---
-  duration_ms: 1.109717
+  duration_ms: 1.539289
   type: 'test'
   ...
 # Subtest: OpenAI adapter streams canonical events
 ok 156 - OpenAI adapter streams canonical events
   ---
-  duration_ms: 2.181237
+  duration_ms: 2.926222
   type: 'test'
   ...
 # Subtest: Anthropic adapter executes native message payloads
 ok 157 - Anthropic adapter executes native message payloads
   ---
-  duration_ms: 0.748511
+  duration_ms: 1.040956
   type: 'test'
   ...
 # Subtest: Anthropic adapter streams text and usage
 ok 158 - Anthropic adapter streams text and usage
   ---
-  duration_ms: 0.598638
+  duration_ms: 0.832707
   type: 'test'
   ...
 # Subtest: Gemini adapter uses key query and native response conversion
 ok 159 - Gemini adapter uses key query and native response conversion
   ---
-  duration_ms: 0.838895
+  duration_ms: 1.153227
   type: 'test'
   ...
 # Subtest: Gemini adapter streams SSE chunks
 ok 160 - Gemini adapter streams SSE chunks
   ---
-  duration_ms: 0.631407
+  duration_ms: 0.914149
   type: 'test'
   ...
 # Subtest: command adapter exchanges JSON lines and secret environment
 ok 161 - command adapter exchanges JSON lines and secret environment
   ---
-  duration_ms: 54.521194
+  duration_ms: 96.732832
   type: 'test'
   ...
 # Subtest: command adapter reports nonzero exits
 ok 162 - command adapter reports nonzero exits
   ---
-  duration_ms: 43.137465
+  duration_ms: 59.344534
   type: 'test'
   ...
 # Subtest: command adapter requires an explicit executable
 ok 163 - command adapter requires an explicit executable
   ---
-  duration_ms: 0.35042
+  duration_ms: 0.479156
   type: 'test'
   ...
 # Subtest: external modules are restricted to trusted root and cached
 ok 164 - external modules are restricted to trusted root and cached
   ---
-  duration_ms: 4.319345
+  duration_ms: 6.71129
   type: 'test'
   ...
 # Subtest: built-in registry contains every provider architecture type
 ok 165 - built-in registry contains every provider architecture type
   ---
-  duration_ms: 0.42449
+  duration_ms: 1.757166
   type: 'test'
   ...
 # Subtest: Gemini Deep Research request uses Interactions API agent options
 ok 166 - Gemini Deep Research request uses Interactions API agent options
   ---
-  duration_ms: 0.557407
+  duration_ms: 0.763718
   type: 'test'
   ...
 # Subtest: Gemini Deep Research completed interaction converts cited text, images, and usage
 ok 167 - Gemini Deep Research completed interaction converts cited text, images, and usage
   ---
-  duration_ms: 0.479071
+  duration_ms: 0.452867
   type: 'test'
   ...
 # Subtest: Gemini adapter executes completed Deep Research interactions
 ok 168 - Gemini adapter executes completed Deep Research interactions
   ---
-  duration_ms: 0.899334
+  duration_ms: 1.362738
   type: 'test'
   ...
 # Subtest: Gemini Deep Research compatibility stream emits safe heartbeats before final report
 ok 169 - Gemini Deep Research compatibility stream emits safe heartbeats before final report
   ---
-  duration_ms: 251.416014
+  duration_ms: 252.903907
   type: 'test'
   ...
 # Subtest: Grok adapter forwards sticky conversation ids and service tiers
 ok 170 - Grok adapter forwards sticky conversation ids and service tiers
   ---
-  duration_ms: 0.598559
+  duration_ms: 0.727491
   type: 'test'
   ...
 # Subtest: public text uses the ASD-STE100 project gate
 ok 171 - public text uses the ASD-STE100 project gate
   ---
-  duration_ms: 5.822752
+  duration_ms: 13.519501
   type: 'test'
   ...
 # Subtest: the renderer uses pinned IBM Plex packages without the retired presentation dependencies
 ok 172 - the renderer uses pinned IBM Plex packages without the retired presentation dependencies
   ---
-  duration_ms: 6.148034
+  duration_ms: 19.966457
   type: 'test'
   ...
 # Subtest: desktop geometry follows the shared spacing and responsive contract
 ok 173 - desktop geometry follows the shared spacing and responsive contract
   ---
-  duration_ms: 1.372648
+  duration_ms: 2.108694
   type: 'test'
   ...
 # Subtest: the website presents implemented facts instead of fabricated product telemetry
 not ok 174 - the website presents implemented facts instead of fabricated product telemetry
   ---
-  duration_ms: 6.873641
+  duration_ms: 6.594812
   type: 'test'
   location: '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/tests/repository/design-system.test.js:33:1'
   failureType: 'testCodeFailure'
@@ -1565,37 +1565,37 @@ not ok 174 - the website presents implemented facts instead of fabricated produc
 # Subtest: the interface contract is documented and linked from the public documentation index
 ok 175 - the interface contract is documented and linked from the public documentation index
   ---
-  duration_ms: 2.803902
+  duration_ms: 4.681505
   type: 'test'
   ...
 # Subtest: the hero uses one concise message and one routing diagram
 ok 176 - the hero uses one concise message and one routing diagram
   ---
-  duration_ms: 4.987141
+  duration_ms: 12.425897
   type: 'test'
   ...
 # Subtest: one white calendar-refresh glyph on a blue rounded square is used everywhere
 ok 177 - one white calendar-refresh glyph on a blue rounded square is used everywhere
   ---
-  duration_ms: 4.452899
+  duration_ms: 9.394467
   type: 'test'
   ...
 # Subtest: homepage sections use balanced IBM grid proportions at wide sizes
 ok 178 - homepage sections use balanced IBM grid proportions at wide sizes
   ---
-  duration_ms: 1.361841
+  duration_ms: 3.784777
   type: 'test'
   ...
 # Subtest: website and desktop motion are purposeful and respect reduced-motion preferences
 ok 179 - website and desktop motion are purposeful and respect reduced-motion preferences
   ---
-  duration_ms: 1.986518
+  duration_ms: 4.742609
   type: 'test'
   ...
 # Subtest: the social preview and documentation contract use the finished diagram, icon, and motion rules
 not ok 180 - the social preview and documentation contract use the finished diagram, icon, and motion rules
   ---
-  duration_ms: 1.841032
+  duration_ms: 3.216826
   type: 'test'
   location: '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/tests/repository/interface-completion.test.js:122:1'
   failureType: 'testCodeFailure'
@@ -1881,73 +1881,73 @@ not ok 180 - the social preview and documentation contract use the finished diag
 # Subtest: polling forms use dirty-aware drafts and mutations report success
 ok 181 - polling forms use dirty-aware drafts and mutations report success
   ---
-  duration_ms: 6.953921
+  duration_ms: 14.333162
   type: 'test'
   ...
 # Subtest: usage interaction handles failures and keyboard selection
 ok 182 - usage interaction handles failures and keyboard selection
   ---
-  duration_ms: 0.869741
+  duration_ms: 1.909891
   type: 'test'
   ...
 # Subtest: site interaction and generated links remain safe and accessible
 ok 183 - site interaction and generated links remain safe and accessible
   ---
-  duration_ms: 2.025186
+  duration_ms: 4.205865
   type: 'test'
   ...
 # Subtest: desktop status and compact responsive controls retain explicit states
 ok 184 - desktop status and compact responsive controls retain explicit states
   ---
-  duration_ms: 0.960776
+  duration_ms: 2.570256
   type: 'test'
   ...
 # Subtest: temporary completion machinery is absent from the publishable branch
 ok 185 - temporary completion machinery is absent from the publishable branch
   ---
-  duration_ms: 2.532028
+  duration_ms: 8.979742
   type: 'test'
   ...
 # Subtest: package metadata identifies the current desktop application
 ok 186 - package metadata identifies the current desktop application
   ---
-  duration_ms: 5.013511
+  duration_ms: 6.649124
   type: 'test'
   ...
 # Subtest: release metadata uses one version in the package, lockfile, README, and website
 ok 187 - release metadata uses one version in the package, lockfile, README, and website
   ---
-  duration_ms: 3.590519
+  duration_ms: 4.475279
   type: 'test'
   ...
 # Subtest: legacy and temporary repository roots are absent
 ok 188 - legacy and temporary repository roots are absent
   ---
-  duration_ms: 0.989529
+  duration_ms: 1.293799
   type: 'test'
   ...
 # Subtest: renderer stays behind the preload capability boundary
 ok 189 - renderer stays behind the preload capability boundary
   ---
-  duration_ms: 1.662367
+  duration_ms: 2.05887
   type: 'test'
   ...
 # Subtest: Electron window is sandboxed and context isolated
 ok 190 - Electron window is sandboxed and context isolated
   ---
-  duration_ms: 0.777453
+  duration_ms: 0.946389
   type: 'test'
   ...
 # Subtest: public documentation covers every supported operating concern
 ok 191 - public documentation covers every supported operating concern
   ---
-  duration_ms: 1.418114
+  duration_ms: 1.854448
   type: 'test'
   ...
 # Subtest: obsolete documentation pages and links are absent
 not ok 192 - obsolete documentation pages and links are absent
   ---
-  duration_ms: 2.679095
+  duration_ms: 2.938004
   type: 'test'
   location: '/home/runner/work/subscription-proxy-inator/subscription-proxy-inator/tests/repository/repository.test.js:69:1'
   failureType: 'testCodeFailure'
@@ -2534,31 +2534,31 @@ not ok 192 - obsolete documentation pages and links are absent
 # Subtest: desktop CI validates and packages all three platforms
 ok 193 - desktop CI validates and packages all three platforms
   ---
-  duration_ms: 1.443922
+  duration_ms: 1.969483
   type: 'test'
   ...
 # Subtest: CodeQL is least-privilege and documentation hosting is explicit
 ok 194 - CodeQL is least-privilege and documentation hosting is explicit
   ---
-  duration_ms: 0.955158
+  duration_ms: 1.585325
   type: 'test'
   ...
 # Subtest: release workflow requires a version tag and uploads checksummed artifacts
 ok 195 - release workflow requires a version tag and uploads checksummed artifacts
   ---
-  duration_ms: 0.57953
+  duration_ms: 0.963482
   type: 'test'
   ...
 # Subtest: public website is local-asset only and links documentation
 ok 196 - public website is local-asset only and links documentation
   ---
-  duration_ms: 0.8354
+  duration_ms: 1.428121
   type: 'test'
   ...
 # Subtest: repository policy files are present
 ok 197 - repository policy files are present
   ---
-  duration_ms: 0.839075
+  duration_ms: 1.215403
   type: 'test'
   ...
 1..197
@@ -2569,7 +2569,7 @@ ok 197 - repository policy files are present
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 773.695232
+# duration_ms 996.643678
 # start of coverage report
 # -------------------------------------------------------------------------------------------------
 # file                                 | line % | branch % | funcs % | uncovered lines
