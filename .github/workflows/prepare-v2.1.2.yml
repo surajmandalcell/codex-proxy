@@ -66,6 +66,7 @@ jobs:
           repository_test.write_text(source, encoding='utf-8')
 
           replace_once('tests/repository/design-system.test.js', "assert.equal(pkg.version, '2.1.1');", "assert.equal(pkg.version, '2.1.2');")
+          replace_once('tests/repository/design-system.test.js', r'/Version 2\.1\.1/', r'/Version 2\.1\.2/')
           replace_once('.github/ISSUE_TEMPLATE/bug.yml', 'placeholder: 2.1.1', 'placeholder: 2.1.2')
           replace_once('website/index.html', 'Version 2.1.1 · MIT License', 'Version 2.1.2 · MIT License')
 
