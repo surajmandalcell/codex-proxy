@@ -1,6 +1,11 @@
 name: Run documentation and hero cleanup
 
 on:
+  push:
+    branches:
+      - agent/remove-obsolete-docs-clean-hero
+    paths:
+      - .github/workflows/run-docs-hero-cleanup.yml
   pull_request:
     branches: [master]
     paths:
@@ -15,14 +20,14 @@ concurrency:
 
 jobs:
   apply:
-    if: github.head_ref == 'agent/remove-obsolete-docs-clean-hero'
+    if: github.ref_name == 'agent/remove-obsolete-docs-clean-hero' || github.head_ref == 'agent/remove-obsolete-docs-clean-hero'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - name: Check out cleanup branch
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
       - name: Use Node.js 22
@@ -76,4 +81,4 @@ jobs:
           git diff --cached --check
           test "$(git diff --cached --name-only origin/master | wc -l | tr -d ' ')" = 7
           git commit -m 'Remove obsolete docs and simplify the homepage hero'
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD:${{ github.head_ref || github.ref_name }}
