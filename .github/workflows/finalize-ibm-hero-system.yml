@@ -1,0 +1,88 @@
+name: Finalize IBM hero system diagram
+
+on:
+  push:
+    branches:
+      - agent/ibm-hero-system-diagram
+    paths:
+      - .hero-redesign/TRIGGER
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finalize-ibm-hero-system
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out redesign branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/ibm-hero-system-diagram
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Use repository npm version
+        run: npm install --global npm@10.9.2 --no-audit --no-fund
+
+      - name: Generate canonical raster icons
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends librsvg2-bin
+          rsvg-convert -w 1024 -h 1024 build/icon.svg > build/icon.png
+          rsvg-convert -w 180 -h 180 website/assets/icon.svg > website/assets/apple-touch-icon.png
+          rsvg-convert -w 192 -h 192 website/assets/icon.svg > website/assets/icon-192.png
+          rsvg-convert -w 512 -h 512 website/assets/icon.svg > website/assets/icon-512.png
+          python3 <<'PY'
+          from pathlib import Path
+          expected = {
+              'build/icon.png': 1024,
+              'website/assets/apple-touch-icon.png': 180,
+              'website/assets/icon-192.png': 192,
+              'website/assets/icon-512.png': 512,
+          }
+          for relative, size in expected.items():
+              data = Path(relative).read_bytes()
+              assert data[:8] == b'\x89PNG\r\n\x1a\n', relative
+              assert int.from_bytes(data[16:20], 'big') == size, relative
+              assert int.from_bytes(data[20:24], 'big') == size, relative
+          PY
+
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify, test, and build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Build unpacked Linux application
+        run: npm run dist:dir
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Commit clean redesign branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf node_modules dist release coverage website-dist .hero-redesign
+          rm -f package-lock.local-validation.json
+          rm -f .github/workflows/finalize-ibm-hero-system.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Build IBM-style subscription routing homepage"
+          git push origin HEAD:agent/ibm-hero-system-diagram
